@@ -2,7 +2,7 @@
 \chapter{Grundlagen}
 \label{sec:fundamentals}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Software Qualitätssicherung}\todo[color=blue!40]{Feedback zu Struktur des Literaturkapitels}
+\todo[color=blue!40]{Feedback zu Struktur des Literaturkapitels}\section{Software Qualitätssicherung}
 \subsection{Motivation und Relevanz}
 
 \todo{Evt. einleitende Worte...}
@@ -25,7 +25,7 @@ QUOTE „Komplexe Systeme analytisch in begrenzer Zeit nur unvollständig erfass
 Gründe wieso Fehler auftreten sind mannigfaltig. Aus menschlicher Sicht können Fehler auf drei Ebenen auftreten [QUELLE 3]:\todo{Ref}
 
 Kommunikation
-Jegliche Art von Kommunikation ist Transformation (vgl. SHANNON, 1976). Dabei passieren diese Transformationen nicht nur bei der Kommunikation zwischen zwei Menschen sondern auch bei der Transformation von Sprache in Verständnis. Naturgemaß bleibt bei diesen Transformationen Informationsgehalt verloren, abhängig von verschiedenen Rahmenbedingungen manchmal sogar sehr viel, beispielsweise wenn Information in einer Sprache übermittelt wird, welche nicht die Muttersprache von beiden Kommunikationspartnern ist.
+Jegliche Art von Kommunikation ist Transformation (vgl. SHANNON, 1976). Dabei passieren diese Transformationen nicht nur bei der Kommunikation zwischen zwei Menschen sondern auch bei der Transformation von Sprache in Verständnis. Naturgemäß bleibt bei diesen Transformationen Informationsgehalt verloren, abhängig von verschiedenen Rahmenbedingungen manchmal sogar sehr viel, beispielsweise wenn Information in einer Sprache übermittelt wird, welche nicht die Muttersprache von beiden Kommunikationspartnern ist.
 Im technischen Umfeld gibt es darum viele Standardbegriffe, die möglichst genau definiert sind. So soll der Informationsverlust eingeschränkt werden.
 Weiters spielt sich ein nicht unerheblicher Teil der Kommunikation auf unterbewusster Ebene ab.
 
@@ -46,29 +46,70 @@ Komplexität wird dadurch aber niemals vermindert, sondern nur versteckt bzw. an
 \subsubsection{Agiles Testen}
 \subsection{Regressionstests und Testautomatisierung}
 \subsection{Modellbasiertes Testen}
-\subsubsection{Idee}
+\subsubsection{Definition}
+Im allgemeinsten Sinn, werden im modellbasierten Testing Testfälle aus Modellen abgeleitet, die das Sollverhalten eines Software-Systems beschreiben. (QUELLE BASISWISSEN MODELLBASIERTER SOFTWARETEST)\\
+
+In (QUELLE PRACTICAL MODEL BASED TESTING) werden vier verschiedene Herangehensweisen zusammenfassend als modellbasiertes Testen definiert:
+
+\begin{itemize}
+\item Generierung von Testdaten aus einem Domänenmodell
+\item Generierung von Testfällen aus einem Umgebungsmodell
+\item Generierung von Testfällen aus einem Verhaltensmodell
+\item Generierung von Test-Skripts aus einem abstrakten Test
+\end{itemize}
+
+Die Autoren legen den Schwerpunkt auf die generativen Aspekte. Weniger Aufmerksamkeit wird dem vorausgehenden Schritt geschenkt: Die Modellierung der genannten Modelle. (QUELLE BASISWISSEN MODELLBASIERTER SW TEST) nennt folgende  zentralen Merkmale des modelbasierten Testings:
+
+\begin{itemize}
+\item Die zu testende Software, ihre Umgebung oder der Test, wird über Modelle betrachtet.
+\item Diese Modelle konzentrieren sich in abstrahierter Form auf besondere Eigenschaften des SUT (meist auf dessen Verhalten).
+\item Diese Modelle können entweder eigenständig erstellt werden oder aus Entwicklungsmodellen abgeleitet werden.
+\item Mit Testdaten und technologischen Adaptern kombiniert, bilden diese Modelle die Basis generierter Testfälle.
+\end{itemize}
+
+Dies führt zur pragmatischen Definition von modellbasiertem Testing:
+
+\begin{quote}
+Modellbasiertes Testen umfasst mindestens einen der beiden folgenden Aspekte: Tests modellieren oder Tests aus Modellen generieren.
+\end{quote}
+
+\subsubsection{Modellkategorien}
+Im Feld der modellgetriebenen Entwicklung und des modellbasierten Testens wird grundsätzlich zwischen drei verschiedenen Modellkategorien unterschieden.
+
+\paragraph{Umgebungsmodelle} stellen den Ausschnitt der Domäne dar, wo das zu testende System platziert wird oder ist.
+\paragraph{Systemmodelle} beschreiben das SUT in statischer und dynamischer Hinsicht. Sie stellen dar aus welchen Komponenten das SUT zusammengesetzt ist, welche Eigenschaften diese haben und wie diese miteinander kommunizieren. 
+\paragraph{Testmodelle} dienen als Grundlage für die Generierung von Testfällen, basiernd auf Spezifikations- und Entwurfsdokumenten. Daher enthalten sie auch oftmals Teile von Umgebungs- und Systemmodellen. Weiters beschreiben sie den Ablauf der zu generierenden Testfälle. Möglich ist die Angabe darüber, welche Eingaben das SUT erhalten soll und welche Ausgaben bzw. Reaktionen erwartet werden.
+
+
 \subsubsection{Vergleich mit klassischem Testing}
+
+\subsection{Entscheidungshilfe für den Einsatz von MBT}
+In der Praxis stellt sich für jedes Software-Projektteam die Frage welche Teststrategie am effizientesten, in Bezug auf Qualität und Ressourcennutzung ist. Manuelles Testen gilt in der Industrie immer noch als das am häufigsten eingesetzte Verfahren (QUELLE ARTIKEL STARTHILFE FÜR MODELLBASIERTES TESTEN), aber deren Wirksamkeit mindert sich mit steigender Komplexität der zu testenden Software. Skriptbasierte Testautomatisierungstools kommen seit Jahren in der Industrie zum Einsatz. Durch die automatisierte Testausführung, wird der Testprozess schnell und wiederholbar. Verglichen mit manuellen Tests sind skriptbasierte Tests zeitsparender und weniger fehleranfällig. Gleichzeitig müssen skriptbasierte Tests gewartet werden, was einen nicht unerheblichen Ressourcenaufwand bedeuten kann.\\
+Als Alternative dazu steht das modellbasierte Testen. Basierend auf (QUELLE ARTIKEL STARTHILFE FÜR MODELLBASIERTES TESTEN) folgen acht Fragestellungen die zu einer Entscheidung bezüglich der Sinnhaftigkeit des Einsatzes von MBT führen sollen:
+
+\todo{Grafik für Entscheidungshilfe (gerichteter Graph)}
+\begin{itemize}
+\item Wie komplex sind die Testbasis und die zu testende Funktionalität?
+Die Komplexität des zu testenden Systems ist ein entscheidender Faktor, bei der Auswahl der passenden Teststrategie. Aus niedriger Komplexität oder allgemein wenig Funktionalität, resultieren wenig Testfälle, die mit manuellen Tests durchgeführt werden können. Diese erfordern wenig Planungsaufwand und können schnell ausgewertet werden. Bei steigendem Funktionsumfang kann eine skriptbasierte Ausführung der Testfälle sinnvoll sein. Außerdem kann modellbasiertes Testen die Generierung dieser Testfälle automatisieren.
+\item Wie wichtig ist die Überdeckungsanalyse?
+Im Software-Testing wird oft anhand der prozentualen Abdeckung des Quellcodes auf die Güte der Teststrategie geschlossen. Mittels skriptbasiertem Testen ist es aber nicht trivial festzustellen, welche Teile des Codes ein Testfall genau abdeckt. Mit MBT lässt sich anhand der Modellüberdeckung schneller feststellen welche Komponenten abgedeckt sind. Außerdem lassen sich Konzepte der Traceability (also der Verfolgbarkeit von Test zu Code) im MBT sehr einfach einführen. Modellbasierte Tests haben daher den nützlichen Nebeneffekt wie ein Vertrag, zwischen Requirement und tatsächlicher Funktionalität, zu funktionieren. Weil modellbasierte Tests oft einfach visuell dargestellt werden können, eignen sie sich auch zu Präsentationszwecken vor Kunden.
+\item Wie häufig finden Änderungen in der Spezifikation statt? 
+Unzufriedenheit mit skriptbasierten Tests entsteht oft aus teuren Wartungsarbeiten, die nötig werden sobald sich das zu testende System weiterentwickelt. Skriptbasierte Tests können nur zu einem gewissen Grad Änderungsunabhängig entwickelt werden. Gerade wenn das Softwareprojekt aus kurzen Entwicklungszyklen besteht (so wie es viele moderne agile Projekte sind), die viel Änderungspotenzial mit sich bringen, sollte MBT in Betracht gezogen werden.
+\item Wie wichtig ist die Plattformunabhängigkeit der Testfälle?
+Abhängig von der Testebene wo automatisierte Tests auf das System zugreifen, können skriptbasierte Tests nutzlos werden wenn beispielsweise der Austausch einer GUI-Bibliothek erfolgt. Da bei modellbasierten Tests eine strikte Trennung zwischen Testmodell und Adapter zum SUT gemacht wird, muss bei einem Plattformwechsel auch nur dieser Adapter angepasst werden. Auch bei industrieller Software die oft mittels dem Konzept der Software-Familien arbeitet, kann es von Vorteil sein wenn die eigentlichen Testkomponenten unabhängig von der Adapter-Logik bestehen.
+\item Ist die Testbasis modellierbar?
+Für die Modellierung des SUT ist eine Vielzahl von Notationen verfügbar. Zustandsbasierte und Ereignisbasierte \todo{Link zu einer Grundlagen section wo ich das erläutere} Notationsarten ermöglich die Modellierung sehr vieler funktionaler Eigenschaften. Wenn sich die Funktionalität der Testbasis aber nur unzureichend modellieren lässt, macht modellbasiertes Testen schlicht keinen Sinn.
+\item Hat das Testteam Erfahrung mit Software-Modellierung? / Sind Modellierungskenntnisse im Testteam verfügbar?
+Abhängig davon wie die Rollen im Projektteam verteilt sind, muss festgestellt werden ob Modellierungskenntnisse bei denjenigen vorhanden sind, die im weiteren Verlauf Testfälle erstellen und warten. Das Testteam muss deshalb möglicherweise geschult werden. Die Kosten dieser Schulungen, verglichen mit den Aufwänden für manuelles und skriptbasiertes Testen, können entscheidend für die Wahl von MBT sein.
+\item Kann das Test-Orakel automatisiert werden?
+Da beim modellbasierten Testen, Testfälle in der Regel automatisch generiert werden, sollen auch die erwarteten Testergebnisse modelliert oder in Form von Testdaten hinterlegbar und automatisch prüfbar sein. Falls die erwarteten Systemeigenschaften nicht modellierbar sein können, muss jeder Testfall manuell geprüft werden. Dieser Umstand mindert die Nützlichkeit von modellbasiertem Testen.
+\item Ist die Bereitschaft für den Kauf und Einführung eines MBT-Werkzeugs vorhanden?
+Eine Einführung von MBT ist immer auch mit Anschaffungskosten verbunden. Auf dem Markt sind verschiedenste Werkzeuge erhältlich \todo{Link zu Marktübersichts Section}. Weiters muss sich das gewählte Tool aber auch in bestehende Umgebungen integrieren lassen (was oft mit weiteren Kosten verbunden ist).
+\end{itemize}
+
 \subsubsection{Tool-Landschaft}
 
 \section{State of the Art - Modellbasiertes Testen}
-In diesem Kapitel werden die theoretischen Grundlagen und alle in der Arbeit verwendeten und für das Verständnis relevante Begriffe erläutert. Kapitelnamen spezifizieren, anpassen an die Fragestellung der Arbeit.
-
-\makeatletter\ifthesis@masterthesis
-Nach dem Lesen dieses Kapitels sollten folgende Punkte klar dargestellt sein:
-\begin{itemize}
-	\item Beschreibung der relevanten theoretischen Grundlagen für die Behandlung der Fragestellung
-	\item Detaillierte Beschreibung ggf. vorhandener relevanter Spezifika des Anwendungsbereichs, in dem das Problem gelöst wird
-	\item Detaillierte Beschreibung relevanter Spezifika eingesetzter Technologien
-	\item Analyse bestehender Ansätze/ Vorarbeiten: Literaturstudium, Analyse, Vergleich und Zusammenfassung bestehender Ansätze.
-\end{itemize}
-\fi\makeatother
-
-Gerade im Bereich der Grundlagen wird viel Literatur zitiert -- Details zum Zitieren finden Sie im Kapitel \ref{sec:references}. Da keine Diplomarbeit so innovativ ist, dass sie nicht auf vorhandenes Wissen aufbaut und in ein entsprechendes Forschungsumfeld eingebettet ist, kommt an dieser Stelle der Literaturrecherche eine besondere Bedeutung zu. Als Daumenregel gilt, dass der aktuelle Stand der Wissenschaft in der Informatik üblicherweise durch Publikationen v.a. der letzten 2 – 4 Jahre repräsentiert wird.
-
-\makeatletter\ifthesis@masterthesis
-Beispielhaft einleitender Text an dieser Stelle:\\
-Dieses Kapitel stellt Konzepte der Informationstheorie vor und liefert theoretische Grundlagen zu verdeckten Kanälen. Die verdeckte Kommunikation wird mit den verwandten Techniken der Steganographie und Kryptographie verglichen. Außerdem werden ein einfaches Fehlerkorrekturverfahren sowie die Grundlagen des HTTP-Protokolls beschrieben.
-\fi\makeatother
 
 State of the art
 In diesem Kapitel wird ein Überblick über bereits existierende Lösungen für die Problemstellung bzw. verwandte Problemstellungen gegeben. Dabei ist eine Klassifizierung der existierenden Lösungen empfehlenswert. Eine Analyse der Lösungen, nach Kriterien sortiert, sollte insbesondere auch die Defizite der existierenden Lösungen erläutern und damit insbesondere auch eine Begründung liefern, warum diese Lösungen für die Problemstellung der Arbeit nicht herangezogen werden können.
