@@ -16,15 +16,16 @@ Software dringt in Gebiete vor die von analoger Technik dominiert wurde. Aeronau
 
 \subsubsection{Komplexe Systeme führen zu Fehlern}
 Von der Programmierung in Hochsprachen bis zur Ausführung auf der Hardware müssen unzählige Schichten korrekt ineinander greifen um das gewünschte Ergebnis hervorzubringen. 
-Daher sind
+Daher gilt:
 
-QUOTE „Komplexe Systeme analytisch in begrenzer Zeit nur unvollständig erfassbar. Fehler sind damit zwangsläufig die Folge“ \cite{vigenschow_objektorientiertes_2004}
+\begin{quote}
+Komplexe Systeme analytisch in begrenzer Zeit nur unvollständig erfassbar. Fehler sind damit zwangsläufig die Folge. \cite{vigenschow_objektorientiertes_2004}
+\end{quote} „
 
 Gründe wieso Fehler auftreten sind mannigfaltig. Aus menschlicher Sicht können Fehler auf drei Ebenen auftreten: \cite{vigenschow_objektorientiertes_2004}
 
-
 \paragraph{Kommunikation}
-Jegliche Art von Kommunikation ist Transformation (vgl. SHANNON, 1976). Dabei passieren diese Transformationen nicht nur bei der Kommunikation zwischen zwei Menschen sondern auch bei der Transformation von Sprache in Verständnis. Naturgemäß bleibt bei diesen Transformationen Informationsgehalt verloren, abhängig von verschiedenen Rahmenbedingungen manchmal sogar sehr viel, beispielsweise wenn Information in einer Sprache übermittelt wird, welche nicht die Muttersprache von beiden Kommunikationspartnern ist.
+Jegliche Art von Kommunikation ist Transformation \cite{shannon_mathematische_1976}. Dabei passieren diese Transformationen nicht nur bei der Kommunikation zwischen zwei Menschen sondern auch bei der Transformation von Sprache in Verständnis. Naturgemäß bleibt bei diesen Transformationen Informationsgehalt verloren, abhängig von verschiedenen Rahmenbedingungen manchmal sogar sehr viel, beispielsweise wenn Information in einer Sprache übermittelt wird, welche nicht die Muttersprache von beiden Kommunikationspartnern ist.
 Im technischen Umfeld gibt es darum viele Standardbegriffe, die möglichst genau definiert sind. So soll der Informationsverlust eingeschränkt werden.
 Weiters spielt sich ein nicht unerheblicher Teil der Kommunikation auf unterbewusster Ebene ab.
 
@@ -39,6 +40,31 @@ Komplexität wird dadurch aber niemals vermindert, sondern nur versteckt bzw. an
 
 
 \subsection{Softwarequlität und Standards}
+Der Begriff Qualität kann auf vielfältige Art und Weise definiert werden. Jeder Mensch hat ein gewisses intuitives Verständnis dafür. Bezogen auf verschiedene Anwendungsfelder assoziiert ein Jeder andere Merkmale eines Objekts mit Qualität.
+
+\begin{quote}
+Entscheidend ist, was die Anspruchsteller vor dem Hintergrund ihrer Anforderungen wahrnehmen und für wichtig halten. Während die rational bedingte Sachqualität mit naturwissenschaftlich-technischen Methoden messbar ist, bereitet die reproduzierbare Messung der Anmutungsqualität Probleme.\cite{markgraf_definition_2015}
+\end{quote}
+
+Im Kontext der Software-Entwicklung verbinden Entwickler und Projektleiter mit dem Begriff der Qualität verschiedene Inhalte.\cite{hoffmann_software-qualitat_2013} Aus diesem Grund wurde bereits mehrfach versucht, eine einheitliche Definition für den Begriff Qualität zu finden. Die, inzwischen überholte DIN-ISO-Norm 9126 \footnote{ISO 9126: Software Quality \url{http://www.iso.org/iso/catalogue_detail.htm?csnumber=22749}} definiert Softwarequalität wie folgt:
+
+\begin{quote}
+Software-Qualität ist die Gesamtheit der Merkmale und Merkmalswerte eines Software-Produkts, die sich auf dessen Eignung beziehen, festgelegte Erfordernisse zu erfüllen.
+\end{quote}
+
+Diese Definition unterstreicht, dass der Begriff Software-Qualität eine multikausale Größe beschreibt.\cite{hoffmann_software-qualitat_2013} Vor dem Hintergrund, des sich rasant entwickelnden Gebiets der Software-Entwicklung, gibt es nun eine stark überarbeitete Version dieser ISO-Norm. Die Normenreihe ISO/IEC 25000 umfasst nun über ein dutzend Standards die sich sehr detailliert mit der Thematik auseinandersetzen. Dazu zählen unter anderem Leitfäden zu Planung und Management, Metriken zur Qualitätsmessung und Anforderungen an Datenqualität. Im Wesentlichen definiert ISO/IEC 25010 \footnote{ISO/IEC 25010: Systems and Software Quality Requirements and Evaluation (SQuaRE) \url{http://www.iso.org/iso/home/store/catalogue_ics/catalogue_detail_ics.htm?csnumber=35733}} eine Reihe vielschichtiger Kriterien, welche als Bausteine der Software-Qualität angesehen werden können.
+
+\paragraph{Funktionalität (Functionality, Capability)} Dieses Qualitätsmerkmal beschreibt, in welchem Maß ein Software-System den ihm zugeschriebenen Funktionsumfang tatsächlich erfüllt. Funktionale Fehler entstehen aus den verschiedensten Umständen. Möglich sind Fehler die passieren wenn Anforderungen auf eine nicht beabsichtigte Art und Weise implementiert werden. Andererseits lassen sich funktionale Fehler auch oft auf unvollständige oder nicht vorhandene Spezifikationen zurückführen. Äußere Faktoren wie Zeitmangel oder zwischenmenschliche Unstimmigkeiten haben einen besonders negativen Einfluss auf die häufigste Art von funktionalen Fehlern: Klassische Implementierungsfehler (sogenannte "bugs"). Diese sind auch das Hauptaugenmerk der Methoden und Techniken der Software-Qualitätssicherung. Weil funktionale Fehler so allgegenwärtig sind, wird der Begriff der Software-Qualität häufig auf dieses eine Kriterium reduziert wahrgenommen.
+
+\paragraph{Laufzeit (Performance)} Jedes Software-System unterliegt gewissen Laufzeitanforderungen. Oft wird diesen aber bei der Formulierung der Anforderungen weniger Beachtung, als funktionalen Anforderungen, geschenkt. Laufzeitanforderungen können bei Nichtbeachtung sehr lange Zeit unentdeckt bleiben, sich dann aber zu ernstzunehmenden Problemen entwickeln.\\
+Im Bereich der Echtzeitsysteme unterliegen alle Operationen Zeitanforderungen, die entweder im statistischen Mittel (weiche Echtzeit) oder in jedem Einzelfall (harte Echtzeit) zwingend erfüllt werden müssen. \cite{hoffmann_software-qualitat_2013}
+
+\paragraph{Zuverlässigkeit (Reliability)} In sicherheitskritischen Anwendungen kann sich ein Systemversagen direkt auf die Unversehrtheit der beteiligten Personen auswirken. Zuverlässigkeit ist aber eng mit anderen Kriterien gekoppelt und kann (und soll) nicht als einzelnes Ziel erreicht werden.
+
+\paragraph{Wartbarkeit (Maintainability)} Wartbarkeit und Langlebigkeit sind zentrale Qualitätsmerkmale moderner Software-Systeme. \cite{rombach_design_2009} In vielen Fällen hört die Projektplanung bei der Inbetriebnahme der Applikation auf und ignoriert die Notwendigkeit, nachträglich Anpassungen zu machen und Fehler zu beheben.
+
+
+
 \subsection{Testprozess}
 \subsection{Teststufen}
 \subsubsection{Klassisches Vorgehen}
