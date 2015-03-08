@@ -1,8 +1,24 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Konkrete Problemstellung -- Umfeldbeschreibung}
+\chapter{Umfeldbeschreibung: Testing von Finanz-Software}
 \label{sec:problemdescription}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Merkmale und Besonderheiten von Software im Bankenumfeld}
 
-\section{Ist-Analyse}
+\section{Ist-Analyse Partnerunternehmen}
+
+\subsection{Hintergrund zu den Applikation RETo und RESi}
+Die Applikation \textit{RESi}, in anderer Struktur und bis in das Jahr 2013 \textit{RETo} (Raiffeisen Expert Tool), ist ein Backend-Service der Dienste für die verschiedensten Front-End Applikationen des Unternehmens bereitstellt. Unter altem Namen, bot die Applikation früher eine eigene Benutzeroberfläche und weniger, dafür spezifischere Funktionalität. RETo war im Intranet der Fillialen im Einsatz und wurde ausschließlich für Kundenberatungen eingesetzt. Die Applikation hatte folgende Kernkompetenzen:
+
+\begin{itemize}
+\item Ermittlung von Anlegerprofilen
+\item Durchführung von Anlage-Checks
+\item Beratungen zum Thema Wohnen und Wohneigentum
+\item Beratungen zum Thema Vorsorge
+\item Beratungen zum Thema Pension
+\end{itemize}
+
+Im Jahr 2014 wurde die ein Großteil der Applikationslandschaft umstrukturiert. In einer Bemühung einzelne Applikationen zu vereinheitlichen und Mehrfachaufwendungen zu minimieren, wurde RETo modularisiert. Das Projekt RESi wurde gestartet. RESi stellt eine Back-End-Service Schicht dar. Da RETo bereits einen sehr breiten Funktionsumfang bot, besteht RESi zu großen Teilen aus den RETo Kernkomponenten. Auch das Entwicklungsteam ist das selbe geblieben. Mehrere, ehemals eigenständige Applikationen, greifen jetzt auf RESi zu und bieten nur noch ein Front-End und eine dünne Serverschicht. RETo existiert weiterhin aber greift auch auf die Services von RESi zu.
+
+\subsection{Entwicklungsumfeld}
 
 \fi\makeatother
