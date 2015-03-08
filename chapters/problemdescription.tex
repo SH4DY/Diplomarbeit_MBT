@@ -20,5 +20,19 @@ Die Applikation \textit{RESi}, in anderer Struktur und bis in das Jahr 2013 \tex
 Im Jahr 2014 wurde die ein Großteil der Applikationslandschaft umstrukturiert. In einer Bemühung einzelne Applikationen zu vereinheitlichen und Mehrfachaufwendungen zu minimieren, wurde RETo modularisiert. Das Projekt RESi wurde gestartet. RESi stellt eine Back-End-Service Schicht dar. Da RETo bereits einen sehr breiten Funktionsumfang bot, besteht RESi zu großen Teilen aus den RETo Kernkomponenten. Auch das Entwicklungsteam ist das selbe geblieben. Mehrere, ehemals eigenständige Applikationen, greifen jetzt auf RESi zu und bieten nur noch ein Front-End und eine dünne Serverschicht. RETo existiert weiterhin aber greift auch auf die Services von RESi zu.
 
 \subsection{Entwicklungsumfeld}
+Das Umfeld er Applikaiton RESi wird in einem klassischen Auftragnehmer/Auftraggeber Szenario entwickelt. Eine Fachabteilung stellt den Kunden dar. Sie definieren die Anforderungen an die Applikation. Dem gegenüber ist das Entwicklungsteam. Dieses besteht aus einem Applikationsmanager und 6-8 Entwicklern. 
 
+\begin{itemize}
+\item 2 Major Release pro Jahr
+\item Mehrere Service-Release pro Jahr
+\item 3-wöchige Scrum-Sprints
+\item 4 Ebenen (Integrationstest, Systemtest, Akzeptanztest, Produktion)
+\item Scrum Master wechselt
+\item Product Owner (PO) wird von Fachbereich gestellt
+\item tägliche Scrum-Meetings
+\end{itemize} 
+
+Die Applikation RESi ist, bedingt durch ihre Reife, bereits sehr stabil. Effektiv ist sie schon seit mehreren Jahren (in anderer Struktur und unter anderem Namen) im produktiven Einsatz. Der typische Entwicklungszyklus wird also vom Fachbereich angestoßen. Ein Request For Change (RFC) wird vom Fachbereich angenommen oder verfasst. Die zuständigen Produktmanager definieren genügend fachliche Details, bevor ein RFC in eine Story verwandelt wird. Diese Story fließt nun typischerweise in den Scrum-Backlog (\todo{Ref zu Scrum Kapitel}). Wenn auf einer der Entwicklungsebenen Fehler mit hoher Priorität gefunden werden, wird ein Defect-Bericht verfasst, der direkt in den laufenden Entwicklungszyklus (Sprint) einfließt.\\
+Auf Seiten der Entwickler finden kurze tägliche Meetings statt. Dauer und Struktur dieser täglichen Meetings entsprechen den klassischen Daily-Scrum Standups. Neben den Entwicklern ist der Scrum-Master und der Product Owner aus dem Fachbereich anwesend. Er steht für kurzfristig auftretende Fragen bereit. Weiters finden im Entwicklungsteam wöchentliche Research-Meetings statt. Diese 
+\subsection{Kurze Iterationen treffen auf lange Release-Zyklen}
 \fi\makeatother
