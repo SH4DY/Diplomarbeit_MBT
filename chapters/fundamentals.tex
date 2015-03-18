@@ -155,6 +155,7 @@ Im letzten Schritt werden die Ergebnisse der Testfälle analysiert. Auch diesen 
 \subsubsection{Vergleich mit klassischem Testing}
 
 \subsection{Entscheidungshilfe für den Einsatz von MBT}
+\label{sec:entscheidungshilfe}
 In der Praxis stellt sich für jedes Software-Projektteam die Frage welche Teststrategie am effizientesten, in Bezug auf Qualität und Ressourcennutzung ist. Manuelles Testen gilt in der Industrie immer noch als das am häufigsten eingesetzte Verfahren \cite{guldali_starthilfe_2010}, aber deren Wirksamkeit mindert sich mit steigender Komplexität der zu testenden Software. Skriptbasierte Testautomatisierungstools kommen seit Jahren in der Industrie zum Einsatz. Durch die automatisierte Testausführung, wird der Testprozess schnell und wiederholbar. Verglichen mit manuellen Tests sind skriptbasierte Tests zeitsparender und weniger fehleranfällig. Gleichzeitig müssen skriptbasierte Tests gewartet werden, was einen nicht unerheblichen Ressourcenaufwand bedeuten kann.\\
 Als Alternative dazu steht das modellbasierte Testen. Basierend auf \cite{guldali_starthilfe_2010} folgen acht Fragestellungen die zu einer Entscheidung bezüglich der Sinnhaftigkeit des Einsatzes von MBT führen sollen:
 
@@ -183,9 +184,12 @@ Wie auf dem Feld der skriptbasierten Testautomatisierung, ist die Auswahl an Too
 
 \section{State of the Art - Modellbasiertes Testen}
 
-State of the art
-In diesem Kapitel wird ein Überblick über bereits existierende Lösungen für die Problemstellung bzw. verwandte Problemstellungen gegeben. Dabei ist eine Klassifizierung der existierenden Lösungen empfehlenswert. Eine Analyse der Lösungen, nach Kriterien sortiert, sollte insbesondere auch die Defizite der existierenden Lösungen erläutern und damit insbesondere auch eine Begründung liefern, warum diese Lösungen für die Problemstellung der Arbeit nicht herangezogen werden können.
+Model-based Testing von Software wird seit mehr als 20 Jahren aktiv thematisiert, \cite{utting_practical_2007} sei es durch Forschung oder Industrie. Wie in den Leitlinien für den Einsatz von MBT in einem Projekt bereits erwähnt \ref{sec:entscheidungshilfe}, ist ein sinnvoller Einsatz nicht immer gegeben. Diese Leitlinien haben sich unter anderem, durch eben die folgenden Publikation und Fallstudien ergeben, sind aber keineswegs unveränderlich. Durch neue Erkenntnisse im laufenden Einsatz von MBT in den verschiedensten Projekten und durch die stetige Weiterentwicklung der beteiligten Technologien, entwickeln sie sich weiter.\\
+Die folgenden Fallstudien geben einen Überblick darüber, wie MBT Methoden in den letzten Jahren eingesetzt wurden.
 
-Unterkapitel----------------------------------------------------------------------
+\paragraph{GUITAR: An innovative tool for automated testing of GUI-driven software \cite{nguyen_guitar:_2014}} Das von den Autoren entwickelte \textit{GUITAR} Framework wurde für modellbasiertes Oberflächentesting entwickelt. Das Werkzeug verhält sich dabei wie eine \textit{Learning Machine}. Soll heißen, es gibt eine endliche Anzahl von diskreten Parametern in das SUT (bedient das Programm) und beobachtet die Ergebnisse (wie sich das SUT verhält). Basierend auf diesen Ergebnisse generiert \textit{GUITAR} automatisch das Modell des SUT. Der Tester kann daraufhin Modifikationen am Modell vornehmen, bevor das eigentliche Testing beginnt.\\ 
+In mehreren Fallstudien konnte \textit{GUITAR} Use-Cases nachstellen, in denen die korrekte Bedienung zu unerwarteten Abstürzen des SUT führte. Bedingt durch die geringe Intervention durch den Testentwickler, brachten die Tests eine gewisse Qualitätssteigerung mit wenig Ressourcenaufwand. Diese Methodik kann also hauptsächlich Aussagen über die Stabilität des SUT treffen und lässt kaum Schlüsse auf die funktionale Korrektheit zu.
+
+\paragraph{Industrial Application of Visual GUI Testing: Lessons learned}
 
 \section{Agile Entwicklungsmethoden - Scrum}
