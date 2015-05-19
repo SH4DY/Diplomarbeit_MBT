@@ -80,8 +80,10 @@ Deshalb ist es auch nicht möglich, ein Software-System zu entwickeln, das alle 
 \subsubsection{Klassisches Vorgehen}
 \subsubsection{Agiles Testen}
 \subsection{Regressionstests und Testautomatisierung}
-\subsection{Modellbasiertes Testen}
-\subsubsection{Definition}
+
+\section{Modellbasiertes Testen}
+\label{sec:mbt}
+\subsection{Definition}
 Im allgemeinsten Sinn, werden im modellbasierten Testing Testfälle aus Modellen abgeleitet, die das Sollverhalten eines Software-Systems beschreiben. \cite{sensler_testautomatisierung_2011}\\
 
 In \cite{utting_practical_2007} werden vier verschiedene Herangehensweisen zusammenfassend als modellbasiertes Testen definiert:
@@ -108,41 +110,52 @@ Dies führt zur pragmatischen Definition von modellbasiertem Testing:
 Modellbasiertes Testen umfasst mindestens einen der beiden folgenden Aspekte: Tests modellieren oder Tests aus Modellen generieren.
 \end{quote}
 
-\subsubsection{Vorteile des Modellbasierten Testings}
+\subsection{Vorteile des Modellbasierten Testings}
 In diesem Abschnitt sollen die Vorteile des MBT gegenüber anderen Testmethoden, auch anhand von Publikationen und Fallstudien, erläutert werden.
 
-\paragraph{Anzahl der gefundenen Fehler} Mehrere Fallstudien belegen die Konkurrenzfähigkeit von MBT. Repräsentativ für die Automobilindustrie hat BMW mehrere modellbasierte Testsuites im produktiven Einsatz verglichen.\cite{pretschner_one_2005} SUT war ein gängiger Netzwerk Controller. Ein Teil der Testsuiten wurde manuell aber auf Basis eines Modells des SUT entwickelt, während der andere Teil automatisch anhand von Modellen generiert wurde. Beide Arten von Testsuiten fanden mehr Spezifikationsfehler als die traditionelle Testsuiten (diese wurden direkt von der Spezifikation in Prosa abgeleitet). Bei der Anzahl der gefundenen Programmierfehler, schnitten die modellbasierten Tests nicht besser ab. Testfälle die von der Spezifikation abgeleitet wurden, manuell entwickelte modellbasierte Tests und automatisch generierte modellbasierte Tests lagen gleichauf.\\
+\paragraph{Anzahl der gefundenen Fehler} Mehrere Fallstudien belegen die Konkurrenzfähigkeit von MBT. Repräsentativ für die Automobilindustrie hat BMW mehrere modellbasierte Testsuites im produktiven Einsatz verglichen.\cite{pretschner_one_2005} SUT war ein gängiger Netzwerk Controller. Ein Teil der Testsuiten wurde manuell aber auf Basis eines Modells des SUT entwickelt, während der andere Teil automatisch anhand von Modellen generiert wurde. Beide Arten von Testsuiten fanden mehr Spezifikationsfehler als die traditionelle Testsuiten (diese wurden direkt von der Spezifikation in Prosa abgeleitet). Bei der Anzahl der gefundenen Programmierfehler, schnitten die modellbasierten Tests nicht besser ab. Testfälle die von der Spezifikation abgeleitet wurden, manuell entwickelte modellbasierte Tests und automatisch generierte modellbasierte Tests lagen gleichauf. Diese Fallstudie ist weiters sehr interessant, weil nicht nur manuell entworfene Modelle als Basis der Testfallgenerierung eingesetzt wurden. Die Autoren ließen einen Teil der Modelle, durch Ableitung vom SUT und dem Einsatz von Regeln, automatisch generieren.\\ \todo{Verweis zu automatisch generierten Testmodellen...} \\
 IBM verglich MBT im Java-Umfeld mit konventionellen Testmethoden.\cite{farchi_using_2002} Dabei fanden sie heraus, dass ihre MBT Testsuiten nicht nur eine höhere Code-Abdeckung garantierten, sondern auch mehr Programmierfehler aufdeckten. Die Aufwände für die Erstellung dieser Modelle war dabei vergleichbar mit der Entwicklung der skriptbasierten Testsuite. Um die Modelle überschaubar groß zu halten, wurde nur das externe Verhalten der getesteten Features modelliert.\\
-Während mehrere Studien darauf hindeuten, dass MBT gleich viele oder sogar mehr Fehler aufdeckt (\cite{dalal_model-based_1999}, \cite{legeard_generation_2001}) als manuelle Tests, hängen diese Ergebnisse stark von den Fähigkeiten des Testers ab. Vor allem die Bestimmung der Testauswahlkriterien, hat viel Einfluss auf die Qualität der Testfälle.\cite{utting_practical_2007}
+Viele MBT-Tools konzentrieren sich auf den Einsatz mit Embedded-Technologien. Es scheint, dass MBT in dieser Domäne seine ganze Stärke ausspielen kann. So berichten Legeard und Peureux in mehreren Publikationen, dass die von Modellen abgeleiteten Testfälle,  beim Test von \textit{smart card}-Software, ein Vielfaches von den manuell gefundenen Fehlern auffinden konnten.\cite{legeard_generation_2001}\\
+Während viele Ergebnisse darauf hindeuten, dass MBT gleich viele oder sogar mehr Fehler aufdeckt (\cite{dalal_model-based_1999}, \cite{legeard_generation_2001}) als manuelle Tests, hängen diese Ergebnisse stark von den Fähigkeiten des Testers ab. Vor allem die Bestimmung der Testauswahlkriterien, hat viel Einfluss auf die Qualität der Testfälle.\cite{utting_practical_2007}
 
-\paragraph{Zeit- und Kostenaufwände} Modellbasiertes Testen kann zu Zeiteinsparungen führen wenn folgende Aufwände für das initiale Erstellen Modelle und ihrer Wartung, plus die Aufwände für die Konfiguration der automatischen Testfallgenerierung, niedriger ausfallen als die manuelle Erstellung von Testfällen und deren Wartung. \todo{Formalisieren...}\\
-Mehrere Fallstudien kommen zum Ergebniss, dass die Zeitaufwände tatsächlich niedriger ausfallen (\cite{dalal_model-based_1999}, \cite{farchi_using_2002}). Nicht unerwähnt bleiben, soll ein Teilergebnis des AGEDIS Projekts \footnote{AGEDIS war ein zeitlich auf 3 Jahre beschränktes Projekt der Europäischen Union und mehreren Industriepartnern. Ziel war die Evaluation von Model-based testing Tools und die Entwicklung eines ``Standard-Workflows''. Siehe \url{http://www.agedis.de}}. Dabei kamen die Autoren zum Schluss, dass die Zeitersparnisse der modellbasierten Testfallgenerierung durch die hohen Einarbeitungsaufwände in das Testausführungswerkzeug, zunichte gemacht wurden.\\
+\paragraph{Zeit- und Kostenaufwände} MBT kann zu Zeitersparnissen führen, wenn die aufgewendete Zeit für das Modelldesign und Wartung, plus die Orchestrierung der Testfallgenerierung, geringer ist als die Erstellung und Wartung einer manuellen bzw. automatischen Testsuite, plus deren Ausführung.\\
+In mehreren Fallstudien stellten die Autoren eine Zeitersparnis gegenüber manuellen Tests fest.\cite{farchi_using_2002}\cite{prenninger_mbt_2005}\cite{pretschner_one_2005} Ähnlich wie es bei einer Einführung von automatisierten Skripttests der Fall ist, zeichnet sich eine Zeitersparnis durch MBT aber erst später ab. Die initialen Aufwände für die Modellierung aber auch die Einführung eines ungewohnten Workflows und die neuartige Sicht auf das System, erfordern Zeit.\\
+Nicht unerwähnt bleiben, soll ein Teilergebnis des AGEDIS Projekts \footnote{AGEDIS war ein zeitlich auf 3 Jahre beschränktes Projekt der Europäischen Union und mehreren Industriepartnern. Ziel war die Evaluation von Model-based testing Tools und die Entwicklung eines ``Standard-Workflows''. Siehe \url{http://www.agedis.de}}. Dabei kamen die Autoren zum Schluss, dass die Zeitersparnisse der modellbasierten Testfallgenerierung durch die hohen Einarbeitungsaufwände in das Testausführungswerkzeug, zunichte gemacht wurden.\cite{craggs_agedis_2003}\\
 Ein Faktor der in vielen Fallstudien und Fachtexten nicht beachtet wird, ist die mögliche Zeitersparnis durch MBT nachdem die Testfälle ausgeführt wurden, also zum Zeitpunkt der Analyse der Ergebnisse. Da modellbasierte Testfälle eine konsistentere Form als manuell erstellte Skripts aufweisen, ist es einfacher gefundene Fehler nachzuvollziehen. Wenn beim Modelldesign sogar auf eine explizite Verknüpfung von Komponenten und Spezifikationen geachtet wurde (``requirement traceability'') erleichtert dies das Auffinden der Fehlerquelle weiter. Manche MBT-Tools sind sogar in der Lage mehrere (darunter auch die kürzesten) Sequenzen aufzuzeigen, die zum Fehlerfall führen. Diese Zusatzinformationen führen zu einem insgesamt schnelleren Gesamtprozess.\cite{utting_practical_2007}
 
-\paragraph{Erhöhte Testqualität} Der Prozess des manuellen Testfalldesigns wird im seltensten Fall dokumentiert und nicht genau reproduzierbar. Welche Menge von Testfällen eine bestimmte Spezifikation abdecken ist schwer nachvollziehba. Über eine längeren Zeitraum kann dies zu Unklarheiten führen und erschwert die Wartung.\cite{utting_practical_2007} MBT macht diesen Prozess systematisch, da die Testfallgeneratoren auf präzise definierte Algorithmen und Heuristiken zurückgreifen. Die Effizienz einer Testfallsuite lässt sich dadurch messen. Beispielsweise kann eine Aussage darüber getroffen werden, wieviele und welche Testfälle nötig waren um einen bestimmten Fehler aufzudecken. Eine vergleichbare Aussage mit manuellem Testfalldesign zu machen, ist mit hohen Aufwänden verbunden, da keine automatische Generierung der Testfälle erfolgt.
+\paragraph{Testqualität} Der Prozess des manuellen Testfalldesigns wird im seltensten Fall dokumentiert und ist daher nicht genau reproduzierbar. Welche Menge von Testfällen eine bestimmte Spezifikation abdecken ist schwer nachvollziehbar. Über eine längeren Zeitraum kann dies zu Unklarheiten führen und erschwert die Wartung.\cite{utting_practical_2007} MBT macht diesen Prozess systematisch, da die Testfallgeneratoren auf präzise definierte Algorithmen und Heuristiken zurückgreifen. Die Effizienz einer Testfallsuite lässt sich dadurch messen. Beispielsweise kann eine Aussage darüber getroffen werden, wieviele und welche Testfälle nötig waren um einen bestimmten Fehler aufzudecken. Eine vergleichbare Aussage mit manuellem Testfalldesign zu machen, ist mit hohen Aufwänden verbunden, da keine automatische Generierung der Testfälle erfolgt.\\
+Wenn ein aussagekräftiges Modell erst generiert wurde, lassen sich mittels MBT-Testfallgeneratoren eine extrem hohe Menge an Testfällen erzeugen. Die Kosten für die Erzeugung der Testfälle betragen, ganz im Gegensatz zum manuellen Testfalldesign, nur die Zeit die der Testfallgenerator zur Berechnung braucht.
 
 \paragraph{Spezifikationsfehler}
+Fehler in der Spezifikation eines Software-Systems sind die Folgeschwersten. \cite{utting_practical_2007} Durch ihr frühes Auftreten bauen sich im schlimmsten Fall Architektur- und Designentscheidungen auf ihnen auf. Gleichzeitig ist es sehr einfach Spezifikationsfehler zu korrigieren wenn sie früh erkannt werden.\\
+Durch den frühen Einsatz von Modellen (entweder im Rahmen von modellgetriebener Entwicklung oder eben durch den Einsatz von modellbasiertem Testen) ist der Requirements-Engineer gezwungen gewisse Unklarheiten zu eliminieren, die in Prosa-Texten nicht auffallen würden. Durch diese Erhöhung des Detailgrades in der Spezifikationsphase kommen fragen auf wie: `Wie soll das System mit einer ungültigen Eingabe umgehen?', `Können diese zwei Konditionen gleichzeitig wahr/falsch sein?', `Wie soll ein korrupter Workflow neugestartet werden?'\\
+Bei Microsoft, wo MBT zum Testing von Kommunikationsprotokollen eingesetzt wurde, kamen bei der Modellierung doppelt soviele Design- und Spezifikationsfehler als Implementationsfehler zum Vorschein.\cite{stobie_model_2005} Bei frühzeitigem Einsatz von MBT, bewegt sich ein großer Teil der Aktivitäten des Testers vom reinen `Abfangen' der Fehler am Schluss des Entwicklungszyklus, zu vorausschauendem Modellieren.
 
-\subsubsection{Modellkategorien}
+\subsection{Modellkategorien}
 Im Feld der modellgetriebenen Entwicklung und des modellbasierten Testens wird grundsätzlich zwischen drei verschiedenen Modellkategorien unterschieden.
 
 \paragraph{Umgebungsmodelle} stellen den Ausschnitt der Domäne dar, wo das zu testende System platziert wird oder ist.
 \paragraph{Systemmodelle} beschreiben das SUT in statischer und dynamischer Hinsicht. Sie stellen dar aus welchen Komponenten das SUT zusammengesetzt ist, welche Eigenschaften diese haben und wie diese miteinander kommunizieren. 
 \paragraph{Testmodelle} dienen als Grundlage für die Generierung von Testfällen, basiernd auf Spezifikations- und Entwurfsdokumenten. Daher enthalten sie auch oftmals Teile von Umgebungs- und Systemmodellen. Weiters beschreiben sie den Ablauf der zu generierenden Testfälle. Möglich ist die Angabe darüber, welche Eingaben das SUT erhalten soll und welche Ausgaben bzw. Reaktionen erwartet werden.
 
-\subsubsection{Der MBT Prozess}
+\subsection{Der MBT Prozess}
 Model-based Testing automatisiert, einer nachvollziehbaren Strategie folgend \todo{Ref zu Pfadabdeckung usw}, die Erstellung der detaillierten Testfälle (Testscripts).
-Im Detail erstellt der Test-Designer ein abstraktes Modell des SUT (welches gewisse Eigenschaften haben muss, siehe \todo{Ref zu Eigenschaften des Testmodells}). Dieses abstrakte Testmodell wird einem Tool übergeben welches die Testfälle generiert. Die Zeit einen Testfall zu designen wird durch den Einsatz von MBT reduziert. Außerdem befähigt die Erstellung eines einzelnen Modells, die automatische Generierung einer Vielzahl von Testfällen. Der Testfall-Designer muss dazu am Tool nur die Testauswahlkriterien verändern. \cite{utting_practical_2007} Der Prozess kann also in 5 Schritten dargestellt werden:
+Im Detail erstellt der Test-Designer ein abstraktes Modell des SUT (welches gewisse Eigenschaften haben muss, siehe \todo{Ref zu Eigenschaften des Testmodells}). Dieses abstrakte Testmodell wird einem Tool übergeben welches die Testfälle generiert. Die Zeit einen Testfall zu designen wird durch den Einsatz von MBT reduziert. Außerdem befähigt die Erstellung eines einzelnen Modells, die automatische Generierung einer Vielzahl von Testfällen. Der Testfall-Designer muss dazu am Tool nur die Testauswahlkriterien verändern. \cite{utting_practical_2007} Der Prozess kann also in 5 Schritten dargestellt werden (siehe Abbildung \ref{fig:mbt_prozess}):
 
 \begin{enumerate}
 \item Das SUT und/oder seine Umgebung modellieren.
-\item Abstrake Tests vom Testmodell werden generiert.
+\item Abstrakte Tests vom Testmodell werden generiert.
 \item Die Abstrakten Testfälle werden konkretisiert, also ausführbar gemacht.
 \item Ausführen der Testfälle auf dem SUT.
 \item Analyse der Ergebnisse nachdem die Testfälle auf dem SUT durchgelaufen sind.
 \end{enumerate}
 
-\todo{Abbildung aus utting, siehe evernote notiz}
+\begin{figure}[h] 
+  \centering
+     \includegraphics[width=0.7\textwidth]{figures/MBT_Prozess.png}
+  \caption{Der MBT Prozess \cite{utting_practical_2007}}
+  \label{fig:mbt_prozess}
+\end{figure}
 
 Die Schritte 4 und 5 sind Teil jeder Testmethode. Schritt 3 ist Teil einer jeden automatisierten Testmethode. Im Bereich des skritpbasierten Testings wird dieser Schritt von den eingesetzten Tools, so weit wie möglich in den Hintergrund gerückt \todo{Ref zu Skriptbasierten Tests}. Oft gestaltet sich die Übersetzung von abstrakten zu ausführbaren Testfällen aber wesentlich aufwendiger als beworben. (\todo{Irgendeine ref...}).
 Die Schritte 1 und 2 unterscheiden MBT also von anderen Testmethoden. Das Modell aus Schritt 1 soll eine abstrakte Darstellung des SUT bzw. seiner Umgebung sein. Das bedeutet es werden nur die, für das Testing relevanten Teile modelliert. Dieses Modell muss demnach viel simpler und kleiner als das reale SUT ausfallen. Außerdem kann es nötig sein, das Modell zu annotieren um informelle Requirements abzubilden, die ansonsten mit der Abstraktion verloren gehen würden. Das Modell sollte nach Fertigstellung verfiziert werden, um formale Korrektheit zu gewährleisten. Dafür bieten viele Modellierungssprachen geeignete Werkzeuge \cite{kaneiwa_consistency_2006}. Außerdem gibt es interaktive Werkzeuge, die das Verhalten eines Modells grafisch darstellen und so das debuggen vereinfachen.\\
@@ -151,12 +164,9 @@ Im dritten Schritt werden die abstrakten Testfälle in ausführbare Testskripts 
 Im vierten Schritt werden die erzeugten Testskripts ausgeführt. Bei der sogenannten \"Online-Execution\" wird der Testfall sofort nach Erzeugung auch ausgeführt. Das Tool, das den Testfall generiert, übernimmt also auch die Ausführung. Im selben Zug muss das Tool auch die Ergebnisse der Ausführung festhalten. Bei der ``Offline'' Erzeugung, wird der Testfall von einem Tool generiert und abgelegt. Anschließend führt ein anderes Werkzeug den Testfall aus und hält dessen Ergebnisse fest. So kann zur Ausführung, Analyse und Historisierung ein gewohntes oder selbst entwickeltes Tool verwendet werden.\\
 Im letzten Schritt werden die Ergebnisse der Testfälle analysiert. Auch diesen Schritt teilen sich grundsätzlich alle Testmethoden. Den Detailgrad der Analyse bestimmt größtenteils das Tool, das zur Testausführung verwendet wurde. Dies reicht von einfachen Assertions, wie sie beispielsweise Selenium \footnote{Selenium Browser Automatisierungswerkzeug http://www.seleniumhq.org/} in seinem Grundumfang mitbringt, bis zu sehr detaillierten Berichten inklusive Zeitangaben, Screenshots und kontextuellen Informationen, wie beispielsweise die HP Applikations-Suite UFT \footnote{Testautomatisierungswerkzeug HP Unified Functional Tester http://www8.hp.com/ch/de/software-solutions/unified-functional-testing-automation/} es macht .
 
-
-\subsubsection{Vergleich mit klassischem Testing}
-
 \subsection{Entscheidungshilfe für den Einsatz von MBT}
 \label{sec:entscheidungshilfe}
-In der Praxis stellt sich für jedes Software-Projektteam die Frage welche Teststrategie am effizientesten, in Bezug auf Qualität und Ressourcennutzung ist. Manuelles Testen gilt in der Industrie immer noch als das am häufigsten eingesetzte Verfahren \cite{guldali_starthilfe_2010}, aber deren Wirksamkeit mindert sich mit steigender Komplexität der zu testenden Software. Skriptbasierte Testautomatisierungstools kommen seit Jahren in der Industrie zum Einsatz. Durch die automatisierte Testausführung, wird der Testprozess schnell und wiederholbar. Verglichen mit manuellen Tests sind skriptbasierte Tests zeitsparender und weniger fehleranfällig. Gleichzeitig müssen skriptbasierte Tests gewartet werden, was einen nicht unerheblichen Ressourcenaufwand bedeuten kann.\\
+In der Praxis stellt sich für jedes Software-Projektteam die Frage welche Teststrategie am effizientesten, in Bezug auf Qualität und Ressourcennutzung ist. Manuelles Testen gilt in der Industrie immer noch als das am häufigsten eingesetzte Verfahren \cite{guldali_starthilfe_2010}, aber deren Wirksamkeit mindert sich mit steigender Komplexität der zu testenden Software. Skriptbasierte Testautomatisierungstools kommen seit Jahren zum Einsatz. Durch die automatisierte Testausführung, wird der Testprozess schnell und wiederholbar. Verglichen mit manuellen Tests sind skriptbasierte Tests zeitsparender und weniger fehleranfällig. Gleichzeitig müssen skriptbasierte Tests gewartet werden, was einen nicht unerheblichen Ressourcenaufwand bedeuten kann.\\
 Als Alternative dazu steht das modellbasierte Testen. Basierend auf \cite{guldali_starthilfe_2010} folgen acht Fragestellungen die zu einer Entscheidung bezüglich der Sinnhaftigkeit des Einsatzes von MBT führen sollen:
 
 \todo{Grafik für Entscheidungshilfe (gerichteter Graph)}
@@ -182,7 +192,7 @@ Eine Einführung von MBT ist immer auch mit Anschaffungskosten verbunden. Auf de
 \subsubsection{Tool-Landschaft}
 Wie auf dem Feld der skriptbasierten Testautomatisierung, ist die Auswahl an Tools zur Unterstützung von modellbasierten Tests vielfältig.Modellbasiertes Testen umfasst in der Regel mehrere Aktivitäten, für die jede Kombination aus passenden kommerziell erhältlichen Werkzeugen herangezogen werden können. Auch die marktführenden Tool-Hersteller haben begonnen ihre Testing Applikations-Suiten für MBT auszurüsten. 
 
-\section{State of the Art - Technologien und Methoden}
+\subsection{MBT Fallstudien}
 
 Model-based Testing von Software wird seit mehr als 20 Jahren aktiv thematisiert, \cite{utting_practical_2007} sei es durch Forschung oder Industrie. Wie in den Leitlinien für den Einsatz von MBT in einem Projekt bereits erwähnt \ref{sec:entscheidungshilfe}, ist ein sinnvoller Einsatz nicht immer gegeben. Diese Leitlinien haben sich unter anderem, durch eben die folgenden Publikation und Fallstudien ergeben, sind aber keineswegs unveränderlich. Durch neue Erkenntnisse im laufenden Einsatz von MBT in den verschiedensten Projekten und durch die stetige Weiterentwicklung der beteiligten Technologien, entwickeln sie sich weiter.\\
 Die folgenden Fallstudien geben einen Überblick darüber, wie MBT Methoden in den letzten Jahren eingesetzt wurden.
@@ -195,7 +205,49 @@ Im Hinblick auf Applikationen mit vielen Datenfeldern, oder gar nicht standardis
 Die vorgestellte Technik soll manuelles Testen im späten Entwicklungszyklus (Akzeptanz- und Abnahmetests) ergänzen oder sogar ersetzen. Sie hat den Vorteil, dass kaum Aufwand bei der Wartung von Testfällen anfällt und fügt sich gut in eine Continuous Development Umgebung ein. Nachteilig ist aber die Tatsache, dass bei nicht optimaler Konfiguration viele Fehlerfälle (\textit{false negative's}) von Hand geprüft werden müssen.\\
 Die Autoren kommen zum Schluss, dass \textit{Visual Testing} sehr wohl seine Daseinsberechtigung in der Qualitätssicherung von komplexer Industriesoftware hat. Sie halten fest, dass die vorgeschlagene Technik in beiden Fallstudien (Applikationen aus dem Bereich Militär und Avionik), genauso effektiv wie manuelle Tests funktioniert. Gleichzeitig ist der Ressourcenaufwand für die Wartung der Testfälle sehr niedrig und die Durchführungsgeschwindigkeit der Testfälle, verglichen mit manuellen Tests, um ein vielfaches höher. Sie halten aber ebenfalls fest, dass \textit{Visual Testing} Werkzeuge schon für den produktiven Einsatz geeignet sind aber noch viel Potenzial zur Verbesserung besteht (sie verwendeten Sikuli \footnote{VGT Test Tool - \url{http://www.sikuli.org/}}).
 
+
 \paragraph{Microsoft’s Protocol Documentation Program: A Success Story for Model-Based Testing\cite{grieskamp_microsofts_2010}} Diese von Microsoft durchgeführte Fallstudie liefert exakte Zahlen zur Leistung von MBT im Projekt. Bei der Verfikation der Dokumentation von \textit{Client-Server} und \textit{Server-Server} Protokollen hat Microsoft MBT erstmals in einem großen und geschäftskritischen Umfeld eingesetzt. Die Ergebnisse deuten auf ein hohes Ressourceneinsparungspotenzial von MBT hin. Bei der Umsetzung von knapp zehntausend Test- Requirements mit MBT-Methoden ergab sich im Schnitt eine Dauer von 1,39 Personentagen/Requirement. Verglichen mit knapp neuntausend Requirements desselben Projekts, die mit traditionellen Methoden getestet wurden, die durchschnittlich 2,37 Personentage benötigen, ergab sich ein Produktivitätszugewinn von 42\%.
 
+\paragraph{Model-Based Testing and Some Steps towards Test-Based Modelling\cite{tretmans_model-based_2011}} Die Autoren nehmen sich dem Problem Testing aus einem erfahrungsgemäß praxisnahen Blickwinkel an: Die initiale Hürde der Erstellung von Testmodellen, insbesondere auf Basis von schlechter oder nicht existenter Dokumentation. Test-based modelling, also das Generieren von Modellen anhand von bestehenden Testfällen, wird definiert. Für diesen Ansatz setzeen die Autoren \textit{Automata Learning} ein. Dabei handelt es sich um einen \textit{Machine Learning} Ansatz\cite{narendra_learning_1974}. Das Programm 
 
-\section{Agile Entwicklungsmethoden - Scrum}
+\subsection{Modellierungssprachen}
+\subsubsection{Finite-State-Machines}
+\subsubsection{B models}
+\subsubsection{UML/ UML Testing Profile}
+\paragraph{Test-Driven Testing mit UTP}
+Businessapplikationen (unter anderem in den Bereichen Finanz-, Versicherungs- und Gesundheitswesen) basieren auf großen Datenbeständen. Diese wurden oft über Jahre und Jahrzehnte gesammelt und gespeichert. Zwischen den Datensätzen bestehen Abhängigkeit, die das Verhalten der Applikation stark beeinflussen. Solche Systeme werden als \textit{datengetrieben (data-driven)} bezeichnet. Das Testing von solchen Systemen ist dementsprechend gekennzeichnet durch die Verwendung von vielen, oft relationalen, Datensätzen. Die Praxis zeigt, dass sich die Datenstrukturen innerhalb eines Systems ändern und von der ursprünglichen Spezifikation abdriften. Es ist also von höchster Wichtigkeit, das Testdatenmangement angemessen zu designen um hohe Wartungsaufwände zu minimieren.\cite{baker_model-driven_2005}\\
+Das UML Testing Profile bietet Unterstützung von datengetriebenen Tests in mehreren Formen.
+
+\subparagraph{Wildcards in Ausprägungsspezifikationen}
+UTP bietet vereinfachte Wildcards um zu spezifizieren, dass ein Attribut einen beliebigen Wert annehmen darf (annotiert mit \textit{?}) oder sogar keinen Wert haben darf (annotiert mit \textit{*}). Diese Wildcards können in sogenannten Ausprägungsspezifikationen (\textit{Instance Specifications} \footnote{Ausprägungsspezifikationen wurden im UML 2 Standard definiert \url{http://www.omg.org/spec/UML/2.4/} }) eingesetzt werden. Mit diesen kann die Existenz einer Entität innerhalb des modellierten Systems beschrieben werden. Instanzspezifikationen müssen ausdrücklich nicht vollständig sein, was dem Testfalldesigner zugute kommte, da oft nur wenige Attribute von Bedeutung sind. Solche Ausprägungsspezifikationen erlauben, die Definition von Testdaten ohne sie in Sequenzdiagramme `hart' zu codieren.
+
+\begin{figure}[h] 
+  \centering
+     \includegraphics[width=0.7\textwidth]{figures/uml_instance.png}
+  \caption{Eine UML Ausprägungsspezifikation. Sowohl eine Instanz der Klasse als auch eine Relation kann als Ausprägung dargestellt werden. (German Wikipedia user Gubaer [GFDL (http://www.gnu.org/copyleft/fdl.html) or CC-BY-SA-3.0 (http://creativecommons.org/licenses/by-sa/3.0/)], via Wikimedia Commons)}
+  \label{fig:uml_instance}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
