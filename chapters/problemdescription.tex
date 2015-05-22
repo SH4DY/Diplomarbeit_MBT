@@ -125,6 +125,47 @@ Anhand von diesem einfachen Beispiel wird sichtbar, dass das UML Testing Profile
 
 
 \subsubsection{Ausfühhrung von UTP Tests mittels JUnit}
+Agile Praktiken haben die Wahrnehmung der die Wichtigkeit des Unit-Tests erhöht\cite{_model-driven_2007}. Ansätze wie \textit{Test-First} sind in diesem Umfeld besonders populär und der klassische Unit-Test spielt dabei eine zentrale Rolle. Dieses Kapitel geht davon aus, dass der Leser mit den Grundlagen von JUnit 4\footnote{Webseite des JUnit Projekts \url{http://junit.org/}} vertraut ist.\\
+
+Zum Zeitpunkt dieser Arbeit, gibt es keine Tool mit welchem die automatische Generierung von JUnit-Testfällen aus UTP-Modellen erlaubt. Das bedeutet, um MBT basierend auf UTP-Modellen in einem realen Umfeld zu betreiben, muss das Mapping manuell gemacht werden. Baker et al. schlagen dabei folgende Vorgehensweise vor\cite{_model-driven_2007}:
+
+\begin{table}[h]
+
+\centering
+\begin{tabular}
+{ | l |p{9cm}|} \hline
+\textbf{UTP} & \textbf{JUnit} \\ \hline
+SUT                       & Kein direktes Mapping nötig. Jede Klasse im \textit{Classpath} kann angesprochen und getestet werden   \\ \hline
+Kontext                   & Kein direktes Mapping. JUnit kann auf den realen Kontext des SUT zugreifen. Aufwände außerhalb der JUnit-Programmierung sind nötig um alternative Konfigurationen zu testen \\ \hline
+Ablauf         			  & JUnit bietet die Klasse \textit{org.junit.runner.Runner} um feingradige Einstellungen am Testablauf zu machen. \\ \hline
+Sheduler                  & Alle vom Java-Umfeld bereitgestellten Möglichkeiten des Shedulings sind einsetzbar (auch \textit{org.junit.runner.Runner} bietet Sheduling-Optionen) \\ \hline
+Test configuration        & Implizit gegeben in JUnit, durch die direkte Einbindung der Klassen die getestet werden. \\ \hline
+Test objective            & Dieses Konzept bietet JUnit nicht. Methoden können höchstens mit entsprechenden Kommentaren versehen werden.\\ \hline
+Test case                 & Eine Methode die mit der Annotation \textit{@Test} versehen ist. \\ \hline
+Test invocation           & Aufrufe der Methoden die mit \textit{@Test} annotiert sind. Üblicherweise durch einen Test-Runner. \\ \hline
+Arbiter                   & Die Klassen \textit{org.junit.runner.Runner} und \textit{org.junit.runner.notification.RunListener} entscheiden über die Bewertung des Ausgangs eines Testfalls. Diese Klassen können bei Bedarf auch erweitert werden. \\ \hline
+Verdict                   & Vordefinierte Testfallergebnisse sind \textit{pass},\textit{fail} und \textit{error}. Auch diese Klasse kann um mehr Funktionalität erweitert werden. \\ \hline
+Defaults                  & JUnit bietet keinen vergleichbaren Mechanismus.  \\ \hline
+Validation action         & Validation Actions mappen auf die vielfältigen Methoden der Klasse \textit{org.junit.Assert} \\ \hline
+Stimulus and observation  & Keine entsprechende Funktionalität in JUnit. \\ \hline
+Logging concepts          & Im Java-Umfeld gibt es verschiedenste Logging-Frameworks die mit JUnit verwendet werden können. \\ \hline
+Testdatenmanagement: Data pools & \textbf{Es sind keine entsprechenden Konzepte in JUnit eingebaut.} \\ \hline
+Testdatenmanagement: Wildcards  & Es sind keine entsprechenden Konzepte in JUnit eingebaut.\\ \hline
+Timer                     & Es sind keine entsprechenden Konzepte in JUnit eingebaut. \\ \hline
+Timezone                  & Es sind keine entsprechenden Konzepte in JUnit eingebaut. \\ \hline
+Deployment       & JUnit fügt sich im Deployment Prozess sehr gut ein. \\ \hline
+\end{tabular}
+\caption{Mapping von UTP zu JUnit}
+\end{table}
+
+\todo{UTP zu JUnit Code Beispiel einfügen eventuell}
+UTP wurde entwickelt um mit JUnit zusammenzuspielen\cite{_model-driven_2007}. Tatsächlich lassen sich viele Konzepte gut von UTP-Modellen nach JUnit übertragen. Gleichzeitig hat die Ausführung von UTP-Testfällen in JUnit gravierende Schwächen.
+
+\paragraph{Manuelles Mapping} Es hat sich in den Jahren, seit das UML Test Profile veröffentlicht wurde, keine Community um die Nutzung und Entwicklung von Tools gebildet. Die Eigenentwicklung eines JUnit-Testfallgenerators kann im Umfeld von großen Softwareprojekten sinnvoll sein. Gleichzeitig bleibt der Aufwand um den sogenannten \textit{glue code} zu schreiben (also die Implementierungsdetails innerhalb der Testmethoden).\\
+Jedenfalls können durch einen manuellen Eingriff neue Fehler entstehen. Ein Modell mittels Testfällen umzusetzen ist kein trivialer Vorgang und erfordert genaue Kenntnisse des Frameworks sowie des SUT. Ob sich die Modellierung und die Aufwände für die Umsetzung in JUnit-Testfällen lohnt, lässt sich schwer feststellen. Faktisch bietet die Modellierung als UTP-Diagramm zwar strukturierte Testfälle (verglichen mit der Ad-Hoc Entwicklung von JUnit-Testfällen) aber keine weiteren Qualitätsmetriken. Entwicklungsumgebungen und statische Code-Analyse Tools können die Abdeckung von JUnit-Testfällen eruieren, diese ist in agilen Softwareprojekten aber ohnehin schon sehr hoch. Ein modellbasierter Ansatz kann hier wenig belegbare Qualitätsvorteile schaffen.
+
+\paragraph{Keine Unterstützung der Testdatenmangementkonzepte}
+
 
 \subsection{Schnittstellentests mit Graphwalker}
 \subsection{Einbindung SoapUI/HP UFT}
@@ -134,3 +175,44 @@ Anhand von diesem einfachen Beispiel wird sichtbar, dass das UML Testing Profile
 \subsection{Manuelle Systemtests anhand von Modellen}
 \subsection{Automatisierte MBT GUI-Tests (GUITAR)}
 \subsection{Automatische Modellgenerierung auf Produktionsebene (LearnLib)}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
