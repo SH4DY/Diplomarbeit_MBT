@@ -165,6 +165,8 @@ UTP wurde entwickelt um mit JUnit zusammenzuspielen\cite{_model-driven_2007}. Ta
 Jedenfalls können durch einen manuellen Eingriff neue Fehler entstehen. Ein Modell mittels Testfällen umzusetzen ist kein trivialer Vorgang und erfordert genaue Kenntnisse des Frameworks sowie des SUT. Ob sich die Modellierung und die Aufwände für die Umsetzung in JUnit-Testfällen lohnt, lässt sich schwer feststellen. Faktisch bietet die Modellierung als UTP-Diagramm zwar strukturierte Testfälle (verglichen mit der Ad-Hoc Entwicklung von JUnit-Testfällen) aber keine weiteren Qualitätsmetriken. Entwicklungsumgebungen und statische Code-Analyse Tools können die Abdeckung von JUnit-Testfällen eruieren, diese ist in agilen Softwareprojekten aber ohnehin schon sehr hoch. Ein modellbasierter Ansatz kann hier wenig belegbare Qualitätsvorteile schaffen.
 
 \paragraph{Keine Unterstützung der Testdatenmangementkonzepte}
+Vor allem das \textit{Data Pool} Konzept von UTP ist eine Notwendigkeit für datenintensive Applikationen. Datengetriebene Testfälle müssen durch ein flexibles und zuverlässiges Konzept gestützt werden. Auch hier müsste eine Eigenentwicklung gemacht werden. Diese ist aber nicht nur aufwendig sondern stellt sich auch die Frage der Zukunftssicherheit. Kann das Modul zum Testdatenmanagement mit anderen Technologien verwendet werden oder ist es zu stark auf UTP zugeschneidert?
+
 
 
 \subsection{Schnittstellentests mit Graphwalker}
