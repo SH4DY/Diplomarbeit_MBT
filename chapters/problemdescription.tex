@@ -138,12 +138,26 @@ Jedenfalls können durch einen manuellen Eingriff neue Fehler entstehen. Ein Mod
 Vor allem das \textit{Data Pool} Konzept von UTP ist eine Notwendigkeit für datenintensive Applikationen. Datengetriebene Testfälle müssen durch ein flexibles und zuverlässiges Konzept gestützt werden. Auch hier müsste eine Eigenentwicklung gemacht werden. Diese ist aber nicht nur aufwendig sondern stellt sich auch die Frage der Zukunftssicherheit. Kann das Modul zum Testdatenmanagement mit anderen Technologien verwendet werden oder ist es zu stark auf UTP zugeschneidert?
 
 \subsection{Schnittstellentests mit Graphwalker}
-Graphwalker\footnote{Graphwalker 3 Website inklusive Dokumentation \url{www.graphwalker.org}} ist ein Open Source MBT-Tool zur Online- und Offline Generierung von Testsequenzen aus Endlichen Automaten (siehe Abschnitt \ref{sec:fsm}) sowie Erweiterten Endlichen Automaten (EFSM).Graphwalker ist in Java und JavaScript implementiert und bietet eine Java-API an. Das Graphwalker-Projekt wurde von zwei Entwicklern der Firma Spotify, Nils Olsson und Kristian Karl, gegründet. Bei Spotify, dem marktführenden Musik-Streaming-Service, ist das Tool auch stark im Einsatz. Graphwalker ist zur Zeit (Frühjahr/Sommer 2015) aktiv unter Entwicklung und liegt bereits in der Version 3.0 vor.
+Graphwalker\footnote{Graphwalker 3 Website inklusive Dokumentation \url{www.graphwalker.org}} ist ein Open Source MBT-Tool zur Online- und Offline Generierung von Testsequenzen aus Endlichen Automaten (siehe Abschnitt \ref{sec:fsm}) sowie Erweiterten Endlichen Automaten (EFSM).Graphwalker ist in Java und JavaScript implementiert und bietet eine Java-API an. Das Graphwalker-Projekt wurde von zwei Entwicklern der Firma Spotify, Nils Olsson und Kristian Karl, gegründet. Bei Spotify, dem marktführenden Musik-Streaming-Service, ist das Tool auch stark im Einsatz. Graphwalker ist zur Zeit (Frühjahr/Sommer 2015) aktiv unter Entwicklung und liegt bereits in der Version 3.0 vor.\\
+Graphwalker weicht ab vom herkömmlichen Testfall-Workflow. Das SUT wird in einem Modell (Graph) modelliert und das Testing (also die Traversierung des Graphs) wird vom gewählten Algorithmus und dessen Konfiguration bestimmt. Daraus resultieren lange, unvorhersehbare Testdurchläufe. Die offizielle Dokumentation beschreibt es so:
+
+\begin{quote}
+We do not want to walk the same path every time we execute a test. We want variation, spiced with randomness. This will create a better `test coverage' of the system under test.
+\end{quote}
+
+Beim Einsatz in den agilen Entwicklungsteams von Spotify hat sich gezeigt, dass diese Testdesign-Philosophie sehr gut in die kurzen Entwicklungsiterationen passt. Weiters eignen sich die simplen FSM-Diagramme sehr gut um Feedback von Stakeholdern einzuholen, weil sie auch ohne technischen Hintergrund verständlich sind.
 
 \subsubsection{Modellierungs-Syntax}
 Graphwalkers Modellierungssprache basiert nicht auf UML, weil die Autoren glauben, dass Tester vom großen Funktionsumfang von UML nicht brauchen und abgeschreckt werden. Stattdessen setzt Graphwalker auf GraphML\footnote{Website des GraphML Projekts \url{graphml.graphdrawing.org}}. GraphML setzt nicht auf eine proprietäre Syntax sondern basiert auf herkömmlichen XML-Dateien und wird unter der \textit{Creative Commons Attribution 3.0}-Lizenz entwickelt.\\
 Zur Erstellung von Modellen in GraphML, mit denen Graphwalker umgehen kann, eignet sich jedes Tool, das GraphML-Dateien exportieren kann. Das von den Entwicklern empfohlene Tool ist \textit{yEd}\footnote{Website der Firma yWorks und des yEd Graph Editors \url{http://www.yworks.com/en/products/yfiles/yed/}}, welches völlig kostenlos verwendet werden kann. yEd bietet eine simple Benutzeroberfläche und für die Erstellung von Modellen für Graphwalker ist nahezu kein Einarbeitungsaufwand vorhanden.\\
-Modelle in Graphwalker sind gerichtete Graphen. Knoten repräsentieren einen Zustand in dem sich das SUT befindet. Kanten beschreiben die Aktion die zu einem bestimmten Zustand führen. Graphwalker ignoriert grafische Attribute der Modelle wie Farbe und Liniendicke der Elemente. Üblicherweise finden in den Knoten die Überprüfungen (\textit{Assertions}) und in den Kanten die Befehle (Klicks, Schnittstellenaufrufe...) statt. Kanten müssen in Graphwalker genau eine Richtung haben.\\
+Modelle in Graphwalker sind gerichtete Graphen. Knoten repräsentieren einen Zustand in dem sich das SUT befindet. Kanten beschreiben die Aktion die zu einem bestimmten Zustand führen. Graphwalker ignoriert grafische Attribute der Modelle wie Farbe und Liniendicke der Elemente. Üblicherweise finden in den Knoten die Überprüfungen (\textit{Assertions}) und in den Kanten die Befehle (Klicks, Schnittstellenaufrufe...) statt. Kanten müssen in Graphwalker genau eine Richtung haben. Es folgt eine kurze Beschreibung der Möglichkeiten, die die Syntax von Graphwalker bietet um die Traversierung der Graphen, und damit der Testfälle, zu beinflussen.\\
+
+\paragraph{Start vertex} Wenn ein Startknoten definiert wird, darf es nur genau einen geben. Es ist aber nicht obligatorisch einen Startknoten zu definieren.
+
+\paragraph{Guards} Auf Kanten könnten sogenannte \textit{Guards} definiert werden. Dabei handelt es sich um einen Konditionalmechanismus. Wenn das Konditional zu wahr evaluiert wird die Kante traversierbar. Ein \textit|{Guard} wird mittels eckigen Klammern beschrieben.\\
+\begin{verbatim}
+[loggedIn == true]
+\end{verbatim}
 
 \subsection{Einbindung SoapUI/HP UFT}
 
