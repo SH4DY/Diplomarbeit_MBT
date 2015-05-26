@@ -142,7 +142,7 @@ Graphwalker\footnote{Graphwalker 3 Website inklusive Dokumentation \url{www.grap
 Graphwalker weicht ab vom herkömmlichen Testfall-Workflow. Das SUT wird in einem Modell (Graph) modelliert und das Testing (also die Traversierung des Graphs) wird vom gewählten Algorithmus und dessen Konfiguration bestimmt. Daraus resultieren lange, unvorhersehbare Testdurchläufe. Die offizielle Dokumentation beschreibt es so:
 
 \begin{quote}
-We do not want to walk the same path every time we execute a test. We want variation, spiced with randomness. This will create a better `test coverage' of the system under test.
+`We do not want to walk the same path every time we execute a test. We want variation, spiced with randomness. This will create a better `test coverage' of the system under test.'
 \end{quote}
 
 Beim Einsatz in den agilen Entwicklungsteams von Spotify hat sich gezeigt, dass diese Testdesign-Philosophie sehr gut in die kurzen Entwicklungsiterationen passt. Weiters eignen sich die simplen FSM-Diagramme sehr gut um Feedback von Stakeholdern einzuholen, weil sie auch ohne technischen Hintergrund verständlich sind.
@@ -150,15 +150,26 @@ Beim Einsatz in den agilen Entwicklungsteams von Spotify hat sich gezeigt, dass 
 \subsubsection{Modellierungs-Syntax}
 Graphwalkers Modellierungssprache basiert nicht auf UML, weil die Autoren glauben, dass Tester vom großen Funktionsumfang von UML nicht brauchen und abgeschreckt werden. Stattdessen setzt Graphwalker auf GraphML\footnote{Website des GraphML Projekts \url{graphml.graphdrawing.org}}. GraphML setzt nicht auf eine proprietäre Syntax sondern basiert auf herkömmlichen XML-Dateien und wird unter der \textit{Creative Commons Attribution 3.0}-Lizenz entwickelt.\\
 Zur Erstellung von Modellen in GraphML, mit denen Graphwalker umgehen kann, eignet sich jedes Tool, das GraphML-Dateien exportieren kann. Das von den Entwicklern empfohlene Tool ist \textit{yEd}\footnote{Website der Firma yWorks und des yEd Graph Editors \url{http://www.yworks.com/en/products/yfiles/yed/}}, welches völlig kostenlos verwendet werden kann. yEd bietet eine simple Benutzeroberfläche und für die Erstellung von Modellen für Graphwalker ist nahezu kein Einarbeitungsaufwand vorhanden.\\
-Modelle in Graphwalker sind gerichtete Graphen. Knoten repräsentieren einen Zustand in dem sich das SUT befindet. Kanten beschreiben die Aktion die zu einem bestimmten Zustand führen. Graphwalker ignoriert grafische Attribute der Modelle wie Farbe und Liniendicke der Elemente. Üblicherweise finden in den Knoten die Überprüfungen (\textit{Assertions}) und in den Kanten die Befehle (Klicks, Schnittstellenaufrufe...) statt. Kanten müssen in Graphwalker genau eine Richtung haben. Es folgt eine kurze Beschreibung der Möglichkeiten, die die Syntax von Graphwalker bietet um die Traversierung der Graphen, und damit der Testfälle, zu beinflussen.\\
+Modelle in Graphwalker sind gerichtete Graphen. Knoten repräsentieren einen Zustand in dem sich das SUT befindet. Kanten beschreiben die Aktion die zu einem bestimmten Zustand führen. Graphwalker ignoriert grafische Attribute der Modelle wie Farbe und Liniendicke der Elemente. Üblicherweise finden in den Knoten die Überprüfungen (\textit{Assertions}) und in den Kanten die Befehle (Klicks, Schnittstellenaufrufe...) statt. Kanten müssen in Graphwalker genau eine Richtung haben. Es folgt eine kurze Beschreibung der Möglichkeiten, die die Syntax von Graphwalker bietet um die Traversierung der Graphen, und damit der Testfälle, zu beinflussen.
 
 \paragraph{Start vertex} Wenn ein Startknoten definiert wird, darf es nur genau einen geben. Es ist aber nicht obligatorisch einen Startknoten zu definieren.
 
-\paragraph{Guards} Auf Kanten könnten sogenannte \textit{Guards} definiert werden. Dabei handelt es sich um einen Konditionalmechanismus. Wenn das Konditional zu wahr evaluiert wird die Kante traversierbar. Ein \textit|{Guard} wird mittels eckigen Klammern beschrieben.\\
+\paragraph{Guards} Auf Kanten könnten sogenannte \textit{Guards} definiert werden. Dabei handelt es sich um einen Konditionalmechanismus. Wenn das Konditional zu wahr evaluiert, wird die Kante traversierbar. Ein \textit|{Guard} wird mittels eckigen Klammern beschrieben.
 \begin{verbatim}
 [loggedIn == true]
 \end{verbatim}
 
+\paragraph{Actions} Auch \textit{Actions} sind nur auf Kanten definierbar. Hierbei handelt es sich um Code in JavaScript-Syntax der zur Zeit der Traversierung ausgeführt wird. Die in \textit{Actions} durchgeführten Zuweisungen werden in \textit{Guards} abgefragt.
+
+\paragraph{Keywords} Diese Schlüsselwörter beschreiben keine Eigenschaften des SUT, sondern dienen nur der Usability und Modularität der Modelle.
+
+\begin{itemize}
+\item Start: Beschreibt den Startknoten
+\item BLOCKED: Dieser Knoten oder diese Kante wird bei der Traversierung aus dem Graphen entfernt.
+\item SHARED: Dient zur Modularisierung. Wenn Graphwalker bei der Traversierung auf einen mit SHARED annotierten Knoten trifft, passiert ein Sprung in ein anderes Modell mit dem selben SHARED-Bezeichner.
+\item INIT: Dient zur Initialisierung von Datenfeldern die im Modell genutzt werden. Nur Knoten können mit dem INIT-Schlüsselwort versehen werden.
+\end{itemize} 
+\todo{Weitermachen mit Multiple Models}
 \subsection{Einbindung SoapUI/HP UFT}
 
 
