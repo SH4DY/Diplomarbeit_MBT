@@ -164,6 +164,36 @@ Im dritten Schritt werden die abstrakten Testfälle in ausführbare Testskripts 
 Im vierten Schritt werden die erzeugten Testskripts ausgeführt. Bei der sogenannten \"Online-Execution\" wird der Testfall sofort nach Erzeugung auch ausgeführt. Das Tool, das den Testfall generiert, übernimmt also auch die Ausführung. Im selben Zug muss das Tool auch die Ergebnisse der Ausführung festhalten. Bei der ``Offline'' Erzeugung, wird der Testfall von einem Tool generiert und abgelegt. Anschließend führt ein anderes Werkzeug den Testfall aus und hält dessen Ergebnisse fest. So kann zur Ausführung, Analyse und Historisierung ein gewohntes oder selbst entwickeltes Tool verwendet werden.\\
 Im letzten Schritt werden die Ergebnisse der Testfälle analysiert. Auch diesen Schritt teilen sich grundsätzlich alle Testmethoden. Den Detailgrad der Analyse bestimmt größtenteils das Tool, das zur Testausführung verwendet wurde. Dies reicht von einfachen Assertions, wie sie beispielsweise Selenium \footnote{Selenium Browser Automatisierungswerkzeug http://www.seleniumhq.org/} in seinem Grundumfang mitbringt, bis zu sehr detaillierten Berichten inklusive Zeitangaben, Screenshots und kontextuellen Informationen, wie beispielsweise die HP Applikations-Suite UFT \footnote{Testautomatisierungswerkzeug HP Unified Functional Tester http://www8.hp.com/ch/de/software-solutions/unified-functional-testing-automation/} es macht .
 
+\subsection{Endliche Automaten - Finite State Machines}
+\label{sec:}
+Ein endlicher Automat (oder \textit{finite state machine}) ist eine Form der abstrakten Maschinen. Eine FSM erlaubt die Modellierung des Verhaltens einer Maschine, in diesem Fall eines Computer-Programms.\cite{wagner_modeling_2006}\\
+Eine FSM ist immer in genauen \textbf{einem} Zustand. Sie besitzt, wie der Name schon sagt, eine endliche Anzahl von Zuständen. Zu jedem Zeitpunkt lässt sich die Maschine genau einem Zustand zuordnen. Zustände enthalten üblicherweise Informationen über die Vergangenheit, also wie die Maschine in den aktuellen Zustand gekommen ist. Diese Informationen müssen aber keineswegs vollständig sein. Aus einem aktuellen Zustand lässt sich nicht notwendigerweise reproduzieren welche Zustände die Maschine zuvor angenommen hat.\\
+
+\paragraph{Aktionen}
+Wenn eine FSM ihren Zustand ändert, spricht man von Zustandsübergängen. Weiters kann eine FSM zwischen Aktionen unterscheiden:
+\begin{itemize}
+\item Eingangsaktion (\textit{entry action}: Aktion wird bei Eintritt in einen Zustand durchgeführt
+\item Ausgangsaktion (\textit{exit action}): Aktion wird bei Austritt aus einem Zustand durchgeführt
+\item Eingabeaktion (\textit{input action}): Aktion wird basierend auf aktuellen Zustand und einem Eingabewert durchgeführt
+\item Übergangsaktion (\textit{transition action}): Aktion wird beim Durchführen eines Übergangs durchgeführt
+\end{itemize}
+
+\paragraph{Zustände}
+Eine FSM befindet sich zu jedem Zeitpunkt in genau einem Zustand. Mathematisch ist eine FSM folgendermaßen definiert: 
+
+\begin{center}
+$FSM := (Q, \Sigma, q_0, \delta, F)$
+\end{center}
+
+Wobei $Q$ die endliche Menge an Zuständen ist, $\Sigma$ ein endliches Eingabealphabet und $\delta$ die Übergangsfunktion. Von hoher Wichtigkeit im Kontext der Systemmodellierung sind die Elemente $q_0$ und $F$. Dabei handelt es sich bei $q_0$ um einen klar definierten Startzustand aus der Menge Q und bei $F \subseteq Q$ um eine Menge von Endzuständen. Meistens wird der Startzustand mit einem Pfeil oder einer Farbe gekennzeichnet. Die Endzustände werden meist mit einem doppelten Kreis (siehe Abbildung \ref{fig:fsm_example}) gekennzeichnet.
+
+\begin{figure}[h] 
+  \centering
+     \includegraphics[width=0.5\textwidth]{figures/FSM_example.png}
+  \caption{Beispielhafte FSM mit Eingangszustand $S_1$ (gekennzeichnet durch Pfeil von links) der gleichzeitig ein Endzustand ist (doppelter Kreis).}
+  \label{fig:fsm_example}
+\end{figure}
+
 \subsection{Entscheidungshilfe für den Einsatz von MBT}
 \label{sec:entscheidungshilfe}
 In der Praxis stellt sich für jedes Software-Projektteam die Frage welche Teststrategie am effizientesten, in Bezug auf Qualität und Ressourcennutzung ist. Manuelles Testen gilt in der Industrie immer noch als das am häufigsten eingesetzte Verfahren \cite{guldali_starthilfe_2010}, aber deren Wirksamkeit mindert sich mit steigender Komplexität der zu testenden Software. Skriptbasierte Testautomatisierungstools kommen seit Jahren zum Einsatz. Durch die automatisierte Testausführung, wird der Testprozess schnell und wiederholbar. Verglichen mit manuellen Tests sind skriptbasierte Tests zeitsparender und weniger fehleranfällig. Gleichzeitig müssen skriptbasierte Tests gewartet werden, was einen nicht unerheblichen Ressourcenaufwand bedeuten kann.\\
