@@ -142,7 +142,7 @@ Graphwalker\footnote{Graphwalker 3 Website inklusive Dokumentation \url{www.grap
 Graphwalker weicht ab vom herkömmlichen Testfall-Workflow. Das SUT wird in einem Modell (Graph) modelliert und das Testing (also die Traversierung des Graphs) wird vom gewählten Algorithmus und dessen Konfiguration bestimmt. Daraus resultieren lange, unvorhersehbare Testdurchläufe. Die offizielle Dokumentation beschreibt es so:
 
 \begin{quote}
-`We do not want to walk the same path every time we execute a test. We want variation, spiced with randomness. This will create a better `test coverage' of the system under test.'
+`We do not want to walk the same path every time we execute a test. We want variation, spiced with randomness. This will create a better `test coverage' of the system under test.'\cite{_graphwalker_2015}
 \end{quote}
 
 Beim Einsatz in den agilen Entwicklungsteams von Spotify hat sich gezeigt, dass diese Testdesign-Philosophie sehr gut in die kurzen Entwicklungsiterationen passt. Weiters eignen sich die simplen FSM-Diagramme sehr gut um Feedback von Stakeholdern einzuholen, weil sie auch ohne technischen Hintergrund verständlich sind.
@@ -178,10 +178,12 @@ Weiters ist zu erwähnen, dass die Modelle nicht einfach nur verflacht (\textit{
 \begin{figure}[h] 
   \centering
      \includegraphics[width=0.7\textwidth]{figures/gw_multiple_models.png}
-  \caption{Vier einzelne Modelle die bei einer Traversierung (ausgehend vom Startknoten in Grün) erreicht werden können. Bei den Knoten die mit \textit{SHARED} gekennzeichnet sind kann ein Sprung (und auch ein Sprung zurück) erfolgen. Die Variablen mit den selben Bezeichnern in den Modellen B und C befinden sich in unabhängigen Gültigkeitsbereichen.}
+  \caption{Vier einzelne Modelle die bei einer Traversierung (ausgehend vom Startknoten in Grün) erreicht werden können. Bei den Knoten die mit \textit{SHARED} gekennzeichnet sind kann ein Sprung (und auch ein Sprung zurück) erfolgen. Die Variablen mit den selben Bezeichnern in den Modellen B und C befinden sich in unabhängigen Gültigkeitsbereichen.\cite{_graphwalker_2015}}
   \label{fig:gw_multiple_models}
 \end{figure}
 
+\paragraph{Traversierung der Modelle}  
+\todo{Hier weiter}
 
 \subsection{Einbindung SoapUI/HP UFT}
 
