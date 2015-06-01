@@ -169,7 +169,20 @@ Modelle in Graphwalker sind gerichtete Graphen. Knoten repräsentieren einen Zus
 \item SHARED: Dient zur Modularisierung. Wenn Graphwalker bei der Traversierung auf einen mit SHARED annotierten Knoten trifft, passiert ein Sprung in ein anderes Modell mit dem selben SHARED-Bezeichner.
 \item INIT: Dient zur Initialisierung von Datenfeldern die im Modell genutzt werden. Nur Knoten können mit dem INIT-Schlüsselwort versehen werden.
 \end{itemize} 
-\todo{Weitermachen mit Multiple Models}
+
+\paragraph{Modularisierung der Modelle}
+Das SUT kann in Graphwalker mittels mehreren Modellen abgebildet werden. Dies hat mehrere Vorteile. Einerseits vereinfacht die Modularisierung eines großen Modells die Les- und Wartbarkeit. Andererseits wird dadurch die Wiederverwendbarkeit von Teilen der Funktionalität ermöglicht. Ein klassisches Beispiel ist ein Login-Workflow. Dieser kann oft zu mehreren Zeitpunkten bzw. an mehreren Stellen im SUT erfolgen. Statt das Modell aufzublähen oder mit zahlreichen Beziehungen schlechter lesbar zu machen, kann auf eine andere GraphML-Modelldatei verwiesen werden.\\
+Graphwalker ermöglicht dies mit Sprüngen in andere Modelle. Wenn es bei der Traversierung auf einen Knoten mit dem Schlüsselwort \textit{SHARED} und einem Bezeichner stößt, kann ein Sprung in ein anderes Modell erfolgen, das einen Knoten mit dem selben Bezeichner hat (siehe Abbildung \ref{fig:gw_multiple_models}). Wenn nun mehrere Kanten zur weiteren Traversierung in Fragen kommen, entscheidet der Zufall ob in das andere Modell gesprungen wird.\\
+Weiters ist zu erwähnen, dass die Modelle nicht einfach nur verflacht (\textit{flattening}) werden. Das bedeutet, dass die Modelle unabhängige Gültigkeitsbereiche haben. Die Traversierung erfolgt also in einem eigenen Kontext.
+
+\begin{figure}[h] 
+  \centering
+     \includegraphics[width=0.7\textwidth]{figures/gw_multiple_models.png}
+  \caption{Vier einzelne Modelle die bei einer Traversierung (ausgehend vom Startknoten in Grün) erreicht werden können. Bei den Knoten die mit \textit{SHARED} gekennzeichnet sind kann ein Sprung (und auch ein Sprung zurück) erfolgen. Die Variablen mit den selben Bezeichnern in den Modellen B und C befinden sich in unabhängigen Gültigkeitsbereichen.}
+  \label{fig:gw_multiple_models}
+\end{figure}
+
+
 \subsection{Einbindung SoapUI/HP UFT}
 
 
