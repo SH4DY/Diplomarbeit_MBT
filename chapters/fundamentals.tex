@@ -73,7 +73,15 @@ Die Kriterien \textit{Funktionalität, Laufzeit, Zuverlässigkeit} und \textit{B
 
 \subsubsection{Zusammenhänge und Kompromisse} 
 Nach Evaluation all dieser Kriterien kann eine Aussage über die Qualität von Software getroffen werden. Sie beeinflussen sich gegenseitig. Am Beispiel von \textit{Laufzeit} und \textit{Übertragbarkeit} lassen sich diese Zusammenhänge gut erkennen. Hochperfomante Software-Systeme nutzen viele Spezialitäten der verwendeten Programmiersprache und der Plattform auf dem sie betrieben werden. Wenn aus fundamentalen Bausteinen wie Architektur und Design keine weiteren Leistungssteigerungen gewonnen werden können, muss auf solche ``Adaptions-Tricks'' zurückgegriffen werden um den entscheidenden Vorsprung gegenüber Konkurrenzprodukten zu gewinnen. Die Übertragbarkeit eines Systems definiert sich aber wesentlich durch die ausschließliche Verwendungen von Konstrukten die in möglichst vielen Umgebungen verfügbar ist. Plattformabhängigkeiten müssten daher wieder generalisiert werden, was mit Aufwänden verbunden ist.\\
-Deshalb ist es auch nicht möglich, ein Software-System zu entwickeln, das alle genannten Qualitätskriterien gleichermaßen erfüllt. Solche Aussagen sind aber nicht nur auf Software zu beschränken. Es handelt sich um sehr allgemeine Gesetzmäßigkeiten, die bereits in der Forschung zur klassischen Evolutionstheorie aufgedeckt wurden.\cite{hoffmann_software-qualitat_2013} Dies erklärt auch, weshalb viele dieser Zusammenänge intuitiv Sinn machen. Nicht alle Qualitätskriterien beeinflussen gleich viele andere Kriterien. Auch positive Effekte sind erkennbar. Eine hohe \textit{Testbarkeit} beeinflusst \textit{Zuverlässigkeit} positiv. Abbildung NUMMER beschreibt positive und negative Auswirkungen der Qualitätsmerkmale aufeinander. Aus dem Projektmanagement ist das magische Dreieck bekannt, das sich unmittelbar aus den eben genannten Korrelationen ableiten lässt.\todo{Abbildung magisches Dreieck + Korrelationsmatrix SW, siehe Evernote} Die äußeren Eckpunkte des Dreiecks geben an, in welchem Maß die Parameter \textit{Zeit}, \textit{Kosten} und \textit{Qualität} erfüllt sind. Der Flächeninhalt des Dreiecks soll konstant sein, was veranschaulicht, dass jede Erhöhung eines Parameters die anderen beiden beeinflusst.  
+Deshalb ist es auch nicht möglich, ein Software-System zu entwickeln, das alle genannten Qualitätskriterien gleichermaßen erfüllt. Solche Aussagen sind aber nicht nur auf Software zu beschränken. Es handelt sich um sehr allgemeine Gesetzmäßigkeiten, die bereits in der Forschung zur klassischen Evolutionstheorie aufgedeckt wurden.\cite{hoffmann_software-qualitat_2013} Dies erklärt auch, weshalb viele dieser Zusammenänge intuitiv Sinn machen. Nicht alle Qualitätskriterien beeinflussen gleich viele andere Kriterien. Auch positive Effekte sind erkennbar. Eine hohe \textit{Testbarkeit} beeinflusst \textit{Zuverlässigkeit} positiv. Abbildung \ref{fig:magic_triangle} beschreibt positive und negative Auswirkungen der Qualitätsmerkmale aufeinander. Aus dem Projektmanagement ist das magische Dreieck bekannt, das sich unmittelbar aus den eben genannten Korrelationen ableiten lässt. Die äußeren Eckpunkte des Dreiecks geben an, in welchem Maß die Parameter \textit{Zeit}, \textit{Kosten} und \textit{Qualität} erfüllt sind. Der Flächeninhalt des Dreiecks soll konstant sein, was veranschaulicht, dass jede Erhöhung eines Parameters die anderen beiden beeinflusst.
+
+\begin{figure}[h] 
+  \centering
+     \includegraphics[width=0.8\textwidth]{figures/magic_triangle.png}
+  \caption{Dieses Dreieck veranschaulicht wie sich die Qualitätsparameter Qualität, Zeit und Kosten gegenseitig beeinflussen. Die Fläche des Dreiecks bleibt fixiert, während die Seitenlängen verändert werden.}
+  \label{fig:magic_triangle}
+\end{figure}
+
 
 \subsection{Testprozess}
 \subsection{Teststufen}
@@ -152,7 +160,7 @@ Im Detail erstellt der Test-Designer ein abstraktes Modell des SUT (welches gewi
 
 \begin{figure}[h] 
   \centering
-     \includegraphics[width=0.7\textwidth]{figures/MBT_Prozess.png}
+     \includegraphics[width=0.9\textwidth]{figures/MBT_Prozess.png}
   \caption{Der MBT Prozess \cite{utting_practical_2007}}
   \label{fig:mbt_prozess}
 \end{figure}
@@ -212,7 +220,7 @@ Die Autoren kommen zum Schluss, dass \textit{Visual Testing} sehr wohl seine Das
 
 \subsection{Modellierungssprachen}
 \subsubsection{Endliche Automaten (Finite-State-Machines)}
-\label{sec:}
+\label{sec:fsm}
 Ein endlicher Automat (oder \textit{finite state machine}) ist eine Form der abstrakten Maschinen. Eine FSM erlaubt die Modellierung des Verhaltens einer Maschine, in diesem Fall eines Computer-Programms.\cite{wagner_modeling_2006}\\
 Eine FSM ist immer in genauen \textbf{einem} Zustand. Sie besitzt, wie der Name schon sagt, eine endliche Anzahl von Zuständen. Zu jedem Zeitpunkt lässt sich die Maschine genau einem Zustand zuordnen. Zustände enthalten üblicherweise Informationen über die Vergangenheit, also wie die Maschine in den aktuellen Zustand gekommen ist. Diese Informationen müssen aber keineswegs vollständig sein. Aus einem aktuellen Zustand lässt sich nicht notwendigerweise reproduzieren welche Zustände die Maschine zuvor angenommen hat.\\
 
@@ -256,27 +264,3 @@ UTP bietet vereinfachte Wildcards um zu spezifizieren, dass ein Attribut einen b
   \caption{Eine UML Ausprägungsspezifikation. Sowohl eine Instanz der Klasse als auch eine Relation kann als Ausprägung dargestellt werden. (German Wikipedia user Gubaer [GFDL (http://www.gnu.org/copyleft/fdl.html) or CC-BY-SA-3.0 (http://creativecommons.org/licenses/by-sa/3.0/)], via Wikimedia Commons)}
   \label{fig:uml_instance}
 \end{figure}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

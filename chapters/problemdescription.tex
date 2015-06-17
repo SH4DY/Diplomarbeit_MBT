@@ -49,7 +49,7 @@ Tracing von Testdaten und Testfällen (welcher Bereich der Testdaten wird von ei
 \section{MBT auf Unit-Testebene}
 \subsection{ModelJUnit}
 ModelJUnit wird von Dr. Mark Utting et al. an der Universität Waikato in Neuseeland entwickelt. Es wird unter der Open Source GNU GPL Lizenz entwickelt und befindet sich zur Zeit in der Version 2.5 \footnote{Homepage des Tools ModelJUnit \url{http://www.cs.waikato.ac.nz/~marku/mbt/modeljunit/}}. Es erlaubt die Modellierung des SUT als endlicher Automat (von hier an FST für \textit{finite state machine}) in Java, Generierung von Testfällen laut spezifiziertem Traversierungsalgorithmus sowie Reporting. Seit Version 2.0 bietet das Tool eine grafische Benutzeroberfläche die die Traversierungskonfiguration ermöglicht und veranschaulicht.\\
-
+\todo{Hier weitermachen aus Utting Buch}
 \subsubsection{Traversierung}
 \paragraph{Random Walk}
 \paragraph{Greedy Walk}
@@ -163,6 +163,7 @@ Modelle in Graphwalker sind gerichtete Graphen. Knoten repräsentieren einen Zus
 
 \paragraph{Keywords} Diese Schlüsselwörter beschreiben keine Eigenschaften des SUT, sondern dienen nur der Usability und Modularität der Modelle.
 
+
 \begin{itemize}
 \item Start: Beschreibt den Startknoten
 \item BLOCKED: Dieser Knoten oder diese Kante wird bei der Traversierung aus dem Graphen entfernt.
@@ -177,13 +178,40 @@ Weiters ist zu erwähnen, dass die Modelle nicht einfach nur verflacht (\textit{
 
 \begin{figure}[h] 
   \centering
-     \includegraphics[width=0.7\textwidth]{figures/gw_multiple_models.png}
+     \includegraphics[width=0.9\textwidth]{figures/gw_multiple_models.png}
   \caption{Vier einzelne Modelle die bei einer Traversierung (ausgehend vom Startknoten in Grün) erreicht werden können. Bei den Knoten die mit \textit{SHARED} gekennzeichnet sind kann ein Sprung (und auch ein Sprung zurück) erfolgen. Die Variablen mit den selben Bezeichnern in den Modellen B und C befinden sich in unabhängigen Gültigkeitsbereichen.\cite{_graphwalker_2015}}
   \label{fig:gw_multiple_models}
 \end{figure}
 
 \paragraph{Traversierung der Modelle}  
-\todo{Hier weiter}
+Wie im ursprünglichsten Sinn des modellbasierten Tests, kennt Graphwalker das Konzept der Testfälle nicht. Das SUT wird als gesamtes oder nur zu Teilen modelliert und das Testing wird durch die Auswahl eines Traversierungsalgorithmus angestoßen. Da die meisten Traversierungsalgorithmen von einer randomisierten Variante abhängen, wird das SUT bei jedem Testdurchlauf leicht unterschiedlich traversiert und damit getestet.\\
+Durch die Modellierung des Modells und der Auswahl sowie Einstellung eines Traversierungsalgorithmus kann also bestimmt werden wie das SUT getestet werden soll. Dabei bietet Graphwalker bereits verschiedenste Algorithmen an, die sich für unterschiedliche Testzwecke eignen. Die meisten dieser Algorithmen basieren auf bekannten Graph-Algorithmen und bieten, durch die quelloffene Entwicklung, volle Transparenz gegenüber dem Tester.
+
+\subparagraph{Schnelle Traversierung - Smoke Tests}
+Vor allem während der Testfallentwicklung und um sogenannte \textit{Smoke Tests} zu machen eignet sich der A*-Algorithmus von Graphwalker. Er basiert auf dem bekannten A*-Suchalgorithmus von Hart et al. \cite{hart_ucorrection/u_1972}. Dabei wird also ein zu findender Knoten angegeben, meist ein Knoten der das Ende eines Workflows darstellt. Graphwalker durchschreitet das Testsystem dann in einem möglichst kurzen Pfad, wobei die zugrundeliegende Suchheuristik bei jedem Schritt angepasst wird.
+
+\begin{verbatim}
+@Test
+public void runSmokeTest() {
+    
+    setPathGenerator(new AStarPath(new ReachedVertex("v_Browse")))
+    
+}
+\end{verbatim}
+
+\subparagraph{Traversierung basierend auf Pfadabdeckung - Funktionaler Test}
+Umfangreiche funktionale Tests einer komplexen Applikation, wie sie beispielsweise über Nacht gemacht werden, können mit Graphwalker unter anderem durch eine Zufallstraversierung mittels Angabe der gewünschten Pfadabdeckung realisiert werden. Falls eine einhundertprozentige Abdeckung eingestellt wird (wie im folgenden Beispiel), wird das Modell vom Startknoten (falls angegeben) aus traversiert bis jede begehbare Kante traversiert wurde. Gegegebenenfalls werden weitere Durchläufe gestartet, falls es Teilgraphen gibt die vom designierten Startknoten nicht erreichbar sind. 
+
+\begin{verbatim}
+@Test
+public void runFunctionalTest() {
+    
+    setPathGenerator(new RandomPath(new EdgeCoverage(100)))
+    
+}
+\end{verbatim}
+
+\subparagraph{Traversierung mit Zeitangabe}\todo{weitermachen...}
 
 \subsection{Einbindung SoapUI/HP UFT}
 
@@ -192,44 +220,3 @@ Weiters ist zu erwähnen, dass die Modelle nicht einfach nur verflacht (\textit{
 \subsection{Manuelle Systemtests anhand von Modellen}
 \subsection{Automatisierte MBT GUI-Tests (GUITAR)}
 \subsection{Automatische Modellgenerierung auf Produktionsebene (LearnLib)}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
