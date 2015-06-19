@@ -198,7 +198,7 @@ Wie im ursprünglichsten Sinn des modellbasierten Tests, kennt Graphwalker das K
 Durch die Modellierung des Modells und der Auswahl sowie Einstellung eines Traversierungsalgorithmus kann also bestimmt werden wie das SUT getestet werden soll. Dabei bietet Graphwalker bereits verschiedenste Algorithmen an, die sich für unterschiedliche Testzwecke eignen. Die meisten dieser Algorithmen basieren auf bekannten Graph-Algorithmen und bieten, durch die quelloffene Entwicklung, volle Transparenz gegenüber dem Tester.
 
 \subparagraph{Schnelle Traversierung - Smoke Tests}
-Vor allem während der Testfallentwicklung und um sogenannte \textit{Smoke Tests} zu machen eignet sich der A*-Algorithmus von Graphwalker. Er basiert auf dem bekannten A*-Suchalgorithmus von Hart et al. \cite{hart_ucorrection/u_1972}. Dabei wird also ein zu findender Knoten angegeben, meist ein Knoten der das Ende eines Workflows darstellt. Graphwalker durchschreitet das Testsystem dann in einem möglichst kurzen Pfad, wobei die zugrundeliegende Suchheuristik bei jedem Schritt angepasst wird.
+Vor allem während der Testfallentwicklung und um sogenannte \textit{Smoke Tests} zu machen eignet sich der A*-Algorithmus von Graphwalker. Er basiert auf dem bekannten A*-Suchalgorithmus von Hart et al. \cite{hart_formal_1968}. Dabei wird also ein zu findender Knoten angegeben, meist ein Knoten der das Ende eines Workflows darstellt. Graphwalker durchschreitet das Testsystem dann in einem möglichst kurzen Pfad, wobei die zugrundeliegende Suchheuristik bei jedem Schritt angepasst wird.
 
 \begin{verbatim}
 @Test
