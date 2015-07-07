@@ -301,6 +301,40 @@ OPERATIONS
 END
 \end{lstlisting}
 
+Es ist zu erkennen, dass B-Notation eine sehr lesbare Notation besitzt. Die Syntax \textit{out <-- name(in)=...} beschreibt eine Prozedur mit einem Rückgabewert (\textit{out}) und einem Eingabewert (\textit{in}). Die Sektion \textit{INVARIANT} beschreibt Invarianten, also Werte bzw. Aussagen im Programm die sich während der gesamten Laufzeit nicht ändern (equivalent zu Invarianten bei der Verfikation mit formalen Methoden). Der doppelte senkrechte Strich soll kein logischer Operator sein, sondern eine undefinierte Komposition. Die Verkettung von mehreren Operationen mittels diesem Operator soll bedeuten, dass es keinen Unterschied macht in welcher Reihenfolge die Operationen ausgeführt werden. Das folgende Beispiel veranschaulicht diesen Unterschied.\\
+
+Die folgenden beiden Zeilen sind equivalent zueinander.
+\begin{verbatim}
+money := balance || balance := 0
+balance := 0 || money := balance
+\end{verbatim}
+
+Bei klassischer sequentieller Komposition, also Hintereinanderausführung, sind die folgenden beiden Zeilen aber keineswegs equivalent.
+\begin{verbatim}
+balance := 0;
+money := balance;
+\end{verbatim}
+
+Aus diesem sehr einfachen und abstrakten Modell könnte ein Tool zum Beispiel die folgenden Testfälle generieren:\\
+
+
+\begin{verbatim}
+Test1: init:
+	returnButton = 0
+	insertCoin(5) = 0
+	returnButton = 5
+\end{verbatim}
+
+\begin{verbatim}
+Test2: init:
+	insertCoin(100) = 0
+	insertCoin(100) = 0
+	insertCoin(5) = 5
+\end{verbatim}
+
+Die beiden Testfälle gehen von einem Limit von 200 Einheiten aus. Solaneg die eingeworfene Menge plus der Saldo unter dem Limit bleiben, wird nichts ausgeworfen. Jeder Betrag darüber wird sofort retourniert (siehe letzte Zeile in Testfall 2).
+
+
 \subsubsection{UML/ UML Testing Profile}
 \paragraph{Test-Driven Testing mit UTP}
 Businessapplikationen (unter anderem in den Bereichen Finanz-, Versicherungs- und Gesundheitswesen) basieren auf großen Datenbeständen. Diese wurden oft über Jahre und Jahrzehnte gesammelt und gespeichert. Zwischen den Datensätzen bestehen Abhängigkeit, die das Verhalten der Applikation stark beeinflussen. Solche Systeme werden als \textit{datengetrieben (data-driven)} bezeichnet. Das Testing von solchen Systemen ist dementsprechend gekennzeichnet durch die Verwendung von vielen, oft relationalen, Datensätzen. Die Praxis zeigt, dass sich die Datenstrukturen innerhalb eines Systems ändern und von der ursprünglichen Spezifikation abdriften. Es ist also von höchster Wichtigkeit, das Testdatenmangement angemessen zu designen um hohe Wartungsaufwände zu minimieren.\cite{baker_model-driven_2005}\\
