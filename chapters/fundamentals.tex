@@ -332,8 +332,21 @@ Test2: init:
 	insertCoin(5) = 5
 \end{verbatim}
 
-Die beiden Testfälle gehen von einem Limit von 200 Einheiten aus. Solaneg die eingeworfene Menge plus der Saldo unter dem Limit bleiben, wird nichts ausgeworfen. Jeder Betrag darüber wird sofort retourniert (siehe letzte Zeile in Testfall 2).
+Die beiden Testfälle gehen von einem Limit von 200 Einheiten aus. Solaneg die eingeworfene Menge plus der Saldo unter dem Limit bleiben, wird nichts ausgeworfen. Jeder Betrag darüber wird sofort retourniert (siehe letzte Zeile in Testfall 2). In Klammer stehen also die Eingabewerte (entsprechend \textit{in} im Modell) und die Werte rechts vom Gleichheitszeichen stellen die erwarteten Ausgabewerte dar (entsprechend \textit{out} im Modell).\\
+Die hier gezeigte Syntax entspricht der ASCII B Notation, welche auch von den meisten Werkzeugen verwendet wird\footnote{Das Tool ProB der Heinrich-Heine-Universität, welches auch zur grafischen Darstellung und Animation von Modellen verwendet werden kann, kann ebenfalls mit ASCII B benutzt werden. \url{http://stups.hhu.de/ProB/}}.\\
 
+Modelle in B Notation können folgende Dimensionen definieren (von denen einige bereits in \ref{lst:b-notation} zu sehen sind).
+
+\begin{itemize}
+\item \textit{MACHINE} ist ein Bezeichner mit dem auf das Modell Bezug genommen werden kann.
+\item \textit{SETS} definiert enumerierte Datentypen.
+\item \textit{CONSTANTS} definiert konstante Werte die sich zur Laufzeit nicht verändern.
+\item \textit{PROPERTIES} weist den zuvor deklarierten Konstanten Werte zu.
+\item \textit{VARIABLES} deklariert Variablen.
+\item \textit{INVARIANT} definiert welche Wertbereiche die Variablen haben und welche Abhängigkeiten zwischen den Variablen bestehen.
+\item \textit{INITIALISATION} eine Menge von \textit{parallelen} Zuweisungen zum Zweck der initialen Belegung der Variablen.
+\item \textit{OPERATIONS} definiert alle möglichen Operationen bzw. Prozeduren die innerhalb des Modells aufgerufen werden können. Es können rein lesende Operationen als auch Operationen mit Lese- und Schreibzugriff definiert werden. Außerdem sind Konditional-Konstrukte, wie der If-Block in \ref{lst:b-notation}, zulässig. Um die Korrektheit einer Operation einfacher zu überprüfen ist es nicht erlaubt eine Variable mehrfach zu beschreiben. Außerdem gibt es keine Schleifen, da diese die Verfikation um ein vielfaches erschweren würden.
+\end{itemize}
 
 \subsubsection{UML/ UML Testing Profile}
 \paragraph{Test-Driven Testing mit UTP}
