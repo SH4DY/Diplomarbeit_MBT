@@ -207,7 +207,7 @@ Eine Einführung von MBT ist immer auch mit Anschaffungskosten verbunden. Auf de
 \end{itemize}
 
 \subsubsection{Tool-Landschaft}
-Wie auf dem Feld der skriptbasierten Testautomatisierung, ist die Auswahl an Tools zur Unterstützung von modellbasierten Tests vielfältig.Modellbasiertes Testen umfasst in der Regel mehrere Aktivitäten, für die jede Kombination aus passenden kommerziell erhältlichen Werkzeugen herangezogen werden können. Auch die marktführenden Tool-Hersteller haben begonnen ihre Testing Applikations-Suiten für MBT auszurüsten. 
+Wie auf dem Feld der skriptbasierten Testautomatisierung, ist die Auswahl an Tools zur Unterstützung von modellbasierten Tests vielfältig. Modellbasiertes Testen umfasst in der Regel mehrere Aktivitäten, für die jede Kombination aus passenden kommerziell erhältlichen Werkzeugen herangezogen werden können. Auch die marktführenden Tool-Hersteller haben begonnen ihre Testing Applikations-Suiten für MBT auszurüsten. 
 
 \subsection{MBT Fallstudien}
 
@@ -221,7 +221,6 @@ Im Hinblick auf Applikationen mit vielen Datenfeldern, oder gar nicht standardis
 \paragraph{Industrial Application of Visual GUI Testing: Lessons learned \cite{alegroth_industrial_2014}}In dieser Publikation aus dem Jahr 2014, erproben Alégroth et al. in zwei groß angelegten Industriefallstudien ein \textit{Visual Testing} Werkzeug. Im Gegensatz zu weitverbreiteten Test-Tools, greift ihr Werkzeug nicht auf Widget-Ebene auf das SUT zu. Bei ihrem Ansatz werden Bitmaps von Oberflächen gemacht (Soll-Zustand) und beim Testdurchlauf mit neuen Bitmaps verglichen (Ist-Zustand). Das Werkzeug lässt feingradige Einstellungen zu, bis zu welchem Grad sich die Bitmaps unterscheiden dürfen um noch als korrekt zu gelten.\\
 Die vorgestellte Technik soll manuelles Testen im späten Entwicklungszyklus (Akzeptanz- und Abnahmetests) ergänzen oder sogar ersetzen. Sie hat den Vorteil, dass kaum Aufwand bei der Wartung von Testfällen anfällt und fügt sich gut in eine Continuous Development Umgebung ein. Nachteilig ist aber die Tatsache, dass bei nicht optimaler Konfiguration viele Fehlerfälle (\textit{false negative's}) von Hand geprüft werden müssen.\\
 Die Autoren kommen zum Schluss, dass \textit{Visual Testing} sehr wohl seine Daseinsberechtigung in der Qualitätssicherung von komplexer Industriesoftware hat. Sie halten fest, dass die vorgeschlagene Technik in beiden Fallstudien (Applikationen aus dem Bereich Militär und Avionik), genauso effektiv wie manuelle Tests funktioniert. Gleichzeitig ist der Ressourcenaufwand für die Wartung der Testfälle sehr niedrig und die Durchführungsgeschwindigkeit der Testfälle, verglichen mit manuellen Tests, um ein vielfaches höher. Sie halten aber ebenfalls fest, dass \textit{Visual Testing} Werkzeuge schon für den produktiven Einsatz geeignet sind aber noch viel Potenzial zur Verbesserung besteht (sie verwendeten Sikuli \footnote{VGT Test Tool - \url{http://www.sikuli.org/}}).
-
 
 \paragraph{Microsoft’s Protocol Documentation Program: A Success Story for Model-Based Testing\cite{grieskamp_microsofts_2010}} Diese von Microsoft durchgeführte Fallstudie liefert exakte Zahlen zur Leistung von MBT im Projekt. Bei der Verfikation der Dokumentation von \textit{Client-Server} und \textit{Server-Server} Protokollen hat Microsoft MBT erstmals in einem großen und geschäftskritischen Umfeld eingesetzt. Die Ergebnisse deuten auf ein hohes Ressourceneinsparungspotenzial von MBT hin. Bei der Umsetzung von knapp zehntausend Test- Requirements mit MBT-Methoden ergab sich im Schnitt eine Dauer von 1,39 Personentagen/Requirement. Verglichen mit knapp neuntausend Requirements desselben Projekts, die mit traditionellen Methoden getestet wurden, die durchschnittlich 2,37 Personentage benötigen, ergab sich ein Produktivitätszugewinn von 42\%.
 
@@ -258,7 +257,50 @@ Wobei $Q$ die endliche Menge an Zuständen ist, $\Sigma$ ein endliches Eingabeal
   \label{fig:fsm_example}
 \end{figure}
 
-\subsubsection{B models}
+\subsubsection{B Modelle}
+B Notation für abstrakte Maschinen ist eine formale Modellierungssprache zur Beschreibung von Software Systemen.
+\begin{itemize}
+\item Vor dem Hintergrund eine formale Sprache zu sein, hat B Notation sehr präzise definierte Semantiken.
+\item Die Syntax zur Beschreibung von Postconditions ähnelt Code und ist zugänglicher als strikt formaler Annotations-Kalkulus \todo{Footnote zu Annotations-Kalkulus}
+\item Im Gegensatz zu strikt formalen Methoden zur Verifikation von Software bietet B einfache Datenstrukturen wie zum Beispiel Sets.
+\end{itemize}
+
+B Notation ähnelt den Sprachen die in der Welt der modellgetriebenen Entwicklung verwendet werden, allen voran der Object Constraint Language (OCL).\todo{Footnote zu OCL} 
+
+\paragraph{Die B Methode}
+Bei Verwendung der B Methode wird die Korrektheit eines Software Systems, ausgehend von einem abstrakten Modell, bewiesen. Zugrunde liegt die, weiter oben erläuterte, B Notation.\\
+In der kompletten B Methode wird ein abstraktes Modell schrittweise verfeinert. Parallel verifizieren Tools automatisch ob tatsächlich eine korrekte und detailliertere Version des Modells erstellt wurde. Nach mehreren Iterationen generieren erhältliche Tools eine meist sehr große Anzahl an mathematischen Implikationen. Nach rigorosen Beweisen all dieser Implikationen kann das System, so wie es modelliert wurde, als korrekt angesehen werden.\\
+Im Gegensatz zur kompletten B Methode wird die B Notation oft viel leichtgewichtiger verwendet. Utting und Legeard\cite{utting_practical_2007} schlagen einen Ansatz vor, bei dem nur ein kleiner, für den Test relevanter, Teil des SUT modelliert wird. Außerdem werden nicht mehrere Iterationen zur Verfeinerung des Modells gemacht sondern nur eine. Aus diesem Modell werden automatisch Testfälle generiert, die die Unterschiede zwischen Modell und tatsächlicher Implementation offenbaren. Wie bei allen MBT-Methoden muss anschließend aber trotzdem vom Tester manuell festgestellt werden, ob es sich tatsächlich um ein Fehlverhalten handelt oder ob ein Fehler bei der Modellierung passiert ist.\\
+Dieser Ansatz garantiert keine Korrektheit des Systems, wie es die komplette B-Methode macht, ist aber viel praxistauglicher. Die B-Methode wird verwendet um sehr sicherheitskritische Systeme zu testen, die über einen langen Zeitraum keiner Weiterentwicklung ausgesetzt sind. Bei Systemen mit diesen Eigenschaften lassen sich die hohen Aufwände rechtfertigen und stellen einen klaren Mehrwert dar. Ein bekanntes Beispiel für die erfolgreiche Anwendung der B-Methode findet sich in Frankreich, wo Teile des Pariser U-Bahn Systems mit der B-Methode verifiziert wurden. \cite{lecomte_formal_2007}
+
+\paragraph{Beispielhafte Anwendung der leichtgewichtigen B-Methode}
+Am Beispiel eines Getränkeautomaten sollen die Grundzüge der B-Notation erläutert werden. Um das Beispiel kurz zu halten und um aufzuzeigen, dass ein Modell nur einen Teil des SUT repräsentieren kann, soll der gezeigte Automat nur Münzen aufnehmen können (und den Betrag der eingeworfenen Münzen anzeigen) und wieder auswerfen können. Außerdem besitzt der Automat ein Limit, bei dessen Erreichen alle zuvor eingeworfenen Münzen wieder ausgeworfen werden.
+
+\begin{lstlisting}[caption={Modell eines Getränkeautomaten in B-Notation},label=lst:b-notation]
+MACHINE
+	GET_AUTOMAT
+VARIABLES
+	balance, limit
+INVARIANT
+	limit : INT & balance : INT &
+	0 <= balance & balance <= limit
+INITIALISATION
+	balance := 0 || limit := 200
+OPERATIONS
+	reject <-- insertCoin(coin) =
+		PRE coin : { 5, 10, 20, 50, 100 }
+		THEN
+		IF coin + balance <= limit
+		THEN
+			balance := balance + coin || reject := 0
+		ELSE
+			reject := coin
+		END
+	END
+	money <-- returnButton = money := balance || balance := 0
+END
+\end{lstlisting}
+
 \subsubsection{UML/ UML Testing Profile}
 \paragraph{Test-Driven Testing mit UTP}
 Businessapplikationen (unter anderem in den Bereichen Finanz-, Versicherungs- und Gesundheitswesen) basieren auf großen Datenbeständen. Diese wurden oft über Jahre und Jahrzehnte gesammelt und gespeichert. Zwischen den Datensätzen bestehen Abhängigkeit, die das Verhalten der Applikation stark beeinflussen. Solche Systeme werden als \textit{datengetrieben (data-driven)} bezeichnet. Das Testing von solchen Systemen ist dementsprechend gekennzeichnet durch die Verwendung von vielen, oft relationalen, Datensätzen. Die Praxis zeigt, dass sich die Datenstrukturen innerhalb eines Systems ändern und von der ursprünglichen Spezifikation abdriften. Es ist also von höchster Wichtigkeit, das Testdatenmangement angemessen zu designen um hohe Wartungsaufwände zu minimieren.\cite{baker_model-driven_2005}\\
