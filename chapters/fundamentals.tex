@@ -156,7 +156,7 @@ Im Feld der modellgetriebenen Entwicklung und des modellbasierten Testens wird g
 \paragraph{Testmodelle} dienen als Grundlage für die Generierung von Testfällen, basiernd auf Spezifikations- und Entwurfsdokumenten. Daher enthalten sie auch oftmals Teile von Umgebungs- und Systemmodellen. Weiters beschreiben sie den Ablauf der zu generierenden Testfälle. Möglich ist die Angabe darüber, welche Eingaben das SUT erhalten soll und welche Ausgaben bzw. Reaktionen erwartet werden.
 
 \subsection{Der MBT Prozess}
-Model-based Testing automatisiert, einer nachvollziehbaren Strategie folgend \todo{Ref zu Pfadabdeckung usw}, die Erstellung der detaillierten Testfälle (Testscripts).
+Model-based Testing automatisiert, einer nachvollziehbaren Strategie folgend (siehe Testauswahlkriterien \ref{sec:coverage}), die Erstellung der detaillierten Testfälle (Testscripts).
 Im Detail erstellt der Test-Designer ein abstraktes Modell des SUT (welches gewisse Eigenschaften haben muss, siehe \todo{Ref zu Eigenschaften des Testmodells}). Dieses abstrakte Testmodell wird einem Tool übergeben welches die Testfälle generiert. Die Zeit einen Testfall zu designen wird durch den Einsatz von MBT reduziert. Außerdem befähigt die Erstellung eines einzelnen Modells, die automatische Generierung einer Vielzahl von Testfällen. Der Testfall-Designer muss dazu am Tool nur die Testauswahlkriterien verändern. \cite{utting_practical_2007} Der Prozess kann also in 5 Schritten dargestellt werden (siehe Abbildung \ref{fig:mbt_prozess}):
 
 \begin{enumerate}
@@ -191,7 +191,7 @@ Im letzten Schritt werden die Ergebnisse der Testfälle analysiert. Auch diesen 
   \label{fig:fsm_example}
 \end{figure}
 
-\subsection{Testauswahlkriterien & Modellabdeckung}
+\subsection{Testauswahlkriterien \& Modellabdeckung}
 \label{sec:coverage}
 
 Genau wie auf der Ebene der Unit-Tests, spielt die gewählte Abdeckung eine entscheidende Rolle in modellbasiertem Testen. Verständnis der möglichen Abdeckung und exakte Kenntnisse über das SUT sind der Schlüssel zu einer hochqualitativen Testsuite.\\
@@ -245,11 +245,11 @@ Die Komplexität des zu testenden Systems ist ein entscheidender Faktor, bei der
 \item Wie wichtig ist die Überdeckungsanalyse?
 Im Software-Testing wird oft anhand der prozentualen Abdeckung des Quellcodes auf die Güte der Teststrategie geschlossen. Mittels skriptbasiertem Testen ist es aber nicht trivial festzustellen, welche Teile des Codes ein Testfall genau abdeckt. Mit MBT lässt sich anhand der Modellüberdeckung schneller feststellen welche Komponenten abgedeckt sind. Außerdem lassen sich Konzepte der Traceability (also der Verfolgbarkeit von Test zu Code) im MBT sehr einfach einführen. Modellbasierte Tests haben daher den nützlichen Nebeneffekt wie ein Vertrag, zwischen Requirement und tatsächlicher Funktionalität, zu funktionieren. Weil modellbasierte Tests oft einfach visuell dargestellt werden können, eignen sie sich auch zu Präsentationszwecken vor Kunden.
 \item Wie häufig finden Änderungen in der Spezifikation statt? 
-Unzufriedenheit mit skriptbasierten Tests entsteht oft aus teuren Wartungsarbeiten, die nötig werden sobald sich das zu testende System weiterentwickelt. Skriptbasierte Tests können nur zu einem gewissen Grad änderungsunabhängig entwickelt werden. Gerade wenn das Softwareprojekt aus kurzen Entwicklungszyklen besteht (so wie es viele moderne agile Projekte sind), die viel Änderungspotenzial mit sich bringen, sollte MBT in Betracht gezogen werden.
+Unzufriedenheit mit skriptbasierten Tests entsteht oft aus teuren Wartungsarbeiten, die nötig werden sobald sich das zu testende System weiterentwickelt. Skriptbasierte Tests können nur zu einem gewissen Grad änderungsunabhängig entwickelt werden. Gerade wenn das Softwareprojekt aus kurzen Entwicklungszyklen besteht (so wie dies bei vielen modernen Projekten der Fall ist), die viel Änderungspotenzial mit sich bringen, sollte MBT in Betracht gezogen werden.
 \item Wie wichtig ist die Plattformunabhängigkeit der Testfälle?
 Abhängig von der Testebene wo automatisierte Tests auf das System zugreifen, können skriptbasierte Tests nutzlos werden wenn beispielsweise der Austausch einer GUI-Bibliothek erfolgt. Da bei modellbasierten Tests eine strikte Trennung zwischen Testmodell und Adapter zum SUT gemacht wird, muss bei einem Plattformwechsel auch nur dieser Adapter angepasst werden. Auch bei industrieller Software die oft mittels dem Konzept der Software-Familien arbeitet, kann es von Vorteil sein wenn die eigentlichen Testkomponenten unabhängig von der Adapter-Logik bestehen.
 \item Ist die Testbasis modellierbar?
-Für die Modellierung des SUT ist eine Vielzahl von Notationen verfügbar. Zustandsbasierte und Ereignisbasierte \todo{Link zu einer Grundlagen section wo ich das erläutere} Notationsarten ermöglich die Modellierung sehr vieler funktionaler Eigenschaften. Wenn sich die Funktionalität der Testbasis aber nur unzureichend modellieren lässt, macht modellbasiertes Testen schlicht keinen Sinn.
+Für die Modellierung des SUT ist eine Vielzahl von Notationen verfügbar (siehe Kapitel \ref{sec:notations}). Zustandsbasierte und Ereignisbasierte Notationsarten ermöglich die Modellierung sehr vieler funktionaler Eigenschaften. Wenn sich die Funktionalität der Testbasis aber nur unzureichend modellieren lässt, macht modellbasiertes Testen schlicht keinen Sinn.
 \item Hat das Testteam Erfahrung mit Software-Modellierung? / Sind Modellierungskenntnisse im Testteam verfügbar?
 Abhängig davon wie die Rollen im Projektteam verteilt sind, muss festgestellt werden ob Modellierungskenntnisse bei denjenigen vorhanden sind, die im weiteren Verlauf Testfälle erstellen und warten. Das Testteam muss deshalb möglicherweise geschult werden. Die Kosten dieser Schulungen, verglichen mit den Aufwänden für manuelles und skriptbasiertes Testen, können entscheidend für die Wahl von MBT sein.
 \item Kann das Test-Orakel automatisiert werden?
@@ -279,6 +279,7 @@ Die Autoren kommen zum Schluss, dass \textit{Visual Testing} sehr wohl seine Das
 \paragraph{Model-Based Testing and Some Steps towards Test-Based Modelling\cite{tretmans_model-based_2011}} Die Autoren nehmen sich dem Problem Testing aus einem erfahrungsgemäß praxisnahen Blickwinkel an: Die initiale Hürde der Erstellung von Testmodellen, insbesondere auf Basis von schlechter oder nicht existenter Dokumentation. Test-based modelling, also das Generieren von Modellen anhand von bestehenden Testfällen, wird definiert. Für diesen Ansatz setzeen die Autoren \textit{Automata Learning} ein. Dabei handelt es sich um einen \textit{Machine Learning} Ansatz\cite{narendra_learning_1974}. Das Programm 
 
 \subsection{Modellierungssprachen}
+\label{sec:notations}
 \subsubsection{Endliche Automaten (Finite-State-Machines)}
 \label{sec:fsm}
 Ein endlicher Automat (oder \textit{finite state machine}) ist eine Form der abstrakten Maschinen. Eine FSM erlaubt die Modellierung des Verhaltens einer Maschine, in diesem Fall eines Computer-Programms.\cite{wagner_modeling_2006}\\
