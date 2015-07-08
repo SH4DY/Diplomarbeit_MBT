@@ -230,16 +230,22 @@ Auch die übergangsorientierten Abdeckungskriterien gehören zur Familie der Kon
 \subsection{Entscheidungshilfe für den Einsatz von MBT}
 \label{sec:entscheidungshilfe}
 In der Praxis stellt sich für jedes Software-Projektteam die Frage welche Teststrategie am effizientesten, in Bezug auf Qualität und Ressourcennutzung ist. Manuelles Testen gilt in der Industrie immer noch als das am häufigsten eingesetzte Verfahren \cite{guldali_starthilfe_2010}, aber deren Wirksamkeit mindert sich mit steigender Komplexität der zu testenden Software. Skriptbasierte Testautomatisierungstools kommen seit Jahren zum Einsatz. Durch die automatisierte Testausführung, wird der Testprozess schnell und wiederholbar. Verglichen mit manuellen Tests sind skriptbasierte Tests zeitsparender und weniger fehleranfällig. Gleichzeitig müssen skriptbasierte Tests gewartet werden, was einen nicht unerheblichen Ressourcenaufwand bedeuten kann.\\
-Als Alternative dazu steht das modellbasierte Testen. Basierend auf \cite{guldali_starthilfe_2010} folgen acht Fragestellungen die zu einer Entscheidung bezüglich der Sinnhaftigkeit des Einsatzes von MBT führen sollen:
+Als Alternative dazu steht das modellbasierte Testen. Basierend auf \cite{guldali_starthilfe_2010} folgen acht Fragestellungen die zu einer Entscheidung bezüglich der Sinnhaftigkeit des Einsatzes von MBT führen sollen (siehe außerdem Abbildung \ref{fig:entscheidungshilfe_mbt}:
 
-\todo{Grafik für Entscheidungshilfe (gerichteter Graph)}
+\begin{figure}[h] 
+  \centering
+     \includegraphics[width=0.9\textwidth]{figures/entscheidungshilfe_mbt.png}
+  \caption{Die Zusammenhänge der Entscheidungshilfe für die Einführung von modellbasiertem Testen als Grafik}
+  \label{fig:entscheidungshilfe_mbt}
+\end{figure}
+
 \begin{itemize}
 \item Wie komplex sind die Testbasis und die zu testende Funktionalität?
 Die Komplexität des zu testenden Systems ist ein entscheidender Faktor, bei der Auswahl der passenden Teststrategie. Aus niedriger Komplexität oder allgemein wenig Funktionalität, resultieren wenig Testfälle, die mit manuellen Tests durchgeführt werden können. Diese erfordern wenig Planungsaufwand und können schnell ausgewertet werden. Bei steigendem Funktionsumfang kann eine skriptbasierte Ausführung der Testfälle sinnvoll sein. Außerdem kann modellbasiertes Testen die Generierung dieser Testfälle automatisieren.
 \item Wie wichtig ist die Überdeckungsanalyse?
 Im Software-Testing wird oft anhand der prozentualen Abdeckung des Quellcodes auf die Güte der Teststrategie geschlossen. Mittels skriptbasiertem Testen ist es aber nicht trivial festzustellen, welche Teile des Codes ein Testfall genau abdeckt. Mit MBT lässt sich anhand der Modellüberdeckung schneller feststellen welche Komponenten abgedeckt sind. Außerdem lassen sich Konzepte der Traceability (also der Verfolgbarkeit von Test zu Code) im MBT sehr einfach einführen. Modellbasierte Tests haben daher den nützlichen Nebeneffekt wie ein Vertrag, zwischen Requirement und tatsächlicher Funktionalität, zu funktionieren. Weil modellbasierte Tests oft einfach visuell dargestellt werden können, eignen sie sich auch zu Präsentationszwecken vor Kunden.
 \item Wie häufig finden Änderungen in der Spezifikation statt? 
-Unzufriedenheit mit skriptbasierten Tests entsteht oft aus teuren Wartungsarbeiten, die nötig werden sobald sich das zu testende System weiterentwickelt. Skriptbasierte Tests können nur zu einem gewissen Grad Änderungsunabhängig entwickelt werden. Gerade wenn das Softwareprojekt aus kurzen Entwicklungszyklen besteht (so wie es viele moderne agile Projekte sind), die viel Änderungspotenzial mit sich bringen, sollte MBT in Betracht gezogen werden.
+Unzufriedenheit mit skriptbasierten Tests entsteht oft aus teuren Wartungsarbeiten, die nötig werden sobald sich das zu testende System weiterentwickelt. Skriptbasierte Tests können nur zu einem gewissen Grad änderungsunabhängig entwickelt werden. Gerade wenn das Softwareprojekt aus kurzen Entwicklungszyklen besteht (so wie es viele moderne agile Projekte sind), die viel Änderungspotenzial mit sich bringen, sollte MBT in Betracht gezogen werden.
 \item Wie wichtig ist die Plattformunabhängigkeit der Testfälle?
 Abhängig von der Testebene wo automatisierte Tests auf das System zugreifen, können skriptbasierte Tests nutzlos werden wenn beispielsweise der Austausch einer GUI-Bibliothek erfolgt. Da bei modellbasierten Tests eine strikte Trennung zwischen Testmodell und Adapter zum SUT gemacht wird, muss bei einem Plattformwechsel auch nur dieser Adapter angepasst werden. Auch bei industrieller Software die oft mittels dem Konzept der Software-Familien arbeitet, kann es von Vorteil sein wenn die eigentlichen Testkomponenten unabhängig von der Adapter-Logik bestehen.
 \item Ist die Testbasis modellierbar?
