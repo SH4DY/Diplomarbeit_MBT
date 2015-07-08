@@ -215,11 +215,17 @@ Die Kontrollflussorientierte Abdeckung gehört zur Familie der strukturellen Abd
 \textbf{Zweigüberdeckung} Jedes Konditional im Modell soll von mindestens einem Test einmal positiv traversiert werden und von einem anderen Test mindestens einmal negativ. Zweigüberdeckung setzt Anweisungsüberdeckung voraus.
 \textbf{Pfadüberdeckung} Jeder begehbare Pfad durch das Modell muss begangen worden sein.
 
-Zwischen diesen Abdeckungskriterien bestehen Abhängigkeiten. Wenn alle Testsuiten die das Abdeckungskriterium $C_1$ erfüllen, auch das Abdeckungskriterium $C_2$ erfüllen, so ist $C_1$ ein stärkeres Kriterium ($C_1   \longrightarrow C_2$). Allgemein gilt:\\
+Zwischen diesen Abdeckungskriterien bestehen Abhängigkeiten. Wenn alle Testsuiten die das Abdeckungskriterium $C_1$ erfüllen, auch das Abdeckungskriterium $C_2$ erfüllen, so ist $C_1$ ein stärkeres Kriterium ($C_1$ subsummiert $C_2$ oder auch $C_1 \longrightarrow C_2$). Allgemein gilt:\\
 $ PC \longrightarrow DC \longrightarrow SC $\\
 Wobei $PC$ für \textit{Path Coverage} also Pfadabdeckung, $BC$ für \textit{Branch Coverage} also Zweigüberdeckung und $SC$ für \textit{Statement Coverage} also Anweisungsüberdeckung steht.\\
 Pfadabdeckung ist in realen Softwaresystemen auf Quellcodeebene nicht erreichbar\cite{utting_practical_2007} weil Schleifen eine potenziell unendliche Menge von verschiedenen Pfaden produzieren könnten. Weil in manchen Modellierungsnotationen (siehe B Notation \ref{sec:bmethod}) aber keine Schleifen modelliert werden können, ist in Pfadabdeckung realistisch erreichbar. Dazu reicht es alle Kombinationen von Zweigüberdeckungsentscheidungen in einer Testsuite zusammenzufassen. Wir gehen hier von einer Bedingung pro Konditional aus. Falls mehrere Bedingungen pro Konditional betrachtet werden sollen, spricht man von \textit{Decision/Condition Coverage}.
 
+\paragraph{Übergangsorientierte Abdeckung}
+Auch die übergangsorientierten Abdeckungskriterien gehören zur Familie der Kontrollflussorientierten Abdeckungskriterien. Sie sind aber nicht für Modellnotationen mit Pre- und Postconditions gedacht, sondern für Modelle die von endlichen Automaten abstammen (siehe Abschnitt \ref{sec:fsm}). In diesem Kontext beachtet man nur begehbare Pfade bzw. erreichbare Zustände.\\
+
+\textbf{Zustandsabdeckung} ist gegeben wenn jeder Zustand des Modells mindestens einmal besucht wurde (jedes $e \in Q$ war mindestens einmal gegeben). Es muss nicht zwangsweise jeder Knoten besucht worden sein, da in parallelen Systemen mehrere aktive Zustände auf einem Knoten liegen können.
+\textbf{Übergangsabdeckung} ist gegeben wenn jede Zustandsänderung im Modell einmal gemacht wurde.
+\textbf{Pfadüberdeckung} Im Kontext der endlichen Automaten spricht man von Pfadabdeckung wenn jeder Pfad vom Startzustand $q_0$ zu einem definierten Endzustand $q_n$ traversiert wurde. Oft macht es aber Sinn nur zyklenfreie Pfade zu betrachten, da sonst unendlich viele Traversierungsarten entstehen. Es gibt weitere Abwandlungen dieses Kriteriums die für jeden Zyklus im Modell mindestens eine Traversierung vorschreiben.
 
 \subsection{Entscheidungshilfe für den Einsatz von MBT}
 \label{sec:entscheidungshilfe}
