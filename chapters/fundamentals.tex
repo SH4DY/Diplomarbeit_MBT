@@ -181,6 +181,16 @@ Im dritten Schritt werden die abstrakten Testfälle in ausführbare Testskripts 
 Im vierten Schritt werden die erzeugten Testskripts ausgeführt. Bei der sogenannten \"Online-Execution\" wird der Testfall sofort nach Erzeugung auch ausgeführt. Das Tool, das den Testfall generiert, übernimmt also auch die Ausführung. Im selben Zug muss das Tool auch die Ergebnisse der Ausführung festhalten. Bei der ``Offline'' Erzeugung, wird der Testfall von einem Tool generiert und abgelegt. Anschließend führt ein anderes Werkzeug den Testfall aus und hält dessen Ergebnisse fest. So kann zur Ausführung, Analyse und Historisierung ein gewohntes oder selbst entwickeltes Tool verwendet werden.\\
 Im letzten Schritt werden die Ergebnisse der Testfälle analysiert. Auch diesen Schritt teilen sich grundsätzlich alle Testmethoden. Den Detailgrad der Analyse bestimmt größtenteils das Tool, das zur Testausführung verwendet wurde. Dies reicht von einfachen Assertions, wie sie beispielsweise Selenium \footnote{Selenium Browser Automatisierungswerkzeug http://www.seleniumhq.org/} in seinem Grundumfang mitbringt, bis zu sehr detaillierten Berichten inklusive Zeitangaben, Screenshots und kontextuellen Informationen, wie beispielsweise die HP Applikations-Suite UFT \footnote{Testautomatisierungswerkzeug HP Unified Functional Tester http://www8.hp.com/ch/de/software-solutions/unified-functional-testing-automation/} es macht.
 
+\subsection{Vergleich mit klassischem skriptbasierten Tests}
+...
+
+\begin{figure}[h] 
+  \centering
+     \includegraphics[width=0.7\textwidth]{figures/mbt_vergleich_skript.png}
+  \caption{Einordnung von modellbasiertem Testing. Die meisten Aktivitäten im Test-Lifecycle bleiben erhalten, ändern sich aber in der Ausführung. Die Erstellung einzelner Testfälle (scripting) entfällt.}
+  \label{fig:fsm_example}
+\end{figure}
+
 \subsection{Testauswahlkriterien & Modellabdeckung}
 \label{sec:coverage}
 
@@ -193,13 +203,23 @@ In der Regel werden beim Umgang mit MBT-Tools sogenannte Testauswahlkriterien im
 Testauswahlkriterien lassen sich in die folgenden Familien einteilen:
 
 \begin{itemize}
-\item \textbf{Strukturelle Abdeckung} sind angelehnt an die Kontrollflussabdeckung, wie sie aus White-Box Tests bekannt ist. Auch Modelle mit Pre- und Postcondition Notation (siehe B-Methode in Abschnitt \ref{sec:bmethod}) werden implizit durch strukturelle Modellabdeckung gesteuert. Auf diese Abdeckungsvarianten wird im nächsten Abschnitt genauer eingegangen.
+\item \textbf{Strukturelle Abdeckung} sind angelehnt an die Kontrollflussabdeckung, wie sie aus White-Box Tests bekannt ist. Auch Modelle mit Pre- und Postcondition Notation (siehe B-Methode in Abschnitt \ref{sec:bmethod}) werden implizit durch strukturelle Modellabdeckung gesteuert. Auf diese Abdeckungsvarianten wird in den nächsten Abschnitten genauer eingegangen.
 \item \textbf{Testdatenabdeckung} beschreibt die Abdeckung anhand von Eingabedaten.
 \item \textbf{Requirement-basierte Abdeckung} Kritische Requirements werden vom Tester mit Teilen des Modells verbunden. Bei der Traversierung können nun Requirements vorrangig anvisiert werden.
 \item \textbf{Explizite Testfalldefinition} Manche MBT-Tools bieten auch die Möglichkeit explizite Testfälle (also Pfade durch das Modell) zu erstellen.
 \end{itemize}
 
-\paragraph{}
+\paragraph{Kontrollflussorientierte Abdeckung}
+Die Kontrollflussorientierte Abdeckung gehört zur Familie der strukturellen Abdeckung und hat große Ähnlichkeiten zur Kontrollflussabdeckung im Sinne von Quellcode also White-Box Tests. In Modellnotationen wie OCL oder B-Notation (siehe Abschnitt \ref{sec:bmethod}) lässt sich Kontrollflussorientierte Abdeckung nahezu gleich einsetzen. Der einzige Unterschied ist die Absenz von Schleifen in diesen Modellnotationen, was die Abdeckung weiter einschränkt. Gängige Abdeckungskriterien sind:\cite{rossner_basiswissen_2010}\\
+\textbf{Anweisungsüberdeckung} Jede erreichbare Anweisung soll mindestens einmal ausgeführt werden.
+\textbf{Zweigüberdeckung} Jedes Konditional im Modell soll von mindestens einem Test einmal positiv traversiert werden und von einem anderen Test mindestens einmal negativ. Zweigüberdeckung setzt Anweisungsüberdeckung voraus.
+\textbf{Pfadüberdeckung} Jeder begehbare Pfad durch das Modell muss begangen worden sein.
+
+Zwischen diesen Abdeckungskriterien bestehen Abhängigkeiten. Wenn alle Testsuiten die das Abdeckungskriterium $C_1$ erfüllen, auch das Abdeckungskriterium $C_2$ erfüllen, so ist $C_1$ ein stärkeres Kriterium ($C_1   \longrightarrow C_2$). Allgemein gilt:\\
+$ PC \longrightarrow DC \longrightarrow SC $\\
+Wobei $PC$ für \textit{Path Coverage} also Pfadabdeckung, $BC$ für \textit{Branch Coverage} also Zweigüberdeckung und $SC$ für \textit{Statement Coverage} also Anweisungsüberdeckung steht.\\
+Pfadabdeckung ist in realen Softwaresystemen auf Quellcodeebene nicht erreichbar\cite{utting_practical_2007} weil Schleifen eine potenziell unendliche Menge von verschiedenen Pfaden produzieren könnten. Weil in manchen Modellierungsnotationen (siehe B Notation \ref{sec:bmethod}) aber keine Schleifen modelliert werden können, ist in Pfadabdeckung realistisch erreichbar. Dazu reicht es alle Kombinationen von Zweigüberdeckungsentscheidungen in einer Testsuite zusammenzufassen. Wir gehen hier von einer Bedingung pro Konditional aus. Falls mehrere Bedingungen pro Konditional betrachtet werden sollen, spricht man von \textit{Decision/Condition Coverage}.
+
 
 \subsection{Entscheidungshilfe für den Einsatz von MBT}
 \label{sec:entscheidungshilfe}
