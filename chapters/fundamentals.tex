@@ -181,13 +181,25 @@ Im dritten Schritt werden die abstrakten Testfälle in ausführbare Testskripts 
 Im vierten Schritt werden die erzeugten Testskripts ausgeführt. Bei der sogenannten \"Online-Execution\" wird der Testfall sofort nach Erzeugung auch ausgeführt. Das Tool, das den Testfall generiert, übernimmt also auch die Ausführung. Im selben Zug muss das Tool auch die Ergebnisse der Ausführung festhalten. Bei der ``Offline'' Erzeugung, wird der Testfall von einem Tool generiert und abgelegt. Anschließend führt ein anderes Werkzeug den Testfall aus und hält dessen Ergebnisse fest. So kann zur Ausführung, Analyse und Historisierung ein gewohntes oder selbst entwickeltes Tool verwendet werden.\\
 Im letzten Schritt werden die Ergebnisse der Testfälle analysiert. Auch diesen Schritt teilen sich grundsätzlich alle Testmethoden. Den Detailgrad der Analyse bestimmt größtenteils das Tool, das zur Testausführung verwendet wurde. Dies reicht von einfachen Assertions, wie sie beispielsweise Selenium \footnote{Selenium Browser Automatisierungswerkzeug http://www.seleniumhq.org/} in seinem Grundumfang mitbringt, bis zu sehr detaillierten Berichten inklusive Zeitangaben, Screenshots und kontextuellen Informationen, wie beispielsweise die HP Applikations-Suite UFT \footnote{Testautomatisierungswerkzeug HP Unified Functional Tester http://www8.hp.com/ch/de/software-solutions/unified-functional-testing-automation/} es macht.
 
-\subsection{Testauswahlkriterien - Modellabdeckung}
+\subsection{Testauswahlkriterien & Modellabdeckung}
 \label{sec:coverage}
 
 Genau wie auf der Ebene der Unit-Tests, spielt die gewählte Abdeckung eine entscheidende Rolle in modellbasiertem Testen. Verständnis der möglichen Abdeckung und exakte Kenntnisse über das SUT sind der Schlüssel zu einer hochqualitativen Testsuite.\\
 Modellabdeckung und Testauswahlkriterien hängen in der Praxis des modellbasierten Testens oft untrennbar zusammen. Wie ein Modell eines Systems vom Ausführenden Programm traversiert wird, entspricht einem genau definierten Testfall in skriptbasiertem Testing. Es hängt vom gewählten Testtool ab ob das Modell, entsprechend der gewählten Abdeckung, immer gleich traversiert wird (so wie das bei den meisten Traversierungsarten von ModelJUnit der Fall ist, siehe Abschnitt \ref{sec:modeljunit}) oder ob bewusst keine immer gleichen skript-artigen Testfälle generiert werden (dieses Konzept der Randomisierung verfolgt Graphwalker, siehe Abschnitt \ref{sec:graphwalker}).\\
-Wenn von Abdeckung im MBT-Umfeld gesprochen wird, beziehen sich diese Aussagen immer auf das Modell und damit nur indirekt auf den Quellcode des SUT. Diese Abstraktion ist essentiell, gerade um im agilen Umfeld zeitkritische Qualitätssicherung zu schaffen.\cite{utting_practical_2007} Gleichzeitig muss dieser Umstand Testern und Entwicklern stets bewusst sein.
-\subsubsection{}
+Wenn von Abdeckung im MBT-Umfeld gesprochen wird, beziehen sich diese Aussagen immer auf das Modell und damit nur indirekt auf den Quellcode des SUT. Diese Abstraktion ist essentiell, gerade um im agilen Umfeld zeitkritische Qualitätssicherung zu schaffen.\cite{utting_practical_2007} Gleichzeitig muss dieser Umstand Testern und Entwicklern stets bewusst sein. Viele der folgenden Konzepte sind aber abgeleitet von bekannten White-Box Code-Abdeckungskriterien.
+
+\subsubsection{Testauswahlkriterien bei MBT-Tools}
+In der Regel werden beim Umgang mit MBT-Tools sogenannte Testauswahlkriterien im Vorfeld der Testgenerierung und Testausführung angegeben. Die Wahl der Testauswahlkriterien beeinflusst also den Algorithmus zur Traversierung des Modells und damit auch die Laufzeit eines Tests.\\
+Testauswahlkriterien lassen sich in die folgenden Familien einteilen:
+
+\begin{itemize}
+\item \textbf{Strukturelle Abdeckung} sind angelehnt an die Kontrollflussabdeckung, wie sie aus White-Box Tests bekannt ist. Auch Modelle mit Pre- und Postcondition Notation (siehe B-Methode in Abschnitt \ref{sec:bmethod}) werden implizit durch strukturelle Modellabdeckung gesteuert. Auf diese Abdeckungsvarianten wird im nächsten Abschnitt genauer eingegangen.
+\item \textbf{Testdatenabdeckung} beschreibt die Abdeckung anhand von Eingabedaten.
+\item \textbf{Requirement-basierte Abdeckung} Kritische Requirements werden vom Tester mit Teilen des Modells verbunden. Bei der Traversierung können nun Requirements vorrangig anvisiert werden.
+\item \textbf{Explizite Testfalldefinition} Manche MBT-Tools bieten auch die Möglichkeit explizite Testfälle (also Pfade durch das Modell) zu erstellen.
+\end{itemize}
+
+\paragraph{}
 
 \subsection{Entscheidungshilfe für den Einsatz von MBT}
 \label{sec:entscheidungshilfe}
@@ -276,6 +288,7 @@ B Notation für abstrakte Maschinen ist eine formale Modellierungssprache zur Be
 B Notation ähnelt den Sprachen die in der Welt der modellgetriebenen Entwicklung verwendet werden, allen voran der Object Constraint Language (OCL).\todo{Footnote zu OCL} 
 
 \paragraph{Die B Methode}
+\label{sec:bmethod}
 Bei Verwendung der B Methode wird die Korrektheit eines Software Systems, ausgehend von einem abstrakten Modell, bewiesen. Zugrunde liegt die, weiter oben erläuterte, B Notation.\\
 In der kompletten B Methode wird ein abstraktes Modell schrittweise verfeinert. Parallel verifizieren Tools automatisch ob tatsächlich eine korrekte und detailliertere Version des Modells erstellt wurde. Nach mehreren Iterationen generieren erhältliche Tools eine meist sehr große Anzahl an mathematischen Implikationen. Nach rigorosen Beweisen all dieser Implikationen kann das System, so wie es modelliert wurde, als korrekt angesehen werden.\\
 Im Gegensatz zur kompletten B Methode wird die B Notation oft viel leichtgewichtiger verwendet. Utting und Legeard\cite{utting_practical_2007} schlagen einen Ansatz vor, bei dem nur ein kleiner, für den Test relevanter, Teil des SUT modelliert wird. Außerdem werden nicht mehrere Iterationen zur Verfeinerung des Modells gemacht sondern nur eine. Aus diesem Modell werden automatisch Testfälle generiert, die die Unterschiede zwischen Modell und tatsächlicher Implementation offenbaren. Wie bei allen MBT-Methoden muss anschließend aber trotzdem vom Tester manuell festgestellt werden, ob es sich tatsächlich um ein Fehlverhalten handelt oder ob ein Fehler bei der Modellierung passiert ist.\\
