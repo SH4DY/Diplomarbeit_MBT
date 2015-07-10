@@ -9,9 +9,7 @@ Der Funktionsumfang von Software stieg in den letzten fünzig Jahren enorm. Glei
 In keinem der beiden Vorfälle kamen Menschen zu Schaden, trotzdem waren die finanziellen Verluste enorm. Natürlich war die Komplexität dieser NASA-Projekte sehr hoch und wahrscheinlich nicht repräsentativ für Software die am Markt erhältlich ist, trotzdem wären beide Fehler durch Testing vermeidbar gewesen. Im Fall der Ariane 5 hätte es ausgereicht die Schnittstelle zum Steuercomputer mit Extremwerten zu testen. Man wäre schnell auf den Überlauf gestoßen und hätte die Umrechnung anpassen können. Auch Mars Orbiter hätte durch ausführliches Schnittstellen-Testing auf Basis von Verträgen, welche die beteiligten Software-Teams untereinander ausmachen, gerettet werden können.
 
 \subsubsection{Der Zwang zu qualitativem Wachstum}
-Die Qualität von Software erhöhte sich geschichtlich nicht im selben Maße wie ihre Funktionalität. Dafür werden von (Thaller)\cite{thaller_software-test:_2002}
-
-Der Drang nach Wachstum bei modernen Programmen negiert die Erfolge die Unternehmen durch erhöhte Anstrengungen in der Qualitätssicherung feiern könnten. Die Zahl der Fehler wird weitläufig gesenkt,  gleichzeitig nimmt der Funktionsumfang der Programme massiv zu. Dieser Umstand rührt daher, dass ständig neue Käuferschichten gewonnen werden müssen, die wiederum neue Features fordern.
+Die Qualität von Software erhöhte sich geschichtlich nicht im selben Maße wie ihre Funktionalität. Der Drang nach Wachstum bei modernen Programmen negiert die Erfolge die Unternehmen durch erhöhte Anstrengungen in der Qualitätssicherung feiern könnten. Die Zahl der Fehler wird weitläufig gesenkt,  gleichzeitig nimmt der Funktionsumfang der Programme massiv zu. Dieser Umstand rührt daher, dass ständig neue Käuferschichten gewonnen werden müssen, die wiederum neue Features fordern.
 Software dringt in Gebiete vor die von analoger Technik dominiert wurden. Aeronautik, Medizin und Finanzwesen verlangen nach großen Programmpaketen, die potenziell viele Fehlerquellen mit weichreichenden Folgen enthalten.
 
 \subsubsection{Komplexe Systeme führen zu Fehlern}
@@ -20,7 +18,7 @@ Daher gilt:
 
 \begin{quote}
 Komplexe Systeme analytisch in begrenzer Zeit nur unvollständig erfassbar. Fehler sind damit zwangsläufig die Folge. \cite{vigenschow_objektorientiertes_2004}
-\end{quote} „
+\end{quote}
 
 Gründe wieso Fehler auftreten sind mannigfaltig. Aus menschlicher Sicht können Fehler auf drei Ebenen auftreten: \cite{vigenschow_objektorientiertes_2004}
 
@@ -40,6 +38,7 @@ Komplexität wird dadurch aber niemals vermindert, sondern nur versteckt bzw. an
 
 
 \subsection{Softwarequlität und Standards}
+\label{sec:quality}
 Der Begriff Qualität kann auf vielfältige Art und Weise definiert werden. Jeder Mensch hat ein gewisses intuitives Verständnis dafür. Bezogen auf verschiedene Anwendungsfelder assoziiert ein Jeder andere Merkmale eines Objekts mit Qualität.
 
 \begin{quote}
@@ -93,12 +92,47 @@ Aus dem Projektmanagement ist das magische Dreieck bekannt (siehe Abbildung \ref
 
 
 \subsection{Testprozess}
+
 \subsection{Teststufen}
-\subsubsection{Klassisches Vorgehen}
+Jedes Softwareentwicklungsvorhaben sollte nach einem genau definierten Vorgehensmodell spezifiziert, entwickelt, gewartet und getestet werden\cite{spillner_basiswissen_2012}. Nach wie vor orientieren sich moderne Softwareprojekte am sogenannten V-Modell\cite{boehm_verifying_1984} oder an einer davon abgewandelten Form. Der Grundgedanke hinter dem V-Modell ist es eine Parallelität und Gleichberechtigtkeit zwischen Entwicklungs- und Testtätigkeiten zu schaffen. Dies impliziert unmittelbar, dass die Teststrategie an die Entwicklungsstrategie angepasst werden muss, oder umgekehrt.\\
+\todo{Abbildung zu V-Modell siehe Basiswissen SWT Seite 38} Abbildung XY zeigt ein klassisches V-Modell und dessen Komponenten. Es ist sofort erkenntlich, dass die Aktivitäten auf der linken Seite eng an das Wasserfallmodell angelehnt sind.
+\begin{itemize}
+\item \textbf{Anforderungsdefinition} Die Anforderungen des Kunden werden erhoben und möglichst präzise spezifiziert.
+\item \textbf{Funktionaler Systementwurf} Auch Pflichtenheft genannt. Die Anforderungen werden auf Funktionen und Dialogabläufe des neuen Systems abgebildet\cite{spillner_basiswissen_2012}
+\item \textbf{Technischer Systementwurf} Bezieht sich auf die technische Realisierung des Systems. Architektur und fundamentale Technologien werden hier bestimmt.
+\item \textbf{Komponentenspezifikation} Für jede zuvor definierte Komponente wird eine Spezifikation geschrieben. Diese enthält den inneren Aufbau, die Schnittstellen nach Außen und die Abhängigkeiten zu anderen Komponenten.
+\item \textbf{Programmierung} Die Implementierung jeder Komponente und die Verbindung all dieser zu einem funktionsfähigen Gesamten.
+\end{itemize}
+
+Parallel zu jeder dieser Tätigkeiten besteht eine Testaktivität, die die Implementierung gegen die ursprüngliche Spezifikation validiert. Ein Tester bewertet ob das System bzw. die Komponente für die definierten Use-Cases einsetzbar ist. Untersucht wird, ob das Produkt im Kontext der beabsichtigten Produktnutzung sinnvoll ist\cite{spillner_basiswissen_2012}.\\
+Außerdem erfordert das V-Modell auch verifizierende Prüfungen, die auf einzelne Phasen bezogen das Ergebniss ebendieser prüft und mit der ursprünglichen Spezifikation vergleicht.\\
+Die folgenden Teststufen sollen eine möglichst hohe Softwarequalität sicherstellen und nehmen oft Bezug auf die in Abschnitt \ref{sec:quality} genannten Qualitätsziele.
+
+\subsubsection{Komponententest}
+In der ersten Teststufe des V-Modells werden die kleinsten Softwarebausteine einer systematischen Prüfung unterzogen. Abhängig von der verwendeten Programmiersprache sind diese kleinsten Bausteine Module oder Klassen, dementsprechend spricht man dann von Modul- bzw. Unit-Tests.\\
+Komponententests zeichnen sich außerdem durch die zeitliche Nähe zur Programmierung aus. Sie werden üblicherweise direkt vor oder nach der Programmierung einer Komponente verfasst. Der Komponententest unterscheidet sich vom Integrationstest durch seine Isolation. Das bedeutet die Funktionalität jeder Komponente wird ohne Ein- oder Zugriffe anderer Komponenten getestet. Dies hat den Zweck, dass ein Fehlverhalten auf die Komponente selbst zurückgeführt werden kann und fehlerhafte Einwirkung von außen ausgeschlossen werden kann.
+
+\paragraph{Testziele auf Komponententestebene}
+Oberstes Ziel der Komponententests ist die Sicherstellung, dass jede Komponente ihre spezifizierte Funktionalität fehlerfrei erfüllt. Funktionalität ist dabei gleichbedeutend mit dem Ein-/Ausgabe-Verhalten des Testobjekts\cite{spillner_basiswissen_2012}.\\
+
+\subparagraph{Robustheit} Weil Komponenten in modernen Softwaresystemen mit einer Vielzahl von anderen Komponenten innerhalb des Systems und sogar außerhalb des Systems arbeiten müssen, muss sichergestellt werden, dass Fehlersituationen abgefangen und sinnvoll kommuniziert werden. Diese Eigenschaft wird Robustheit genannt. Um Robustheit bewerten zu können werden Eingabedaten gemacht, die bewusst zu einem Fehlverhalten führen (Negativtests). Die Ausgabewerte werden dann auf angemessene Ausnahmebehandlung geprüft (\textit{exception handling}). Erstens ist wichtig, dass überhaupt Ausnahmen gemeldet werden und ein Fehlverhalten nicht stillschweigend weitergereicht wird. Dieser Umstand kann weitreichende Folgen haben und zu schwer nachvollziehbaren Fehlern führen. Zweitens wird die Qualität der Ausnahmebehandlung bewertet. Diese muss möglichst aussagekräftig und isolierend sein.
+
+\subparagraph{Wartbarkeit} Die Effizienz gibt an, wie wirtshaftlich die Komponente mit den verfügbaren Rechnerressourcen umgeht\cite{spillner_basiswissen_2012}. Dazu zählen Metriken wie Laufzeiten, Speicherplatzverbrauch und Reaktionszeiten. Effizienz kann sehr genau gemessen werden, es ist aber nur in wenigen Fällen sinnvoll sich auf genaue Werte zu fixieren. Auf jeden Fall sollen aber Forderungen in den Spezifikationen gemessen und eingehalten werden.
+
+\subparagraph{Wartbarkeit} \todo{weitermachen...}
+
+
+
 \subsubsection{Agiles Testen}
 \subsection{Regressionstests und Testautomatisierung}
 
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Modellbasiertes Testen}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{sec:mbt}
 \subsection{Definition}
 Im allgemeinsten Sinn, werden im modellbasierten Testing Testfälle aus Modellen abgeleitet, die das Sollverhalten eines Software-Systems beschreiben. \cite{sensler_testautomatisierung_2011}\\
