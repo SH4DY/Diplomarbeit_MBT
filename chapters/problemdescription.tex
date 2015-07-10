@@ -67,6 +67,7 @@ Tracing von Testdaten und Testfällen (welcher Bereich der Testdaten wird von ei
 
 \section{MBT auf Unit-Testebene}
 \subsection{ModelJUnit}
+\label{sec:modeljunit}
 ModelJUnit wird von Dr. Mark Utting et al. an der Universität Waikato in Neuseeland entwickelt. Es wird unter der Open Source GNU GPL Lizenz entwickelt und befindet sich zur Zeit in der Version 2.5 \footnote{Homepage des Tools ModelJUnit \url{http://www.cs.waikato.ac.nz/~marku/mbt/modeljunit/}}. Es erlaubt die Modellierung des SUT als endlicher Automat (von hier an FST für \textit{finite state machine}) in Java, Generierung von Testfällen laut spezifiziertem Traversierungsalgorithmus sowie Reporting. Seit Version 2.0 bietet das Tool eine grafische Benutzeroberfläche die die Traversierungskonfiguration ermöglicht und veranschaulicht.\\
 \todo{Hier weitermachen aus Utting Buch}
 \subsubsection{Traversierung}
@@ -78,7 +79,7 @@ ModelJUnit wird von Dr. Mark Utting et al. an der Universität Waikato in Neusee
 
 \section{MBT auf Integrationstestebene}
 \subsection{Testing von Serviceorientierten Architekturen mittels UML Testing Profile}
-
+\label{sec:utp}
 \subsubsection{UML Testing Profile BASICS}
 
 \subsubsection{SOA und Web-Services}
@@ -157,6 +158,7 @@ Jedenfalls können durch einen manuellen Eingriff neue Fehler entstehen. Ein Mod
 Vor allem das \textit{Data Pool} Konzept von UTP ist eine Notwendigkeit für datenintensive Applikationen. Datengetriebene Testfälle müssen durch ein flexibles und zuverlässiges Konzept gestützt werden. Auch hier müsste eine Eigenentwicklung gemacht werden. Diese ist aber nicht nur aufwendig sondern stellt sich auch die Frage der Zukunftssicherheit. Kann das Modul zum Testdatenmanagement mit anderen Technologien verwendet werden oder ist es zu stark auf UTP zugeschneidert?
 
 \subsection{Schnittstellentests mit Graphwalker}
+\label{sec:graphwalker}
 Graphwalker\footnote{Graphwalker 3 Website inklusive Dokumentation \url{www.graphwalker.org}} ist ein Open Source MBT-Tool zur Online- und Offline Generierung von Testsequenzen aus Endlichen Automaten (siehe Abschnitt \ref{sec:fsm}) sowie Erweiterten Endlichen Automaten (EFSM).Graphwalker ist in Java und JavaScript implementiert und bietet eine Java-API an. Das Graphwalker-Projekt wurde von zwei Entwicklern der Firma Spotify, Nils Olsson und Kristian Karl, gegründet. Bei Spotify, dem marktführenden Musik-Streaming-Service, ist das Tool auch stark im Einsatz. Graphwalker ist zur Zeit (Frühjahr/Sommer 2015) aktiv unter Entwicklung und liegt bereits in der Version 3.0 vor.\\
 Graphwalker weicht ab vom herkömmlichen Testfall-Workflow. Das SUT wird in einem Modell (Graph) modelliert und das Testing (also die Traversierung des Graphs) wird vom gewählten Algorithmus und dessen Konfiguration bestimmt. Daraus resultieren lange, unvorhersehbare Testdurchläufe. Die offizielle Dokumentation beschreibt es so:
 
