@@ -110,20 +110,51 @@ Die folgenden Teststufen sollen eine möglichst hohe Softwarequalität sicherste
 
 \subsubsection{Komponententest}
 In der ersten Teststufe des V-Modells werden die kleinsten Softwarebausteine einer systematischen Prüfung unterzogen. Abhängig von der verwendeten Programmiersprache sind diese kleinsten Bausteine Module oder Klassen, dementsprechend spricht man dann von Modul- bzw. Unit-Tests.\\
-Komponententests zeichnen sich außerdem durch die zeitliche Nähe zur Programmierung aus. Sie werden üblicherweise direkt vor oder nach der Programmierung einer Komponente verfasst. Der Komponententest unterscheidet sich vom Integrationstest durch seine Isolation. Das bedeutet die Funktionalität jeder Komponente wird ohne Ein- oder Zugriffe anderer Komponenten getestet. Dies hat den Zweck, dass ein Fehlverhalten auf die Komponente selbst zurückgeführt werden kann und fehlerhafte Einwirkung von außen ausgeschlossen werden kann.
+Komponententests zeichnen sich außerdem durch die zeitliche Nähe zur Programmierung aus. Sie werden üblicherweise direkt vor oder nach der Programmierung einer Komponente verfasst. Der Komponententest unterscheidet sich vom Integrationstest durch seine Isolation. Das bedeutet die Funktionalität jeder Komponente wird ohne Ein- oder Zugriffe anderer Komponenten getestet. Dies hat den Zweck, dass ein Fehlverhalten auf die Komponente selbst zurückgeführt werden kann und fehlerhafte Einwirkung von außen ausgeschlossen werden kann.\\
+Der Komponententest gehört zur Kategorie der White-Box Tests. Der Tester muss Zugriff auf den Quellcode des Programms haben, weil die kleinsten Softwarebausteine keine Schnittstelle nach außen haben. Deshalb liegt es nahe, dass Komponententests von den Entwicklern selbst geschrieben werden (was auch in den meisten Softwareprojekten so gehandhabt wird).  
 
 \paragraph{Testziele auf Komponententestebene}
 Oberstes Ziel der Komponententests ist die Sicherstellung, dass jede Komponente ihre spezifizierte Funktionalität fehlerfrei erfüllt. Funktionalität ist dabei gleichbedeutend mit dem Ein-/Ausgabe-Verhalten des Testobjekts\cite{spillner_basiswissen_2012}.\\
 
 \subparagraph{Robustheit} Weil Komponenten in modernen Softwaresystemen mit einer Vielzahl von anderen Komponenten innerhalb des Systems und sogar außerhalb des Systems arbeiten müssen, muss sichergestellt werden, dass Fehlersituationen abgefangen und sinnvoll kommuniziert werden. Diese Eigenschaft wird Robustheit genannt. Um Robustheit bewerten zu können werden Eingabedaten gemacht, die bewusst zu einem Fehlverhalten führen (Negativtests). Die Ausgabewerte werden dann auf angemessene Ausnahmebehandlung geprüft (\textit{exception handling}). Erstens ist wichtig, dass überhaupt Ausnahmen gemeldet werden und ein Fehlverhalten nicht stillschweigend weitergereicht wird. Dieser Umstand kann weitreichende Folgen haben und zu schwer nachvollziehbaren Fehlern führen. Zweitens wird die Qualität der Ausnahmebehandlung bewertet. Diese muss möglichst aussagekräftig und isolierend sein.
 
-\subparagraph{Wartbarkeit} Die Effizienz gibt an, wie wirtshaftlich die Komponente mit den verfügbaren Rechnerressourcen umgeht\cite{spillner_basiswissen_2012}. Dazu zählen Metriken wie Laufzeiten, Speicherplatzverbrauch und Reaktionszeiten. Effizienz kann sehr genau gemessen werden, es ist aber nur in wenigen Fällen sinnvoll sich auf genaue Werte zu fixieren. Auf jeden Fall sollen aber Forderungen in den Spezifikationen gemessen und eingehalten werden.
+\subparagraph{Effizienz} Die Effizienz gibt an, wie wirtshaftlich die Komponente mit den verfügbaren Rechnerressourcen umgeht\cite{spillner_basiswissen_2012}. Dazu zählen Metriken wie Laufzeiten, Speicherplatzverbrauch und Reaktionszeiten. Effizienz kann sehr genau gemessen werden, es ist aber nur in wenigen Fällen sinnvoll sich auf genaue Werte zu fixieren. Auf jeden Fall sollen aber Forderungen in den Spezifikationen gemessen und eingehalten werden.
 
-\subparagraph{Wartbarkeit} \todo{weitermachen...}
+\subparagraph{Wartbarkeit}
+Die Wartbarkeit eines Systems beschreibt dessen Fähigkeit verändert oder weiterentwickelt zu werden. Bezogen auf Komponententests, soll Wartbarkeit nur getestet werden wenn explizite Anforderungen im in der Spezifikation des Systems gemacht wurden. Bei der Prüfung der Wartbarkeit auf Komponentenebene gilt es folgende Punkte zu evaluieren: Codestruktur, Modularität, Kommentierung des Codes und Lesbarkeit des Codes. Diese Aspekte lassen sich nur unzureichend durch automatische Methoden testen. Allen voran ist das manuelle Code-Review hier am wichtigsten.\cite{spillner_basiswissen_2012}
+
+\subsubsection{Integrationstest}
+Im V-Modell folgt der Integrationstest dem Komponententest. Es kann also davon ausgegangen werden, dass einzelne Komponenten bereits getestet wurden. Im Mittelpunkt des Integrationstest steht das korrekte Zusammenspiel zwischen integrierten Komponenten. Diese Integration von Komponenten erfolgt meist in mehreren Etappen bevor alle Komponenten im Gesamtsystem zusammenarbeiten sollen.\\
+Auch Schnittstellen zu Systemumgebungen sollen im Rahmen der Integrationstests gemacht werden. Werden Schnittstellen zu externen Softwaresystemen getestet, wird auch von einem Systemintegrationstest gesprochen\cite{spillner_basiswissen_2012}. Auch eingekaufte Komponenten, wie Datenbanksysteme, werden nicht als Teil von Komponententests überprüft, sehr wohl aber beim Integrationstesting.
+
+\paragraph{Testziele auf Integrationstestebene}
+Einfach aufzudeckende Fehler im Integrationstest sind inkompatible Schnittstellen zwischen zwei Komponenten. Entweder waren diese nicht richtig spezifiziert oder eine der Komponenten hat sie nicht spezifikationskonform implementiert.\\
+Viel schwerer aufzudecken sind Fehler die beim Datenaustausch passieren. Auf den ersten Blick arbeiten zwei oder mehrere Komponenten richtig zusammen, in Wirklichkeit hat sich aber irgendwo ein Fehlverhalten eingeschlichen, dass nun die Ausgabewerte verfälscht. Dieser Fehler kann nicht im Komponententest gefunden werden, denn die Fehlerwirkung äußert sich erst in der Wechselwirkung zwischen zwei Softwarebausteinen\cite{spillner_basiswissen_2012}.
+
+
+\subsubsection{Systemtest}
+Der Systemtest betrachtet alle bereits integrierten Komponenten und prüft das korrekte Zusammenspiel zwischen ihnen. Er unterscheidet sich vom Integrationstest aber vor allem durch die Perspektive. Statt sich auf technische Fehlerfreiheit zu konzentrieren wird aus Sicht des Kunden getestet. In der Praxis lässt sich ein großer Teil der Funktionalität erst auf dieser Ebene testen, da das Zusammenspiel aller Komponenten nötig ist.\\
+Das einzige was Systemtests vom produktiven System unterscheidet ist dessen Umgebung. Der Systemtest wird in einer Testumgebung ausgeführt, der eine produktive Umgebung emuliert. In einer solchen Testumgebung kann gefahrlos getestet werden ohne die Produktivumgebung zu beeinträchtigen oder sogar zu korrumpieren.\todo{Hier weiter aus BAsiswissen SWT....}
+
 
 
 
 \subsubsection{Agiles Testen}
+In einem nicht-agilen Softwareprojekt welches seine Teststrategie nach dem V-Modell ausgerichtet hat, wird üblicherweise ein Test-Verantwortlicher oder Test-Manager ernannt. Dieser hat einen breiten Verantwortungsbereich\cite{linz_testing_2014}:
+
+\begin{itemize}
+\item Organisation des Testings: Arbeitskräfte, Werkzeuge und Infrastruktur für das gesamte Testing-Vorhaben müssen organisiert werden.
+\item Teststrategie: Ziele, Methoden und Anforderungen und Aufwandsschätzungen müssen vom Testmanager definiert und dauerhaft aktualisiert werden.
+\item Testmanagement: Delegation der einzelnen Testing-Aktivitäten, Koordination mit laufender Entwicklung, Überwachung der Qualitätsmetriken und Kommunikation dieser.
+\item Beratungstätigkeiten: Unterstützung der Projektleitung bezüglich Qualität im Projekt.
+\end{itemize}
+
+Per Definition ist ein Scrum-Team selbstorganisiert und operiert ohne designierten Projektleiter\footnote{Die 12 Prinzipien der agilen Entwicklung des \textit{Agile Manifesto} \url{http://agilemanifesto.org/principles.html}}. Die Verantwortlichkeiten für alle Aspekte des Projekts werden nicht geteilt sondern parallel an alle Mitglieder des Team übergeben. Dementsprechend gibt es auch keinen ausgesprochenen Testmanager oder Testverantwortlichen. Der Scrum Master ist aber dafür verantwortlich dafür zu sorgen, dass alle erforderlichen Maßnahmen zur Qualitätssicherung getroffen werden. Sollten erforderliche Ressourcen im Team nicht vorhanden sein, ist er auch für die Beschaffung dieser verantwortlich\cite{linz_testing_2014}.\\
+Testing-Tätigkeiten können auf zwei Arten in den Ablauf eines Sprints integriert werden. Es können einzelne Tasks angelegt werden die eine Testing-Tätigkeit beschreiben oder die Kriterien zur Fertigstellung von Tasks werden dahingehend verändert, als das Testing-Tätigkeiten implizit dazugehören.\\
+Das Monitoring von Testmetriken fließt nahtlos in die \textit{Continuous Integration} ein, die in jedem Scrum-Projekt essentiell ist. Dieser Umstand macht manuelles Überwachen des Testings unnötig\cite{linz_testing_2014}.
+
+
+
 \subsection{Regressionstests und Testautomatisierung}
 
 

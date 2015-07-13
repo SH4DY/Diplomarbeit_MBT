@@ -214,8 +214,9 @@ Vor allem während der Testfallentwicklung und um sogenannte \textit{Smoke Tests
 \begin{verbatim}
 @Test
 public void runSmokeTest() {
-    
-    setPathGenerator(new AStarPath(new ReachedVertex("v_Browse")))
+  new TestBuilder()
+    .setPathGenerator(new AStarPath(new ReachedVertex("v_Browse")))
+    .execute();
     
 }
 \end{verbatim}
@@ -227,14 +228,24 @@ Umfangreiche funktionale Tests einer komplexen Applikation, wie sie beispielswei
 \begin{verbatim}
 @Test
 public void runFunctionalTest() {
-    
-    setPathGenerator(new RandomPath(new EdgeCoverage(100)))
+  new TestBuilder()
+    .setPathGenerator(new RandomPath(new EdgeCoverage(100)))
+    .execute();
     
 }
 \end{verbatim}
 
-\subparagraph{Traversierung mit Zeitangabe}
-
+\subparagraph{Traversierung mit Zeitangabe - Last- und Performance Test}
+Mit einer Traversierung der Modelle mit Zeitangabe kann Graphwalker für Last- und Performance-Tests benutzt werden. Durch die Leichtgewichtigkeit von Graphwalker können Traversierungen auch parallel gestartet werden um damit nicht unerhebliche Last auf ein Software-System zu bringen. Um eine Traversierung mit Zeitangabe gestartet wird ein Traversierungsalgorithmus (zum Beispiel die Klasse RandomPath) und ein Zeitlimit angegeben.\\
+Graphwalker bietet aber keine Möglichkeit Metriken während des Durchlaufs zu erfassen. Diese Funktionalität muss durch andere Bibliotheken realisiert werden, was aber sehr einfach möglich ist.
+\begin{verbatim}
+@Test
+public void runFunctionalTest() {  
+  new TestBuilder()
+    .setPathGenerator(new RandomPath(new TimeDuration(30, TimeUnit.SECONDS)))
+    .execute();
+}
+\end{verbatim}
 
 
 \subsection{Einbindung SoapUI/HP UFT}
