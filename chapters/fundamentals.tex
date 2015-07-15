@@ -134,12 +134,29 @@ Viel schwerer aufzudecken sind Fehler die beim Datenaustausch passieren. Auf den
 
 \subsubsection{Systemtest}
 Der Systemtest betrachtet alle bereits integrierten Komponenten und prüft das korrekte Zusammenspiel zwischen ihnen. Er unterscheidet sich vom Integrationstest aber vor allem durch die Perspektive. Statt sich auf technische Fehlerfreiheit zu konzentrieren wird aus Sicht des Kunden getestet. In der Praxis lässt sich ein großer Teil der Funktionalität erst auf dieser Ebene testen, da das Zusammenspiel aller Komponenten nötig ist.\\
-Das einzige was Systemtests vom produktiven System unterscheidet ist dessen Umgebung. Der Systemtest wird in einer Testumgebung ausgeführt, der eine produktive Umgebung emuliert. In einer solchen Testumgebung kann gefahrlos getestet werden ohne die Produktivumgebung zu beeinträchtigen oder sogar zu korrumpieren.\todo{Hier weiter aus BAsiswissen SWT....}
+Das einzige was Systemtests vom realen Gebrauch der Software unterscheidet ist dessen Umgebung. Der Systemtest wird in einer Testumgebung ausgeführt, die eine produktive Umgebung emuliert. In einer solchen Testumgebung kann gefahrlos getestet werden ohne die Produktivumgebung zu beeinträchtigen oder sogar zu korrumpieren.\\
+Ziel des Systemtests ist es, festzustellen wie gut das fertige System die an das System gestellten Anforderungen erfüllt. Dabei müssen zwei Klassen von Anforderungen unterschieden werden\cite{spillner_basiswissen_2012}:
 
+\begin{itemize}
+\item \textbf{Funktionale Anforderungen} Beschreiben was das System leisten soll. Nach ISO 9126 (siehe Abschnitt \ref{sec:quality}) wird gefordert: Angemessenheit, Richtigkeit, Interoperabilität, Sicherheit und Ordnungsgemäßigkeit.
+\item \textbf{Nichtfunktionale Anforderungen} Beschreiben wie das System seine Leistungen erbringt, also die Eigenschaften der geforderten Funktionalität. Nichtfunktionale Anforderungen beeinflussen genau so stark wie Funktionale Anforderungen, wie gerne der Kunde mit dem System arbeitet. Nach ISO 9126 (siehe Abschnitt \ref{sec:quality}) wird gefordert: Zuverlässigkeit, Benutzbarkeit und Effizienz.
+\end{itemize}
 
+Beim Design der Teststrategie für Systemtests hat es sich bewährt, sich an den Geschäftsprozessen zu orientieren. Testszenarien können dann typische Geschäftsvorfälle nachbilden. Außerdem kann die Priorität und  der Umfang der Testszenarien nach der Wichtigkeit der Geschäftsprozesse ausgerichtet werden.
 
+\paragraph{Probleme in der Systemtestpraxis}
 
-\subsubsection{Agiles Testen}
+\begin{quote}
+Wo keine Anforderungen existieren, ist zunächst jedes Systemverhalten zulässig bzw. nicht bewertbar\cite{spillner_basiswissen_2012}.
+\end{quote}
+Das selbe gilt für Teile eines Systems die nur vage oder lückenhaft spezifiziert wurden. Dieser Umstand stellt Entwickler und Tester vor ein wesentliches Problem. Neben der Verifzierung der korrekten Implementierung muss in der Systemtestpraxis also oft Aufklärungsarbeit geleistet werden, die schon lange zuvor gemacht hätte werden müssen.
+
+\subsubsection{Abnahmetest/Akzeptanztest}
+Diese letzte Teststufe variiert in ihrer Ausführung am meisten. Vor der Übergabe bzw. Inbetriebnahme der Software an den Kunden soll ein abschließender Test zeigen ob das entwickelte Produkt den gewünschten Zweck erfüllt. Die Sicht und das Urteil des Kunden steht auf dieser Teststufe klar im Vordergrund. Spätestens auf Abnahmeteststufe ist der Kunde direkt beteiligt oder sogar für die Ausführung zuständig.\\
+Beim Abnahmetest handelt es sich also um einen Test auf vertragliche Akzeptanz zwischen Entwicklern und Kunden. Um Zufriedenheit beim Kunden zu erreichen ist es wichtig, dass diese Akzeptanzkriterien vom Kunden selbst entworfen oder zumindest in enger Zusammenarbeit mit dem Auftragnehmer erstellt wurden\cite{spiller_basiswissen_2012}. Der Abnahmetest unterscheidet sich in der Testumgebung vom Systemtest. Er wird beim Kunden in einer Abnahmeumgebung durchgeführt. Diese soll in Hard- und Software der produktiven Umgebung möglichst genau entsprechen um spätere Probleme, die durch die Umgebung verursacht wurden, so weit wie möglich abzufangen.\\
+Die Abnahmetestauswahl kann nach den selben Kriterien erfolgen wie es auf Systemtestebene geschieht. In der Praxis sind sich die Testfälle auf beiden Ebenen sehr ähnlich.
+
+\subsection{Agiles Testen}
 In einem nicht-agilen Softwareprojekt welches seine Teststrategie nach dem V-Modell ausgerichtet hat, wird üblicherweise ein Test-Verantwortlicher oder Test-Manager ernannt. Dieser hat einen breiten Verantwortungsbereich\cite{linz_testing_2014}:
 
 \begin{itemize}
@@ -151,7 +168,51 @@ In einem nicht-agilen Softwareprojekt welches seine Teststrategie nach dem V-Mod
 
 Per Definition ist ein Scrum-Team selbstorganisiert und operiert ohne designierten Projektleiter\footnote{Die 12 Prinzipien der agilen Entwicklung des \textit{Agile Manifesto} \url{http://agilemanifesto.org/principles.html}}. Die Verantwortlichkeiten für alle Aspekte des Projekts werden nicht geteilt sondern parallel an alle Mitglieder des Team übergeben. Dementsprechend gibt es auch keinen ausgesprochenen Testmanager oder Testverantwortlichen. Der Scrum Master ist aber dafür verantwortlich dafür zu sorgen, dass alle erforderlichen Maßnahmen zur Qualitätssicherung getroffen werden. Sollten erforderliche Ressourcen im Team nicht vorhanden sein, ist er auch für die Beschaffung dieser verantwortlich\cite{linz_testing_2014}.\\
 Testing-Tätigkeiten können auf zwei Arten in den Ablauf eines Sprints integriert werden. Es können einzelne Tasks angelegt werden die eine Testing-Tätigkeit beschreiben oder die Kriterien zur Fertigstellung von Tasks werden dahingehend verändert, als das Testing-Tätigkeiten implizit dazugehören.\\
-Das Monitoring von Testmetriken fließt nahtlos in die \textit{Continuous Integration} ein, die in jedem Scrum-Projekt essentiell ist. Dieser Umstand macht manuelles Überwachen des Testings unnötig\cite{linz_testing_2014}.
+Das Monitoring von Testmetriken fließt nahtlos in die \textit{Continuous Integration} ein, die in jedem Scrum-Projekt essentiell ist. Dieser Umstand macht manuelles Überwachen des Testings unnötig\cite{linz_testing_2014}.\\
+Auch in agilen Projekten soll die Software soll die Software, die aus dem V-Modell bekannten, Teststufen durchlaufen. Konträr zu sequentiellen Softwareprojekten werden die zuvor genannten Teststufen aber nicht hintereinander im Laufe des Projekt durchgeführt sondern parallel in jeder Iteration. Im Optimalfall täglich und hochautomatisiert\cite{linz_testing_2014}.
+
+\paragraph{Unit-Testing und Test-First in agilen Projekten}   
+Unit-Testing, als entwicklungsnächste Teststufe, hat im agilen Umfeld eine noch höheren Stellenwert als in traditionellen Softwareprojekten. Spillner und Linz\cite{spillner_software_2014} schlagen vor Unit-Testing innerhalb von Scrum-Teams nicht nur als Testen von Modulen auf Quellcodeebene zu verstehen. Sie erweitern den Begriff indem alle dynamischen Tests von isolierbaren Software-Komponenten gemeint sind. Dies hat die Folge, dass auch Nicht-Entwickler im Software-Team Unit-Tests durchführen können sofern es sich beim Testobjekt um eine separate Einheit handelt, sodass bei der Entdeckung eines Fehlers dieser nur zu dieser einen Komponente gehören kann.\\
+
+\subparagraph{Modellbasierte Ansätze um Umfänge von Unit-Tests zu verkleinern}
+Im strengen Sinne des Unit-Testings müsste, im Umfeld der objektorientierten Programmierung, jede \textit{public} und \textit{private} Methode abgedeckt werden. Wenn private Methoden nur durch die Aufrufe aus den öffentlichen Methoden getestet werden, kann sich innerhalb der privaten Methoden immer noch fehlerhafter Code befinden der zufälligerweise nicht ausgeführt wird. Andererseits kann es in großen, sich schnell entwickelnden Softwareprojekten einfach nicht praktikabel sein so viele Einzeltests zu warten. Oft wird dann einfach auf das Testing von privaten Methoden verzichtet, mit dem Vorsatz die öffentlichen damit umso penibler zu testen. Diese Vorgangsweise ist aber sehr subjektiv und unstrukturiert. Ihre Effektivität kann stark schwanken.\\
+Deshalb schlagen Spillner und Linz einen Ansatz vor der dem modellbasierten Testen nahe kommt. Jeder Methodenaufruf geschieht während die Klasse in einem Zustand ist, der durch ihre aktuelle Variablenbelegung definiert ist. Wie eine Methode reagiert wenn sie aufgerufen wird, hängt also von den Parametern und dem Zustand ab. Linz schlägt deshalb \textit{object-state} Testing vor um die Vorgänge in einer Klasse systematisch aber auf kritische Zustände reduziert zu visualisieren und zu testen.\todo{Bild aus TESTING IN SCRUM Seite 52 einfügen}\\
+Das gewählte Modellformat ist im Grunde ein endlicher Automat (siehe Abschnitt \ref{seC:fsm}) das mindestens folgende Informationen enthält:
+
+\begin{itemize}
+\item Ein Initialstatus
+\item Die Parameter-Werte um das Testobjekt in einen anderen Status zu bringen (auf den Kanten)
+\item Die auf Methodenaufrufe folgenden zustände
+\end{itemize}
+
+Laut Vigenschow\cite{vigenschow_objektorientiertes_2004} vereinfacht dieser Ansatz, dass jeder Zustand mindestens einmal positiv und einmal negativ getestet wird. Während positive Testfälle gewährleisten, dass die geforderte Funktionalität ordnungsgemäß funktioniert, erlauben negative Testfälle die Überprüfung der Robustheit der Komponente. Typischerweise aufgedeckte Defekte sind die folgenden:
+
+
+\begin{itemize}
+\item Ein zurückgewiesener Methodenaufruf entspricht einem fehlenden Zustandsübergang
+\item Ein Methodenaufruf der nicht möglich sein sollte entspricht einem überflüssigen Zustandsübergang
+\item Eine Methode die die falschen Daten verändert entspricht einem falschen Zielzustand.
+\item Die auf Methodenaufrufe folgenden zustände
+\end{itemize}
+
+Genau dieser Ansatz wird im Abschnitt \ref{sec:modeljunit} von ModelJUnit aufgegriffen und ermöglicht eine automatisierte Ausführung. Außerdem kann auch Graphwalker (siehe Abschnitt \ref{sec:graphwalker}) problemlos für Unit-Tests verwendet werden.\\
+Für die so erstellten Modelle gelten dieselben Überdeckungskriterien wie in Abschnitt \ref{sec:coverage} beschrieben werden.
+
+\subparagraph{Die Wichtigkeit von Test-First in agilen Projekten}  
+Test first...
+	improves quality of publich interfaces
+	improves testability
+    bis zu: replace written specifications
+
+Der \textit{Test-First} Ansatz stammt aus dem Extreme Programming Umfeld\cite{beck_extreme_2000} und fand so seinen Weg in agile Softwareprojekte. Bei Test-Frist werden vor allem Unit-Tests, streng genommen aber auch Tests aus höheren Teststufen, vor der eigentlichen Implementierung geschrieben. Vor allem automatisierte Testfälle eignen sich gut für diesen Zweck, weil der Entwickler seinen Fortschritt damit kontinuierlich prüfen kann. Ein agiles Team, das strikt nach Test-First vorgeht, wird seine Effizienz aus folgenden Gründen dramatisch steigern\{linz_testing_2014}:
+
+\begin{itemize}
+\item \textbf{Manuelles Trial and Error wird überflüssig} Üblicherweise testet ein Entwickler seinen Code kontinuerlich durch manuelle Methodenaufrufe mit passenden Werten. Die Ausgabe wird mithilfe eines Debuggers oder zusätzlichen Print-Methoden vom Entwickler geprüft. Abhängig vom jeweiligen SUT kann dieser Workflow sehr ineffizient sein weil er in der Wartung nicht nachtvollziehbar ist und Code generiert der vor der Auslieferung wieder entfernt werden muss. Im Gegensatz dazu muss der Entwickler beim Test-First Ansatz vor der Programmierung bereits einige sinnvolle und lauffähige Testfälle geschrieben haben. Dies hat folgende Vorteile: Erstens entfällt das mitunter mühselige und fehlerbehaftete manuelle Smoke-Testing und zweitens hat sich herausgestellt, dass Programmierer effizienter werden wenn sie angehalten sind sich sehr genaue Gedanken über Ein- und Ausgabewerte der zu entwickelnden Komponente zu machen. 
+\item Ein Methodenaufruf der nicht möglich sein sollte entspricht einem überflüssigen Zustandsübergang
+\item Eine Methode die die falschen Daten verändert entspricht einem falschen Zielzustand.
+\item Die auf Methodenaufrufe folgenden zustände
+\end{itemize}
+
 
 
 
