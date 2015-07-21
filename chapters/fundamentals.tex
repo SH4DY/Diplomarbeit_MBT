@@ -177,43 +177,35 @@ Unit-Testing, als entwicklungsnächste Teststufe, hat im agilen Umfeld eine noch
 \subparagraph{Modellbasierte Ansätze um Umfänge von Unit-Tests zu verkleinern}
 Im strengen Sinne des Unit-Testings müsste, im Umfeld der objektorientierten Programmierung, jede \textit{public} und \textit{private} Methode abgedeckt werden. Wenn private Methoden nur durch die Aufrufe aus den öffentlichen Methoden getestet werden, kann sich innerhalb der privaten Methoden immer noch fehlerhafter Code befinden der zufälligerweise nicht ausgeführt wird. Andererseits kann es in großen, sich schnell entwickelnden Softwareprojekten einfach nicht praktikabel sein so viele Einzeltests zu warten. Oft wird dann einfach auf das Testing von privaten Methoden verzichtet, mit dem Vorsatz die öffentlichen damit umso penibler zu testen. Diese Vorgangsweise ist aber sehr subjektiv und unstrukturiert. Ihre Effektivität kann stark schwanken.\\
 Deshalb schlagen Spillner und Linz einen Ansatz vor der dem modellbasierten Testen nahe kommt. Jeder Methodenaufruf geschieht während die Klasse in einem Zustand ist, der durch ihre aktuelle Variablenbelegung definiert ist. Wie eine Methode reagiert wenn sie aufgerufen wird, hängt also von den Parametern und dem Zustand ab. Linz schlägt deshalb \textit{object-state} Testing vor um die Vorgänge in einer Klasse systematisch aber auf kritische Zustände reduziert zu visualisieren und zu testen.\todo{Bild aus TESTING IN SCRUM Seite 52 einfügen}\\
-Das gewählte Modellformat ist im Grunde ein endlicher Automat (siehe Abschnitt \ref{seC:fsm}) das mindestens folgende Informationen enthält:
+Das gewählte Modellformat ist im Grunde ein endlicher Automat (siehe Abschnitt \ref{sec:fsm}) das mindestens folgende Informationen enthält:
 
 \begin{itemize}
 \item Ein Initialstatus
 \item Die Parameter-Werte um das Testobjekt in einen anderen Status zu bringen (auf den Kanten)
-\item Die auf Methodenaufrufe folgenden zustände
+\item Die auf Methodenaufrufe folgenden Zustände
 \end{itemize}
 
 Laut Vigenschow\cite{vigenschow_objektorientiertes_2004} vereinfacht dieser Ansatz, dass jeder Zustand mindestens einmal positiv und einmal negativ getestet wird. Während positive Testfälle gewährleisten, dass die geforderte Funktionalität ordnungsgemäß funktioniert, erlauben negative Testfälle die Überprüfung der Robustheit der Komponente. Typischerweise aufgedeckte Defekte sind die folgenden:
-
 
 \begin{itemize}
 \item Ein zurückgewiesener Methodenaufruf entspricht einem fehlenden Zustandsübergang
 \item Ein Methodenaufruf der nicht möglich sein sollte entspricht einem überflüssigen Zustandsübergang
 \item Eine Methode die die falschen Daten verändert entspricht einem falschen Zielzustand.
-\item Die auf Methodenaufrufe folgenden zustände
 \end{itemize}
 
 Genau dieser Ansatz wird im Abschnitt \ref{sec:modeljunit} von ModelJUnit aufgegriffen und ermöglicht eine automatisierte Ausführung. Außerdem kann auch Graphwalker (siehe Abschnitt \ref{sec:graphwalker}) problemlos für Unit-Tests verwendet werden.\\
 Für die so erstellten Modelle gelten dieselben Überdeckungskriterien wie in Abschnitt \ref{sec:coverage} beschrieben werden.
 
 \subparagraph{Die Wichtigkeit von Test-First in agilen Projekten}  
-Test first...
-	improves quality of publich interfaces
-	improves testability
-    bis zu: replace written specifications
 
 Der \textit{Test-First} Ansatz stammt aus dem Extreme Programming Umfeld\cite{beck_extreme_2000} und fand so seinen Weg in agile Softwareprojekte. Bei Test-Frist werden vor allem Unit-Tests, streng genommen aber auch Tests aus höheren Teststufen, vor der eigentlichen Implementierung geschrieben. Vor allem automatisierte Testfälle eignen sich gut für diesen Zweck, weil der Entwickler seinen Fortschritt damit kontinuierlich prüfen kann. Ein agiles Team, das strikt nach Test-First vorgeht, wird seine Effizienz aus folgenden Gründen dramatisch steigern\cite{linz_testing_2014}:
 
 \begin{itemize}
-\item \textbf{Manuelles Trial and Error wird überflüssig} Üblicherweise testet ein Entwickler seinen Code kontinuerlich durch manuelle Methodenaufrufe mit passenden Werten. Die Ausgabe wird mithilfe eines Debuggers oder zusätzlichen Print-Methoden vom Entwickler geprüft. Abhängig vom jeweiligen SUT kann dieser Workflow sehr ineffizient sein weil er in der Wartung nicht nachtvollziehbar ist und Code generiert der vor der Auslieferung wieder entfernt werden muss. Im Gegensatz dazu muss der Entwickler beim Test-First Ansatz vor der Programmierung bereits einige sinnvolle und lauffähige Testfälle geschrieben haben. Dies hat folgende Vorteile: Erstens entfällt das mitunter mühselige und fehlerbehaftete manuelle Smoke-Testing und zweitens hat sich herausgestellt, dass Programmierer effizienter werden wenn sie angehalten sind sich sehr genaue Gedanken über Ein- und Ausgabewerte der zu entwickelnden Komponente zu machen. 
-\item Ein Methodenaufruf der nicht möglich sein sollte entspricht einem überflüssigen Zustandsübergang
-\item Eine Methode die die falschen Daten verändert entspricht einem falschen Zielzustand.
-\item Die auf Methodenaufrufe folgenden zustände
+\item \textbf{Manuelles Trial and Error wird überflüssig} Üblicherweise testet ein Entwickler seinen Code kontinuerlich durch manuelle Methodenaufrufe mit passenden Werten. Die Ausgabe wird mithilfe eines Debuggers oder zusätzlichen Print-Methoden vom Entwickler geprüft. Abhängig vom jeweiligen SUT kann dieser Workflow sehr ineffizient sein weil er in der Wartung nicht nachtvollziehbar ist und Code generiert der vor der Auslieferung wieder entfernt werden muss. Im Gegensatz dazu muss der Entwickler beim Test-First Ansatz vor der Programmierung bereits einige sinnvolle und (potenzielllauffähige Testfälle geschrieben haben. Dies hat folgende Vorteile: Erstens entfällt das mitunter mühselige und fehlerbehaftete manuelle Smoke-Testing und zweitens hat sich herausgestellt, dass Programmierer effizienter werden wenn sie angehalten sind sich sehr genaue Gedanken über Ein- und Ausgabewerte der zu entwickelnden Komponente zu machen\cite{erdogmus_effectiveness_2005}.
+\item \textbf{Fortschritt ist einfach messbar} Typische Programmieraktivitäten in einem Scrum-Projekt können zwischen wenigen Stunden bis zu mehreren Manntagen umfassen. Test-First Unit-Tests können als Indikator dienen wie die Programmieraktivität fortschreitet. Außerdem stellen sie eine Art roter Faden für den Programmierer dar.
+\item \textbf{Tests als Spezifikation} Unit-Tests geben sehr genau vor welche Ausgabewerte auf einen bestimmten Eingabewert erwartet werden. Das bedeutet, dass sie als Teil einer Spezifikation angesehen werden können. Tatsächlich lassen sich in der Praxis auch immer wieder solche Ansätze beobachten. Vor allem funktionale Programmiersprachen werden gerne als \textit{executable specification} verwendet\cite{klein_sel4:_2010}. Nachteilig bei dieser Vorgehensweise ist aber die Verständlichkeit solcher Spezifikationen. Unerfahrene Entwickler oder nicht-technische Teammitglieder können diese nur schwer nachvollziehen. Auch modellbasierte Tests können als Spezifikation dienen und durch ihre grafische Darstellung sind sie viel leichter verständlich (siehe Abschnitt \ref{sec:mbt} für allgemeine Informationen zu modellbasiertem Testen und Abschnitt \ref{sec:graphwalker} wo ein solcher Ansatz erprobt wird).
+\item
 \end{itemize}
-
-
 
 
 \subsection{Regressionstests und Testautomatisierung}
