@@ -4,7 +4,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Fallstudie: Kundenberaterapplikation bei Raiffeisen Schweiz}
-
+\label{sec:fallstudie}
 \subsection{Hintergrund zu den Applikation RETo und RESi}
 Die Applikation \textit{RESi}, in anderer Struktur und bis in das Jahr 2013 \textit{RETo} (Raiffeisen Expert Tool), ist ein Backend-Service der Dienste für die verschiedensten Front-End Applikationen des Unternehmens bereitstellt. Unter altem Namen, bot die Applikation früher eine eigene Benutzeroberfläche und weniger, dafür spezifischere Funktionalität. RETo war im Intranet der Fillialen im Einsatz und wurde ausschließlich für Kundenberatungen eingesetzt. Die Applikation hatte folgende Kernkompetenzen:
 
@@ -19,7 +19,7 @@ Die Applikation \textit{RESi}, in anderer Struktur und bis in das Jahr 2013 \tex
 Im Jahr 2014 wurde ein Großteil der Applikationslandschaft umstrukturiert. In einer Bemühung einzelne Applikationen zu vereinheitlichen und Mehrfachaufwendungen zu minimieren, wurde RETo modularisiert. Das Projekt RESi wurde gestartet. RESi stellt eine Back-End-Service Schicht dar. Da RETo bereits einen sehr breiten Funktionsumfang bot, besteht RESi zu großen Teilen aus den RETo Kernkomponenten. Auch das Entwicklungsteam ist das selbe geblieben. Mehrere, ehemals eigenständige Applikationen, greifen jetzt auf RESi zu und bieten nur noch ein Front-End und eine dünne Serverschicht. RETo existiert weiterhin aber greift auch auf die Services von RESi zu.
 
 \subsection{Entwicklungsumfeld}
-Das Umfeld er Applikaiton RESi wird in einem klassischen Auftragnehmer/Auftraggeber Szenario entwickelt. Eine Fachabteilung stellt den Kunden dar. Sie definieren die Anforderungen an die Applikation. Dem gegenüber ist das Entwicklungsteam. Dieses besteht aus einem Applikationsmanager und 6-8 Entwicklern. 
+Das Umfeld er Applikaiton RESi wird in einem klassischen Auftragnehmer/Auftraggeber Szenario entwickelt. Eine Fachabteilung stellt den Kunden dar. Sie definieren die Anforderungen an die Applikation. Dem gegenüber ist das Entwicklungsteam. Dieses besteht aus einem Applikationsmanager und 8-10 Entwicklern. 
 
 \begin{itemize}
 \item 2 Major Release pro Jahr
@@ -53,15 +53,17 @@ Während der Maintenance-Phase des Systems gibt es einen Test-Verantwortlichen. 
 Auf Seiten der Entwickler, also im Scrum-Team, gibt es keinen dedizierten Tester. Im Entwicklungszyklus fixiert sind nur Unit-Tests. Außerdem werden vom Test-Verantwortlichen auch den Entwicklern manuelle Testfälle zugewiesen die im Rahmen vom Integrationstesting durchgeführt werden.
 
 \subsubsection{Erkannte Schwachstellen in der Qualitätssicherung}
+\label{sec:schwachstellen_raiffeisen}
 -Viele Beteiligte
--Keine klare Zuständigkeiten
+-Keine klaren Zuständigkeiten
 -Hohe Diversität bei eingesetzten Tools
 -Testfalldesign nicht transparent
+
+
 \subsubsection{Versuch der Qualitätssicherung durch skriptgesteuerte GUI-Tests}
 
 \subsubsection{Aufwendige Wartung von Testdaten}
 Tracing von Testdaten und Testfällen (welcher Bereich der Testdaten wird von einem bestimmten Testfall benutzt?). `If data is tightly coupled with behaviour, this can lead to serious maintenance burden' \cite{baker_model-driven_2005} 
-\subsubsection{Abhilfe durch Modellbasiertes Testen der Schnittstellen?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

@@ -1,15 +1,30 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Ergebnisse}
+\chapter{Neuartige modellbasierte Teststrategie für große agile Projekte basierend auf Graphwalker}
 \label{sec:results}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Die Resultate der Arbeit präsentieren und nach Möglichkeit aussagekräftige, eigenständige Abbildungen einbauen. Namen des Kapitels konkretisieren, an jeweilige Arbeit anpassen -- Lösungsvorschlag/Implementierung im Titel des Kapitels benennen.
-\makeatletter\ifthesis@masterthesis
-Bei einer Soft\-ware-Ent\-wicklungs\-arbeit ggf. eine Beschreibung der Qualitätsmerkmale der neuen Implementierung (Performance, Sicherheit, Messergebnisse etc.) geben.
+Aufbauend auf den Erkenntnissen der Fallstudie (siehe Abschnitt \ref{sec:fallstudie}) wurde eine neuartige modellbasierte Teststrategie entwickelt um komplexe Softwaresysteme in agilen Projekten zu testen. Diese Strategie hat unter anderem folgende Eigenschaften und zielt auf die, in Abschnitt \ref{sec:schwachstellen_raiffeisen}, beschriebenen Schwachstellen ab:
 
-Bei einer Arbeit zu einem abstrakteren Architekturthema können hier die Eigenschaften nach der Anwendung der konzipierten Architektur beschrieben werden. Kommt sie in mehreren Fallbeispielen zum Einsatz, erfolgt hier ein Vergleich der jeweiligen Ergebnisse (z.B. gab es Unterschiede im Umsetzungserfolg, die sich auf konkrete Eigenschaften der betrachteten Fallbeispiele zurückführen lassen).
+\begin{enumerate}
+\item Einfachere Einbindung der Fachbereiche und Minimierung der Spezifikations-/Implementationslücke.
+\item Minderung des Wartungsaufwandes für die Testlogik
+\item Eliminierung der Notwendigkeit eine hohe Anzahl von einzelnen Teställen zu definieren
+\item Visualisierung der Spezifikation und Bewusstmachung des potenziellen Testaufwandes
+\item Minimierung der Abhängigkeit zu einem Werkzeug durch Wahl eines quelloffenen Tools
+\item Möglichkeit des punktuellen Einsatzes bzw. der inkrementellen Einführung
+\item Erhöhung der Testabdeckung und damit Erhöhung der Qualität des Softwaresystems
+\end{enumerate}
 
-Bei einer Arbeit zur Softwareauswahl und Einführung wird eine Beschreibung von Qualitätseigenschaften des mit der Einführung neu geschaffenen SOLL-Zustands gegeben.
+Im folgenden wird die genannte Teststrategie näher beschrieben.
 
-Bei einer Arbeit, deren Fokus auf der Durchführung und Auswertung von Fragebögen liegt, erfolgt in diesem Kapitel die Auswertung der Fragebögen.
-\fi\makeatother
+\section{Aufbau der Teststufen}
+Im Sinne von Test-First und einer hohen Priorisierung von Unit-Tests soll der Fokus des Testings auf drei Arten von Tests liegen:
+
+\begin{itemize}
+\item Eine breite Basis von Unit-Tests mit hoher Abdeckung
+\item Modellbasierte Systemtests auf mehreren Ebenen mit direkter Verbindung zu Anforderungen/Changes
+\item Manuelle System- und Abnahmetests
+\end{itemize}
+
+In Anlehung an Linz\cite{linz_testing_2014} (und mit dem Verweis auf die Diskussion in Abschnitt\ref{sec:discussion_unit}) soll die Unit-Test Ebene in Scrum-Projekten eindeutig am breitesten sein\todo{Test PYRAMIDE einfügen}. Dies erscheint mit Hinblick auf die kurzen Iterationen, die das Softwaresystem stark verändert, auch logisch. Unit-Tests lassen sich, weil sie am entwicklungsnächsten sind, auch am schnellsten modifizieren. Obwohl Unit-Tests einzelne Komponenten in Isolation testen, müssen sie zumindest eine verlässliche Aussagen treffen können, dass ebenjene Komponente ordnungsgemäß operiert. Diese Aussage wird möglich durch eine hohe Codeüberdeckung in Verbindung mit sorgfältig designten Testfällen. Auch auf Unit-Testebene gelten Best-Practices und Methodiken für hochqualitative Testfälle, wie sie Spillner und Linz beschreiben\cite{spillner_software_2014}.\\
+\todo{hier weiter....}
