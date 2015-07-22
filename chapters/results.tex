@@ -26,5 +26,14 @@ Im Sinne von Test-First und einer hohen Priorisierung von Unit-Tests soll der Fo
 \item Manuelle System- und Abnahmetests
 \end{itemize}
 
-In Anlehung an Linz\cite{linz_testing_2014} (und mit dem Verweis auf die Diskussion in Abschnitt\ref{sec:discussion_unit}) soll die Unit-Test Ebene in Scrum-Projekten eindeutig am breitesten sein\todo{Test PYRAMIDE einfügen}. Dies erscheint mit Hinblick auf die kurzen Iterationen, die das Softwaresystem stark verändert, auch logisch. Unit-Tests lassen sich, weil sie am entwicklungsnächsten sind, auch am schnellsten modifizieren. Obwohl Unit-Tests einzelne Komponenten in Isolation testen, müssen sie zumindest eine verlässliche Aussagen treffen können, dass ebenjene Komponente ordnungsgemäß operiert. Diese Aussage wird möglich durch eine hohe Codeüberdeckung in Verbindung mit sorgfältig designten Testfällen. Auch auf Unit-Testebene gelten Best-Practices und Methodiken für hochqualitative Testfälle, wie sie Spillner und Linz beschreiben\cite{spillner_software_2014}.\\
-\todo{hier weiter....}
+In Anlehung an Linz\cite{linz_testing_2014} (und mit dem Verweis auf die Diskussion in Abschnitt\ref{sec:discussion_unit}) soll die Unit-Test Ebene in Scrum-Projekten am breitesten sein\todo{Test PYRAMIDE einfügen}. Dies erscheint mit Hinblick auf die vielen kurzen Iterationen, die das Softwaresystem stark verändern, auch logisch. Unit-Tests lassen sich, weil sie am entwicklungsnächsten sind, auch am schnellsten modifizieren. Obwohl Unit-Tests einzelne Komponenten in Isolation testen, müssen sie zumindest eine verlässliche Aussagen treffen können, dass ebenjene Komponente ordnungsgemäß operiert. Diese Aussage wird möglich durch eine hohe Codeüberdeckung in Verbindung mit sorgfältig designten Testfällen. Auch auf Unit-Testebene gelten Best-Practices und Methodiken für hochqualitative Testfälle, wie sie Spillner und Linz beschreiben\cite{spillner_software_2014}. Die Besonderheit im Unit-Testing dieser Teststrategie liegt im Einsatz eines Behaviour-Driven-Testing\cite{chelimsky_rspec_2010} Frameworks und einer Testing-API. Für erstere Komponente existieren einige frei erhältliche Vertreter\footnote{Im Java-Umfeld bekannt sind die Frameworks \textit{jBehave} \url{http://jbehave.org/} und \textit{cucumber} \url{https://cucumber.io/}. In der Raiffeisen-Fallstudie wurde aber eine Eigenentwicklung als \textit{Proof of Concept} gemacht (siehe Abschnitt \ref{bdd} für eine kurze Erläuterung). Die erwähnte Testing-API \todo{Diagramm aus Damians Präsentation einfügen und markieren} bietet Schnittstellen zu Programmlogik und Umsystemen.\\
+Im Sinne dieser Arbeit steht der modellbasierte Anteil der Teststrategie im Mittelpunkt. Es soll aber erwähnt sein, dass keine zwei Softwareprojekte gleich sind und sich die Gewichtungen der Testmethodiken im Detail unterscheiden \textit{sollten}! Der modellbasierte Anteil basiert auf 
+
+\section{Details der Teststrategie und Architektur}
+
+\subsection{Behaviour Driven Testing Framework}
+\label{sec:bdd}
+
+\subsection{Testing API}
+
+\subsection{Modellbasierte Tests mit Graphwalker}
