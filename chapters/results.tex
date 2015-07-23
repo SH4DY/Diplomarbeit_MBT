@@ -39,10 +39,58 @@ Zuletzt bleiben aber auch manuelle Tests ein wichtiger Bestandteil der Teststrat
 
 \section{Details der Teststrategie und Architektur}
 
-\subsection{Behaviour Driven Testing Framework}
+\subsection{Behavior Driven Testing Framework}
 \label{sec:bdd}
+Der Fokus dieser Arbeit liegt auf dem modellbasierten Teil der Teststrategie, trotzdem soll erläutert werden welche Rolle \textit{Behavior Driven Testing} im Gesamtbild spielt. In der Softwareentwicklung, und vor allem in großen Projekten, wird viel Aufwand betrieben um Anforderungen von Domänenexperten möglichst nahtlos in die Implementation einfließen zu lassen. Abhängig vom Projekt liegen zwischen diesen Anforderungen und der endgültigen Realisierung mehrere Stufen und Parteien. Die Einführung von BDT zielt also vor allem auf die bereits erwähnte Minimierung der Spezifikations-/Implementationslücke. Auch MBT optimiert diesen Umstand (wie in Abschnitt \ref{sec:mbt_vorteile} beschrieben), aber es hat sich herausgestellt, dass es nicht zielführend ist für jede Anforderung den modellbasierten Ansatz anzuwenden.\\
+Behavior Driven Testing, im weiteren Sinne bekannt als Behavior Driven Development, wurde ursprünglich von Dan North beschrieben. Er publiziert und diskutiert über BDD auf einer von ihm verwalteten Webseite\cite{north_official_2015}. BDD basiert auf drei Grundprinzipien:
+
+\begin{itemize}
+\item Domänenexperten und Techniker sollen auf einer Ebene kommunizieren und über das System mit einem gemeinsamen Vokabular referenzieren.
+\item Jedes System muss einen, für alle Parteien, klar erkennbaren unternehmerischen Wert haben. Außerdem muss bewusst werden wie dieser Wert generiert wird.
+\item Allen Parteien ist bewusst, dass Analyse, Design und Spezifikation dem Ertragsgesetz unterliegen. Das heißt ab einem gewissen Punkt macht es keinen Sinn mehr Ressourcen zu investieren weil die Wertschöpfung abfällt.
+\end{itemize}
+
+Aus Sicht des Domänenexperten (im Fallbeispiel ein Bankberater und in Vertretung dessen der Fachbereich) wird eine Anforderung folgendermaßen spezifiziert: 
+
+\begin{quote} Als \textbf{ROLLE} fordere ich \textbf{ETWAS} und gewinne dadurch \textbf{NUTZEN} \end{quote}
+
+Diese Nähe zur fachlichen Formulierung (im gleichen Vokabular) will man in der Entwicklung nutzen um der Spezifikation so nah wie möglich zu kommen. In der Fallstudie hat sich herausgestellt, dass die erwähnten CoS-Tabellen (siehe Abschnitt \ref{sec:fallstudie}) schon recht genau solchen BDD-Anforderungen entsprechen. Auch sie beschreiben, ausgehend von einem Ausgangszustand welche Paramater zu einem bestimmten Endzustand führen sollen. Eingangs erwähnte BDD-Frameworks benutzen die selbe Struktur um Tests zu definieren. Es lag also nahe diesen Ansatz zu verfolgen, bestehende Vorgehensweisen nicht grundlegend zu verändern und gleichzeitig bessere Spezifikationen zu schaffen. Gleichzeitig bestand in der Fallstudie der Wunsch nach mehr automatischen Regressionstests die genau jene CoS prüfen. Mehrere Problemfelder wurden identifiziert die mit dem Einsatz von Behavior Driven Testing adressiert werden sollten:
+
+
+\begin{itemize}
+\item \textbf{Präzisierung der Spezifikation.} Spezifikationen in Prosatext und Fachjargon bieten ein hohes Potenzial für Missverständnisse und Ungenauigkeiten. Ein gemeinsames Vokabular und eine universell verständliche Syntax um diese Spezifikationen festzuhalten ist nötig.
+\item \textbf{Spezifikationen müssen über lange Zeit überschaubar und prüfbar bleiben.} CoS bleiben über viele Iterationen hinweg gültig. Es kommt aber immer wieder vor, dass sie direkt angepasst werden oder von anderen Weiterentwicklungen betroffen sind und geändert werden müssen. Die von den Fachbereichen verwendeten Storybooks lassen sich zwar versionieren (mittels bekannter Dokumenten-/Codeversionierungs-Tools) aber durch die schiere Größe dieser Dokumente ist es unmöglich festzustellen welche CoS noch befriedigt sind und welche verletzt wurden. Es muss eine Form gefunden werden um CoS kompakt und versionierbar, und für alle an der Entwicklung Beteiligten verständlich, darstellen zu können.
+\item \textbf{Einfache und nachhaltige Automatisierbarkeit der Regressionstests.} Aus den verfassten CoS sollen, mit wenig Aufwand, automatisierte Regressionstests entstehen. Außerdem soll der Zusatzaufwand für die Entwickler gering gehalten werden um aus den CoS automatische Regressionstests zu generieren und diese auch zu warten.
+\end{itemize}
+
+\todo{Weiter mit Beschreibung der BDD Lösung...}
+
 
 \subsection{Testing API}
 \label{sec:testing_api}
 
 \subsection{Modellbasierte Tests mit Graphwalker}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
