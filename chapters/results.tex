@@ -63,23 +63,24 @@ Diese Nähe zur fachlichen Formulierung (im gleichen Vokabular) will man in der 
 \item \textbf{Einfache und nachhaltige Automatisierbarkeit der Regressionstests.} Aus den verfassten CoS sollen, mit wenig Aufwand, automatisierte Regressionstests entstehen. Neben der einfachen Generierung dieser automatisierten Tests sollen vor allem die Aufwände für Wartung niedrig gehalten werden.
 \end{itemize}
 
+
 Als Proof of Concept wurde ein Behavior Driven Testing Framework namens \textit{FluentCoS} entwickelt, das diese Anforderungen erfüllt und gleichzeitig die oben erwähnten Prinzipien von BDD nicht verletzt. Dabei werden Tests in Java-Code verfasst der sich bewusst sehr verständlich liest. Technisch werden Annotationen verwendet und das Framework stößt JUnit-Tests an. Eine Test-Methode kann folgendermaßen ausschauen:
 
 \begin{lstlisting}[caption={In den Kommentaren kann die CoS als Prosa-Text erklärt werden. Der Methodenname entspricht einer eindeutigen Identifizierung für die CoS. Zentral sind die klar verständlichen Aufrufe an \textit{given}, \textit{when} und \textit{then}. Jeweils das zweite Argument innerhalb dieser Aufrufe entspricht einer Methode der Testing API (siehe Abschnitt \ref{sec:testing_api})},label=lst:shortcode]
 
-	/**
-	 * Es muss fachlich sichergestellt sein, dass ...
-	 * Lorem Ipsum
-	 */
-	@Test
-	public final void cos_1_Hierarchische_Auflistung_und_Bezeichnung_des_Default_Teilvermoegens_Kontovermoegen() {
-			given("Kunde XY fuer Beratung ausgewaehlt", selectCustomer("Peter Mueller"))
-				.and("Kunde XY besitzt Produkte des TV's 'Kontovermoegen'", initCustomerAssets())
-			.when("Berater fuer Kunde XY den Menuepunkt 'Anlegen Finfox' anklickt", clickMenu())
-			.then("Wird das TV 'Kontovermoegen' an erster Stelle gezeigt", assertAccountFirst())
-				.and("Der Titel des TV beinhaltet eine eindeutige Nummer", assertUniquePortfolioId())
-				.and("Den TV-Typ 'Kontovermoegen'", nop());
-	}
+/**
+ * Es muss fachlich sichergestellt sein, dass ...
+ * Lorem Ipsum
+ */
+@Test
+public final void cos_1_Hierarchische_Auflistung_und_Bezeichnung_des_Default_Teilvermoegens_Kontovermoegen() {
+		given("Kunde XY fuer Beratung ausgewaehlt", selectCustomer("Peter Mueller"))
+			.and("Kunde XY besitzt Produkte des TV's 'Kontovermoegen'", initCustomerAssets())
+		.when("Berater fuer Kunde XY den Menuepunkt 'Anlegen Finfox' anklickt", clickMenu())
+		.then("Wird das TV 'Kontovermoegen' an erster Stelle gezeigt", assertAccountFirst())
+			.and("Der Titel des TV beinhaltet eine eindeutige Nummer", assertUniquePortfolioId())
+			.and("Den TV-Typ 'Kontovermoegen'", nop());
+}
 \end{lstlisting}
 
 Die eindeutige Identifikation als Methodennamen stellt sicher, dass eine unverwechselbare Parallele zwischen schriftlich festgehaltenen CoS und automatisiertem Test hergestellt werden kann. Die Kommentarsektion kann zusätzlich verwendet werden um auf Eigenheiten dieser CoS einzugehen. Im inneren der Methode werden dann Aufrufe mit der Struktur \textit{given} \textit{when} \textit{then} gemacht. Damit entsprechen diese Testfälle dem selben Muster, das Dan North als optimale Anforderungsbeschreibung beschrieben hat (Als \textbf{ROLLE} fordere ich \textbf{ETWAS} und gewinne dadurch \textbf{NUTZEN}). Diese BDD-Testfälle haben die Eigenschaft gut lesbar zu sein und ohne weiteres parsen und transformieren automatisch ausführbar zu sein.\\
@@ -94,6 +95,27 @@ Gleichzeitig bleiben gewisse Probleme bestehen: Obwohl CoS nun direkt an automat
 
 \subsection{Modellbasierte Tests mit Graphwalker}
 \label{sec:mbt_results}
+Die Fallstudie hat gezeigt, dass die Diversität der zu testenden Gesichtspunkte des SUT zu hoch ist um einen allumfassenden Ansatz einzusetzen. Dieser Schluss lässt sich mit Sicherheit auf eine große Anzahl von Softwareprojekten übertragen. Selten lassen sich alle wertgenerierenden Aspekte mit einer Art von Tests prüfen. Auch die hohe Anzahl von beteiligten Personen, ob technisch oder fachlich, suggeriert, dass nicht alle die selben Fähigkeiten und Vorlieben für eine Testmethode an den Tag legen.\\
+Diese Beobachtungen legen nahe, ein schlankes und flexibles Werkzeug für den modellbasierten Teil der Teststrategie einzusetzen. Repräsentativ für große agile Softwareprojekte ergaben sich weitere Anforderungen an Werkzeug und Umgebung der modellbasierten Tests:
+
+\begin{itemize} 
+\item\textbf{Eignung der Feststellung.} Es sollte mit wenig Aufwänden möglichen sein, die Eignung des Werkzeugs für das Testing des SUT festzustellen. Dies setzt erstens voraus, dass vollwertige Testversionen zur Verfügung gestellt werden. Außerdem muss die Funktionsweise, wie das Werkzeug im Hintergrund agiert, dokumentiert und einsehbar sein. Dies ist bei den wenigsten Werkzeugen der fall. Graphwalker, in gewisser Weise implizit durch seine Quelloffenheit gegeben, ist eine erfreuliche Ausnahme.
+\item \textbf{Flexibilität des Modellformats.} Vergleichbar mit der Sprache in der die Skripts eines skriptbasierten Tools vorliegen müssen, sind Modellformate für MBT-Tools strikt vorgegeben. Wie effektiv ein SUT getestet werden kann, hängt massiv von der Mächtigkeit des Modellformats ab.
+\item \textbf{Verständlichkeit des Modellformats} Das Modellformat an sich aber auch die Präsentation dessen muss verständlich sein.
+\end{itemize}
+
+
+Modellbasiertes Testen kann immer noch als Randerscheinung im Software-Testing angesehen werden. Die Auswahl an Werkzeugen ist deshalb überschaubar. Gerade deswegen ist es aber schwer diese Werkzeuge miteinander zu vergleichen. Sie unterscheiden sich in ihrer Art erheblich. Manche Hersteller designen ihre Tools als Komplettlösung für das Testing auf mehreren Teststufen. Dieser Komplettlösungsansatz erschwert eine Einführung in ein bestehendes Softwareprojekt. Eine Prüfung auf Eignung muss umso umfangreicher erfolgen. Nach einer Einführung kann schwerer auf eine andere Teststrategie umgeschwenkt werden.\\
+Aus entwicklerischer Sicht, ist es wünschenswert die interne Vorgehensweise dieser Werkzeuge zu kennen. Dazu zählen die Möglichkeiten wie das SUT modelliert werden kann aber auch entscheidende Details wie das Testdatenmanagement und die Integrationsfähigkeit in die bestehende Umgebung, da meist auf existierende Infrastrukturen Rücksicht genommen werden muss. Dementsprechend sollte nur mit Zugriff auf Dokumentationen bzw. Testversionen herausgefunden werden können welche Fähigkeiten die Werkzeuge bieten und ob sie sich grundsätzlich in das Projekt integrieren lassen. 
+
+
+
+Wie auch im Abschnitt \ref{sec:notations} theoretisch beschrieben und im Diskussionsabschnitt \ref{sec:discussion_unit} angesprochen, bestehen massive Unterschiede bei Tools und deren Modellformaten. Einen weitverbreiteten Standard gibt es nicht und deshalb stellt sich die Frage des Modellformats bei jeder Einführung von MBT in einem Projekt, natürlich auch in der Fallstudie. Eine Eigenentwicklung ist aus mehreren Gründen nicht ratsam. Erstens ist der Entwicklungsaufwand sehr hoch, da keines der evaluierten Tools die Möglichkeit bietet nur das Format bzw. die Sprache selbst zu definieren. Neben formaler Definition der Sprache und Entwicklung eines Lexers und Parsers müsste also die gesamte restliche Infrastruktur entwickelt werden. Dazu zählt die Traversierungslogik, das Reporting und weitere Komponenten. Zweitens würden auch Eigenentwicklungen auf bekannte Modellierungssprachen setzen und könnten das Rad sozusagen nicht neu erfinden. Der Zugewinn an Funktionalität, den Entwicklungsaufwänden gegenübergestellt, wäre sehr klein.\\
+
+
+\subsubsection{Möglichkeiten zur Modellierung - Arten von fachlichen Modellen}
+\paragraph{Workflow-Modellierung}
+\paragraph{Logik-Modellierung und Verfeinerung}
 
 
 
