@@ -106,11 +106,16 @@ Diese Beobachtungen legen nahe, ein schlankes und flexibles Werkzeug für den mo
 
 
 Modellbasiertes Testen kann immer noch als Randerscheinung im Software-Testing angesehen werden. Die Auswahl an Werkzeugen ist deshalb überschaubar. Gerade deswegen ist es aber schwer diese Werkzeuge miteinander zu vergleichen. Sie unterscheiden sich in ihrer Art erheblich. Manche Hersteller designen ihre Tools als Komplettlösung für das Testing auf mehreren Teststufen. Dieser Komplettlösungsansatz erschwert eine Einführung in ein bestehendes Softwareprojekt. Eine Prüfung auf Eignung muss umso umfangreicher erfolgen. Nach einer Einführung kann schwerer auf eine andere Teststrategie umgeschwenkt werden.\\
-Aus entwicklerischer Sicht, ist es wünschenswert die interne Vorgehensweise dieser Werkzeuge zu kennen. Dazu zählen die Möglichkeiten wie das SUT modelliert werden kann aber auch entscheidende Details wie das Testdatenmanagement und die Integrationsfähigkeit in die bestehende Umgebung, da meist auf existierende Infrastrukturen Rücksicht genommen werden muss. Dementsprechend sollte nur mit Zugriff auf Dokumentationen bzw. Testversionen herausgefunden werden können welche Fähigkeiten die Werkzeuge bieten und ob sie sich grundsätzlich in das Projekt integrieren lassen. 
-
-
-
+Aus entwicklerischer Sicht, ist es wünschenswert die interne Vorgehensweise dieser Werkzeuge zu kennen. Dazu zählen die Möglichkeiten wie das SUT modelliert werden kann aber auch entscheidende Details wie das Testdatenmanagement und die Integrationsfähigkeit in die bestehende Umgebung, da meist auf existierende Infrastrukturen Rücksicht genommen werden muss. Dementsprechend sollte nur mit Zugriff auf Dokumentationen bzw. Testversionen herausgefunden werden können welche Fähigkeiten die Werkzeuge bieten und ob sie sich grundsätzlich in das Projekt integrieren lassen.\\
 Wie auch im Abschnitt \ref{sec:notations} theoretisch beschrieben und im Diskussionsabschnitt \ref{sec:discussion_unit} angesprochen, bestehen massive Unterschiede bei Tools und deren Modellformaten. Einen weitverbreiteten Standard gibt es nicht und deshalb stellt sich die Frage des Modellformats bei jeder Einführung von MBT in einem Projekt, natürlich auch in der Fallstudie. Eine Eigenentwicklung ist aus mehreren Gründen nicht ratsam. Erstens ist der Entwicklungsaufwand sehr hoch, da keines der evaluierten Tools die Möglichkeit bietet nur das Format bzw. die Sprache selbst zu definieren. Neben formaler Definition der Sprache und Entwicklung eines Lexers und Parsers müsste also die gesamte restliche Infrastruktur entwickelt werden. Dazu zählt die Traversierungslogik, das Reporting und weitere Komponenten. Zweitens würden auch Eigenentwicklungen auf bekannte Modellierungssprachen setzen und könnten das Rad sozusagen nicht neu erfinden. Der Zugewinn an Funktionalität, den Entwicklungsaufwänden gegenübergestellt, wäre sehr klein.\\
+
+\subsubsection{Entscheidende Eigenschaften von Graphwalker}
+Graphwalker funktioniert sehr gut als flexibles Grundgerüst für das modellbasierte Testing und kam in der Fallstudie aufgrund der folgenden Eigenschaften zum Einsatz:
+
+\paragraph{Simples aber mächtiges Modellformat} Wie der Name schon sagt, basiert das Modellformat von Graphwalker auf Graphen (siehe Abschnitt \ref{sec:graphwalker} zu Graphwalker). Es hat sich gezeigt, dass diese Graphen als Modellierungssprache ausreichend ausdrucksstark ist um auch komplexe Systeme zu modellieren. Notationen wie das UML Testing Profile (siehe Abschnitt \ref{sec:utp}) bieten eine Vielzahl von verschiedenen Elementen welche die Modelle mächtiger aber gleichzeitig überladen wirken lassen. Die Semantik der Modelle ist ohne Einschulung kaum greifbar.\\
+Graphwalker bietet aber trotzdem genug Funktionalität um die Modelle handhabbar zu machen. Einerseits geht es um die Modularisierung des SUT. Bestimmte Funktionalitäten sind an verschiedenen Stellen im System immer wieder gefordert. Genau wie der zugrundeliegende Quellcode für diese Zwecke modularisiert worden ist, so sollen auch das Modell des SUT modularisierbar sein. Graphwalker erlaubt daher die Aufteilung des Modells in mehrere Teile und die Markierung eines Knoten als \textit{Sprungknoten}. Von diesen Knoten aus kann bei der Traversierung in eine andere Modell-File gesprungen werden. Dort wird die Traversierung fortgesetzt und, falls vorhanden, über einen weiteren \textit{Sprungknoten} zurückgekehrt.
+
+\paragraph{Transparente Vorgehensweise} Code-Generierung, Traversierung
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Möglichkeiten zur Modellierung - Arten von fachlichen Modellen}
@@ -143,12 +148,8 @@ Wie auch im Abschnitt \ref{sec:notations} theoretisch beschrieben und im Diskuss
   \label{fig:modell_abstract}
 \end{figure}
 
-
-
-
-
-
-
+\section{Benefits}
+...wie Robert Binder\cite{binder_model-based_2014} schon meinte: BDD decken oft nur kleine Teile des happy-path ab und geraten in Vergessenheit. Die Kombination mit MBT löst das Problem `nd, as a BDD specification and its associated test code base grows over time, work to maintain it either crowds out new development and testing or, typically, is simply ignored.'
 
 
 
