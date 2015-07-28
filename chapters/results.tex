@@ -115,11 +115,21 @@ Graphwalker funktioniert sehr gut als flexibles Grundgerüst für das modellbasi
 \paragraph{Simples aber mächtiges Modellformat} Wie der Name schon sagt, basiert das Modellformat von Graphwalker auf Graphen (siehe Abschnitt \ref{sec:graphwalker} zu Graphwalker). Es hat sich gezeigt, dass diese Graphen als Modellierungssprache ausreichend ausdrucksstark ist um auch komplexe Systeme zu modellieren. Notationen wie das UML Testing Profile (siehe Abschnitt \ref{sec:utp}) bieten eine Vielzahl von verschiedenen Elementen welche die Modelle mächtiger aber gleichzeitig überladen wirken lassen. Die Semantik der Modelle ist ohne Einschulung kaum greifbar.\\
 Graphwalker bietet aber trotzdem genug Funktionalität um die Modelle handhabbar zu machen. Einerseits geht es um die Modularisierung des SUT. Bestimmte Funktionalitäten sind an verschiedenen Stellen im System immer wieder gefordert. Genau wie der zugrundeliegende Quellcode für diese Zwecke modularisiert worden ist, so sollen auch das Modell des SUT modularisierbar sein. Graphwalker erlaubt daher die Aufteilung des Modells in mehrere Teile und die Markierung eines Knoten als \textit{Sprungknoten}. Von diesen Knoten aus kann bei der Traversierung in eine andere Modell-File gesprungen werden. Dort wird die Traversierung fortgesetzt und, falls vorhanden, über einen weiteren \textit{Sprungknoten} zurückgekehrt.
 
-\paragraph{Transparente Vorgehensweise} Code-Generierung, Traversierung
+\paragraph{Transparente Vorgehensweise} Das einfache Modellformat und die schnörkellose Präsentation des Tools, kombiniert mit der Quelloffenheit und guter Dokumentation, lassen Graphwalker sehr transparent wirken. Nach der Modellierung können Fachbereiche als auch Entwickler schnell begreifen wie die Traversierung gemacht wird und welche Aktionen am SUT ausgeführt werden. Diese genaue Steuerung der Tests ist wichtig um überhaupt sinnvolle Testsuiten designen zu können. Bei der Modellierung des SUT müssen nuancierte Details unterscheidbar sein. Soll heißen, dass technisch versierte als auch weniger involvierte Stakeholder verstehen was modelliert wurde. Es sei auf den Abschnitt \ref{sec:results_modellierung} hingewiesen, wo die Möglichkeiten zur Modellierung im Detail beschrieben werden.
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Möglichkeiten zur Modellierung - Arten von fachlichen Modellen}
+\label{sec:results_modellierung}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Nun werden die Möglichkeiten zur Modellierung eines mehrteiligen Workflows aus Kundensicht geschildert. Als laufendes Beispiel dient eine Internet-Anwendung aus der Fallstudie Raiffeisen\footnote{Alles Screenshots wurden am 28.07.2015 auf der öffentlich zugänglichen Seite \url{https://www.raiffeisen.ch/content/www/rch/de/privatkunden/hypotheken/wohneigentum-kaufen/wieviel-eigenheim-kann-ich-mir-leisten.html} gemacht.}. Dabei handelt es sich um einen Hypothekarrechner. Basierend auf mehreren Parametern (Kaufpreis, Eigenkapital, Jahreseinkommen) wird kalkuliert ob eine Hypothek vergeben werden kann oder nicht (Tragbarkeit). Bei gegebener Tragbarkeit folgen vier Fragen die auf die Risikobereitschaft und das erwartete Zinsniveau abzielen. Sie haben das Ziel eine passende Kombination von Produkten vorzuschlagen und abschließend einen Beratungstermin bei einer regionalen Niederlassung zu vereinbaren.
+
+
+
+
+
 \paragraph{Workflow-Modellierung}
 
 \begin{figure}[h] 
