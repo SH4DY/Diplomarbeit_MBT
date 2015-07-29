@@ -196,6 +196,7 @@ Modelle in Graphwalker sind gerichtete Graphen. Knoten repräsentieren einen Zus
 \end{itemize} 
 
 \paragraph{Modularisierung der Modelle}
+\label{sec:graphwalker_modularisierung}
 Das SUT kann in Graphwalker mittels mehreren Modellen abgebildet werden. Dies hat mehrere Vorteile. Einerseits vereinfacht die Modularisierung eines großen Modells die Les- und Wartbarkeit. Andererseits wird dadurch die Wiederverwendbarkeit von Teilen der Funktionalität ermöglicht. Ein klassisches Beispiel ist ein Login-Workflow. Dieser kann oft zu mehreren Zeitpunkten bzw. an mehreren Stellen im SUT erfolgen. Statt das Modell aufzublähen oder mit zahlreichen Beziehungen schlechter lesbar zu machen, kann auf eine andere GraphML-Modelldatei verwiesen werden.\\
 Graphwalker ermöglicht dies mit Sprüngen in andere Modelle. Wenn es bei der Traversierung auf einen Knoten mit dem Schlüsselwort \textit{SHARED} und einem Bezeichner stößt, kann ein Sprung in ein anderes Modell erfolgen, das einen Knoten mit dem selben Bezeichner hat (siehe Abbildung \ref{fig:gw_multiple_models}). Wenn nun mehrere Kanten zur weiteren Traversierung in Fragen kommen, entscheidet der Zufall ob in das andere Modell gesprungen wird.\\
 Weiters ist zu erwähnen, dass die Modelle nicht einfach nur verflacht (\textit{flattening}) werden. Das bedeutet, dass die Modelle unabhängige Gültigkeitsbereiche haben. Die Traversierung erfolgt also in einem eigenen Kontext.

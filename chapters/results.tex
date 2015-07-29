@@ -124,30 +124,34 @@ Graphwalker bietet aber trotzdem genug Funktionalität um die Modelle handhabbar
 \subsubsection{Möglichkeiten zur Modellierung - Arten von fachlichen Modellen}
 \label{sec:results_modellierung}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Nun werden die Möglichkeiten zur Modellierung eines mehrteiligen Workflows aus Kundensicht geschildert. Als laufendes Beispiel dient eine Internet-Anwendung aus der Fallstudie Raiffeisen\footnote{Alles Screenshots wurden am 28.07.2015 auf der öffentlich zugänglichen Seite \url{https://www.raiffeisen.ch/content/www/rch/de/privatkunden/hypotheken/wohneigentum-kaufen/wieviel-eigenheim-kann-ich-mir-leisten.html} gemacht.}. Dabei handelt es sich um einen Hypothekarrechner. Basierend auf mehreren Parametern (Kaufpreis, Eigenkapital, Jahreseinkommen) wird kalkuliert ob eine Hypothek vergeben werden kann oder nicht (Tragbarkeit). Bei gegebener Tragbarkeit folgen vier Fragen die auf die Risikobereitschaft und das erwartete Zinsniveau abzielen. Sie haben das Ziel eine passende Kombination von Produkten vorzuschlagen und abschließend einen Beratungstermin bei einer regionalen Niederlassung zu vereinbaren.
+Nun werden die Möglichkeiten zur Modellierung eines mehrteiligen Workflows aus Kundensicht geschildert. Als laufendes Beispiel dient eine Internet-Anwendung aus der Fallstudie Raiffeisen\footnote{Alle Screenshots wurden am 28.07.2015 auf der öffentlich zugänglichen Seite \url{https://www.raiffeisen.ch/content/www/rch/de/privatkunden/hypotheken/wohneigentum-kaufen/wieviel-eigenheim-kann-ich-mir-leisten.html} gemacht.}. Dabei handelt es sich um einen Hypothekarrechner.\\
+Basierend auf mehreren Parametern (Kaufpreis, Eigenkapital, Jahreseinkommen) wird kalkuliert ob eine Hypothek vergeben werden kann oder nicht (Tragbarkeit). Bei gegebener Tragbarkeit folgen vier Fragen die auf die Risikobereitschaft des Kunden und das erwartete Zinsniveau abzielen. Sie haben das Ziel eine passende Kombination von Produkten vorzuschlagen und abschließend einen Beratungstermin bei einer regionalen Niederlassung zu vereinbaren.\\
+Dieser Ablauf ist starr. Es macht also keinen Unterschied wie der Benutzer die vier Fragen beantwortet, die Sequenz bleibt immer die selbe. Zur besseren Übersicht wird bei den folgenden Modellen nur die Vorwärts-Richtung modelliert. Um das Verhalten beim Klick auf die Zurück-Schaltfläche zu modellieren, müssten einfache Kanten in die andere Richtung eingefügt werden.\\
+Die Graphwalker Kommandozeilenapplikation generiert aus jedem Modell ein Java-Interface und aus jeder Kante sowie jedem Knoten eine Methode. Haben aber mehrere Knoten oder Kanten im Modell denselben Bezeichner, so wird im Interface nur eine entsprechende Methode generiert. Der Testentwickler muss bei der Modellierung also entscheiden ob sich ein Knoten oder eine Kante so unterscheiden, dass verschiedene Code-Bausteine ausgeführt werden müssen. Wenn ja, müssen die betroffenen Elemente im Modell unterschiedliche Bezeichner erhalten.\\
+Die gerade beschriebene Thematik ist eine der Hauptpraktiken um die Komplexität eines Modells zu verändern, denn eine niedrigere Anzahl an eindeutig identifizierbaren Elementen mindert die Anzahl an zu wartende Codezeilen. Die zweite Möglichkeit ein Modell übersichtlicher und gleichzeitig wiederverwendbar zu machen ist die Aufteilung in mehrere Modelle (also mehrere GraphML-Dateien) und die Definition von Sprungpunkten (diese Funktionsweise wird in Abschnitt \ref{sec:graphwalker_modularisierung} beschrieben).\\
+Im Folgenden wird der oben beschriebene Ablauf (das SUT) auf zwei verschiedene Arten modelliert und die Vor- und Nachteile der jeweiligen Methode erläutert.
 
 
+\paragraph{Workflow-Modellierung. Knoten: 10, Kanten: 17}
+Diese Art der Modellierung ergibt das kleinste (Zahl der Knoten und Kanten in Summe) Modell. Das SUT wird gewissermaßen als Blackbox gesehen, wobei aus Sicht der Modellierung nicht klar ist welche Auswirkungen die Eingaben haben. An diesem Beispiel startet man also auf dem Knoten \texttt{v\_OnPage}, welcher die Startseite des SUT darstellt. Es werden die 3 numerischen Eingaben gemacht (dies passiert in der Kante \texttt{e\_EnterCredibility}). Nun folgt noch ein weiterer Klick in der Kante \texttt{e\_ClickStartProposal}. Hier könnte das Modell nun verzweigen da die erste der vier Fragen mit drei möglichen Antworten folgt. In der Workflow-Modellierung werden die drei Antwortmöglichkeiten durch die Kanten \texttt{e\_Planbare\_unwichtig}, \texttt{e\_Planbare\_wichtig} und \texttt{e\_Planbare\_sehrWichtig} dargestellt. In den entsprechenden \textbf{drei} Methoden dieser Kanten befinden sich die Aufrufe an Methoden die die Schaltflächen anklicken. Alle Kanten führen aber wieder zu einem einzigen Knoten der die nächste der vier Fragen darstellt.\\
+In diesem Beispiel erfolgt eine entscheidende Ergebnisanzeige im letzten Arbeitsschritt (\texttt{e\_finalProposal}). Dieses Ergebnis ist aber sehr wohl abhängig davon auf welchem Pfad das SUT durchlaufen wurde. Aus dem Modell ist dieser Pfad aber nicht ersichtlich. Die Komplexität dieses Rekonstruktion des Pfades befindet sich vollständig im Code und ist im Modell unsichtbar.\\
+Aus Sicht der Wartungsfreundlichkeit kann keine generelle Aussage getroffen werden. Da das Modell aus wenigen Elementen besteht hält sich der Aufwand dort in Grenzen. Wieviel Aufwand in die Ändernugen im Code investiert werden müssen ist davon abhängig wie die Rekonstruktion gelöst wurde und welche Struktur das SUT aufweist. Trotzdem ist diese Vorgehensweise eine valide Option, da die Komplexität des Modell sehr niedrig gehalten wird und dies die erhöhte Komplexität im Code rechtfertigen kann.
 
-
-
-\paragraph{Workflow-Modellierung}
-
-\begin{figure}[h] 
+\begin{figure} 
   \centering
-     \includegraphics[width=1.0\textwidth]{figures/modell_abstract.png}
+     \includegraphics[width=0.45\textwidth]{figures/modell_abstract.png}
   \caption{}
   \label{fig:modell_abstract}
 \end{figure}
 
-
-\paragraph{Logik-Modellierung und Verfeinerung}
-
+\paragraph{Logik-Modellierung und Verfeinerung. Knoten: 72/51, Kanten: 72//66}
+Bei der Logik-Modellierung wird das System nicht mehr als reine Blackbox gesehen. Das Modell soll weiterhin eine Abstraktion des SUT sein aber der Detailgrad erhöht sich. Dies hat zur Folge, dass zwar mehr Knoten und Kanten erstellt werden müssen, die Komplexität im Code sich aber verringert. Erreicht wird dies durch die explizite Modellierung von Kanten und Knoten mit identischen Bezeichnern. In diesem Beispiel, wo nur der Endzustand \texttt{v\_finalProposal} einer detaillierten Prüfung unterzogen wird, erhalten nur die Knoten auf unterster Ebene eindeutige Bezeichner. Graphwalker generiert nun zwar 36 Methoden(entsprechend den 36 Knoten mit den Bezeichnern \texttt{v\_finalProposalXX}, die dem Knoten \texttt{v\_finalProposal} aus dem Workflow-Modell entsprechen, aber diese enthalten keinerlei Logik um den Pfad zu reproduzieren. Durch die explizite Modellierung aller möglichen Pfad ist implizit gegeben wie das SUT traversiert wurde und welche Prüflogik angewandt werden muss.
 
 \begin{figure}[h] 
   \centering
      \includegraphics[width=1.5\textwidth, angle=90]{figures/modell_komplex.png}
   \caption{}
-  \label{fig:modell_abstract}
+  \label{fig:modell_komplex}
 \end{figure}
 
 
@@ -155,7 +159,7 @@ Nun werden die Möglichkeiten zur Modellierung eines mehrteiligen Workflows aus 
   \centering
      \includegraphics[width=1.5\textwidth, angle=90]{figures/modell_logisch.png}
   \caption{}
-  \label{fig:modell_abstract}
+  \label{fig:modell_logisch}
 \end{figure}
 
 \section{Benefits}
