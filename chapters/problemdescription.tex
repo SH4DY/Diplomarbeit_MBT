@@ -169,11 +169,25 @@ Graphwalker weicht ab vom herkömmlichen Testfall-Workflow. Das SUT wird in eine
 `We do not want to walk the same path every time we execute a test. We want variation, spiced with randomness. This will create a better `test coverage' of the system under test.'\cite{_graphwalker_2015}
 \end{quote}
 
-Beim Einsatz in den agilen Entwicklungsteams von Spotify hat sich gezeigt, dass diese Testdesign-Philosophie sehr gut in die kurzen Entwicklungsiterationen passt. Weiters eignen sich die simplen FSM-Diagramme sehr gut um Feedback von Stakeholdern einzuholen, weil sie auch ohne technischen Hintergrund verständlich sind.
+Beim Einsatz in den agilen Entwicklungsteams von Spotify hat sich gezeigt, dass diese Testdesign-Philosophie sehr gut zu den kurzen Entwicklungsiterationen passt. Weiters eignen sich die simplen FSM-Diagramme sehr gut um Feedback von Stakeholdern einzuholen, weil sie auch ohne technischen Hintergrund verständlich sind.
+
+\subsubsection{Funktionsweise von Graphwalker}
+\label{sec:graphwalker_funktionsweise}
+Graphwalker bietet eine schlanke Grundlage für das modellbasierte Testen von Software. Das Framework besteht aus mehreren Komponenten, wobei der durchschnittliche Benutzer (also der Testingenieur) nur mit sehr wenigen in Berührung kommt. Die Vorgehensweise um eine Testsuite mit Graphwalker zu erzeugen ist die folgende:
+
+\begin{enumerate}
+\item Modellierung des SUT oder dessen Komponenten. Geeignet für die Modellierung sind alle Tools die das offene Format GraphML als Exportoption anbieten. Die Projektbetreiber empfehlen yEd.
+\item Verifikation des Modells durch die Kommandozeilenapplikation \textit{Graphwaler-CLI}. Das Modell kann der Kommandozeilenapplikation von Graphwalker zur Verifikation unterzogen werden. Dabei wird sichergestellt, dass Format und Syntax ordnunsgemäß sind.
+\item Erzeugung der Java-Interfaces durch die Kommandozeilenapplikation. Das Modell wird geparsed und für jede Modell-Datei wird ein Java-Interface mit Methoden für alle eindeutig identifizierbaren Kanten und Knoten erzeugt.
+\item Manuelles Implementieren von Klassen die erzeugte Interfaces realisieren. Der Testentwickler erzeugt nun in der Entwicklungsumgebung seiner Wahl Klassen die die generierten Interfaces umsetzen.
+\item Befüllen der Methoden mit Adapter-Code und Assertions. Die Methode die Knoten und Kanten repräsentieren werden nun mit Adapter-Code befüllt der mit dem SUT direkt kommuniziert.
+\item Konfiguration der gewünschten Traversierungsstrategie und Starten von JUnit-Testfällen. Der Testentwickler konfiguriert wie Graphwalker das SUT traversieren soll (siehe Abschnitt \ref{sec:graphwalker_traversierung}) und startet die Traversierung die auf JUnit-Testläufen beruht.
+\end{enumerate}
+
 
 \subsubsection{Modellierungs-Syntax}
-Graphwalkers Modellierungssprache basiert nicht auf UML, weil die Autoren glauben, dass Tester vom großen Funktionsumfang von UML nicht brauchen und abgeschreckt werden. Stattdessen setzt Graphwalker auf GraphML\footnote{Website des GraphML Projekts \url{graphml.graphdrawing.org}}. GraphML setzt nicht auf eine proprietäre Syntax sondern basiert auf herkömmlichen XML-Dateien und wird unter der \textit{Creative Commons Attribution 3.0}-Lizenz entwickelt.\\
-Zur Erstellung von Modellen in GraphML, mit denen Graphwalker umgehen kann, eignet sich jedes Tool, das GraphML-Dateien exportieren kann. Das von den Entwicklern empfohlene Tool ist \textit{yEd}\footnote{Website der Firma yWorks und des yEd Graph Editors \url{http://www.yworks.com/en/products/yfiles/yed/}}, welches völlig kostenlos verwendet werden kann. yEd bietet eine simple Benutzeroberfläche und für die Erstellung von Modellen für Graphwalker ist nahezu kein Einarbeitungsaufwand vorhanden.\\
+Graphwalkers Modellierungssprache basiert nicht auf UML, weil die Autoren glauben, dass Tester den breiten Funktionsumfang von UML nicht brauchen und abgeschreckt werden. Stattdessen setzt Graphwalker auf GraphML\footnote{Website des GraphML Projekts \url{graphml.graphdrawing.org}}. GraphML basiert nicht auf einer proprietären Syntax sondern basiert auf herkömmlichen XML-Dateien und wird unter der \textit{Creative Commons Attribution 3.0}-Lizenz entwickelt.\\
+Zur Erstellung von Modellen in GraphML, mit denen Graphwalker umgehen kann, eignet sich jedes Tool, das GraphML-Dateien exportieren kann. Das von den Entwicklern empfohlene Tool ist \textit{yEd}\footnote{Website der Firma yWorks und des yEd Graph Editors \url{http://www.yworks.com/en/products/yfiles/yed/}}, welches völlig kostenlos verwendet werden kann. yEd bietet eine simple Benutzeroberfläche und für die Erstellung von Modellen für Graphwalker ist nahezu kein Einarbeitungsaufwand nötig.\\
 Modelle in Graphwalker sind gerichtete Graphen. Knoten repräsentieren einen Zustand in dem sich das SUT befindet. Kanten beschreiben die Aktion die zu einem bestimmten Zustand führen. Graphwalker ignoriert grafische Attribute der Modelle wie Farbe und Liniendicke der Elemente. Üblicherweise finden in den Knoten die Überprüfungen (\textit{Assertions}) und in den Kanten die Befehle (Klicks, Schnittstellenaufrufe...) statt. Kanten müssen in Graphwalker genau eine Richtung haben. Es folgt eine kurze Beschreibung der Möglichkeiten, die die Syntax von Graphwalker bietet um die Traversierung der Graphen, und damit der Testfälle, zu beinflussen.
 
 \paragraph{Start vertex} Wenn ein Startknoten definiert wird, darf es nur genau einen geben. Es ist aber nicht obligatorisch einen Startknoten zu definieren.
@@ -208,7 +222,8 @@ Weiters ist zu erwähnen, dass die Modelle nicht einfach nur verflacht (\textit{
   \label{fig:gw_multiple_models}
 \end{figure}
 
-\paragraph{Traversierung der Modelle}  
+\paragraph{Traversierung der Modelle} 
+\label{sec:graphwalker_traversierung} 
 Wie im ursprünglichsten Sinn des modellbasierten Tests, kennt Graphwalker das Konzept der Testfälle nicht. Das SUT wird als gesamtes oder nur zu Teilen modelliert und das Testing wird durch die Auswahl eines Traversierungsalgorithmus angestoßen. Da die meisten Traversierungsalgorithmen von einer randomisierten Variante abhängen, wird das SUT bei jedem Testdurchlauf leicht unterschiedlich traversiert und damit getestet.\\
 Durch die Modellierung des Modells und der Auswahl sowie Einstellung eines Traversierungsalgorithmus kann also bestimmt werden wie das SUT getestet werden soll. Dabei bietet Graphwalker bereits verschiedenste Algorithmen an, die sich für unterschiedliche Testzwecke eignen. Die meisten dieser Algorithmen basieren auf bekannten Graph-Algorithmen und bieten, durch die quelloffene Entwicklung, volle Transparenz gegenüber dem Tester.
 
@@ -251,9 +266,34 @@ public void runFunctionalTest() {
 }
 \end{verbatim}
 
+\subsection{Einbindung von anderen Tools in Graphwalker Tests}
+Graphwalker bietet mit dem Parsen des Modells, der Generierung der Java-Interfaces und der Traversierung nur das Grundgerüst um modellbasiertes Testen zu ermöglichen. Weil Graphwalkers volle Funktionalität in Java-Code gesteuert wird sind keine, von Herstellerseite wartungspflichtige, Schnittstellen zu anderen Systemen nötig. Das bedeutet, dass Werkzeuge zur Ansteuerung des SUT (Adapter-Code) problemlos verwendet werden können, insofern sie sich über reinen Java-Code ansteuern lassen. Dieser Umstand macht die Verwendung von Graphwalker extrem flexibel und gleichzeitig zukunftssicher, da auch ein Umstieg auf andere Technologien problemlos möglich ist.\\
+Üblicherweise befinden sich in den Knoten (stellen einen Zustand dar) Code der auf das SUT überprüfgend zugreift (\textit{Assertions}). In den Kanten (stellen eine Aktion dar) befindet sich Code der eine Eingabe am SUT macht.\\
+Auf Schnittstellenebene kann beispielsweise SoapUI als Verbindungsstück zum SUT gewählt werden. Die folgende Methode \ref{lst:graph_soap} implementiert das von Graphwalker aus dem Modell erzeugte Interface \texttt{e\_InvalidCredentials}. Die Methode repräsentiert also eine Kante (erkennbar am Präfix \texttt{e}), die Login-Eingaben macht die vom SUT als ungültig erkannt werden sollten. In der Methode wird eine Referenz zur SoapUI Schnittstelle hergestellt. Das dazugehörige SoapUI-Projekt liegt vorbereitet an einem definierten Pfad. Im Code wird außerdem der auszuführende Testfall definiert (hier \texttt{ValidLogin}). Zuletzt wird der SoapUI Testfall angestoßen und der Fehlerbericht gegebenenfalls abgefangen.
 
-\subsection{Einbindung SoapUI/HP UFT}
+\begin{lstlisting}[caption={Methode die ein von Graphwalker erzeugtes Interface implementiert und einen SoapUI-Testfall anstößt.}, label=lst:graph_soap]
+@Override
+public void e_ValidCredentials() {
 
+    //Invoke SoapUI testcase with valid credentials
+    SoapUITestCaseRunner runner = new SoapUITestCaseRunner();
+    runner.setProjectFile(SOAPUI_PROJECT_PATH);
+    runner.setTestSuite("ValidLogin");
+    try {
+        runner.run();
+    } catch (Exception e) {
+        report.addTestCaseWithError(ErrorType.EDGE_ERROR.toString(), System.currentTimeMillis(), "Error while validating credentials", e.getStackTrace().toString());
+    }
+}
+\end{lstlisting}
+
+An dieser Stelle kann also eine Vielzahl von Aufrufen passieren:
+
+\begin{itemize}
+\item \textbf{Adapter-Code:} Wie im Codebeispiel \ref{lst:graph_soap} kann ein fremdes Framework angesprochen werden um auf das SUT zuzugreifen. In der Fallstudie (siehe Abschnitt \ref{sec:fallstudie})wurde dabei hauptsächlich SoapUI und RESTassured\footnote{RESTassured Testing Library \url{https://github.com/jayway/rest-assured}} verwendet. Aber auch große kommerzielle Testing-Werkzeuge bieten Java-Schnittstellen an, die an diesen Stellen angesprochen werden können.
+\item \textbf{Reporting und Historisierung:} Genauso können an dieser Stelle Aufrufe zu externen Systemen erfolgen die von den verschiedensten Parteien verwendet werden um den Qualitätsstatus des SUT zu managen (sogenannte \textit{Application Lifecycle} Tools). 
+\item \textbf{Testdatenmanagement:} Auch möglich und oftmalls sinnvoll, ist der Zugriff auf eine Komponente oder ein externes System welches für das Testdatemanagement zuständig ist. Das kann ein Datenbankzugriff sein oder auch eine Anfrage an ein über das Netzwerk oder Internet angeschlossene Testdaten-Tool.
+\end{itemize}
 
 \section{MBT auf Systemtestebene und Test non-stop}
 \subsection{Manuelle Systemtests anhand von Modellen}
