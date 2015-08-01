@@ -54,16 +54,20 @@ Auf Seiten der Entwickler, also im Scrum-Team, gibt es keinen dedizierten Tester
 
 \subsubsection{Erkannte Schwachstellen in der Qualitätssicherung}
 \label{sec:schwachstellen_raiffeisen}
--Viele Beteiligte
--Keine klaren Zuständigkeiten
--Hohe Diversität bei eingesetzten Tools
--Testfalldesign nicht transparent
+Für diese Fallstudie wurden Interviews mit mehreren Entwicklern, Business-Analysten und Testverantwortlichen geführt. Die hier dargestellten Punkte stellen eine Zusammenfassung aller gesammelten Meinungen dar.\\
 
+\begin{itemize}
+\item An den Softwareprojekten sind verschiedenste Teams beteiligt. Dazu zählen die langzeitigen Projektmitglieder aus Entwicklungsteam, Business-Analysten und Fachbereich aber auch punktuell beteiligte Teams. Außerdem gibt es Teams die als Dienstleister am Projekt beteiligt sind und beispielsweise Lasttests durchführen. Zwischen den Teams gibt es definierte Kommunikationspunkte. Beispielsweise stellt das Team der Business-Analysten den Scrum Product Owner. Dieser fungiert also als Schnittstelle und synchronisiert Anliegen beider Parteien. Bei so vielen Beteiligten ist es schwer den Überblick über Zuständigkeitsbereiche und Tätigkeitsfelder zu behalten. Nicht alle Prozesse der miteinander arbeitenden Teams sind dem Gegenüber bekannt. Dies ist meist auch nicht nötig aber in manchen Fällen hilft es die eigenen Anstrengungen besser aufeinander abzustimmen. Während der Fallstudie wäre es beispielsweise von Vorteil gewesen, früher zu wissen, dass der Fachbereich zwingend CoS-Tabellen für ihre Abnahmetests vorschreibt. Es handelt sich hierbei also um Kommunikationshürden die die Gesamtheit des Projekts betreffen und durch optimierten Informationsfluss beseitigt werden müssen.
+\item Die vielen beteiligten Parteien haben allesamt einen Aufgabenbereich. Über die Länge des Projekts gesehen gibt es aber offene Punkte die nicht klar einem Zuständigkeitsbereich zugeordnet sind. Beim Thema Testing führen zum Beispiel Business Analysten manuelle Regressionstest aus und die Fachbereiche führen in niedrigerer Frequenz manuelle Abnahmetests durch. All diese Testing-Anstrengungen sind aber nicht koordiniert mit der Qualitätssicherung die von den Entwicklern vorgenommen wird. Hier bestünde großes Potenzial das Testing effizienter zu machen wenn das Team der Business-Analysten stärker in die Erstellung und Wartung automatisierter Regressionstest miteinbezogen werden könnten.
+\item Die Definition von User-Stories und den dazugehörigen CoS ist geschieht nach keinem durchgängigen Muster. Auch die Anzahl und das design der CoS selbst ist innerhalb des Projekts unterschiedlich. Das fachliche Testfalldesign ist also nicht transparent. Unsystematische Tests können zulassen, dass gravierende Fehler im SUT nicht aufgedeckt werden.
+\end{itemize}
 
 \subsubsection{Versuch der Qualitätssicherung durch skriptgesteuerte GUI-Tests}
+Vor wenigen Jahren wurde im Projektteam versucht die manuellen Aufwände für das Regressionstesting auf GUI-Ebene zu minimieren. Nach sorgfältiger Evaluation der Tool-Landschaft wurden skriptgesteuerte Tests eingesetzt, die einen Benutzer simulieren. Auf diesem Weg erhoffte man sich manuelle CoS-Tests teilweise zu ersetzen. Nach wenigen Monaten stellte sich aber heraus, dass der Wartungsaufwand für die sich schnell entwickelnden Systeme schlichtweg zu hoch war. Außerdem war der Qualitätsgewinn durch die nächtlich laufenden Testfälle gering weil sich das Werkzeug nur unzureichend in den Entwicklungsprozess integrieren ließ und die Rate der falschen Positivfälle sehr hoch war.\\
+Bei diesem Ansatz war es ebenfalls fast unmöglich nicht-technisches Personal sinnvoll einzubinden.
 
 \subsubsection{Aufwendige Wartung von Testdaten}
-Tracing von Testdaten und Testfällen (welcher Bereich der Testdaten wird von einem bestimmten Testfall benutzt?). `If data is tightly coupled with behaviour, this can lead to serious maintenance burden' \cite{baker_model-driven_2005} 
+In der Domäne der Finanzapplikationen ist es üblich, dass eine Vielzahl von Datenfelder spezifiziert werden. Gemäß der Natur der Sache handelt es sich dabei meist um numerische Werte. Um bei solchen Systemen eine zufriedenstellende Abdeckung zu erreichen, ist es nötig mit hoher Kombinatorik zu testen. Dies setzt den Einsatz von umfangreichen Testdatensätzen voraus. Auch das Tracing von Testdaten (welcher Bereich der Testdaten wird von einem bestimmten Testfall benutzt) und Testfällen ist ein Thema. Beim Design einer sinnvollen Teststrategie muss darauf geachtet werden, dass eine Entkopplung von Verhalten und Daten gemacht wird. Wenn Daten nämlich eng an das Verhalten im Testfall gebunden ist, führt dies zu stark erhöhtem Wartungsaufwand\cite{baker_model-driven_2005}. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

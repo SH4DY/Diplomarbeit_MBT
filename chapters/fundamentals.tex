@@ -1,6 +1,5 @@
 \chapter{Grundlagen}
 \label{sec:fundamentals}
-\todo[color=blue!40]{Feedback zu Struktur des Literaturkapitels}\section{Software Qualitätssicherung}
 \subsection{Motivation und Relevanz}
 
 \todo{Evt. einleitende Worte...}
@@ -85,7 +84,7 @@ Aus dem Projektmanagement ist das magische Dreieck bekannt (siehe Abbildung \ref
 
 \begin{figure}[h] 
   \centering
-     \includegraphics[width=0.7\textwidth]{figures/magic_triangle.png}
+     \includegraphics[width=0.55\textwidth]{figures/magic_triangle.png}
   \caption{Dieses Dreieck veranschaulicht wie sich die Qualitätsparameter Qualität, Zeit und Kosten gegenseitig beeinflussen. Die Fläche des Dreiecks bleibt fixiert, während die Seitenlängen verändert werden.}
   \label{fig:magic_triangle}
 \end{figure}
@@ -95,7 +94,16 @@ Aus dem Projektmanagement ist das magische Dreieck bekannt (siehe Abbildung \ref
 
 \subsection{Teststufen}
 Jedes Softwareentwicklungsvorhaben sollte nach einem genau definierten Vorgehensmodell spezifiziert, entwickelt, gewartet und getestet werden\cite{spillner_basiswissen_2012}. Nach wie vor orientieren sich moderne Softwareprojekte am sogenannten V-Modell\cite{boehm_verifying_1984} oder an einer davon abgewandelten Form. Der Grundgedanke hinter dem V-Modell ist es eine Parallelität und Gleichberechtigtkeit zwischen Entwicklungs- und Testtätigkeiten zu schaffen. Dies impliziert unmittelbar, dass die Teststrategie an die Entwicklungsstrategie angepasst werden muss, oder umgekehrt.\\
-\todo{Abbildung zu V-Modell siehe Basiswissen SWT Seite 38} Abbildung XY zeigt ein klassisches V-Modell und dessen Komponenten. Es ist sofort erkenntlich, dass die Aktivitäten auf der linken Seite eng an das Wasserfallmodell angelehnt sind.
+Abbildung \ref{fig:v_modell} zeigt ein klassisches V-Modell und dessen Komponenten. Es ist sofort erkenntlich, dass die Aktivitäten auf der linken Seite eng an das Wasserfallmodell angelehnt sind.
+
+\begin{figure}[h] 
+  \centering
+     \includegraphics[width=1\textwidth]{figures/v_modell.png}
+  \caption{Softwareentwicklung nach dem V-Modell.}
+  \label{fig:v_modell}
+\end{figure}
+
+
 \begin{itemize}
 \item \textbf{Anforderungsdefinition} Die Anforderungen des Kunden werden erhoben und möglichst präzise spezifiziert.
 \item \textbf{Funktionaler Systementwurf} Auch Pflichtenheft genannt. Die Anforderungen werden auf Funktionen und Dialogabläufe des neuen Systems abgebildet\cite{spillner_basiswissen_2012}
@@ -305,7 +313,7 @@ Im letzten Schritt werden die Ergebnisse der Testfälle analysiert. Auch diesen 
 
 \begin{figure}[h] 
   \centering
-     \includegraphics[width=0.7\textwidth]{figures/mbt_vergleich_skript.png}
+     \includegraphics[width=1\textwidth]{figures/mbt_vergleich_skript.png}
   \caption{Einordnung von modellbasiertem Testing. Die meisten Aktivitäten im Test-Lifecycle bleiben erhalten, ändern sich aber in der Ausführung. Die Erstellung einzelner Testfälle (scripting) entfällt.}
   \label{fig:fsm_example}
 \end{figure}
