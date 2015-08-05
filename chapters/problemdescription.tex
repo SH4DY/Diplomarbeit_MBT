@@ -67,7 +67,7 @@ Vor wenigen Jahren wurde im Projektteam versucht die manuellen Aufwände für da
 Bei diesem Ansatz war es ebenfalls fast unmöglich nicht-technisches Personal sinnvoll einzubinden.
 
 \subsubsection{Aufwendige Wartung von Testdaten}
-In der Domäne der Finanzapplikationen ist es üblich, dass eine Vielzahl von Datenfelder spezifiziert werden. Gemäß der Natur der Sache handelt es sich dabei meist um numerische Werte. Um bei solchen Systemen eine zufriedenstellende Abdeckung zu erreichen, ist es nötig mit hoher Kombinatorik zu testen. Dies setzt den Einsatz von umfangreichen Testdatensätzen voraus. Auch das Tracing von Testdaten (welcher Bereich der Testdaten wird von einem bestimmten Testfall benutzt) und Testfällen ist ein Thema. Beim Design einer sinnvollen Teststrategie muss darauf geachtet werden, dass eine Entkopplung von Verhalten und Daten gemacht wird. Wenn Daten nämlich eng an das Verhalten im Testfall gebunden ist, führt dies zu stark erhöhtem Wartungsaufwand\cite{baker_model-driven_2005}. 
+In der Domäne der Finanzapplikationen ist es üblich, dass eine Vielzahl von Datenfelder spezifiziert werden. Für die Branche üblich, handelt es sich dabei oft um numerische Werte. Um bei solchen Systemen eine zufriedenstellende Abdeckung zu erreichen, ist es nötig mit hoher Kombinatorik zu testen. Dies setzt den Einsatz von umfangreichen Testdatensätzen voraus. Auch das Tracing von Testdaten (welcher Bereich der Testdaten wird von einem bestimmten Testfall benutzt) und Testfällen ist ein Thema. Beim Design einer sinnvollen Teststrategie muss darauf geachtet werden, dass eine Entkopplung von Verhalten und Daten gemacht wird. Wenn Daten nämlich eng an das Verhalten im Testfall gebunden ist, führt dies zu stark erhöhtem Wartungsaufwand\cite{baker_model-driven_2005}. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -75,9 +75,12 @@ In der Domäne der Finanzapplikationen ist es üblich, dass eine Vielzahl von Da
 \label{sec:mbt_unit}
 \subsection{ModelJUnit}
 \label{sec:modeljunit}
-ModelJUnit wird von Dr. Mark Utting et al. an der Universität Waikato in Neuseeland entwickelt. Es wird unter der Open Source GNU GPL Lizenz entwickelt und befindet sich zur Zeit in der Version 2.5 \footnote{Homepage des Tools ModelJUnit \url{http://www.cs.waikato.ac.nz/~marku/mbt/modeljunit/}}. Es erlaubt die Modellierung des SUT als endlicher Automat (von hier an FST für \textit{finite state machine}) in Java, Generierung von Testfällen laut spezifiziertem Traversierungsalgorithmus sowie Reporting. Seit Version 2.0 bietet das Tool eine grafische Benutzeroberfläche die die Traversierungskonfiguration ermöglicht und veranschaulicht.\\
-\todo{Hier weitermachen aus Utting Buch}
+ModelJUnit wird von Dr. Mark Utting et al. an der Universität Waikato in Neuseeland entwickelt. Es wird unter der Open Source GNU GPL Lizenz entwickelt und befindet sich zur Zeit in der Version 2.5 \footnote{Homepage des Tools ModelJUnit \url{http://www.cs.waikato.ac.nz/~marku/mbt/modeljunit/}}. Es erlaubt die Modellierung des SUT als endlicher Automat (siehe Abschnitt \ref{sec:fsm} für eine Einführung in endliche Maschinen) in Java, Generierung von Testfällen laut spezifiziertem Traversierungsalgorithmus sowie Reporting. Seit Version 2.0 bietet das Tool eine grafische Benutzeroberfläche die die Traversierungskonfiguration ermöglicht und veranschaulicht.\\
+ModelJUnit hat Ähnlichkeiten zu Graphwalker (siehe Abschnitt \ref{sec:graphwalker}) indem es eine Schicht zur Modellierung anbietet und die Traversierung des SUT übernimmt, aber keine Aussage darüber trifft wie das SUT angesprochen werden soll. Der Adapter-Code wird also in annotierte Methoden eingefügt. ModelJUnit übernimmt die Traversierung. Das Modell, welches keine grafische Notation bietet, besteht aus Zuständen und Übergängen. Dies entspricht einem gerichteten Graphen. Die Zustände und Knoten haben Namen. Außerdem können auf den Kanten sogenannte \textit{guards} definiert werden. Dies sind Boolean-Methoden die bestimmen ob zu einem gegebenen Zeitpunkt diese Kante zur Traversierung verfügbar ist oder nicht.
+
+\todo{Aus Utting und ModelJUnit Seite weitermachen}
 \subsubsection{Traversierung}
+
 \paragraph{Random Walk}
 \paragraph{Greedy Walk}
 \paragraph{Lookahead Walk}

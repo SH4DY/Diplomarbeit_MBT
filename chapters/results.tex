@@ -91,7 +91,7 @@ Bei der Einführung dieser Methode sollte in kurzer Zeit eine komplette Umstellu
 Gleichzeitig bleiben gewisse Probleme bestehen: Obwohl CoS nun direkt an automatisierte Regressionstest gekoppelt sind, ist nicht garantiert, dass bei Neueinführung eines Features, welches eine CoS betrifft, sofort Alarm geschlagen wird. Wünschenswerterweise schlägt der dazugehörige Testfall zwar fehl aber trotz aller Genauigkeit prüfen CoS nur sehr punktuell und wenige Konstellationen. Unter anderem dieses Problem adressiert die komibinierte Nutzung von Behavior Driven Testing und Model Based Testing (siehe Abschnitt \ref{sec:mbt_results}).
 
 \subsection{Testing API}
-\label{sec:testing_api}
+\label{sec:testing_api} \todo{TESTING API BESCHREIBEN WENN MEHR DETAILS VON RAIFFEISEN}
 
 \subsection{Modellbasierte Tests mit Graphwalker}
 \label{sec:mbt_results}
@@ -165,7 +165,7 @@ Durch eine verstärkte Whitebox-Ansicht muss der Modellierer also versuchen die 
   \label{fig:modell_logisch}
 \end{figure}
 
-\paragraph{Graphwalker Tests auf niedrigeren Ebenen} Auch möglich, Logik (Kunde laden, Assertion blabla)
+\paragraph{Modellbasierte Tests auf niedrigeren Ebenen} Dieses Beispiel zeigte die Mächtigkeit von Graphwalker in Verbindung mit einem Framework für das GUI-Testing. Statt eines GUI-Testing-Frameworks können aber beliebige andere Frameworks für den Adapter-Code verwendet werden. Damit wird das Testing auch auf Schnittstellen- und Unit-Testebene möglich. In Verbindung mit einer sinnvollen Testing API zum SUT, können aber genauso Tests der Businesslogik modelliert werden. Also eine Art Unit-Test aus Sicht des Fachbereichs in Form eines Modells. Denkbar sind Abläufe wie das Laden eines Kunden, die Modifikation seiner Stammdaten und die abschließende Überprüfung ob diese Modifikationen fehlerfrei abgelegt wurden. Die Modelle lassen eine unbegrenzte Komplexität zu. Seltene, lange aber geschäftskritische Workflows lassen sich damit sehr gut darstellen.
 
 \section{Zugewinne durch die Kombination von BDD und MBT}
 Gerade für die agile Entwicklung ist die Kombination von BDD und MBT wie maßgeschneidert. Agile Entwicklung bedeutet unter anderem viel Kontakt mit dem Kunden und damit auch die Notwendigkeit der Auseinandersetzung mit Spezifikationen und Feedback. CoS-artige Definitionen kommen in vielen Softwareprojekten bereits zum Einsatz und sind daher sowohl dem fachlichen als auch dem technischen Personal bekannt. Der Schritt von CoS-Tabellen zu BDD-Testfällen, egal welches Framework dazu benutzt wird, ist schmerzlos. Wenn der Einsatz von BDD-Tests sorgfältig und gut koordiniert umgesetzt wird, ist die damit einhergehende Versionierung der CoS ein wertvoller Nebeneffekt der die Organisation des Softwareprojekts vereinfacht.\\
