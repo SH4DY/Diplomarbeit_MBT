@@ -63,6 +63,7 @@ Für diese Fallstudie wurden Interviews mit mehreren Entwicklern, Business-Analy
 \end{itemize}
 
 \subsubsection{Versuch der Qualitätssicherung durch skriptgesteuerte GUI-Tests}
+\label{sec:versuch_script}
 Vor wenigen Jahren wurde im Projektteam versucht die manuellen Aufwände für das Regressionstesting auf GUI-Ebene zu minimieren. Nach sorgfältiger Evaluation der Tool-Landschaft wurden skriptgesteuerte Tests eingesetzt, die einen Benutzer simulieren. Auf diesem Weg erhoffte man sich manuelle CoS-Tests teilweise zu ersetzen. Nach wenigen Monaten stellte sich aber heraus, dass der Wartungsaufwand für die sich schnell entwickelnden Systeme schlichtweg zu hoch war. Außerdem war der Qualitätsgewinn durch die nächtlich laufenden Testfälle gering weil sich das Werkzeug nur unzureichend in den Entwicklungsprozess integrieren ließ und die Rate der falschen Positivfälle sehr hoch war.\\
 Bei diesem Ansatz war es ebenfalls fast unmöglich nicht-technisches Personal sinnvoll einzubinden.
 
@@ -76,21 +77,52 @@ In der Domäne der Finanzapplikationen ist es üblich, dass eine Vielzahl von Da
 \subsection{ModelJUnit}
 \label{sec:modeljunit}
 ModelJUnit wird von Dr. Mark Utting et al. an der Universität Waikato in Neuseeland entwickelt. Es wird unter der Open Source GNU GPL Lizenz entwickelt und befindet sich zur Zeit in der Version 2.5 \footnote{Homepage des Tools ModelJUnit \url{http://www.cs.waikato.ac.nz/~marku/mbt/modeljunit/}}. Es erlaubt die Modellierung des SUT als endlicher Automat (siehe Abschnitt \ref{sec:fsm} für eine Einführung in endliche Maschinen) in Java, Generierung von Testfällen laut spezifiziertem Traversierungsalgorithmus sowie Reporting. Seit Version 2.0 bietet das Tool eine grafische Benutzeroberfläche die die Traversierungskonfiguration ermöglicht und veranschaulicht.\\
-ModelJUnit hat Ähnlichkeiten zu Graphwalker (siehe Abschnitt \ref{sec:graphwalker}) indem es eine Schicht zur Modellierung anbietet und die Traversierung des SUT übernimmt, aber keine Aussage darüber trifft wie das SUT angesprochen werden soll. Der Adapter-Code wird also in annotierte Methoden eingefügt. ModelJUnit übernimmt die Traversierung. Das Modell, welches keine grafische Notation bietet, besteht aus Zuständen und Übergängen. Dies entspricht einem gerichteten Graphen. Die Zustände und Knoten haben Namen. Außerdem können auf den Kanten sogenannte \textit{guards} definiert werden. Dies sind Boolean-Methoden die bestimmen ob zu einem gegebenen Zeitpunkt diese Kante zur Traversierung verfügbar ist oder nicht.
+ModelJUnit hat Ähnlichkeiten zu Graphwalker (siehe Abschnitt \ref{sec:graphwalker}) indem es eine Schicht zur Modellierung anbietet und die Traversierung des SUT übernimmt, aber keine Aussage darüber trifft wie das SUT angesprochen werden soll. Der Adapter-Code wird also in annotierte Methoden eingefügt. ModelJUnit übernimmt die Traversierung. Das Modell, welches keine grafische Notation bietet, besteht aus Zuständen und Übergängen. Dies entspricht einem gerichteten Graphen. Die Zustände und Knoten haben Bezeichner. Außerdem können auf den Kanten sogenannte \textit{guards} definiert werden. Dies sind Boolean-Methoden die bestimmen ob zu einem gegebenen Zeitpunkt diese Kante zur Traversierung verfügbar ist oder nicht. Der Testentwickler hat fast unbegrenzte Möglichkeiten Guard-Bedingungen zu überprüfen, da es sich um herkömmlichen Java-Code handelt.
 
-\todo{Aus Utting und ModelJUnit Seite weitermachen}
+\subsubsection{Modellierung der States}
+Jedes Modell wird als Java-Klasse dargestellt. Eine gültige ModelJUnit Modell-Klasse implementiert mindestens die folgenden vier Zustände. 
+
+\begin{itemize}
+\item \texttt{Object getState()} Diese Methode gibt den momentanten Zustand des SUT, so wie er im Modell repräsentiert wird, zurück. Im einfachsten Fall ist dies eine Abstraktion als String, es können aber beliebige Objekte zurückgegeben werden.
+\item \texttt{void reset(boolean)} Setzt die Traversierung und die Zustände des Modells auf den Startzustand zurück.
+\item \texttt{@Action void name()} Mehrere Methoden werden mit dieser Annotation gekennzeichnet. Sie stellen die Zustandsübergänge dar und in ihnen wird das SUT angesprochen.
+\item \texttt{boolean nameGuard()} Jede Methode die mit \texttt{@Action} annotiert ist, kann optional einen Guard haben. Per Definition muss diese Methode den selben Namen wie die dazugehörige Action haben, aber mit dem Postfix \texttt{Guard} versehen sein.
+\end{itemize}
+
+Die Zustände in denen sich das SUT während einem ModelJUnit Test befindet werden als Enum definiert. Im Konstruktor der Klasse wird der Startzustand des Modells gesetzt. In jeder Action-Methode wird typischerweise ein kurzer Aufruf an das SUT gemacht. Die Aneinanderkettung dieser kurzen Unit-Test-artigen Aufrufe während der Traversierung, resultiert in komplexen Testfällen.\\
+Abbildung \ref{fig:modeljunit} zeigt wie ein in Java-Code geschriebenes Modell grafisch visualisiert werden könnte.
+
+\begin{figure}[h] 
+  \centering
+     \includegraphics[width=0.9\textwidth]{figures/modelljunit_modell.png}
+  \caption{Ein beispielhaftes syntaktisch korrektes Modell wie es von ModelJUnit eingelesen wird. ModelJUnit selbst besitzt keinerlei grafische Notation und erzeugt auch kein grafisches Modell. Dies ist eine Nachbildung zur besseren Visualisierung.}
+  \label{fig:modeljunit}
+\end{figure}
+
 \subsubsection{Traversierung}
+Die Definition einzelner Testfälle, also die Aneinanderreihung von Schritten, durch den Testentwickler entfällt. Nach der Modellierung muss nur die gewünscht Traversierungsstrategie gewählt werden. ModelJUnit bietet einige der bekanntesten Traversierungsalgorithmen. Für alle Traversierungsalgorithmen gelten die Grenzen die durch Guards aufgestellt werden.
 
 \paragraph{Random Walk}
-\paragraph{Greedy Walk}
-\paragraph{Lookahead Walk}
-\paragraph{Quick Walk}
+Das Modell wird zufällig traversiert bis ein Zielknoten erreicht wurde oder eine zeitliche Grenze überschritten wird.
 
+\paragraph{Greedy Walk}
+Die Greedy Walk Strategie ist eine Erweiterung des Random Walks. Sie bevorzugt Zustandsübergänge die noch nicht traversiert wurden. Sobald alle Zustandsübergänge mindestens einmal traversiert wurden, verhält sich Greedy Walk wie Random Walk.
+
+\paragraph{Lookahead Walk}
+Der Lookahead-Walk-Algorithmus schaut vor jedem Schritt \textit{n} Ebenen voraus. Drei Kriterien werden dabei ausgewertet: \textit{NEWTRANS}, \textit{NEWACTION} und \textit{DEPTH}. Das Erreichen eines noch unbekannten Zustandes hat die höchste Priorität wobei ein kurzer Pfad vorzuziehen ist. Außerdem verlieren öfter traversierte Pfade an Attraktivität.
+
+\paragraph{Quick Walk}
+Traversiert den Graphen ähnlich wie Random Walk, speichert aber in einem Cache die entdeckten aber nicht traversierten Pfade. Außerdem speichert der Algorithmus den exakten Pfad zu jedem nicht besuchten Knoten und dessen Pfade. Ein Cache-Limit muss angegeben werden um bei sehr großen Modellen vor Überlauf geschützt zu sein.
+
+\subsubsection{Einsatz von ModelJUnit}
+ModelJUnit nutzt die Ausdrucksstärke und Flexibilität von Java. Es können alle Kerneigenschaften der Sprache für die Modellierung verwendet werden. Java ist vielen Entwicklern bereits bekannt. Die Entscheidung ModelJUnit zu verwenden zieht somit keine langwierigen Schulungen nach sich. Außerdem integriert sich ModelJUnit sehr einfach in bestehende Strukturen, wie zum Beispiel die Continiuous Integration Umgebung.\\
+Im Gegensatz zu sehr formalen Modellierungssprachen verbergen sich Guard- und Übergangsbedingungen innerhalb von Methoden. Sie werden nicht in ausdrucksstarken kurzen Formeln festgehalten. Weiters kann sich viel Komplexität in diesen Methoden verstecken und vom Umstand ablenken, dass das SUT falsch oder zu abstrakt modelliert wurde. Diese Eigenschaft haben alle MBT-Tools die Modelle aus der Familie der endlichen Automaten verwenden.
 
 \section{MBT auf Integrationstestebene}
 \subsection{Testing von Serviceorientierten Architekturen mittels UML Testing Profile}
 \label{sec:utp}
 \subsubsection{UML Testing Profile BASICS}
+\todo{UTP Basics erklären}
 
 \subsubsection{SOA und Web-Services}
 Von Serviceorientierten Architekturen (von hier an \textit{SOA}) verspricht man sich schnelle und einfache Integration innerhalb als auch über Unternehmensgrenzen hinweg. Die Möglichkeit eine Applikation mittels Komposition, maßgeschneidert zu den gegebenen Requirements, zusammenzustellen, ist traditionellen Software-Engineering Methoden oft voraus. Gleichzeitig stellen verschachtelte und unabhängige Strukturen den Tester vor neue Herausforderungen. \\

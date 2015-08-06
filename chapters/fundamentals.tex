@@ -185,7 +185,15 @@ Unit-Testing, als entwicklungsnächste Teststufe, hat im agilen Umfeld eine noch
 
 \subparagraph{Modellbasierte Ansätze um Umfänge von Unit-Tests zu verkleinern}
 Im strengen Sinne des Unit-Testings müsste, im Umfeld der objektorientierten Programmierung, jede \textit{public} und \textit{private} Methode abgedeckt werden. Wenn private Methoden nur durch die Aufrufe aus den öffentlichen Methoden getestet werden, kann sich innerhalb der privaten Methoden immer noch fehlerhafter Code befinden der zufälligerweise nicht ausgeführt wird. Andererseits kann es in großen, sich schnell entwickelnden Softwareprojekten einfach nicht praktikabel sein so viele Einzeltests zu warten. Oft wird dann einfach auf das Testing von privaten Methoden verzichtet, mit dem Vorsatz die öffentlichen damit umso penibler zu testen. Diese Vorgangsweise ist aber sehr subjektiv und unstrukturiert. Ihre Effektivität kann stark schwanken.\\
-Deshalb schlagen Spillner und Linz einen Ansatz vor der dem modellbasierten Testen nahe kommt. Jeder Methodenaufruf geschieht während die Klasse in einem Zustand ist, der durch ihre aktuelle Variablenbelegung definiert ist. Wie eine Methode reagiert wenn sie aufgerufen wird, hängt also von den Parametern und dem Zustand ab. Linz schlägt deshalb \textit{object-state} Testing vor um die Vorgänge in einer Klasse systematisch aber auf kritische Zustände reduziert zu visualisieren und zu testen.\todo{Bild aus TESTING IN SCRUM Seite 52 einfügen}\\
+Deshalb schlagen Spillner und Linz einen Ansatz vor der dem modellbasierten Testen nahe kommt. Jeder Methodenaufruf geschieht während die Klasse in einem Zustand ist, der durch ihre aktuelle Variablenbelegung definiert ist. Wie eine Methode reagiert wenn sie aufgerufen wird, hängt also von den Parametern und dem Zustand ab. Linz schlägt deshalb \textit{object-state} Testing vor um die Vorgänge in einer Klasse systematisch aber auf kritische Zustände reduziert zu visualisieren und zu testen. Diese Modelle, wie Abbildung \ref{fig:mbt_unit} zu sehen, ähneln in ihrer Form bereits sehr denen die später in dieser Arbeit vorgestellt werden.
+
+\begin{figure}[h] 
+  \centering
+     \includegraphics[width=0.6\textwidth]{figures/mbt_unit.png}
+  \caption{Eine von Linz\cite{linz_testing_2014} erdachte Modellierung eines Gerätes, um dieses mittels dem \textit{object-state} Ansatz zu testen. Das Gerät startet in einem unbekannten Zustand und die Methode \texttt{set\_status()} kann diesen Status als einzige beeinflussen.}
+  \label{fig:mbt_unit}
+\end{figure}
+
 Das gewählte Modellformat ist im Grunde ein endlicher Automat (siehe Abschnitt \ref{sec:fsm}) das mindestens folgende Informationen enthält:
 
 \begin{itemize}
@@ -213,7 +221,6 @@ Der \textit{Test-First} Ansatz stammt aus dem Extreme Programming Umfeld\cite{be
 \item \textbf{Manuelles Trial and Error wird überflüssig} Üblicherweise testet ein Entwickler seinen Code kontinuerlich durch manuelle Methodenaufrufe mit passenden Werten. Die Ausgabe wird mithilfe eines Debuggers oder zusätzlichen Print-Methoden vom Entwickler geprüft. Abhängig vom jeweiligen SUT kann dieser Workflow sehr ineffizient sein weil er in der Wartung nicht nachtvollziehbar ist und Code generiert der vor der Auslieferung wieder entfernt werden muss. Im Gegensatz dazu muss der Entwickler beim Test-First Ansatz vor der Programmierung bereits einige sinnvolle und (potenzielllauffähige Testfälle geschrieben haben. Dies hat folgende Vorteile: Erstens entfällt das mitunter mühselige und fehlerbehaftete manuelle Smoke-Testing und zweitens hat sich herausgestellt, dass Programmierer effizienter werden wenn sie angehalten sind sich sehr genaue Gedanken über Ein- und Ausgabewerte der zu entwickelnden Komponente zu machen\cite{erdogmus_effectiveness_2005}.
 \item \textbf{Fortschritt ist einfach messbar} Typische Programmieraktivitäten in einem Scrum-Projekt können zwischen wenigen Stunden bis zu mehreren Manntagen umfassen. Test-First Unit-Tests können als Indikator dienen wie die Programmieraktivität fortschreitet. Außerdem stellen sie eine Art roter Faden für den Programmierer dar.
 \item \textbf{Tests als Spezifikation} Unit-Tests geben sehr genau vor welche Ausgabewerte auf einen bestimmten Eingabewert erwartet werden. Das bedeutet, dass sie als Teil einer Spezifikation angesehen werden können. Tatsächlich lassen sich in der Praxis auch immer wieder solche Ansätze beobachten. Vor allem funktionale Programmiersprachen werden gerne als \textit{executable specification} verwendet\cite{klein_sel4:_2010}. Nachteilig bei dieser Vorgehensweise ist aber die Verständlichkeit solcher Spezifikationen. Unerfahrene Entwickler oder nicht-technische Teammitglieder können diese nur schwer nachvollziehen. Auch modellbasierte Tests können als Spezifikation dienen und durch ihre grafische Darstellung sind sie viel leichter verständlich (siehe Abschnitt \ref{sec:mbt} für allgemeine Informationen zu modellbasiertem Testen und Abschnitt \ref{sec:graphwalker} wo ein solcher Ansatz erprobt wird).
-\item
 \end{itemize}
 
 
@@ -310,13 +317,15 @@ Im vierten Schritt werden die erzeugten Testskripts ausgeführt. Bei der sogenan
 Im letzten Schritt werden die Ergebnisse der Testfälle analysiert. Auch diesen Schritt teilen sich grundsätzlich alle Testmethoden. Den Detailgrad der Analyse bestimmt größtenteils das Tool, das zur Testausführung verwendet wurde. Dies reicht von einfachen Assertions, wie sie beispielsweise Selenium \footnote{Selenium Browser Automatisierungswerkzeug http://www.seleniumhq.org/} in seinem Grundumfang mitbringt, bis zu sehr detaillierten Berichten inklusive Zeitangaben, Screenshots und kontextuellen Informationen, wie beispielsweise die HP Applikations-Suite UFT \footnote{Testautomatisierungswerkzeug HP Unified Functional Tester http://www8.hp.com/ch/de/software-solutions/unified-functional-testing-automation/} es macht.
 
 \subsection{Vergleich mit klassischem skriptbasierten Tests}
-...
+In vielen industriellen Softwareprojekten, die über Jahre hinweg wachsen, ist irgendwann der Punkt erreicht wo die Ressourcen für manuelles Regressionstesting ein akzeptables Maß überschreiten. Manuelles Regressionstesting ist nicht nur zeitintensiv sondern auch demotivierend und fehlerbehaftet. Es liegt nahe die manuellen Regressiontests zu automatisieren. Es scheint als ob der Aufwand für die Erstellung dieser `stupiden' Testabläufe überschaubar wäre. Massive Ressourceneinsparungen auf lange Sicht wären die Folge. Oft stellt sich aber heraus, dass es mit dem initialen Aufwand für die Erstellung dieser Skripts nicht getan ist. Vor allem bei kurzen Iterationen in der agilen Softwareentwicklung werden die Wartungsaufwände für solche skriptbasierte Tests massiv unterschätzt.\\
+Die Abbildung \ref{fig:script_vs_mbt} zeigt die Aktivitäten die während skriptbasiertem und modellbasiertem Testen anfallen. Größtenteils gibt es Überschneidungen aber viele Aktivitäten unterscheiden sich im Detail. Der größte Unterschied ist der Wegfall der Testfallerstellung und Testfallwartung. Anstelle dessen tritt die Modellierung des Systems und die Wartung des Modells. Ressourceneinsparungen mittels MBT gegenüber skriptbasiertem Testing, geschehen wenn folgende zwei Aspekte gut gelöst werden: Die Modellierung des Systems geschieht auf angemessen abstrahierter Ebene und die Berührungspunkte mit dem SUT sind stark modularisiert\cite{utting_practical_2007}.\\
+Eine Aktivität die es im skriptbasierten Test nicht gibt ist die Wahl der Traversierungskriterien bzw. Abdeckungskriterien. 
 
 \begin{figure}[h] 
   \centering
      \includegraphics[width=1\textwidth]{figures/mbt_vergleich_skript.png}
   \caption{Einordnung von modellbasiertem Testing. Die meisten Aktivitäten im Test-Lifecycle bleiben erhalten, ändern sich aber in der Ausführung. Die Erstellung einzelner Testfälle (scripting) entfällt.}
-  \label{fig:fsm_example}
+  \label{fig:script_vs_mbt}
 \end{figure}
 
 \subsection{Testauswahlkriterien \& Modellabdeckung}
