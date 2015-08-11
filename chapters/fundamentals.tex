@@ -175,6 +175,7 @@ In einem nicht-agilen Softwareprojekt welches seine Teststrategie nach dem V-Mod
 \item Beratungstätigkeiten: Unterstützung der Projektleitung bezüglich Qualität im Projekt.
 \end{itemize}
 
+\todo{Absatz zu Agile Testing Quadrants + Grafik aus \cite{parsick_lost_2015} einfügen}}
 Per Definition ist ein Scrum-Team selbstorganisiert und operiert ohne designierten Projektleiter\footnote{Die 12 Prinzipien der agilen Entwicklung des \textit{Agile Manifesto} \url{http://agilemanifesto.org/principles.html}}. Die Verantwortlichkeiten für alle Aspekte des Projekts werden nicht geteilt sondern parallel an alle Mitglieder des Team übergeben. Dementsprechend gibt es auch keinen ausgesprochenen Testmanager oder Testverantwortlichen. Der Scrum Master ist aber dafür verantwortlich dafür zu sorgen, dass alle erforderlichen Maßnahmen zur Qualitätssicherung getroffen werden. Sollten erforderliche Ressourcen im Team nicht vorhanden sein, ist er auch für die Beschaffung dieser verantwortlich\cite{linz_testing_2014}.\\
 Testing-Tätigkeiten können auf zwei Arten in den Ablauf eines Sprints integriert werden. Es können einzelne Tasks angelegt werden die eine Testing-Tätigkeit beschreiben oder die Kriterien zur Fertigstellung von Tasks werden dahingehend verändert, als das Testing-Tätigkeiten implizit dazugehören.\\
 Das Monitoring von Testmetriken fließt nahtlos in die \textit{Continuous Integration} ein, die in jedem Scrum-Projekt essentiell ist. Dieser Umstand macht manuelles Überwachen des Testings unnötig\cite{linz_testing_2014}.\\
@@ -225,7 +226,7 @@ Der \textit{Test-First} Ansatz stammt aus dem Extreme Programming Umfeld\cite{be
 
 
 \subsection{Regressionstests und Testautomatisierung}
-
+Auf den niedrigen Teststufen ist es selbstverständlich, dass Testfälle automatisch ausgeführt werden. In agilen Projekten, wo Continuous Integration weit verbreitet ist, laufen diese Tests sehr regelmäßig vollautomatisiert ab. Dies ist auf der Ebene der Systemtests ebenso wünschenswert, vor allem in einem agilen Entwicklungsprozess\cite{linz_testing_2014}. Regressionstests sind Tests die über einen längeren Zeitraum hinweg durchgeführt werden um festzustellen, wie sich das Verhalten des SUT verändert. Es liegt nahe, dass gerade diese Tests automatisiert werden um wertvolle Personalkostne einzusparen und eintönige Arbeit dem Computer zu überlassen.
 
 
 
@@ -319,11 +320,12 @@ Im letzten Schritt werden die Ergebnisse der Testfälle analysiert. Auch diesen 
 \subsection{Vergleich mit klassischem skriptbasierten Tests}
 In vielen industriellen Softwareprojekten, die über Jahre hinweg wachsen, ist irgendwann der Punkt erreicht wo die Ressourcen für manuelles Regressionstesting ein akzeptables Maß überschreiten. Manuelles Regressionstesting ist nicht nur zeitintensiv sondern auch demotivierend und fehlerbehaftet. Es liegt nahe die manuellen Regressiontests zu automatisieren. Es scheint als ob der Aufwand für die Erstellung dieser `stupiden' Testabläufe überschaubar wäre. Massive Ressourceneinsparungen auf lange Sicht wären die Folge. Oft stellt sich aber heraus, dass es mit dem initialen Aufwand für die Erstellung dieser Skripts nicht getan ist. Vor allem bei kurzen Iterationen in der agilen Softwareentwicklung werden die Wartungsaufwände für solche skriptbasierte Tests massiv unterschätzt.\\
 Die Abbildung \ref{fig:script_vs_mbt} zeigt die Aktivitäten die während skriptbasiertem und modellbasiertem Testen anfallen. Größtenteils gibt es Überschneidungen aber viele Aktivitäten unterscheiden sich im Detail. Der größte Unterschied ist der Wegfall der Testfallerstellung und Testfallwartung. Anstelle dessen tritt die Modellierung des Systems und die Wartung des Modells. Ressourceneinsparungen mittels MBT gegenüber skriptbasiertem Testing, geschehen wenn folgende zwei Aspekte gut gelöst werden: Die Modellierung des Systems geschieht auf angemessen abstrahierter Ebene und die Berührungspunkte mit dem SUT sind stark modularisiert\cite{utting_practical_2007}.\\
-Eine Aktivität die es im skriptbasierten Test nicht gibt ist die Wahl der Traversierungskriterien bzw. Abdeckungskriterien. 
+Eine Aktivität die es im skriptbasierten Test nicht gibt ist die Wahl der Traversierungskriterien bzw. Abdeckungskriterien. Dadurch, dass es strikte Sequenzen gibt die das SUT durchlaufen, fällt dieser Punkt gänzlich weg. Beim modellbasierten Testen ist es nicht unüblich, dass jeder Durchlauf unterschiedlich abläuft, abhängig vom Traversierungsalgorithmus und den randomisierten Komponenten die dieser in sich trägt.\\
+Bei den Aktivitäten die sich gegenüber skriptbasiertem Testing geändert haben, ist vor allem die Modifikation der Teststrategie bzw. des Testplans im Details hervorzuheben. Modellbasiertes Testen kann partiell im Projekt eingesetzt werden und ergänzt bestehende Tests. Welche Tests durch MBT ersetzt werden und wie die Ergebnisse dieser verifiziert werden sollen, muss aber wohl überlegt sein. Eine Teststrategie die MBT mit anderen Testmethodiken kombiniert wird im Resultatskapitel \ref{sec:results} präsentiert.
 
 \begin{figure}[h] 
   \centering
-     \includegraphics[width=1\textwidth]{figures/mbt_vergleich_skript.png}
+     \includegraphics[width=1.0\textwidth]{figures/mbt_vergleich_skript.png}
   \caption{Einordnung von modellbasiertem Testing. Die meisten Aktivitäten im Test-Lifecycle bleiben erhalten, ändern sich aber in der Ausführung. Die Erstellung einzelner Testfälle (scripting) entfällt.}
   \label{fig:script_vs_mbt}
 \end{figure}
@@ -554,7 +556,7 @@ UTP bietet vereinfachte Wildcards um zu spezifizieren, dass ein Attribut einen b
 
 \begin{figure}[h] 
   \centering
-     \includegraphics[width=0.7\textwidth]{figures/uml_instance.png}
+     \includegraphics[width=1\textwidth]{figures/uml_instance.png}
   \caption{Eine UML Ausprägungsspezifikation. Sowohl eine Instanz der Klasse als auch eine Relation kann als Ausprägung dargestellt werden. (German Wikipedia user Gubaer [GFDL (http://www.gnu.org/copyleft/fdl.html) or CC-BY-SA-3.0 (http://creativecommons.org/licenses/by-sa/3.0/)], via Wikimedia Commons)}
   \label{fig:uml_instance}
 \end{figure}
