@@ -92,14 +92,18 @@ Gleichzeitig bleiben gewisse Probleme bestehen: Obwohl CoS nun direkt an automat
 
 \subsection{Testing API}
 \label{sec:testing_api}
-Konzeptuell ist die Testing API eine Ebene zwischen den Tests bzw. Testfällen und dem SUT. Konkret rufen die BDD-Tests und die Methoden in den Graphwalker-Klassen die Schnittstelle auf um Operationen am SUT auszuführen. Im Sinne des vereinheitlichten Vokabulars von BDD ist diese Schicht eine uniforme Sicht auf das SUT.\\
-Das Design der Testing API soll wohlüberlegt sein und die folgenden Ziele erfüllen:
+Konzeptuell ist die Testing API eine Schicht zwischen den Tests bzw. Testfällen und dem SUT (siehe Abbildung \ref{fig:testarchitektur}). Konkret rufen die BDD-Tests und die Methoden in den Graphwalker-Klassen die Schnittstelle auf um Operationen am SUT auszuführen. Im Sinne des vereinheitlichten Vokabulars von BDD ist diese Schicht eine uniforme Sicht auf das SUT.\\
+Das Design der Testing API soll wohlüberlegt sein und die folgenden Anforderungen erfüllen:
 
-\begin{itemize}
+\begin{enumerate}
 \item \textbf{Design for maintenance}: Da das zugrundeliegende SUT ständigen Änderungen ausgesetzt ist, wird auch die darauf zugreifende Schnittstelle gewartet werden müssen. Die Architektur dieser API muss also von Anfang an fokussiert auf einfache Wartbarkeit und langfristiges Bestehen sein.
 \item \textbf{Abstraktionslevel}: Die Testing API soll ausdrücklich keine Unit-Testing API sein. Die API muss auf den richtigen Level abstrahiert werden um sinnvoll einsetzbar zu sein. Einerseits muss die Bedienung des SUT feingranular erfolgen können. Andererseits muss es trotzdem möglich sein die kundensichtbaren Aktionen, ohne Kenntnisse der Interna, auszulösen zu können. Man spricht von einer \textit{Grey-Box Sicht}\cite{tyler_black-box_2004}.
 \item \textbf{Niedrige Komplexität}: Jede Schicht zwischen Test und SUT ist eine potenzielle Fehlerquelle. Die Testing API darf nicht zu einem eigenen Software-Projekt ausarten. Wenn Testfälle ein Fehlverhalten melden, muss so schnell wie möglich und mit wenig Aufwand feststellbar sein, welche Komponente es verursacht hat. Wenn die Schnittstelle undurchsichtig ist, müssen Aufwände betrieben werden um das korrekte Verhalten dieser zu garantieren.
-\end{itemize}
+\end{enumerate}
+
+Neben den in der Softwareentwicklung bekannten Vorgehensweisen um die die Wartbarkeit zu erhöhen, erfordert Anforderung 1 keine weiteren speziellen Kenntnisse. Trotzdem ist diese Anforderung nicht leicht zu erfüllen, vor allem wenn sich die Struktur der Business-Logik des SUT verändert. Änderungen in der Schnittstelle dürfen also nicht immer einfach angepasst werden. Die darauf aufbauenden Testfälle könnten möglicherweise brechen oder, noch schlimmer, weiterhin funktionieren aber falsche Testergebnisse liefern. Das heißt, Änderungen müssen wohldefiniert nach außen kommuniziert werden und gegebenenfalls darf nicht davor zurückgescheut werden Testfälle durch Umbenennungen von Methoden- oder Klassennamen zu brechen.\\
+Diese Überlegung führt zu einem weiteren Knackpunkt im Design der gesamten Teststrategie: Um Parteien, die keinen Zugriff auf Quellcode haben oder haben wollen, in die Erstellung der Testfälle miteinzubeziehen, sollten sie im Detail über die Operationen die die Testing API bereitstellt, bescheid wissen. Ist dies nicht der Fall, können sie nur rudimentäre BDD-Tests schreiben, die ohne Zutun der Entwickler nicht lauffähig sind. Es ist also ein Plan von Nöten wie dieser Katalog von Methoden die die Testing API anbietet propagiert wird. Dies muss jedenfalls automatisiert erfolgen um weitere Aufwände mit der Synchronisierung bei Änderungen zu vermeiden. Denkbar ist die Nutzung automatischer Generierung von Dokumentation aus Code-Kommentaren\footnote{Im Java-Umfeld ist das Javadoc-Tool weitverbreitet, welches aus Kommentaren einer API Dokumentation in Form von HTML, inklusive Navigation, generieren kann \url{http://www.oracle.com/technetwork/articles/java/index-jsp-135444.html}}. Diese Dokumentationsdateien sind dadurch eng an den Code der Testing API gekoppelt und versioniert. Außerdem können so nicht nur die Namen der Methoden sondern auch fachliche und technische Erklärungen angehängt werden.\\
+Anforderung 3 betrifft die Umfänge und Komplexität der Schnittstelle. Um mit der API die richtige Abstraktion aus Anforderung 2 treffen zu können, ist es unumgänglich einige Werte zu modifizieren und mehrere Aufrufe zu machen. Auch die Entwicklung dieser API soll in die agile Entwicklung inklusive Code-Reviews und Unit-Tests einfließen. Trotzdem ist es von höchster Priorität sich zugunsten niedriger Komplexität zu entscheiden, auch wenn in manchen Fällen Anforderung 2 kompromitiert wird. Zu hohe Aufwände für das Testing bzw. die Verifikation der Testing API würden die Zeitersparnisse der neuen Teststrategie zunichte machen.
 
 \subsection{Modellbasierte Tests mit Graphwalker}
 \label{sec:mbt_results}
@@ -109,7 +113,7 @@ Diese Beobachtungen legen nahe, ein schlankes und flexibles Werkzeug für den mo
 \begin{itemize} 
 \item\textbf{Eignung der Feststellung.} Es sollte mit wenig Aufwänden möglichen sein, die Eignung des Werkzeugs für das Testing des SUT festzustellen. Dies setzt erstens voraus, dass vollwertige Testversionen zur Verfügung gestellt werden. Außerdem muss die Funktionsweise, wie das Werkzeug im Hintergrund agiert, dokumentiert und einsehbar sein. Dies ist bei den wenigsten Werkzeugen der fall. Graphwalker, in gewisser Weise implizit durch seine Quelloffenheit gegeben, ist eine erfreuliche Ausnahme.
 \item \textbf{Flexibilität des Modellformats.} Vergleichbar mit der Sprache in der die Skripts eines skriptbasierten Tools vorliegen müssen, sind Modellformate für MBT-Tools strikt vorgegeben. Wie effektiv ein SUT getestet werden kann, hängt massiv von der Mächtigkeit des Modellformats ab.
-\item \textbf{Verständlichkeit des Modellformats} Das Modellformat an sich aber auch die Präsentation dessen muss verständlich sein.
+\item \textbf{Verständlichkeit des Modellformats} Das Modellformat an sich, aber auch die Präsentation dessen muss verständlich sein.
 \end{itemize}
 
 
@@ -148,17 +152,17 @@ Aus Sicht der Wartungsfreundlichkeit kann keine generelle Aussage getroffen werd
 \begin{figure} 
   \centering
      \includegraphics[width=0.45\textwidth]{figures/modell_abstract.png}
-  \caption{}
+  \caption{Diese Version des Modells (Workflow-Modellierung) besteht aus wenigen Knoten und Kanten. Innerhalb dieser Elemente, also im Code, versteckt sich aber viel Komplexität.}
   \label{fig:modell_abstract}
 \end{figure}
 
-\paragraph{Logik-Modellierung und Verfeinerung. Knoten: 72/51, Kanten: 72//66}
+\paragraph{Logik-Modellierung und Verfeinerung. Knoten: 72/51, Kanten: 72/66}
 Bei der Logik-Modellierung wird das System nicht mehr als reine Blackbox gesehen. Das Modell soll weiterhin eine Abstraktion des SUT sein aber der Detailgrad erhöht sich. Dies hat zur Folge, dass zwar mehr Knoten und Kanten erstellt werden müssen, die Komplexität im Code sich aber verringert. Erreicht wird dies durch die explizite Modellierung von Kanten und Knoten mit identischen Bezeichnern. In diesem Beispiel, wo nur der Endzustand \texttt{v\_finalProposal} einer detaillierten Prüfung unterzogen wird, erhalten nur die Knoten auf unterster Ebene eindeutige Bezeichner. Graphwalker generiert nun zwar 36 Methoden(entsprechend den 36 Knoten mit den Bezeichnern \texttt{v\_finalProposalXX}, die dem Knoten \texttt{v\_finalProposal} aus dem Workflow-Modell entsprechen, aber diese enthalten keinerlei Logik um den Pfad zu reproduzieren. In diesen Methoden befindet sich also nur ein Bruchteil der Logik die im letzten Knoten der Workflow-Modellierung zu finden ist. Durch die explizite Modellierung aller möglichen Pfad ist implizit gegeben wie das SUT traversiert wurde und welche Prüflogik angewandt werden muss. Die Abbildung \ref{fig:modell_komplex} zeigt die logisch modellierte Variante des Hypothekarrechners.
 
 \begin{figure}[h] 
   \centering
      \includegraphics[width=1.5\textwidth, angle=90]{figures/modell_komplex.png}
-  \caption{}
+  \caption{Wenn die Logik des Programms kombinatorisch modelliert wird, ist die Gefahr der \textit{State Explosion} hoch. Schon dieser kurze Workflow ergibt 72 Knoten und 72 Kanten.}
   \label{fig:modell_komplex}
 \end{figure}
 
@@ -169,7 +173,7 @@ Durch eine verstärkte Whitebox-Ansicht muss der Modellierer also versuchen die 
 \begin{figure}[h] 
   \centering
      \includegraphics[width=1.5\textwidth, angle=90]{figures/modell_logisch.png}
-  \caption{}
+  \caption{Ausgehend von der Logik-Modellierung wurde hier die Logik im Quellcode betrachtet. Tatsächlich ergeben sich viel weniger Pfade als im ursprünglichen Modell und es bleiben nur 51 Knoten sowie 66 Kanten.}
   \label{fig:modell_logisch}
 \end{figure}
 
