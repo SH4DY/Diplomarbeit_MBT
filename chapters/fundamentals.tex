@@ -1,6 +1,8 @@
 \chapter{Grundlagen}
 \label{sec:fundamentals}
+
 \todo[color=blue!40,inline]{Formatierungen und Nummerierungen von Sections, Subsections, Subsubsections muss  noch überarbeitet werden. Vollständigkeit kann erst nach dem die weiteren Kapitel fertiggestellt wurden}\section{Software Qualitätssicherung}
+
 \subsection{Motivation und Relevanz}
 
 \todo[inline]{Evt. einleitende Worte...}
@@ -89,7 +91,7 @@ Aus dem Projektmanagement ist das magische Dreieck bekannt (siehe Abbildung \ref
 
 \begin{figure}[h] 
   \centering
-     \includegraphics[width=0.7\textwidth]{figures/magic_triangle.png}
+     \includegraphics[width=0.55\textwidth]{figures/magic_triangle.png}
   \caption{Dieses Dreieck veranschaulicht wie sich die Qualitätsparameter Qualität, Zeit und Kosten gegenseitig beeinflussen. Die Fläche des Dreiecks bleibt fixiert, während die Seitenlängen verändert werden.}
   \label{fig:magic_triangle}
 \end{figure}
@@ -99,8 +101,20 @@ Aus dem Projektmanagement ist das magische Dreieck bekannt (siehe Abbildung \ref
 \todo[inline]{Kapitel Testprozess}
 
 \subsection{Teststufen}
+\label{sec:teststufen}
 Jedes Softwareentwicklungsvorhaben sollte nach einem genau definierten Vorgehensmodell spezifiziert, entwickelt, gewartet und getestet werden\cite{spillner_basiswissen_2012}. Nach wie vor orientieren sich moderne Softwareprojekte am sogenannten V-Modell\cite{boehm_verifying_1984} oder an einer davon abgewandelten Form. Der Grundgedanke hinter dem V-Modell ist es eine Parallelität und Gleichberechtigtkeit zwischen Entwicklungs- und Testtätigkeiten zu schaffen. Dies impliziert unmittelbar, dass die Teststrategie an die Entwicklungsstrategie angepasst werden muss, oder umgekehrt.\\
-\todo{Abbildung zu V-Modell siehe Basiswissen SWT Seite 38} Abbildung XY zeigt ein klassisches V-Modell und dessen Komponenten. Es ist sofort erkenntlich, dass die Aktivitäten auf der linken Seite eng an das Wasserfallmodell \todo{erste Erwähnung Wasserfall? Dann Referenz} angelehnt sind.
+
+Abbildung \ref{fig:v_modell} zeigt ein klassisches V-Modell und dessen Komponenten. Es ist sofort erkenntlich, dass die Aktivitäten auf der linken Seite eng an das Wasserfallmodell  \todo{erste Erwähnung Wasserfall? Dann Referenz} angelehnt sind.
+
+\begin{figure}[h] 
+  \centering
+     \includegraphics[width=1\textwidth]{figures/v_modell.png}
+  \caption{Softwareentwicklung nach dem V-Modell.}
+  \label{fig:v_modell}
+\end{figure}
+
+
+
 \begin{itemize}
 \item \textbf{Anforderungsdefinition} Die Anforderungen des Kunden werden erhoben und möglichst präzise spezifiziert.
 \item \textbf{Funktionaler Systementwurf} Auch Pflichtenheft genannt. Die Anforderungen werden auf Funktionen und Dialogabläufe des neuen Systems abgebildet\cite{spillner_basiswissen_2012}
@@ -158,7 +172,7 @@ Das selbe gilt für Teile eines Systems die nur vage oder lückenhaft spezifizie
 
 \subsubsection{Abnahmetest/Akzeptanztest}\todo[color=yellow]{@boris in druckversion nicht vorhanden,Prüfen!}
 Diese letzte Teststufe variiert in ihrer Ausführung am meisten. Vor der Übergabe bzw. Inbetriebnahme der Software an den Kunden soll ein abschließender Test zeigen ob das entwickelte Produkt den gewünschten Zweck erfüllt. Die Sicht und das Urteil des Kunden steht auf dieser Teststufe klar im Vordergrund. Spätestens auf Abnahmeteststufe ist der Kunde direkt beteiligt oder sogar für die Ausführung zuständig.\\
-Beim Abnahmetest handelt es sich also um einen Test auf vertragliche Akzeptanz zwischen Entwicklern und Kunden. Um Zufriedenheit beim Kunden zu erreichen ist es wichtig, dass diese Akzeptanzkriterien vom Kunden selbst entworfen oder zumindest in enger Zusammenarbeit mit dem Auftragnehmer erstellt wurden\cite{spiller_basiswissen_2012}. Der Abnahmetest unterscheidet sich in der Testumgebung vom Systemtest. Er wird beim Kunden in einer Abnahmeumgebung durchgeführt. Diese soll in Hard- und Software der produktiven Umgebung möglichst genau entsprechen um spätere Probleme, die durch die Umgebung verursacht wurden, so weit wie möglich abzufangen.\\
+Beim Abnahmetest handelt es sich also um einen Test auf vertragliche Akzeptanz zwischen Entwicklern und Kunden. Um Zufriedenheit beim Kunden zu erreichen ist es wichtig, dass diese Akzeptanzkriterien vom Kunden selbst entworfen oder zumindest in enger Zusammenarbeit mit dem Auftragnehmer erstellt wurden\cite{spillner_basiswissen_2012}. Der Abnahmetest unterscheidet sich in der Testumgebung vom Systemtest. Er wird beim Kunden in einer Abnahmeumgebung durchgeführt. Diese soll in Hard- und Software der produktiven Umgebung möglichst genau entsprechen um spätere Probleme, die durch die Umgebung verursacht wurden, so weit wie möglich abzufangen.\\
 Die Abnahmetestauswahl kann nach den selben Kriterien erfolgen wie es auf Systemtestebene geschieht. In der Praxis sind sich die Testfälle auf beiden Ebenen sehr ähnlich.
 
 \subsection{Agiles Testen}\todo[color=yellow]{@boris in druckversion nicht vorhanden,Prüfen! bis Modellbasiertes Testen}
@@ -171,6 +185,7 @@ In einem nicht-agilen Softwareprojekt welches seine Teststrategie nach dem V-Mod
 \item Beratungstätigkeiten: Unterstützung der Projektleitung bezüglich Qualität im Projekt.
 \end{itemize}
 
+\todo{Absatz zu Agile Testing Quadrants + Grafik aus \cite{parsick_lost_2015} einfügen}
 Per Definition ist ein Scrum-Team selbstorganisiert und operiert ohne designierten Projektleiter\footnote{Die 12 Prinzipien der agilen Entwicklung des \textit{Agile Manifesto} \url{http://agilemanifesto.org/principles.html}}. Die Verantwortlichkeiten für alle Aspekte des Projekts werden nicht geteilt sondern parallel an alle Mitglieder des Team übergeben. Dementsprechend gibt es auch keinen ausgesprochenen Testmanager oder Testverantwortlichen. Der Scrum Master ist aber dafür verantwortlich dafür zu sorgen, dass alle erforderlichen Maßnahmen zur Qualitätssicherung getroffen werden. Sollten erforderliche Ressourcen im Team nicht vorhanden sein, ist er auch für die Beschaffung dieser verantwortlich\cite{linz_testing_2014}.\\
 Testing-Tätigkeiten können auf zwei Arten in den Ablauf eines Sprints integriert werden. Es können einzelne Tasks angelegt werden die eine Testing-Tätigkeit beschreiben oder die Kriterien zur Fertigstellung von Tasks werden dahingehend verändert, als das Testing-Tätigkeiten implizit dazugehören.\\
 Das Monitoring von Testmetriken fließt nahtlos in die \textit{Continuous Integration} ein, die in jedem Scrum-Projekt essentiell ist. Dieser Umstand macht manuelles Überwachen des Testings unnötig\cite{linz_testing_2014}.\\
@@ -181,7 +196,15 @@ Unit-Testing, als entwicklungsnächste Teststufe, hat im agilen Umfeld eine noch
 
 \subparagraph{Modellbasierte Ansätze um Umfänge von Unit-Tests zu verkleinern}
 Im strengen Sinne des Unit-Testings müsste, im Umfeld der objektorientierten Programmierung, jede \textit{public} und \textit{private} Methode abgedeckt werden. Wenn private Methoden nur durch die Aufrufe aus den öffentlichen Methoden getestet werden, kann sich innerhalb der privaten Methoden immer noch fehlerhafter Code befinden der zufälligerweise nicht ausgeführt wird. Andererseits kann es in großen, sich schnell entwickelnden Softwareprojekten einfach nicht praktikabel sein so viele Einzeltests zu warten. Oft wird dann einfach auf das Testing von privaten Methoden verzichtet, mit dem Vorsatz die öffentlichen damit umso penibler zu testen. Diese Vorgangsweise ist aber sehr subjektiv und unstrukturiert. Ihre Effektivität kann stark schwanken.\\
-Deshalb schlagen Spillner und Linz einen Ansatz vor der dem modellbasierten Testen nahe kommt. Jeder Methodenaufruf geschieht während die Klasse in einem Zustand ist, der durch ihre aktuelle Variablenbelegung definiert ist. Wie eine Methode reagiert wenn sie aufgerufen wird, hängt also von den Parametern und dem Zustand ab. Linz schlägt deshalb \textit{object-state} Testing vor um die Vorgänge in einer Klasse systematisch aber auf kritische Zustände reduziert zu visualisieren und zu testen.\todo{Bild aus TESTING IN SCRUM Seite 52 einfügen}\\
+Deshalb schlagen Spillner und Linz einen Ansatz vor der dem modellbasierten Testen nahe kommt. Jeder Methodenaufruf geschieht während die Klasse in einem Zustand ist, der durch ihre aktuelle Variablenbelegung definiert ist. Wie eine Methode reagiert wenn sie aufgerufen wird, hängt also von den Parametern und dem Zustand ab. Linz schlägt deshalb \textit{object-state} Testing vor um die Vorgänge in einer Klasse systematisch aber auf kritische Zustände reduziert zu visualisieren und zu testen. Diese Modelle, wie Abbildung \ref{fig:mbt_unit} zu sehen, ähneln in ihrer Form bereits sehr denen die später in dieser Arbeit vorgestellt werden.
+
+\begin{figure}[h] 
+  \centering
+     \includegraphics[width=0.6\textwidth]{figures/mbt_unit.png}
+  \caption{Eine von Linz\cite{linz_testing_2014} erdachte Modellierung eines Gerätes, um dieses mittels dem \textit{object-state} Ansatz zu testen. Das Gerät startet in einem unbekannten Zustand und die Methode \texttt{set\_status()} kann diesen Status als einzige beeinflussen.}
+  \label{fig:mbt_unit}
+\end{figure}
+
 Das gewählte Modellformat ist im Grunde ein endlicher Automat (siehe Abschnitt \ref{sec:fsm}) das mindestens folgende Informationen enthält:
 
 \begin{itemize}
@@ -209,12 +232,11 @@ Der \textit{Test-First} Ansatz stammt aus dem Extreme Programming Umfeld\cite{be
 \item \textbf{Manuelles Trial and Error wird überflüssig} Üblicherweise testet ein Entwickler seinen Code kontinuerlich durch manuelle Methodenaufrufe mit passenden Werten. Die Ausgabe wird mithilfe eines Debuggers oder zusätzlichen Print-Methoden vom Entwickler geprüft. Abhängig vom jeweiligen SUT kann dieser Workflow sehr ineffizient sein weil er in der Wartung nicht nachtvollziehbar ist und Code generiert der vor der Auslieferung wieder entfernt werden muss. Im Gegensatz dazu muss der Entwickler beim Test-First Ansatz vor der Programmierung bereits einige sinnvolle und (potenzielllauffähige Testfälle geschrieben haben. Dies hat folgende Vorteile: Erstens entfällt das mitunter mühselige und fehlerbehaftete manuelle Smoke-Testing und zweitens hat sich herausgestellt, dass Programmierer effizienter werden wenn sie angehalten sind sich sehr genaue Gedanken über Ein- und Ausgabewerte der zu entwickelnden Komponente zu machen\cite{erdogmus_effectiveness_2005}.
 \item \textbf{Fortschritt ist einfach messbar} Typische Programmieraktivitäten in einem Scrum-Projekt können zwischen wenigen Stunden bis zu mehreren Manntagen umfassen. Test-First Unit-Tests können als Indikator dienen wie die Programmieraktivität fortschreitet. Außerdem stellen sie eine Art roter Faden für den Programmierer dar.
 \item \textbf{Tests als Spezifikation} Unit-Tests geben sehr genau vor welche Ausgabewerte auf einen bestimmten Eingabewert erwartet werden. Das bedeutet, dass sie als Teil einer Spezifikation angesehen werden können. Tatsächlich lassen sich in der Praxis auch immer wieder solche Ansätze beobachten. Vor allem funktionale Programmiersprachen werden gerne als \textit{executable specification} verwendet\cite{klein_sel4:_2010}. Nachteilig bei dieser Vorgehensweise ist aber die Verständlichkeit solcher Spezifikationen. Unerfahrene Entwickler oder nicht-technische Teammitglieder können diese nur schwer nachvollziehen. Auch modellbasierte Tests können als Spezifikation dienen und durch ihre grafische Darstellung sind sie viel leichter verständlich (siehe Abschnitt \ref{sec:mbt} für allgemeine Informationen zu modellbasiertem Testen und Abschnitt \ref{sec:graphwalker} wo ein solcher Ansatz erprobt wird).
-\item
 \end{itemize}
 
 
 \subsection{Regressionstests und Testautomatisierung}
-
+Auf den niedrigen Teststufen ist es selbstverständlich, dass Testfälle automatisch ausgeführt werden. In agilen Projekten, wo Continuous Integration weit verbreitet ist, laufen diese Tests sehr regelmäßig vollautomatisiert ab. Dies ist auf der Ebene der Systemtests ebenso wünschenswert, vor allem in einem agilen Entwicklungsprozess\cite{linz_testing_2014}. Regressionstests sind Tests die über einen längeren Zeitraum hinweg durchgeführt werden um festzustellen, wie sich das Verhalten des SUT verändert. Es liegt nahe, dass gerade diese Tests automatisiert werden um wertvolle Personalkostne einzusparen und eintönige Arbeit dem Computer zu überlassen.
 
 
 
@@ -251,7 +273,10 @@ Modellbasiertes Testen umfasst mindestens einen der beiden folgenden Aspekte: Te
 \end{quote}
 
 \subsection{Vorteile des Modellbasierten Testings}
-In diesem Abschnitt sollen \todo{werden statt sollen} die Vorteile des MBT \todo{abkürzung} gegenüber anderen Testmethoden, auch anhand von Publikationen und Fallstudien, erläutert werden.
+
+\label{sec:mbt_vorteile}
+In diesem Abschnitt sollen \todo{werden statt sollen} die Vorteile des MBT  \todo{abkürzung} gegenüber anderen Testmethoden, auch anhand von Publikationen und Fallstudien, erläutert werden.
+
 
 \paragraph{Anzahl der gefundenen Fehler} Mehrere Fallstudien belegen die Konkurrenzfähigkeit von MBT. Repräsentativ für die Automobilindustrie hat BMW mehrere modellbasierte Testsuites im produktiven Einsatz verglichen.\cite{pretschner_one_2005} SUT war ein gängiger Netzwerk Controller. Ein Teil der Testsuiten wurde manuell aber auf Basis eines Modells des SUT entwickelt, während der andere Teil automatisch anhand von Modellen generiert wurde. Beide Arten von Testsuiten fanden mehr Spezifikationsfehler als die traditionelle Testsuiten (diese wurden direkt von der Spezifikation in Prosa abgeleitet). Bei der Anzahl der gefundenen Programmierfehler, schnitten die modellbasierten Tests nicht besser ab. Testfälle die von der Spezifikation abgeleitet wurden, manuell entwickelte modellbasierte Tests und automatisch generierte modellbasierte Tests lagen gleichauf. Diese Fallstudie ist weiters sehr interessant, weil nicht nur manuell entworfene Modelle als Basis der Testfallgenerierung eingesetzt wurden. Die Autoren ließen einen Teil der Modelle, durch Ableitung vom SUT und dem Einsatz von Regeln, automatisch generieren.\\ \todo{Verweis zu automatisch generierten Testmodellen...} \\
 IBM verglich MBT im Java-Umfeld mit konventionellen Testmethoden.\cite{farchi_using_2002} Dabei fanden sie heraus, dass ihre MBT Testsuiten nicht nur eine höhere Code-Abdeckung garantierten, sondern auch mehr Programmierfehler aufdeckten. Die Aufwände für die Erstellung dieser Modelle war dabei vergleichbar mit der Entwicklung der skriptbasierten Testsuite. Um die Modelle überschaubar groß zu halten, wurde nur das externe Verhalten der getesteten Features modelliert.\\
@@ -305,13 +330,16 @@ Im vierten Schritt werden die erzeugten Testskripts ausgeführt. Bei der sogenan
 Im letzten Schritt werden die Ergebnisse der Testfälle analysiert. Auch diesen Schritt teilen sich grundsätzlich alle Testmethoden. Den Detailgrad der Analyse bestimmt größtenteils das Tool, das zur Testausführung verwendet wurde. Dies reicht von einfachen Assertions, wie sie beispielsweise Selenium \footnote{Selenium Browser Automatisierungswerkzeug http://www.seleniumhq.org/} in seinem Grundumfang mitbringt, bis zu sehr detaillierten Berichten inklusive Zeitangaben, Screenshots und kontextuellen Informationen, wie beispielsweise die HP Applikations-Suite UFT \footnote{Testautomatisierungswerkzeug HP Unified Functional Tester http://www8.hp.com/ch/de/software-solutions/unified-functional-testing-automation/} es macht.
 
 \subsection{Vergleich mit klassischem skriptbasierten Tests}
-...
+In vielen industriellen Softwareprojekten, die über Jahre hinweg wachsen, ist irgendwann der Punkt erreicht wo die Ressourcen für manuelles Regressionstesting ein akzeptables Maß überschreiten. Manuelles Regressionstesting ist nicht nur zeitintensiv sondern auch demotivierend und fehlerbehaftet. Es liegt nahe die manuellen Regressiontests zu automatisieren. Es scheint als ob der Aufwand für die Erstellung dieser `stupiden' Testabläufe überschaubar wäre. Massive Ressourceneinsparungen auf lange Sicht wären die Folge. Oft stellt sich aber heraus, dass es mit dem initialen Aufwand für die Erstellung dieser Skripts nicht getan ist. Vor allem bei kurzen Iterationen in der agilen Softwareentwicklung werden die Wartungsaufwände für solche skriptbasierte Tests massiv unterschätzt.\\
+Die Abbildung \ref{fig:script_vs_mbt} zeigt die Aktivitäten die während skriptbasiertem und modellbasiertem Testen anfallen. Größtenteils gibt es Überschneidungen aber viele Aktivitäten unterscheiden sich im Detail. Der größte Unterschied ist der Wegfall der Testfallerstellung und Testfallwartung. Anstelle dessen tritt die Modellierung des Systems und die Wartung des Modells. Ressourceneinsparungen mittels MBT gegenüber skriptbasiertem Testing, geschehen wenn folgende zwei Aspekte gut gelöst werden: Die Modellierung des Systems geschieht auf angemessen abstrahierter Ebene und die Berührungspunkte mit dem SUT sind stark modularisiert\cite{utting_practical_2007}.\\
+Eine Aktivität die es im skriptbasierten Test nicht gibt ist die Wahl der Traversierungskriterien bzw. Abdeckungskriterien. Dadurch, dass es strikte Sequenzen gibt die das SUT durchlaufen, fällt dieser Punkt gänzlich weg. Beim modellbasierten Testen ist es nicht unüblich, dass jeder Durchlauf unterschiedlich abläuft, abhängig vom Traversierungsalgorithmus und den randomisierten Komponenten die dieser in sich trägt.\\
+Bei den Aktivitäten die sich gegenüber skriptbasiertem Testing geändert haben, ist vor allem die Modifikation der Teststrategie bzw. des Testplans im Details hervorzuheben. Modellbasiertes Testen kann partiell im Projekt eingesetzt werden und ergänzt bestehende Tests. Welche Tests durch MBT ersetzt werden und wie die Ergebnisse dieser verifiziert werden sollen, muss aber wohl überlegt sein. Eine Teststrategie die MBT mit anderen Testmethodiken kombiniert wird im Resultatskapitel \ref{sec:results} präsentiert.
 
 \begin{figure}[h] 
   \centering
-     \includegraphics[width=0.7\textwidth]{figures/mbt_vergleich_skript.png}
+     \includegraphics[width=1.0\textwidth]{figures/mbt_vergleich_skript.png}
   \caption{Einordnung von modellbasiertem Testing. Die meisten Aktivitäten im Test-Lifecycle bleiben erhalten, ändern sich aber in der Ausführung. Die Erstellung einzelner Testfälle (scripting) entfällt.}
-  \label{fig:fsm_example}
+  \label{fig:script_vs_mbt}
 \end{figure}
 
 \subsection{Testauswahlkriterien \& Modellabdeckung}
@@ -384,7 +412,7 @@ Eine Einführung von MBT ist immer auch mit Anschaffungskosten verbunden. Auf de
 \subsubsection{Tool-Landschaft}
 Wie auf dem Feld der skriptbasierten Testautomatisierung, ist die Auswahl an Tools zur Unterstützung von modellbasierten Tests vielfältig. Modellbasiertes Testen umfasst in der Regel mehrere Aktivitäten, für die jede Kombination aus passenden kommerziell erhältlichen Werkzeugen herangezogen werden können. Auch die marktführenden Tool-Hersteller haben begonnen ihre Testing Applikations-Suiten für MBT auszurüsten. 
 
-\subsection{MBT Fallstudien}
+\subsection{Modellbasiertes Testen in Industrie und Forschung - MBT Fallstudien}
 
 Model-based Testing von Software wird seit mehr als 20 Jahren aktiv thematisiert, \cite{utting_practical_2007} sei es durch Forschung oder Industrie. Wie in den Leitlinien für den Einsatz von MBT in einem Projekt bereits erwähnt \ref{sec:entscheidungshilfe}, ist ein sinnvoller Einsatz nicht immer gegeben. Diese Leitlinien haben sich unter anderem, durch eben die folgenden Publikation und Fallstudien ergeben, sind aber keineswegs unveränderlich. Durch neue Erkenntnisse im laufenden Einsatz von MBT in den verschiedensten Projekten und durch die stetige Weiterentwicklung der beteiligten Technologien, entwickeln sie sich weiter.\\
 Die folgenden Fallstudien geben einen Überblick darüber, wie MBT Methoden in den letzten Jahren eingesetzt wurden.
@@ -397,9 +425,14 @@ Im Hinblick auf Applikationen mit vielen Datenfeldern, oder gar nicht standardis
 Die vorgestellte Technik soll manuelles Testen im späten Entwicklungszyklus (Akzeptanz- und Abnahmetests) ergänzen oder sogar ersetzen. Sie hat den Vorteil, dass kaum Aufwand bei der Wartung von Testfällen anfällt und fügt sich gut in eine Continuous Development Umgebung ein. Nachteilig ist aber die Tatsache, dass bei nicht optimaler Konfiguration viele Fehlerfälle (\textit{false negative's}) von Hand geprüft werden müssen.\\
 Die Autoren kommen zum Schluss, dass \textit{Visual Testing} sehr wohl seine Daseinsberechtigung in der Qualitätssicherung von komplexer Industriesoftware hat. Sie halten fest, dass die vorgeschlagene Technik in beiden Fallstudien (Applikationen aus dem Bereich Militär und Avionik), genauso effektiv wie manuelle Tests funktioniert. Gleichzeitig ist der Ressourcenaufwand für die Wartung der Testfälle sehr niedrig und die Durchführungsgeschwindigkeit der Testfälle, verglichen mit manuellen Tests, um ein vielfaches höher. Sie halten aber ebenfalls fest, dass \textit{Visual Testing} Werkzeuge schon für den produktiven Einsatz geeignet sind aber noch viel Potenzial zur Verbesserung besteht (sie verwendeten Sikuli \footnote{VGT Test Tool - \url{http://www.sikuli.org/}}).
 
-\paragraph{Microsoft’s Protocol Documentation Program: A Success Story for Model-Based Testing\cite{grieskamp_microsofts_2010}} Diese von Microsoft durchgeführte Fallstudie liefert exakte Zahlen zur Leistung von MBT im Projekt. Bei der Verfikation der Dokumentation von \textit{Client-Server} und \textit{Server-Server} Protokollen hat Microsoft MBT erstmals in einem großen und geschäftskritischen Umfeld eingesetzt. Die Ergebnisse deuten auf ein hohes Ressourceneinsparungspotenzial von MBT hin. Bei der Umsetzung von knapp zehntausend Test- Requirements mit MBT-Methoden ergab sich im Schnitt eine Dauer von 1,39 Personentagen/Requirement. Verglichen mit knapp neuntausend Requirements desselben Projekts, die mit traditionellen Methoden getestet wurden, die durchschnittlich 2,37 Personentage benötigen, ergab sich ein Produktivitätszugewinn von 42\%.
+\paragraph{Microsoft’s Protocol Documentation Program: A Success Story for Model-Based Testing\cite{grieskamp_microsofts_2010}}\label{sec:microsoft_fallstudie}
+Diese von Microsoft durchgeführte Fallstudie liefert exakte Zahlen zur Leistung von MBT im Projekt. Bei der Verfikation der Dokumentation von \textit{Client-Server} und \textit{Server-Server} Protokollen hat Microsoft MBT erstmals in einem großen und geschäftskritischen Umfeld eingesetzt. Die Ergebnisse deuten auf ein hohes Ressourceneinsparungspotenzial von MBT hin. Bei der Umsetzung von knapp zehntausend Test- Requirements mit MBT-Methoden ergab sich im Schnitt eine Dauer von 1,39 Personentagen/Requirement. Verglichen mit knapp neuntausend Requirements desselben Projekts, die mit traditionellen Methoden getestet wurden, die durchschnittlich 2,37 Personentage benötigen, ergab sich ein Produktivitätszugewinn von 42\%.
 
-\paragraph{Model-Based Testing and Some Steps towards Test-Based Modelling\cite{tretmans_model-based_2011}} Die Autoren nehmen sich dem Problem Testing aus einem erfahrungsgemäß praxisnahen Blickwinkel an: Die initiale Hürde der Erstellung von Testmodellen, insbesondere auf Basis von schlechter oder nicht existenter Dokumentation. Test-based modelling, also das Generieren von Modellen anhand von bestehenden Testfällen, wird definiert. Für diesen Ansatz setzeen die Autoren \textit{Automata Learning} ein. Dabei handelt es sich um einen \textit{Machine Learning} Ansatz\cite{narendra_learning_1974}. Das Programm 
+\paragraph{Using a model-based test generator to test for standard conformance\cite{farchi_using_2002}}\label{sec:ibm_fallstudie}
+Bei IBM wurden von Farchi et al. zwei Fallstudien im Bereich modellbasiertes Testen durchgeführt. Die beiden Fallstudien waren auf sehr unterschiedlichen Ebenen der Softwareentwicklung angesiedelt. Einerseits wurde ein Teil der \textit{POSIX byte range locking API}\cite{posix_2008} und andererseits eine Eigenschaft der Programmiersprache Java mittels MBT getestet. Ausgehend von natürlichsprachlichen Spezifikationen des SUT modellierte das Team die Systeme mit dem \textit{GOTCHA-TCBeans} Framework. Eine textuelle Modellierungssprache kam zum Einsatz. Auch Abdeckungskriterien und Assertions sind Teil des Modells. Um die Größe der Modelle überschaubar zu halten, mussten die Testentwickler streng darauf achten nur das externe Verhalten (Black-Box Sicht) der SUT's zu modellieren.\\
+Die Ergebnisse beider Studien sprechen für modellbasiertes Testen. Die Autoren berichten von einer 17\% weniger Zeit die für MBT aufgewendet werden musste, verglichen mit herkömmlichen Testmethoden. Dabei inkludiert ist die Einarbeitungszeit in die neue Methodik und in die neuen Tools. Deshalb sind sich die Autoren sicher, dass der Ressourcenaufwand auf längere Sicht noch stärker fallen wird.
+
+\paragraph{Model-Based Testing and Some Steps towards Test-Based Modelling\cite{tretmans_model-based_2011}} Die Autoren nehmen sich dem Problem Testing aus einem erfahrungsgemäß praxisnahen Blickwinkel an: Die initiale Hürde der Erstellung von Testmodellen, insbesondere auf Basis von schlechter oder nicht existenter Dokumentation. Test-based modelling, also das Generieren von Modellen anhand von bestehenden Testfällen, wird definiert. Für diesen Ansatz setzen die Autoren \textit{Automata Learning} ein. Dabei handelt es sich um einen \textit{Machine Learning} Ansatz\cite{narendra_learning_1974}. Das Programm 
 
 \subsection{Modellierungssprachen}
 \label{sec:notations}
@@ -535,7 +568,7 @@ UTP bietet vereinfachte Wildcards um zu spezifizieren, dass ein Attribut einen b
 
 \begin{figure}[h] 
   \centering
-     \includegraphics[width=0.7\textwidth]{figures/uml_instance.png}
+     \includegraphics[width=1\textwidth]{figures/uml_instance.png}
   \caption{Eine UML Ausprägungsspezifikation. Sowohl eine Instanz der Klasse als auch eine Relation kann als Ausprägung dargestellt werden. (German Wikipedia user Gubaer [GFDL (http://www.gnu.org/copyleft/fdl.html) or CC-BY-SA-3.0 (http://creativecommons.org/licenses/by-sa/3.0/)], via Wikimedia Commons)}
   \label{fig:uml_instance}
 \end{figure}

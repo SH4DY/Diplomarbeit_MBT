@@ -54,16 +54,21 @@ Auf Seiten der Entwickler, also im Scrum-Team, gibt es keinen dedizierten Tester
 
 \subsubsection{Erkannte Schwachstellen in der Qualitätssicherung}
 \label{sec:schwachstellen_raiffeisen}
--Viele Beteiligte
--Keine klaren Zuständigkeiten
--Hohe Diversität bei eingesetzten Tools
--Testfalldesign nicht transparent
+Für diese Fallstudie wurden Interviews mit mehreren Entwicklern, Business-Analysten und Testverantwortlichen geführt. Die hier dargestellten Punkte stellen eine Zusammenfassung aller gesammelten Meinungen dar.\\
 
+\begin{itemize}
+\item An den Softwareprojekten sind verschiedenste Teams beteiligt. Dazu zählen die langzeitigen Projektmitglieder aus Entwicklungsteam, Business-Analysten und Fachbereich aber auch punktuell beteiligte Teams. Außerdem gibt es Teams die als Dienstleister am Projekt beteiligt sind und beispielsweise Lasttests durchführen. Zwischen den Teams gibt es definierte Kommunikationspunkte. Beispielsweise stellt das Team der Business-Analysten den Scrum Product Owner. Dieser fungiert also als Schnittstelle und synchronisiert Anliegen beider Parteien. Bei so vielen Beteiligten ist es schwer den Überblick über Zuständigkeitsbereiche und Tätigkeitsfelder zu behalten. Nicht alle Prozesse der miteinander arbeitenden Teams sind dem Gegenüber bekannt. Dies ist meist auch nicht nötig aber in manchen Fällen hilft es die eigenen Anstrengungen besser aufeinander abzustimmen. Während der Fallstudie wäre es beispielsweise von Vorteil gewesen, früher zu wissen, dass der Fachbereich zwingend CoS-Tabellen für ihre Abnahmetests vorschreibt. Es handelt sich hierbei also um Kommunikationshürden die die Gesamtheit des Projekts betreffen und durch optimierten Informationsfluss beseitigt werden müssen.
+\item Die vielen beteiligten Parteien haben allesamt einen Aufgabenbereich. Über die Länge des Projekts gesehen gibt es aber offene Punkte die nicht klar einem Zuständigkeitsbereich zugeordnet sind. Beim Thema Testing führen zum Beispiel Business Analysten manuelle Regressionstest aus und die Fachbereiche führen in niedrigerer Frequenz manuelle Abnahmetests durch. All diese Testing-Anstrengungen sind aber nicht koordiniert mit der Qualitätssicherung die von den Entwicklern vorgenommen wird. Hier bestünde großes Potenzial das Testing effizienter zu machen wenn das Team der Business-Analysten stärker in die Erstellung und Wartung automatisierter Regressionstest miteinbezogen werden könnten.
+\item Die Definition von User-Stories und den dazugehörigen CoS ist geschieht nach keinem durchgängigen Muster. Auch die Anzahl und das design der CoS selbst ist innerhalb des Projekts unterschiedlich. Das fachliche Testfalldesign ist also nicht transparent. Unsystematische Tests können zulassen, dass gravierende Fehler im SUT nicht aufgedeckt werden.
+\end{itemize}
 
 \subsubsection{Versuch der Qualitätssicherung durch skriptgesteuerte GUI-Tests}
+\label{sec:versuch_script}
+Vor wenigen Jahren wurde im Projektteam versucht die manuellen Aufwände für das Regressionstesting auf GUI-Ebene zu minimieren. Nach sorgfältiger Evaluation der Tool-Landschaft wurden skriptgesteuerte Tests eingesetzt, die einen Benutzer simulieren. Auf diesem Weg erhoffte man sich manuelle CoS-Tests teilweise zu ersetzen. Nach wenigen Monaten stellte sich aber heraus, dass der Wartungsaufwand für die sich schnell entwickelnden Systeme schlichtweg zu hoch war. Außerdem war der Qualitätsgewinn durch die nächtlich laufenden Testfälle gering weil sich das Werkzeug nur unzureichend in den Entwicklungsprozess integrieren ließ und die Rate der falschen Positivfälle sehr hoch war.\\
+Bei diesem Ansatz war es ebenfalls fast unmöglich nicht-technisches Personal sinnvoll einzubinden.
 
 \subsubsection{Aufwendige Wartung von Testdaten}
-Tracing von Testdaten und Testfällen (welcher Bereich der Testdaten wird von einem bestimmten Testfall benutzt?). `If data is tightly coupled with behaviour, this can lead to serious maintenance burden' \cite{baker_model-driven_2005} 
+In der Domäne der Finanzapplikationen ist es üblich, dass eine Vielzahl von Datenfelder spezifiziert werden. Für die Branche üblich, handelt es sich dabei oft um numerische Werte. Um bei solchen Systemen eine zufriedenstellende Abdeckung zu erreichen, ist es nötig mit hoher Kombinatorik zu testen. Dies setzt den Einsatz von umfangreichen Testdatensätzen voraus. Auch das Tracing von Testdaten (welcher Bereich der Testdaten wird von einem bestimmten Testfall benutzt) und Testfällen ist ein Thema. Beim Design einer sinnvollen Teststrategie muss darauf geachtet werden, dass eine Entkopplung von Verhalten und Daten gemacht wird. Wenn Daten nämlich eng an das Verhalten im Testfall gebunden ist, führt dies zu stark erhöhtem Wartungsaufwand\cite{baker_model-driven_2005}. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -71,19 +76,53 @@ Tracing von Testdaten und Testfällen (welcher Bereich der Testdaten wird von ei
 \label{sec:mbt_unit}
 \subsection{ModelJUnit}
 \label{sec:modeljunit}
-ModelJUnit wird von Dr. Mark Utting et al. an der Universität Waikato in Neuseeland entwickelt. Es wird unter der Open Source GNU GPL Lizenz entwickelt und befindet sich zur Zeit in der Version 2.5 \footnote{Homepage des Tools ModelJUnit \url{http://www.cs.waikato.ac.nz/~marku/mbt/modeljunit/}}. Es erlaubt die Modellierung des SUT als endlicher Automat (von hier an FST für \textit{finite state machine}) in Java, Generierung von Testfällen laut spezifiziertem Traversierungsalgorithmus sowie Reporting. Seit Version 2.0 bietet das Tool eine grafische Benutzeroberfläche die die Traversierungskonfiguration ermöglicht und veranschaulicht.\\
-\todo{Hier weitermachen aus Utting Buch}
-\subsubsection{Traversierung}
-\paragraph{Random Walk}
-\paragraph{Greedy Walk}
-\paragraph{Lookahead Walk}
-\paragraph{Quick Walk}
+ModelJUnit wird von Dr. Mark Utting et al. an der Universität Waikato in Neuseeland entwickelt. Es wird unter der Open Source GNU GPL Lizenz entwickelt und befindet sich zur Zeit in der Version 2.5 \footnote{Homepage des Tools ModelJUnit \url{http://www.cs.waikato.ac.nz/~marku/mbt/modeljunit/}}. Es erlaubt die Modellierung des SUT als endlicher Automat (siehe Abschnitt \ref{sec:fsm} für eine Einführung in endliche Maschinen) in Java, Generierung von Testfällen laut spezifiziertem Traversierungsalgorithmus sowie Reporting. Seit Version 2.0 bietet das Tool eine grafische Benutzeroberfläche die die Traversierungskonfiguration ermöglicht und veranschaulicht.\\
+ModelJUnit hat Ähnlichkeiten zu Graphwalker (siehe Abschnitt \ref{sec:graphwalker}) indem es eine Schicht zur Modellierung anbietet und die Traversierung des SUT übernimmt, aber keine Aussage darüber trifft wie das SUT angesprochen werden soll. Der Adapter-Code wird also in annotierte Methoden eingefügt. ModelJUnit übernimmt die Traversierung. Das Modell, welches keine grafische Notation bietet, besteht aus Zuständen und Übergängen. Dies entspricht einem gerichteten Graphen. Die Zustände und Knoten haben Bezeichner. Außerdem können auf den Kanten sogenannte \textit{guards} definiert werden. Dies sind Boolean-Methoden die bestimmen ob zu einem gegebenen Zeitpunkt diese Kante zur Traversierung verfügbar ist oder nicht. Der Testentwickler hat fast unbegrenzte Möglichkeiten Guard-Bedingungen zu überprüfen, da es sich um herkömmlichen Java-Code handelt.
 
+\subsubsection{Modellierung der States}
+Jedes Modell wird als Java-Klasse dargestellt. Eine gültige ModelJUnit Modell-Klasse implementiert mindestens die folgenden vier Zustände. 
+
+\begin{itemize}
+\item \texttt{Object getState()} Diese Methode gibt den momentanten Zustand des SUT, so wie er im Modell repräsentiert wird, zurück. Im einfachsten Fall ist dies eine Abstraktion als String, es können aber beliebige Objekte zurückgegeben werden.
+\item \texttt{void reset(boolean)} Setzt die Traversierung und die Zustände des Modells auf den Startzustand zurück.
+\item \texttt{@Action void name()} Mehrere Methoden werden mit dieser Annotation gekennzeichnet. Sie stellen die Zustandsübergänge dar und in ihnen wird das SUT angesprochen.
+\item \texttt{boolean nameGuard()} Jede Methode die mit \texttt{@Action} annotiert ist, kann optional einen Guard haben. Per Definition muss diese Methode den selben Namen wie die dazugehörige Action haben, aber mit dem Postfix \texttt{Guard} versehen sein.
+\end{itemize}
+
+Die Zustände in denen sich das SUT während einem ModelJUnit Test befindet werden als Enum definiert. Im Konstruktor der Klasse wird der Startzustand des Modells gesetzt. In jeder Action-Methode wird typischerweise ein kurzer Aufruf an das SUT gemacht. Die Aneinanderkettung dieser kurzen Unit-Test-artigen Aufrufe während der Traversierung, resultiert in komplexen Testfällen.\\
+Abbildung \ref{fig:modeljunit} zeigt wie ein in Java-Code geschriebenes Modell grafisch visualisiert werden könnte.
+
+\begin{figure}[h] 
+  \centering
+     \includegraphics[width=0.9\textwidth]{figures/modelljunit_modell.png}
+  \caption{Ein beispielhaftes syntaktisch korrektes Modell wie es von ModelJUnit eingelesen wird. ModelJUnit selbst besitzt keinerlei grafische Notation und erzeugt auch kein grafisches Modell. Dies ist eine Nachbildung zur besseren Visualisierung.}
+  \label{fig:modeljunit}
+\end{figure}
+
+\subsubsection{Traversierung}
+Die Definition einzelner Testfälle, also die Aneinanderreihung von Schritten, durch den Testentwickler entfällt. Nach der Modellierung muss nur die gewünscht Traversierungsstrategie gewählt werden. ModelJUnit bietet einige der bekanntesten Traversierungsalgorithmen. Für alle Traversierungsalgorithmen gelten die Grenzen die durch Guards aufgestellt werden.
+
+\paragraph{Random Walk}
+Das Modell wird zufällig traversiert bis ein Zielknoten erreicht wurde oder eine zeitliche Grenze überschritten wird.
+
+\paragraph{Greedy Walk}
+Die Greedy Walk Strategie ist eine Erweiterung des Random Walks. Sie bevorzugt Zustandsübergänge die noch nicht traversiert wurden. Sobald alle Zustandsübergänge mindestens einmal traversiert wurden, verhält sich Greedy Walk wie Random Walk.
+
+\paragraph{Lookahead Walk}
+Der Lookahead-Walk-Algorithmus schaut vor jedem Schritt \textit{n} Ebenen voraus. Drei Kriterien werden dabei ausgewertet: \textit{NEWTRANS}, \textit{NEWACTION} und \textit{DEPTH}. Das Erreichen eines noch unbekannten Zustandes hat die höchste Priorität wobei ein kurzer Pfad vorzuziehen ist. Außerdem verlieren öfter traversierte Pfade an Attraktivität.
+
+\paragraph{Quick Walk}
+Traversiert den Graphen ähnlich wie Random Walk, speichert aber in einem Cache die entdeckten aber nicht traversierten Pfade. Außerdem speichert der Algorithmus den exakten Pfad zu jedem nicht besuchten Knoten und dessen Pfade. Ein Cache-Limit muss angegeben werden um bei sehr großen Modellen vor Überlauf geschützt zu sein.
+
+\subsubsection{Einsatz von ModelJUnit}
+ModelJUnit nutzt die Ausdrucksstärke und Flexibilität von Java. Es können alle Kerneigenschaften der Sprache für die Modellierung verwendet werden. Java ist vielen Entwicklern bereits bekannt. Die Entscheidung ModelJUnit zu verwenden zieht somit keine langwierigen Schulungen nach sich. Außerdem integriert sich ModelJUnit sehr einfach in bestehende Strukturen, wie zum Beispiel die Continiuous Integration Umgebung.\\
+Im Gegensatz zu sehr formalen Modellierungssprachen verbergen sich Guard- und Übergangsbedingungen innerhalb von Methoden. Sie werden nicht in ausdrucksstarken kurzen Formeln festgehalten. Weiters kann sich viel Komplexität in diesen Methoden verstecken und vom Umstand ablenken, dass das SUT falsch oder zu abstrakt modelliert wurde. Diese Eigenschaft haben alle MBT-Tools die Modelle aus der Familie der endlichen Automaten verwenden.
 
 \section{MBT auf Integrationstestebene}
 \subsection{Testing von Serviceorientierten Architekturen mittels UML Testing Profile}
 \label{sec:utp}
 \subsubsection{UML Testing Profile BASICS}
+\todo{UTP Basics erklären}
 
 \subsubsection{SOA und Web-Services}
 Von Serviceorientierten Architekturen (von hier an \textit{SOA}) verspricht man sich schnelle und einfache Integration innerhalb als auch über Unternehmensgrenzen hinweg. Die Möglichkeit eine Applikation mittels Komposition, maßgeschneidert zu den gegebenen Requirements, zusammenzustellen, ist traditionellen Software-Engineering Methoden oft voraus. Gleichzeitig stellen verschachtelte und unabhängige Strukturen den Tester vor neue Herausforderungen. \\
@@ -169,11 +208,25 @@ Graphwalker weicht ab vom herkömmlichen Testfall-Workflow. Das SUT wird in eine
 `We do not want to walk the same path every time we execute a test. We want variation, spiced with randomness. This will create a better `test coverage' of the system under test.'\cite{_graphwalker_2015}
 \end{quote}
 
-Beim Einsatz in den agilen Entwicklungsteams von Spotify hat sich gezeigt, dass diese Testdesign-Philosophie sehr gut in die kurzen Entwicklungsiterationen passt. Weiters eignen sich die simplen FSM-Diagramme sehr gut um Feedback von Stakeholdern einzuholen, weil sie auch ohne technischen Hintergrund verständlich sind.
+Beim Einsatz in den agilen Entwicklungsteams von Spotify hat sich gezeigt, dass diese Testdesign-Philosophie sehr gut zu den kurzen Entwicklungsiterationen passt. Weiters eignen sich die simplen FSM-Diagramme sehr gut um Feedback von Stakeholdern einzuholen, weil sie auch ohne technischen Hintergrund verständlich sind.
+
+\subsubsection{Funktionsweise von Graphwalker}
+\label{sec:graphwalker_funktionsweise}
+Graphwalker bietet eine schlanke Grundlage für das modellbasierte Testen von Software. Das Framework besteht aus mehreren Komponenten, wobei der durchschnittliche Benutzer (also der Testingenieur) nur mit sehr wenigen in Berührung kommt. Die Vorgehensweise um eine Testsuite mit Graphwalker zu erzeugen ist die folgende:
+
+\begin{enumerate}
+\item Modellierung des SUT oder dessen Komponenten. Geeignet für die Modellierung sind alle Tools die das offene Format GraphML als Exportoption anbieten. Die Projektbetreiber empfehlen yEd.
+\item Verifikation des Modells durch die Kommandozeilenapplikation \textit{Graphwaler-CLI}. Das Modell kann der Kommandozeilenapplikation von Graphwalker zur Verifikation unterzogen werden. Dabei wird sichergestellt, dass Format und Syntax ordnunsgemäß sind.
+\item Erzeugung der Java-Interfaces durch die Kommandozeilenapplikation. Das Modell wird geparsed und für jede Modell-Datei wird ein Java-Interface mit Methoden für alle eindeutig identifizierbaren Kanten und Knoten erzeugt.
+\item Manuelles Implementieren von Klassen die erzeugte Interfaces realisieren. Der Testentwickler erzeugt nun in der Entwicklungsumgebung seiner Wahl Klassen die die generierten Interfaces umsetzen.
+\item Befüllen der Methoden mit Adapter-Code und Assertions. Die Methode die Knoten und Kanten repräsentieren werden nun mit Adapter-Code befüllt der mit dem SUT direkt kommuniziert.
+\item Konfiguration der gewünschten Traversierungsstrategie und Starten von JUnit-Testfällen. Der Testentwickler konfiguriert wie Graphwalker das SUT traversieren soll (siehe Abschnitt \ref{sec:graphwalker_traversierung}) und startet die Traversierung die auf JUnit-Testläufen beruht.
+\end{enumerate}
+
 
 \subsubsection{Modellierungs-Syntax}
-Graphwalkers Modellierungssprache basiert nicht auf UML, weil die Autoren glauben, dass Tester vom großen Funktionsumfang von UML nicht brauchen und abgeschreckt werden. Stattdessen setzt Graphwalker auf GraphML\footnote{Website des GraphML Projekts \url{graphml.graphdrawing.org}}. GraphML setzt nicht auf eine proprietäre Syntax sondern basiert auf herkömmlichen XML-Dateien und wird unter der \textit{Creative Commons Attribution 3.0}-Lizenz entwickelt.\\
-Zur Erstellung von Modellen in GraphML, mit denen Graphwalker umgehen kann, eignet sich jedes Tool, das GraphML-Dateien exportieren kann. Das von den Entwicklern empfohlene Tool ist \textit{yEd}\footnote{Website der Firma yWorks und des yEd Graph Editors \url{http://www.yworks.com/en/products/yfiles/yed/}}, welches völlig kostenlos verwendet werden kann. yEd bietet eine simple Benutzeroberfläche und für die Erstellung von Modellen für Graphwalker ist nahezu kein Einarbeitungsaufwand vorhanden.\\
+Graphwalkers Modellierungssprache basiert nicht auf UML, weil die Autoren glauben, dass Tester den breiten Funktionsumfang von UML nicht brauchen und abgeschreckt werden. Stattdessen setzt Graphwalker auf GraphML\footnote{Website des GraphML Projekts \url{graphml.graphdrawing.org}}. GraphML basiert nicht auf einer proprietären Syntax sondern basiert auf herkömmlichen XML-Dateien und wird unter der \textit{Creative Commons Attribution 3.0}-Lizenz entwickelt.\\
+Zur Erstellung von Modellen in GraphML, mit denen Graphwalker umgehen kann, eignet sich jedes Tool, das GraphML-Dateien exportieren kann. Das von den Entwicklern empfohlene Tool ist \textit{yEd}\footnote{Website der Firma yWorks und des yEd Graph Editors \url{http://www.yworks.com/en/products/yfiles/yed/}}, welches völlig kostenlos verwendet werden kann. yEd bietet eine simple Benutzeroberfläche und für die Erstellung von Modellen für Graphwalker ist nahezu kein Einarbeitungsaufwand nötig.\\
 Modelle in Graphwalker sind gerichtete Graphen. Knoten repräsentieren einen Zustand in dem sich das SUT befindet. Kanten beschreiben die Aktion die zu einem bestimmten Zustand führen. Graphwalker ignoriert grafische Attribute der Modelle wie Farbe und Liniendicke der Elemente. Üblicherweise finden in den Knoten die Überprüfungen (\textit{Assertions}) und in den Kanten die Befehle (Klicks, Schnittstellenaufrufe...) statt. Kanten müssen in Graphwalker genau eine Richtung haben. Es folgt eine kurze Beschreibung der Möglichkeiten, die die Syntax von Graphwalker bietet um die Traversierung der Graphen, und damit der Testfälle, zu beinflussen.
 
 \paragraph{Start vertex} Wenn ein Startknoten definiert wird, darf es nur genau einen geben. Es ist aber nicht obligatorisch einen Startknoten zu definieren.
@@ -196,6 +249,7 @@ Modelle in Graphwalker sind gerichtete Graphen. Knoten repräsentieren einen Zus
 \end{itemize} 
 
 \paragraph{Modularisierung der Modelle}
+\label{sec:graphwalker_modularisierung}
 Das SUT kann in Graphwalker mittels mehreren Modellen abgebildet werden. Dies hat mehrere Vorteile. Einerseits vereinfacht die Modularisierung eines großen Modells die Les- und Wartbarkeit. Andererseits wird dadurch die Wiederverwendbarkeit von Teilen der Funktionalität ermöglicht. Ein klassisches Beispiel ist ein Login-Workflow. Dieser kann oft zu mehreren Zeitpunkten bzw. an mehreren Stellen im SUT erfolgen. Statt das Modell aufzublähen oder mit zahlreichen Beziehungen schlechter lesbar zu machen, kann auf eine andere GraphML-Modelldatei verwiesen werden.\\
 Graphwalker ermöglicht dies mit Sprüngen in andere Modelle. Wenn es bei der Traversierung auf einen Knoten mit dem Schlüsselwort \textit{SHARED} und einem Bezeichner stößt, kann ein Sprung in ein anderes Modell erfolgen, das einen Knoten mit dem selben Bezeichner hat (siehe Abbildung \ref{fig:gw_multiple_models}). Wenn nun mehrere Kanten zur weiteren Traversierung in Fragen kommen, entscheidet der Zufall ob in das andere Modell gesprungen wird.\\
 Weiters ist zu erwähnen, dass die Modelle nicht einfach nur verflacht (\textit{flattening}) werden. Das bedeutet, dass die Modelle unabhängige Gültigkeitsbereiche haben. Die Traversierung erfolgt also in einem eigenen Kontext.
@@ -207,7 +261,8 @@ Weiters ist zu erwähnen, dass die Modelle nicht einfach nur verflacht (\textit{
   \label{fig:gw_multiple_models}
 \end{figure}
 
-\paragraph{Traversierung der Modelle}  
+\paragraph{Traversierung der Modelle} 
+\label{sec:graphwalker_traversierung} 
 Wie im ursprünglichsten Sinn des modellbasierten Tests, kennt Graphwalker das Konzept der Testfälle nicht. Das SUT wird als gesamtes oder nur zu Teilen modelliert und das Testing wird durch die Auswahl eines Traversierungsalgorithmus angestoßen. Da die meisten Traversierungsalgorithmen von einer randomisierten Variante abhängen, wird das SUT bei jedem Testdurchlauf leicht unterschiedlich traversiert und damit getestet.\\
 Durch die Modellierung des Modells und der Auswahl sowie Einstellung eines Traversierungsalgorithmus kann also bestimmt werden wie das SUT getestet werden soll. Dabei bietet Graphwalker bereits verschiedenste Algorithmen an, die sich für unterschiedliche Testzwecke eignen. Die meisten dieser Algorithmen basieren auf bekannten Graph-Algorithmen und bieten, durch die quelloffene Entwicklung, volle Transparenz gegenüber dem Tester.
 
@@ -250,9 +305,34 @@ public void runFunctionalTest() {
 }
 \end{verbatim}
 
+\subsection{Einbindung von anderen Tools in Graphwalker Tests}
+Graphwalker bietet mit dem Parsen des Modells, der Generierung der Java-Interfaces und der Traversierung nur das Grundgerüst um modellbasiertes Testen zu ermöglichen. Weil Graphwalkers volle Funktionalität in Java-Code gesteuert wird sind keine, von Herstellerseite wartungspflichtige, Schnittstellen zu anderen Systemen nötig. Das bedeutet, dass Werkzeuge zur Ansteuerung des SUT (Adapter-Code) problemlos verwendet werden können, insofern sie sich über reinen Java-Code ansteuern lassen. Dieser Umstand macht die Verwendung von Graphwalker extrem flexibel und gleichzeitig zukunftssicher, da auch ein Umstieg auf andere Technologien problemlos möglich ist.\\
+Üblicherweise befinden sich in den Knoten (stellen einen Zustand dar) Code der auf das SUT überprüfgend zugreift (\textit{Assertions}). In den Kanten (stellen eine Aktion dar) befindet sich Code der eine Eingabe am SUT macht.\\
+Auf Schnittstellenebene kann beispielsweise SoapUI als Verbindungsstück zum SUT gewählt werden. Die folgende Methode \ref{lst:graph_soap} implementiert das von Graphwalker aus dem Modell erzeugte Interface \texttt{e\_InvalidCredentials}. Die Methode repräsentiert also eine Kante (erkennbar am Präfix \texttt{e}), die Login-Eingaben macht die vom SUT als ungültig erkannt werden sollten. In der Methode wird eine Referenz zur SoapUI Schnittstelle hergestellt. Das dazugehörige SoapUI-Projekt liegt vorbereitet an einem definierten Pfad. Im Code wird außerdem der auszuführende Testfall definiert (hier \texttt{ValidLogin}). Zuletzt wird der SoapUI Testfall angestoßen und der Fehlerbericht gegebenenfalls abgefangen.
 
-\subsection{Einbindung SoapUI/HP UFT}
+\begin{lstlisting}[caption={Methode die ein von Graphwalker erzeugtes Interface implementiert und einen SoapUI-Testfall anstößt.}, label=lst:graph_soap]
+@Override
+public void e_ValidCredentials() {
 
+    //Invoke SoapUI testcase with valid credentials
+    SoapUITestCaseRunner runner = new SoapUITestCaseRunner();
+    runner.setProjectFile(SOAPUI_PROJECT_PATH);
+    runner.setTestSuite("ValidLogin");
+    try {
+        runner.run();
+    } catch (Exception e) {
+        report.addTestCaseWithError(ErrorType.EDGE_ERROR.toString(), System.currentTimeMillis(), "Error while validating credentials", e.getStackTrace().toString());
+    }
+}
+\end{lstlisting}
+
+An dieser Stelle kann also eine Vielzahl von Aufrufen passieren:
+
+\begin{itemize}
+\item \textbf{Adapter-Code:} Wie im Codebeispiel \ref{lst:graph_soap} kann ein fremdes Framework angesprochen werden um auf das SUT zuzugreifen. In der Fallstudie (siehe Abschnitt \ref{sec:fallstudie})wurde dabei hauptsächlich SoapUI und RESTassured\footnote{RESTassured Testing Library \url{https://github.com/jayway/rest-assured}} verwendet. Aber auch große kommerzielle Testing-Werkzeuge bieten Java-Schnittstellen an, die an diesen Stellen angesprochen werden können.
+\item \textbf{Reporting und Historisierung:} Genauso können an dieser Stelle Aufrufe zu externen Systemen erfolgen die von den verschiedensten Parteien verwendet werden um den Qualitätsstatus des SUT zu managen (sogenannte \textit{Application Lifecycle} Tools). 
+\item \textbf{Testdatenmanagement:} Auch möglich und oftmalls sinnvoll, ist der Zugriff auf eine Komponente oder ein externes System welches für das Testdatemanagement zuständig ist. Das kann ein Datenbankzugriff sein oder auch eine Anfrage an ein über das Netzwerk oder Internet angeschlossene Testdaten-Tool.
+\end{itemize}
 
 \section{MBT auf Systemtestebene und Test non-stop}
 \subsection{Manuelle Systemtests anhand von Modellen}
