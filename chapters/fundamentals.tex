@@ -296,7 +296,7 @@ Fehler in der Spezifikation eines Software-Systems sind die Folgeschwersten\cite
 Durch den frühen Einsatz von Modellen (entweder im Rahmen von modellgetriebener Entwicklung oder eben durch den Einsatz von modellbasiertem Testen) ist der Requirements-Engineer gezwungen gewisse Unklarheiten zu eliminieren, die in Prosa-Texten nicht auffallen würden. Durch diese Erhöhung des Detailgrades in der Spezifikationsphase kommen fragen auf wie: `Wie soll das System mit einer ungültigen Eingabe umgehen?', `Können diese zwei Konditionen gleichzeitig wahr/falsch sein?', `Wie soll ein korrupter Workflow neugestartet werden?'\\
 Verglichen mit manuellen Testing, kamen bei Microsoft, wo MBT zum Testing von Kommunikationsprotokollen eingesetzt wurde,  bei der Modellierung doppelt soviele Design- und Spezifikationsfehler als Implementationsfehler zum Vorschein\cite{stobie_model_2005}. Bei frühzeitigem Einsatz von MBT, bewegt sich ein großer Teil der Aktivitäten des Testers vom reinen `Abfangen' der Fehler am Schluss des Entwicklungszyklus, zu vorausschauendem Modellieren.
 
-\subsection{Modellkategorien} \todo{Vll. Umbenennen in Eigenschaften von Modellen und hier auch die eigenschaften aus Utting Seite 60 beschreiben.}
+\subsection{Modellkategorien}
 Im Feld der modellgetriebenen Entwicklung und des modellbasierten Testens wird grundsätzlich zwischen drei verschiedenen Modellkategorien unterschieden.
 \todo[inline]{vielleicht wären beispiele für die Kategorien gut, überlegen wir noch}
 
@@ -304,14 +304,15 @@ Im Feld der modellgetriebenen Entwicklung und des modellbasierten Testens wird g
 \paragraph{Systemmodelle} beschreiben das SUT in statischer und dynamischer Hinsicht. Sie stellen dar aus welchen Komponenten das SUT zusammengesetzt ist, welche Eigenschaften diese haben und wie diese miteinander kommunizieren. 
 \paragraph{Testmodelle} dienen als Grundlage für die Generierung von Testfällen, basiernd auf Spezifikations- und Entwurfsdokumenten. Daher enthalten sie auch oftmals Teile von Umgebungs- und Systemmodellen. Weiters beschreiben sie den Ablauf der zu generierenden Testfälle. Möglich ist die Angabe darüber, welche Eingaben das SUT erhalten soll und welche Ausgaben bzw. Reaktionen erwartet werden.
 
-\subsection{Eigenschaften des Testmodells} \todo[]{}
+\subsection{Eigenschaften des Testmodells} 
 \label{sec:eigenschaften_modell}
+\todo[inline,color=yellow]{@boris NEU HINZUGEKOMMEN}
 Modelle die das \ac{SUT} repräsentieren können, dem verwendeten Werkzeug entsprechend, in den verschiedensten Notationen auftreten (siehe Abschnitt \ref{sec:notations} \nameref{sec:notations}). Unabhängig vom Stil und den Eigenheiten der Notationen, müssen diese Modelle gewisse Eigenschaften erfüllen um sinnvoll für modellbasiertes Testen einsetzbar zu sein.\\
 
 \begin{itemize}
-\item \textbf{Abstraktion und Präzision} Die Hauptaufgabe des Testmodellierers ist es, die richtige Balance zwischen Abstraktion und Präzision in Bezug auf das \ac{SUT} zu finden\cite{utting_practical_2007}. Einerseits muss der Detailgrad des Modells überschaubar bleiben. Es ist nicht sinnvoll jeden Zustand den das reale System einnehmen kann auch im Modell darzustellen. Das Modell würde viel zu komplex und damit fehleranfällig sowie wartungsunfreundlich. \citeauthor{utting_practical_2007} schlagen deshalb vor, nur die Teile des Systems zu modellieren die benötigt werden um die Testziele zu erreichen\cite{utting_practical_2007}. Andererseits darf die Abstraktionsebene nicht zu hoch gewählt werden, da sonst fehlerhafte Zustände bei der Modelltraversierung nicht auftreten könnten. 
+\item \textbf{Abstraktion und Präzision} Die Hauptaufgabe des Testmodellierers ist es, die richtige Balance zwischen Abstraktion und Präzision in Bezug auf das \ac{SUT} zu finden\cite{utting_practical_2007}. Einerseits muss der Detailgrad des Modells überschaubar bleiben. Es ist nicht sinnvoll jeden Zustand den das reale System einnehmen kann auch im Modell darzustellen. Das Modell würde viel zu komplex und damit fehleranfällig sowie wartungsunfreundlich. \citeauthor{utting_practical_2007} schlagen deshalb vor, nur die Teile des Systems zu modellieren die benötigt werden um die Testziele zu erreichen\cite{utting_practical_2007}. Andererseits darf die Abstraktionsebene nicht zu hoch gewählt werden, da sonst fehlerhafte Zustände bei der Modelltraversierung nicht auftreten könnten und somit Fehlverhalten unbemerkt bleibt. 
 \item \textbf{Unterschiede zwischen Modell und System} Das Modell soll sich zwar gleich verhalten wie das \ac{SUT} aber deswegen müssen Operationen und Zustände nicht Eins-zu-eins im Modell bestehen. Gerade wenn ein komplexer Vorgang modelliert werden muss, kann es Sinn machen dessen Verhalten aufgeteilt im Modell darzustellen. Genauso ist es erlaubt eine Kette von Operationen, die nicht interessant sind zu testen, innerhalb eines Schrittes im Modell darzustellen.
-\item 
+\item \textbf{Abstraktion der Input und Output Parameter} Das Prinzip der Abstraktion soll auch für Eingabe- und Ausgabedaten angewendet werden, um die Größe des Modells überschaubar zu halten. Dabei sollen diese Werte mit einer klaren Whitebox-Sicht gewählt werden. Das heißt, die gewählten Parameter sollen in Hinblick auf die Programmlogik Grenz- und Extremwerte sein.     
 \end{itemize}
 
 \subsection{Der MBT Prozess}
