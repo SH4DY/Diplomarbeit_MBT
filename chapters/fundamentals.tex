@@ -98,7 +98,30 @@ Aus dem Projektmanagement ist das magische Dreieck bekannt (siehe Abbildung \ref
 
 
 \subsection{Testprozess}
-\todo[inline]{Kapitel Testprozess}
+\todo[inline]{HINZUGEFÜGT Kapitel Testprozess}
+Mit der ständig wachsenden Wichtigkeit und Komplexität moderner Software ist es nötig Testaktivitäten als eigenständigen und professionell geplanten Prozess zu sehen, der dem Entwicklungsprozess ebenbürtig ist\cite{grechenig_softwaretechnik:_2010}. \citeauthor{grechenig_softwaretechnik:_2010} beschreiben den Testprozess als zyklische Aneinanderreihung von bestimmten Aktivitäten die bis zu 50\% der Entwicklungskosten ausmachen.\todo{Grafik aus Grechenig Buch einfügen, siehe SCreenshot}
+
+\paragraph{Testziele} Definierte Zustände die als Kriterien zur Bewertung von Gelingen und Misslingen eines Testdurchlaufs dienen. Dazu zählt auch eine genaue Beschreibung der Testobjekte (Systeme, Umsysteme, Klassen, Methoden, Schnittstellen etc.) welche am Test beteiligt sind. Außerdem gelten Testziele nur für eine genau definierte Testumgebung. In Abschnitt \ref{sec:teststufen} \nameref{sec:teststufen} sind die genannten Testumgebungen ebenfalls von Bedeutung.
+
+\paragraph{Testplanung} Ein Testplan beschreibt die Strategie während vor, während und nach den eigentlich Entwicklungs- und Testphasen um zu gewährleisten, dass spezifizierte Anforderungen erfüllt werden. Ein Testplan wird vom IEEE 829\cite{_ieee_2008} Standard definiert und kann als Vorlage verwendet werden. Dieser Testplan enthält unter anderem die folgenden Teile:
+
+\begin{itemize}
+\item Testobjekte
+\item Risiken und kritische Teile des Systems
+\item Eigenschaften der Software die zu testen sind
+\item Eigenschaften der Software die nicht zu testen sind
+\item Herangehensweise (Werkzeuge, Metriken, Schulungsbedarf etc.)
+\item Kriterien für das Bestehen der Tests für jede Komponente
+\item Testartefakte die auszuliefern sind
+\item Zeitplan
+\item Verantwortlichkeiten und Zuständigkeitsbereiche
+\end{itemize}
+
+\paragraph{Testdesign und Implementierung} In dieser Phase des Testprozesses werden die geplanten Tests im Detail entworfen und entwickelt. Es werden lokale Architekturentscheidungen getroffen.
+
+\paragraph{Testdurchführung} Die Tests werden manuell oder automatisch durchgeführt. Die Ergebnisse werden zum Zeitpunkt des Durchlaufs möglichst präzise und aussagekräftig dokumentiert.
+
+\paragraph{Testbericht und Analyse} Aus den Ergebnissen der durchgeführten Tests werden Berichte erstellt, die das Nachvollziehen der einzelnen Testschritte möglichst einfach machen. Zweck dieser Berichte soll sein, dass Fehler schnell gefunden und im Quellcode beseitigt werden können. Abhängig von der Software und deren Einsatz kann es nötig sein, die Ergebnisse der Testläufe für rechtliche Belangen verfügbar zu machen.
 
 \subsection{Sicht auf das Testsystem}
 \label{sec:sicht}
@@ -588,9 +611,13 @@ Modelle in B Notation können folgende Dimensionen definieren (von denen einige 
 \paragraph{Operatoren und Datenstrukturen der B-Notation}
 \todo[color=yellow]{@boris NEU HINZUGEKOMMEN}
 Die B-Notation inkludiert eine breite Palette an Operatoren und Datenstrukturen um ein System zu modellieren. Sie dienen dazu das \ac{SUT} auf abstrakter Ebene möglichst transparent und verständlich darzustellen.\\
-B-Notation besitzt alle gängigen Operatoren, wie sie von den meisten modernen Programmiersprachen unterstützt werden. Dazu zählen Konjunktion, Disjunktion, Negation, Gleichheit und die arithmetischen Operatoren. Besonders hervorzuheben sind aber die logische Implikation ($\Rightarrow$) die logische Equivalenz ($\Leftrightarrow$). Außerdem sind die, aus der Prädikatenlogik bekannten, Quantoren verfügbar\cite{teschl_mathematik_2013}. Dazu gehören der Universal-Quantor ($\forall$) und der Existenz-Quantor ($\exists$).\\
+B-Notation besitzt alle gängigen Operatoren, wie sie von den meisten modernen Programmiersprachen unterstützt werden. Dazu zählen Konjunktion, Disjunktion, Negation, Gleichheit und die arithmetischen Operatoren. Besonders hervorzuheben sind aber die logische Implikation ($\Rightarrow$) die logische Equivalenz ($\Leftrightarrow$). Außerdem sind die, aus der Prädikatenlogik bekannten, Quantoren verfügbar\cite{teschl_mathematik_2013}. Dazu gehören der Allquantor ($\forall$) und der Existenzquantor ($\exists$).\\
 Außerdem gibt es Sets. Diese sind definiert als ungeordnete Kollektionen gleichartiger Elemente ohne Duplikate. Um mit diesen Sets arbeiten zu können, gibt es den Vereinigungoperator ($\cup$), den Schnittmengenoperator ($\cap$) und die Subtraktion ($-$).\\
-Weiters gibt es Relationen die eine Beziehung zwischen den Elementen zweier Sets beschreiben (notiert als $A \leftrightarrow B$). Wobei eine konkrete Relation $r = {a_1 \rightarrow b_1} $ 
+Weiters gibt es Relationen die eine Beziehung zwischen den Elementen zweier Sets beschreiben (notiert als $A \leftrightarrow B$). Wobei eine konkrete Relation $r = {a_1 \rightarrow b_1, a_2 \rightarrow b_2} $ bedeuten würde, dass das Element $a_1$ der Antezedent von $b_2$ ist.\\
+Der mächtigste Operator in B-Notation ist die Funktion. Funktionen sind spezielle Relationen, in denen Elemente einer Menge $A$ auf genau ein Element abgebildet wird. B-Notation unterscheidet zwischen mehreren Arten von Funktionen, wobei die gängisten die totale Funktion (\textbf{jedes} Element der Menge $A$ wird auf ein anderes Element abgebildet) und partielle Funktion ($0...n$ Elemente der Menge $A$ werden auf ein anderes Element abgebildet) ist. 
+
+\paragraph{Eignung der B-Notation}
+B-Notation ist sehr präzise und dementsprechend ressourcenintensiv um flächendeckend eingesetzt zu werden. Vorrangig eignet sie sich um die Ergebnisse eines Systems zu testen, das mittels einem oder mehreren Eingabewerten sofort einen oder mehrere komplexe Ausgabewerte liefert (Transaktionssystem). B-Notation eignet sich weniger um Systeme zu testen die 
 
 \subsubsection{UML/ UML Testing Profile}
 \paragraph{Test-Driven Testing mit UTP}
