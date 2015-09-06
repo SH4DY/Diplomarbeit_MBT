@@ -38,58 +38,20 @@ Bitte einen Zeitplan für die Verfassung Ihrer Diplomarbeit erarbeiten und mit I
 
 Der Umfang einer Diplomarbeit beträgt üblicherweise 90 bis ca. 120 Seiten und bei Bachelorarbeiten 40 bis ca. 60 Seiten. Beurteilungskriterien für eine Diplomarbeit ist nicht nur die Qualität der praktischen Arbeit, sondern auch Aufbau, Inhalt und Formulierung der schriftlichen Arbeit. Insbesondere sind die Grundregeln wissenschaftlichen Arbeitens (z.B. richtiges Zitieren) zu beachten.
 
-\paragraph{Allgemeines}
-Achtung beim Setzen von Absätze.
-
-Fußzeilen: Bei technischen Arbeiten eher unüblich. \\
-In den Sozialwissenschaften (z.B. BWL) ist es üblich, die Referenz in eine Fußnote zu setzen.
-\\
-In den technischen Wissenschaften ist es üblich, im Text ein Kürzel (Dorn et al. 1999) oder eine Zahl [1] zu verwenden, um dann im Anhang der Arbeit alle Referenzen detailliert aufzuführen, wobei jede Referenz mit dem Kürzel beginnt.
-
-Bei einer wissenschaftlichen Arbeit wird Wert auf die Einhaltung formaler Aspekte des guten Schreibens gelegt. Es ist hilfreich, wenn man seinen eigenen Schreibstil kritisch in Bezug auf folgende Punkte überprüft:
-\begin{itemize}
-	\item Einfachheit (das \ac{KISS}-Prinzip gilt nicht nur für die Softwareentwicklung, sondern auch für wissenschaftliche Arbeiten: Mach es schlicht und wesentlich/\acl{KISS})
-	\item Gliederung/ logische Ordnung (vom Allgemeinen zum Konkreten, nachvollziehbare Kette von einer Fragestellung/ einem Problem über die Bearbeitung und Zerlegung in Detailprobleme zur Lösung und der Ableitung von Erkenntnissen)
-	\item Kürze/Prägnanz (keine Schachtelsätz, Wiederholungen vermeiden – \enquote{Don't repeat yourself})
-	\item Anregende Zusätze (erläuternde/ interessante/ spannende Praxisbeispiele etc.)
-	\item Sprache/Stil (kein Erzählstil, möglichst keine \enquote{ich}-Form, objektiv)
-	\item Korrekte Formeln und Abbildungen
-	\item Korrekte Zitierweise (siehe Kapitel Literaturverzeichnis)
-	\item Einhaltung definierter Rahmenbedingungen (z.B. diese Vorlage)
-	\item Vermeiden von Anglizismen. Grundsätzlich sollte in einer in Deutsch verfassten Diplomarbeit immer das deutsche Wort verwendet werden, wenn es unmissverständlich und akzeptiert ist. Ein Eindeutschen um jeden Preis ist allerdings zu vermeiden, da dies zu schwer lesbaren Texten führt. Beispiele: Der Begriff \enquote{Unterbrechung des Programmflusses} ist angebrachter als \enquote{Interrupt des Programmflusses}, und \enquote{verdeckte Kanäle} ist als akzeptierter deutscher Begriff für \enquote{Covert Channels} zu verwenden. Umgekehrt ist aber \enquote{Cursor} das bessere Wort als \enquote{Lichtmarke}. Anglizismen können als Stilmittel genutzt werden, etwa wenn man von einer \enquote{Quick and Dirty} Implementierung spricht.
-\end{itemize}
-
-\paragraph{Typographie}
-Grundsätzlich sollten nicht mehr als drei unterschiedliche Schriftarten verwendet werden. Grundsätzlich sollte die Typographie sowie die Anordnung von Bildern, Tabellen, etc. \LaTeX überlassen werden. Allerdings können Silbentrennungen durch \verb|\-| gesteuert werden.
-
-Abweichungen nach persönlichem Geschmack und in Rücksprache mit Ihrem Betreuer sind zulässig. Als Stilmittel werden üblicherweise nur die Fettschrift und Kursivschrift verwendet - Unterstreichungen, Schattenschriften etc. sind zu vermeiden. Blocksatz bitte mit automatischer Silbentrennung verwenden, Rechtschreibprüfung aktivieren.
-
-Generell kann bei der Einleitung eine modifizierte Version des Exposés als Basis verwendet werden.
 
 %=======================================================================
 \section{Problemstellung}
 %=======================================================================
 
-Formulierung der Problemstellung, Einbettung in das Forschungsumfeld und Theorie, auf die sich die Arbeit beziehen. Tendenziell kurz, allgemeiner und sehr gut verständlich -- detaillierter im Kapitel \enquote{Grundlagen}.
-
-Die formulierte Fragestellung soll das Interesse an der Lösung wecken (eine langweilige oder triviale Problemstellung lässt meistens auch eine eher weniger interessante wissenschaftliche Arbeit erwarten).
-
-\makeatletter\ifthesis@masterthesis
-Nach dem Lesen dieses Kapitels sollten folgende Punkte klar dargestellt sein:
-\begin{itemize}
-	\item Welche konkrete Fragestellung/Arbeitshypothese/welches Problem liegt dem Thema zugrunde?
-	\item Klare Definition des Untersuchungsgegenstands (z.B. effiziente Internationalisierung/ Mehrsprachigkeit von Computerprogrammen im Java Umfeld).
-	\item Darlegung und Begründung thematischer Abgrenzungen.
-	\item Klare Darstellung eines ggf. übergeordneten fachlichen Kontexts/Zusammenhangs (z.B. des medizinisch/ organisatorischen Rahmens, der bei einer Arbeit über Usability einen Einfluss auf die Usability einer auf Tablets/Touchscreens basieren Pflegedokumentation im klinischen Bereich hat).
-\end{itemize}
-
-In diesem Kapitel wird das Problem und sein Kontext beschrieben (\enquote{die Sache/die Frage}) – nicht aber, warum es gerade zum Zeitpunkt der Diplomarbeit notwendig ist, für dieses Problem eine Lösung zu erarbeiten. Das \enquote{Warum} (die Motivation) wird im nächsten Unterkapitel beschrieben.
-\fi\makeatother
+Steigende Komplexität in modernen technischen Disziplinen, darunter auch die Softwareentwicklung, erfordern Methoden zur Qualitätssicherung. Systematisches Prüfen ist ein zentrales Mittel, um Qualität von Software über einen längeren Zeitraum hinweg sicherzustellen\cite{spillner_software_2014}. Automatisierte Softwaretests auf Integrations- und Systemebene haben sich als effizienter Kontrollmechanismus etabliert\cite{dustin_software_2000}, sind aber herausfordernd in ihrer Umsetzung, vor allem in agilen Entwicklungsumgebungen. Kurze Iterationen, kombiniert mit einer hohen Frequenz von Änderungen in der Software erfordern spezialisierte Methoden\cite{linz_testing_2014}. Allein die Wahl des richtigen Werkzeugs für automatisiertes Testen garantiert noch keine erfolgreiche Teststrategie. Ungeachtet der gewählten Teststrategie, kann das Warten von Testfällen einen erheblichen Ressourcenaufwand verursachen der über Erfolg und Misserfolg eines Softwareprojekts entscheiden kann\cite{dustin_software_2000}. Vor allem agile Teams arbeiten auf multifunktionaler Basis. Deshalb darf sich auch die Generierung und Wartung von Testfällen nicht nur den technischen Rollen erschließen\cite{linz_testing_2014}. Bei mehreren weitverbreiteten Technologien ergibt sich aber genau diese Problematik.\\
+Ein vielversprechender Ansatz ist Testen auf Basis von Modellen, sogenannten modellbasiertes Testen. Beim modellbasierten Testen wird die zu testende Applikation als Modell in abstrahierter Form dargestellt. Daraus werden Testfälle automatisch generiert.
 
 %=======================================================================
 \section{Motivation}
 %=======================================================================
+Große Softwareprojekte sind teuer in der Entwicklung und der Wartung. Sie müssen unter hohem Zeitdruck geplant, spezifiziert, implementiert und ausgeliefert werden. Außerdem sollen solche Systeme dann mehrere Jahre gewartet und in ihrer Funktionalität erweitert werden. Softwaresysteme die sensible Daten verarbeiten (Finanzwesen, Gesundheitswesen etc.) sind davon abhängig sehr exakte Ergebnisse zu liefern. Strenges Prüfen dieser ist unumgänglich. Gleichzeitig verknappen solche Tätigkeiten den engen zeitlichen Rahmen solcher Projekte. Deshalb wird, unabhängig von der Branche, das automatisierte regressive Testen von Software thematisiert.
 
+___________________________
 In diesem Kapitel wird der Forschungsbedarf aufgezeigt. Nach dem Lesen dieses Kapitels sollten folgende Punkte klar dargestellt sein:
 \begin{itemize}
 	\item Aktueller Stand der Wissenschaft in Bezug auf die zuvor formulierte Problemstellung und klare Darstellung, was hier unzureichend/offen ist.
@@ -101,7 +63,7 @@ In diesem Kapitel wird der Forschungsbedarf aufgezeigt. Nach dem Lesen dieses Ka
 \section{Zielsetzung}
 %=======================================================================
 
-Nachdem die Problemstellung und die Motivation zu deren Lösung formuliert wurden, wird in diesem Kapitel das zu erarbeitende Resultat beschrieben.
+Nachdem die Problemstellung und die Motivation zu deren Lösung formuliert wurden, wird in diesem Kapitel das zu erarbeitende Resultat beschrieben. \todo{Hier weiter...}
 
 \makeatletter\ifthesis@masterthesis
 Nach dem Lesen dieses Kapitels sollten folgende Punkte klar dargestellt sein:
