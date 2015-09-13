@@ -5,7 +5,7 @@
 
 \subsection{Motivation und Relevanz}
 
-\todo[inline]{Evt. einleitende Worte...}
+\gls{KISS}
 Der Funktionsumfang von Software stieg in den letzten fünzig Jahren enorm. Gleichzeitig bietet die Geschichte der Informatik viele Beispiele, die für die Notwendigkeit von Qualitätssicherung in der Softwareentwicklung sprechen. Ein sehr bildhaftes Beispiel der Folgen von fehlerhafter Software, ist die Selbstzerstörung der Ariane 5 Rakete im Jahr 1996 \cite{giese_warum_2002}. Das Trägheitsnavigationssystem wandelte eine 64-bit-Gleitkommazahl in eine Ganzzahl. Dieser Programmteil wurde schon in der Ariane 4 verwendet, nur war diese weitaus schubschwächer und der betroffene Sensor erzeugte viel kleinere Ergebnisse. Nur 36 Sekunden nach Start des Erstfluges, setzte also ein klassischer Überlauf ein und die Rakete aktivierte ihren Selbstzerstörungsmechanismus.
 Ähnliches passierte bei der Raumsonde Mars Obiter der NASA. Diese war am 24. September 1999 gestartet und hätte 220 Millionen Kilometer später auf dem roten Planeten landen sollen. Kurz vor der Landung ging der Kontakt verloren, die Sonde zerschellte an der Oberfläche des Planeten. In diesem Fall war es kein Überlauf sondern ein Fehler bei den Maßeinheiten die den Steuerungsschub kontrollierten. Die Entwickler der NASA erwarteten in ihrem Code Zahlen in Form von Newton, während der Hersteller Lockheed Martin angloamerikanische Pfund lieferte. Durch Zufall fiel der Fehler während des gesamten Flugs nicht auf. \cite{thaller_software-test:_2002}
 In keinem der beiden Vorfälle kamen Menschen zu Schaden, trotzdem waren die finanziellen Verluste enorm. Natürlich war die Komplexität dieser NASA-Projekte sehr hoch und wahrscheinlich nicht repräsentativ für Software die am Markt erhältlich ist, trotzdem wären beide Fehler durch geeignete Testmaßnahmen vermeidbar gewesen. Im Fall der Ariane 5 hätte es ausgereicht die Schnittstelle zum Steuercomputer mit Extremwerten zu testen. Man wäre schnell auf den Überlauf gestoßen und hätte die Umrechnung anpassen können. Auch Mars Orbiter hätte durch ausführliche Tests der Schnittstellen auf Basis von Verträgen, welche die beteiligten Software Teams untereinander ausmachen, gerettet werden können.
@@ -613,10 +613,6 @@ Modelle in B Notation können folgende Dimensionen definieren (von denen einige 
 
 \paragraph{Operatoren und Datenstrukturen der B-Notation}
 Die B-Notation inkludiert eine breite Palette an Operatoren und Datenstrukturen um ein System zu modellieren. Sie dienen dazu das \ac{SUT} auf abstrakter Ebene möglichst transparent und verständlich darzustellen.\\
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 33ea4c9890e852c584121caf3ffe15e829269c60
 B-Notation besitzt alle gängigen Operatoren, wie sie von den meisten modernen Programmiersprachen unterstützt werden. Dazu zählen Konjunktion, Disjunktion, Negation, Gleichheit und die arithmetischen Operatoren. Besonders hervorzuheben sind aber die logische Implikation ($\Rightarrow$) die logische Equivalenz ($\Leftrightarrow$). Außerdem sind die, aus der Prädikatenlogik bekannten, Quantoren verfügbar\cite{teschl_mathematik_2013}. Dazu gehören der Allquantor ($\forall$) und der Existenzquantor ($\exists$).\\
 Außerdem gibt es Sets. Diese sind definiert als ungeordnete Kollektionen gleichartiger Elemente ohne Duplikate. Um mit diesen Sets arbeiten zu können, gibt es den Vereinigungoperator ($\cup$), den Schnittmengenoperator ($\cap$) und die Subtraktion ($-$).\\
 Weiters gibt es Relationen die eine Beziehung zwischen den Elementen zweier Sets beschreiben (notiert als $A \leftrightarrow B$). Wobei eine konkrete Relation $r = {a_1 \rightarrow b_1, a_2 \rightarrow b_2} $ bedeuten würde, dass das Element $a_1$ der Antezedent von $b_2$ ist.\\
