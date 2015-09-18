@@ -128,11 +128,11 @@ Im Gegensatz zu sehr formalen Modellierungssprachen verbergen sich Guard- und Ü
 \todo{UTP Basics erklären}
 
 \subsubsection{SOA und Web-Services}
-Von \gls{SOA} verspricht man sich schnelle und einfache Integration innerhalb als auch über Unternehmensgrenzen hinweg. Die Möglichkeit eine Applikation mittels Komposition, maßgeschneidert zu den gegebenen Anforderungen, zusammenzustellen, ist traditionellen Softwareentwicklungsmethoden oft voraus. Gleichzeitig stellen verschachtelte und unabhängige Strukturen den Tester vor neue Herausforderungen. \\
+Von \glspl{SOA} verspricht man sich schnelle und einfache Integration innerhalb als auch über Unternehmensgrenzen hinweg. Die Möglichkeit eine Applikation mittels Komposition, maßgeschneidert zu den gegebenen Anforderungen, zusammenzustellen, ist traditionellen Softwareentwicklungsmethoden oft voraus. Gleichzeitig stellen verschachtelte und unabhängige Strukturen den Tester vor neue Herausforderungen. \\
 SOA wird missbräuchlich oft mit Web-Services gleichgestellt. Tatsächlich sind Web-Services nur die häufigste architektonische Grundlage auf der \gls{SOA} Applikationen laufen. Die folgende Sektion geht ebenfalls von einer Serviceorientierten Architektur basierend auf Web-Services aus.
 
 \subsubsection{Mapping von Web-Service Elementen auf UML-Diagramme}
-Am Beispiel eines Web-Services der per WSDL\footnote{WSDL Web-Service Spezifikationssprache 2.0 \url{http://www.w3.org/TR/wsdl20/}} definiert ist, soll gezeigt werden wie eine Modellierung von Web-Services mittels dem UML-Testing Profile umgesetzt werden kann. \footnote{Sehr ähnlich würde eine Modellierung für RESTful Web-Services basierend auf WADL ausschauen. Hierbei stellt sich aber eine Grundsatzfrage: Eines der Prinzipien von REST ist die Fähigkeit, dass sich ein Web-Service selbst beschreiben kann. Inwiefern trotzdem WADL Dateien gebraucht werden, hängt von der jeweiligen Implementierung ab.} \citeauthor{_model-driven_2007} schlagen folgende Vorgehensweise für das Mapping vor\cite{_model-driven_2007}:
+Am Beispiel eines Web-Services der per WSDL\footnote{WSDL Web-Service Spezifikationssprache 2.0 \url{http://www.w3.org/TR/wsdl20/}} definiert ist, soll gezeigt werden wie eine Modellierung von Web-Services mittels dem UML-Testing Profile umgesetzt werden kann\footnote{Sehr ähnlich würde eine Modellierung für RESTful Web-Services basierend auf WADL ausschauen. Hierbei stellt sich aber eine Grundsatzfrage: Eines der Prinzipien von REST ist die Fähigkeit, dass sich ein Web-Service selbst beschreiben kann. Inwiefern trotzdem WADL Dateien gebraucht werden, hängt von der jeweiligen Implementierung ab.}. \citeauthor{_model-driven_2007} schlagen folgende Vorgehensweise für das Mapping vor\cite{_model-driven_2007}:
 
 \begin{itemize}
 \item WSDL Port Types werden zu UML Stereotyp-Klassen gemappt.
@@ -160,9 +160,9 @@ Anhand von diesem einfachen Beispiel wird sichtbar, dass das UML Testing Profile
 
 
 \subsubsection{Ausfühhrung von UTP Tests mittels JUnit}
-Agile Praktiken haben die Wahrnehmung der Wichtigkeit des Unit-Tests erhöht\cite{_model-driven_2007}. Ansätze wie \gls{Test-First} sind in diesem Umfeld besonders populär und der klassische Unit-Test spielt dabei eine zentrale Rolle. Dieses Kapitel geht davon aus, dass der Leser \todo{RÜCKFRAGE WIE nur zu den Grundlagen verweisen nicht den Wissensstand des Lesers ansprechen} mit den Grundlagen von JUnit 4 \footnote{Webseite des JUnit Projekts \url{http://junit.org/}} vertraut ist.\\
+Agile Praktiken haben die Wahrnehmung der Wichtigkeit des Unit-Tests erhöht\cite{_model-driven_2007}. Ansätze wie \gls{Test-First} sind in diesem Umfeld besonders populär und der klassische Unit-Test spielt dabei eine zentrale Rolle. Dieses Kapitel geht davon aus, dass der Leser \todo[color=yellow]{@Boris: Wie meinst du das? Soll ich in diesem Fall in den Grundlagen einen Abschnitt zu JUnit schreiben?: nur zu den Grundlagen verweisen nicht den Wissensstand des Lesers ansprechen} mit den Grundlagen von JUnit 4 \footnote{Webseite des JUnit Projekts \url{http://junit.org/}} vertraut ist.\\
 
-Zum Zeitpunkt dieser Arbeit, gibt es kein Werkzeug mit welchem die automatische Generierung von JUnit-Testfällen aus UTP-Modellen erlaubt. Das bedeutet, um MBT basierend auf UTP-Modellen in einem realen Umfeld zu betreiben, muss das Mapping manuell gemacht werden. Baker et al. \todo{citeauthor}schlagen dabei folgende Vorgehensweise vor \cite{_model-driven_2007}:
+Zum Zeitpunkt dieser Arbeit, gibt es kein Werkzeug mit welchem die automatische Generierung von JUnit-Testfällen aus UTP-Modellen erlaubt. Das bedeutet, um MBT basierend auf UTP-Modellen in einem realen Umfeld zu betreiben, muss das Mapping manuell gemacht werden. \citeauthor{_model-driven_2007} schlagen dabei folgende Vorgehensweise vor \cite{_model-driven_2007}:
 
 \todo[inline]{Tabellen müssen wie Abbildungen behandelt werden, aktuell ist die Tabelle nicht hinter dem Doppelpunkt :-( 
 	In der Tabelle mit den Begriffen aufpassen Englisch - Deutsch eventuell deutsche Begriffe verwenden und die englischen in Klammer dazu}
@@ -197,7 +197,7 @@ Deployment       & JUnit fügt sich im Deployment Prozess sehr gut ein. \\ \hlin
 \end{table}
 
 \todo{UTP zu JUnit Code Beispiel einfügen eventuell}
-UTP wurde entwickelt um mit JUnit zusammenzuspielen\cite{_model-driven_2007}. Tatsächlich lassen sich viele Konzepte gut von UTP-Modellen nach JUnit übertragen. Gleichzeitig hat die Ausführung von UTP-Testfällen in JUnit gravierende Schwächen.
+UTP wurde entwickelt um mit JUnit zusammenzuspielen\cite{_model-driven_2007}. Tatsächlich lassen sich viele Konzepte gut von UTP-Modellen nach JUnit übertragen. Gleichzeitig hat die Ausführung von UTP-Testfällen in JUnit gravierende Schwächen:
 
 \paragraph{Manuelles Mapping} Es hat sich in den Jahren, seit das UML Test Profile veröffentlicht wurde, keine Community um die Nutzung und Entwicklung von Software gebildet, die UTP einschließt. Die Eigenentwicklung eines JUnit-Testfallgenerators kann im Umfeld von großen Softwareprojekten sinnvoll sein. Gleichzeitig bleibt der Aufwand um den sogenannten \textit{glue code} zu schreiben (also die Implementierungsdetails innerhalb der Testmethoden).\\
 Jedenfalls können durch einen manuellen Eingriff neue Fehler entstehen. Ein Modell mittels Testfällen umzusetzen ist kein trivialer Vorgang und erfordert genaue Kenntnisse des Frameworks sowie des SUT. Ob sich die Modellierung und die Aufwände für die Umsetzung in JUnit-Testfällen lohnt, lässt sich schwer feststellen. Faktisch bietet die Modellierung als UTP-Diagramm zwar strukturierte Testfälle (verglichen mit der Ad-Hoc Entwicklung von JUnit-Testfällen) aber keine weiteren Qualitätsmetriken. Entwicklungsumgebungen und statische Code-Analyse Werkzeuge können die Abdeckung von JUnit-Testfällen eruieren, diese ist in agilen Softwareprojekten aber ohnehin schon sehr hoch. Ein modellbasierter Ansatz kann hier wenig belegbare Qualitätsvorteile schaffen.
@@ -207,21 +207,21 @@ Vor allem das \textit{Data Pool} Konzept von UTP ist eine Notwendigkeit für dat
 
 \subsection{Schnittstellentests mit Graphwalker}
 \label{sec:graphwalker}
-Graphwalker\footnote{Graphwalker 3 Website inklusive Dokumentation \url{www.graphwalker.org}} ist ein Open Source MBT Werkzeug zur Online- und Offline Generierung von Testsequenzen aus Endlichen Automaten (siehe Abschnitt \ref{sec:fsm}) sowie Erweiterten Endlichen Automaten (EFSM). Graphwalker ist in Java und JavaScript implementiert und bietet eine Java-API an. Das Graphwalker-Projekt wurde von zwei Entwicklern der Firma Spotify \todo{fussnote zu spotify}, Nils Olsson und Kristian Karl, gegründet. Bei Spotify, dem marktführenden Musik-Streaming-Service, ist das Werkzeug auch stark im Einsatz. Graphwalker ist zur Zeit (Frühjahr/Sommer 2015) aktiv unter Entwicklung und liegt bereits in der Version 3.0 vor.\\
-Graphwalker weicht ab vom herkömmlichen Testfall-Workflow. Das SUT wird in einem Modell (Graph) modelliert und das Testing (also die Traversierung des Graphs) wird vom gewählten Algorithmus und dessen Konfiguration bestimmt. Daraus resultieren lange, unvorhersehbare Testdurchläufe. Die offizielle Dokumentation beschreibt es so:
+Graphwalker\footnote{Graphwalker 3 Website inklusive Dokumentation \url{www.graphwalker.org}} ist ein Open Source MBT Werkzeug zur Online- und Offline Generierung von Testsequenzen aus Endlichen Automaten (siehe Abschnitt \ref{sec:fsm}) sowie Erweiterten Endlichen Automaten (EFSM). Graphwalker ist in Java und JavaScript implementiert und bietet eine Java-API an. Das Graphwalker-Projekt wurde von zwei Entwicklern der Firma Spotify\footnote{Der Musik-Streaming-Service Spotify \url{www.spotify.com}}, Nils Olsson und Kristian Karl, gegründet. Bei Spotify, dem marktführenden Musik-Streaming-Service, ist das Werkzeug auch stark im Einsatz. Graphwalker ist zur Zeit (Frühjahr/Sommer 2015) aktiv unter Entwicklung und liegt bereits in der Version 3.0 vor.\\
+Graphwalker weicht ab vom herkömmlichen Testfall-Workflow. Das SUT wird in einem Modell (Graph) modelliert und das Testen (also die Traversierung des Graphs) wird vom gewählten Algorithmus und dessen Konfiguration bestimmt. Daraus resultieren lange, unvorhersehbare Testdurchläufe. Die offizielle Dokumentation beschreibt es so:
 
 \begin{quote}
 `We do not want to walk the same path every time we execute a test. We want variation, spiced with randomness. This will create a better `test coverage' of the system under test.'\cite{_graphwalker_2015}
 \end{quote}
 
-Beim Einsatz in den agilen Entwicklungsteams von Spotify hat sich gezeigt, dass diese Testdesign-Philosophie sehr gut zu den kurzen Entwicklungsiterationen passt. Weiters eignen sich die simplen FSM-Diagramme \todo[color=blue]{Abkürzung} sehr gut um Feedback von Stakeholdern einzuholen, weil sie auch ohne technischen Hintergrund verständlich sind.
+Beim Einsatz in den agilen Entwicklungsteams von Spotify hat sich gezeigt, dass diese Testdesign-Philosophie sehr gut zu den kurzen Entwicklungsiterationen passt. Weiters eignen sich die simplen \Gls{FSM}-Diagramme sehr gut um Feedback von Stakeholdern einzuholen, weil sie auch ohne technischen Hintergrund verständlich sind.
 
 \subsubsection{Funktionsweise von Graphwalker}
 \label{sec:graphwalker_funktionsweise}
 Graphwalker bietet eine schlanke Grundlage für das modellbasierte Testen von Software. Das Framework besteht aus mehreren Komponenten, wobei der durchschnittliche Benutzer (der Testingenieur) nur mit sehr wenigen in Berührung kommt. Die Vorgehensweise um eine Testsuite mit Graphwalker zu erzeugen ist die folgende:
 
 \begin{enumerate}
-\item Modellierung des SUT oder dessen Komponenten. Geeignet für die Modellierung sind alle Editoren die das offene Format GraphML als Exportoption anbieten. Die Projektbetreiber empfehlen yEd\todo{beide Formate verlinken z.b. Fussnote, erstes vorkommen yEd verlinkung aber erst weiter unten}.
+\item Modellierung des SUT oder dessen Komponenten. Geeignet für die Modellierung sind alle Editoren die das offene Format GraphML\footnote{Website des GraphML Projekts \url{graphml.graphdrawing.org}} als Exportoption anbieten. Die Projektbetreiber empfehlen yEd\footnote{Der frei verfügbare Graphen Editor yEd \url{http://www.yworks.com/en/products/yfiles/yed/}}.
 \item Verifikation des Modells durch die Kommandozeilenapplikation \textit{Graphwaler-CLI}. Das Modell kann der Kommandozeilenapplikation von Graphwalker zur Verifikation unterzogen werden. Dabei wird sichergestellt, dass Format und Syntax ordnunsgemäß sind.
 \item Erzeugung der Java-Interfaces durch die Kommandozeilenapplikation. Das Modell wird geparsed und für jede Modell-Datei wird ein Java-Interface mit Methoden für alle eindeutig identifizierbaren Kanten und Knoten erzeugt.
 \item Manuelles Implementieren von Klassen die erzeugte Interfaces realisieren. Der Testentwickler erzeugt nun in der Entwicklungsumgebung seiner Wahl Klassen die die generierten Interfaces umsetzen.
@@ -231,13 +231,14 @@ Graphwalker bietet eine schlanke Grundlage für das modellbasierte Testen von So
 
 
 \subsubsection{Modellierungs-Syntax}
-Graphwalkers Modellierungssprache basiert nicht auf UML, weil die Autoren \todo{vielleicht Namen und Quelle der Aussage angeben} glauben, dass Tester den breiten Funktionsumfang von UML nicht brauchen und abgeschreckt werden. Stattdessen setzt Graphwalker auf GraphML\footnote{Website des GraphML Projekts \url{graphml.graphdrawing.org}}. GraphML basiert nicht auf einer proprietären Syntax sondern basiert auf herkömmlichen XML-Dateien und wird unter der \textit{Creative Commons Attribution 3.0}-Lizenz entwickelt.\\
+Graphwalkers Modellierungssprache basiert nicht auf UML, weil die Autoren glauben, dass Tester den breiten Funktionsumfang von UML nicht brauchen und abgeschreckt werden\cite{_graphwalker_2015}. Stattdessen setzt Graphwalker auf GraphML. GraphML basiert nicht auf einer proprietären Syntax sondern basiert auf herkömmlichen XML-Dateien und wird unter der \textit{Creative Commons Attribution 3.0}-Lizenz\footnote{Die Creative Commons Attribution 3.0 ist eine gängige Lizenz im Bereich neue Medien und darunter auch Open-Source Software \url{Creative Commons Attribution 3.0}} entwickelt.\\
 Zur Erstellung von Modellen in GraphML, mit denen Graphwalker umgehen kann, eignet sich jeder Editor, der GraphML-Dateien exportieren kann. Das von den Entwicklern empfohlene Werkzeug ist \textit{yEd}\footnote{Website der Firma yWorks und des yEd Graph Editors \url{http://www.yworks.com/en/products/yfiles/yed/}}, welches völlig kostenlos verwendet werden kann. yEd bietet eine simple Benutzeroberfläche und für die Erstellung von Modellen für Graphwalker ist nahezu kein Einarbeitungsaufwand nötig.\\
 Modelle in Graphwalker sind gerichtete Graphen. Knoten repräsentieren einen Zustand in dem sich das SUT befindet. Kanten beschreiben die Aktion die zu einem bestimmten Zustand führen. Graphwalker ignoriert grafische Attribute der Modelle wie Farbe und Liniendicke der Elemente. Üblicherweise finden in den Knoten die Überprüfungen (\textit{Assertions}) und in den Kanten die Befehle (Klicks, Schnittstellenaufrufe...) statt. Kanten müssen in Graphwalker genau eine Richtung haben. Es folgt eine kurze Beschreibung der Möglichkeiten, die die Syntax von Graphwalker bietet um die Traversierung der Graphen, und damit der Testfälle, zu beinflussen.
 
 \paragraph{Start vertex} Wenn ein Startknoten definiert wird, darf es nur genau einen geben. Es ist aber nicht obligatorisch einen Startknoten zu definieren.
 
-\paragraph{Guards} Auf Kanten könnten sogenannte \textit{Guards} definiert werden. Dabei handelt es sich um einen Konditionalmechanismus. Wenn das Konditional zu wahr evaluiert, wird die Kante traversierbar. Ein \textit{Guard} wird mittels eckigen Klammern beschrieben. \todo{beispiel kurz erläutern}
+\paragraph{Guards} Auf Kanten könnten sogenannte \textit{Guards} definiert werden. Dabei handelt es sich um einen Konditionalmechanismus. Wenn das Konditional zu wahr evaluiert, wird die Kante traversierbar. Ein \textit{Guard} wird mittels eckigen Klammern beschrieben. Im folgenden Beispiel wird eine Variable namens \begin{verbatim}[loggedIn]\end{verbatim} geprüft. Falls diese zu wahr evaluiert (sich der Testbenutzer also bereits eingeloggt hat) wird ein Teilgraph traversierbar.
+
 \begin{verbatim}
 [loggedIn == true]
 \end{verbatim}
@@ -248,7 +249,7 @@ Modelle in Graphwalker sind gerichtete Graphen. Knoten repräsentieren einen Zus
 
 
 \begin{itemize}
-\item Start: \todo{absichtlich klein geschrieben?} Beschreibt den Startknoten
+\item START: Beschreibt den Startknoten
 \item BLOCKED: Dieser Knoten oder diese Kante wird bei der Traversierung aus dem Graphen entfernt.
 \item SHARED: Dient zur Modularisierung. Wenn Graphwalker bei der Traversierung auf einen mit SHARED annotierten Knoten trifft, passiert ein Sprung in ein anderes Modell mit dem selben SHARED-Bezeichner.
 \item INIT: Dient zur Initialisierung von Datenfeldern die im Modell genutzt werden. Nur Knoten können mit dem INIT-Schlüsselwort versehen werden.
@@ -263,7 +264,7 @@ Weiters ist zu erwähnen, dass die Modelle nicht einfach nur verflacht (\textit{
 \begin{figure}[h] 
   \centering
      \includegraphics[width=0.9\textwidth]{figures/gw_multiple_models.png}
-  \caption{Vier einzelne Modelle die bei einer Traversierung (ausgehend vom Startknoten in Grün) erreicht werden können. Bei den Knoten die mit \textit{SHARED} gekennzeichnet sind kann ein Sprung (und auch ein Sprung zurück) erfolgen. Die Variablen mit den selben Bezeichnern in den Modellen B und C befinden sich in unabhängigen Gültigkeitsbereichen.\cite{_graphwalker_2015}}
+  \caption{Vier einzelne Modelle die bei einer Traversierung (ausgehend vom Startknoten in Grün) erreicht werden können. Bei den Knoten die mit \textit{SHARED} gekennzeichnet sind kann ein Sprung (und auch ein Sprung zurück) erfolgen. Die Variablen mit den selben Bezeichnern in den Modellen B und C befinden sich in unabhängigen Gültigkeitsbereichen\cite{_graphwalker_2015}}.
   \label{fig:gw_multiple_models}
 \end{figure}
 
@@ -273,9 +274,9 @@ Wie im ursprünglichsten Sinn des modellbasierten Tests, kennt Graphwalker das K
 Durch die Modellierung des Modells und der Auswahl sowie Einstellung eines Traversierungsalgorithmus kann also bestimmt werden wie das SUT getestet werden soll. Dabei bietet Graphwalker bereits verschiedenste Algorithmen an, die sich für unterschiedliche Testzwecke eignen. Die meisten dieser Algorithmen basieren auf bekannten Graph-Algorithmen und bieten, durch die quelloffene Entwicklung, volle Transparenz gegenüber dem Tester.
 
 \subparagraph{Schnelle Traversierung - Smoke Tests}
-Vor allem während der Testfallentwicklung und um sogenannte \textit{Smoke Tests} zu machen eignet sich der A*-Algorithmus von Graphwalker. Er basiert auf dem bekannten A*-Suchalgorithmus von Hart et al.\todo{citeauthor} \cite{hart_formal_1968}. Dabei wird also ein zu findender Knoten angegeben, meist ein Knoten der das Ende eines Workflows darstellt. Graphwalker durchschreitet das Testsystem dann in einem möglichst kurzen Pfad, wobei die zugrundeliegende Suchheuristik bei jedem Schritt angepasst wird.
-\todo[inline]{eventuell die Codesamples mit Bezeichnungen versehen und vom Text aus darauf verweisen. Alternativ die Abbildung versuchen anders zu plazieren (ist aber nicht trivial in latex)}
-\begin{verbatim}
+Vor allem während der Testfallentwicklung und um sogenannte \textit{Smoke Tests} zu machen eignet sich der A*-Algorithmus von Graphwalker. Er basiert auf dem bekannten A*-Suchalgorithmus von \cite{hart_formal_1968}\cite{hart_formal_1968}. Dabei wird also ein zu findender Knoten angegeben, meist ein Knoten der das Ende eines Workflows darstellt (im Quellcodebeispiel \ref{lst:runSmokeTest} ist dies der Knoten \texttt{v\_Browse}). Graphwalker durchschreitet das Testsystem dann in einem möglichst kurzen Pfad, wobei die zugrundeliegende Suchheuristik bei jedem Schritt angepasst wird.
+
+\begin{lstlisting}[caption={Initialisierung eines Graphwalker Tests basierend auf dem A*-Suchalgorithmus.}, label=lst:runSmokeTest]
 @Test
 public void runSmokeTest() {
   new TestBuilder()
@@ -283,13 +284,12 @@ public void runSmokeTest() {
     .execute();
     
 }
-\end{verbatim}
-
+\end{lstlisting}
 
 \subparagraph{Traversierung basierend auf Pfadabdeckung - Funktionaler Test}
-Umfangreiche funktionale Tests einer komplexen Applikation, wie sie beispielsweise über Nacht gemacht werden, können mit Graphwalker unter anderem durch eine Zufallstraversierung mittels Angabe der gewünschten Pfadabdeckung realisiert werden. Falls eine einhundertprozentige Abdeckung eingestellt wird (wie im folgenden Beispiel), wird das Modell vom Startknoten (falls angegeben) aus traversiert bis jede begehbare Kante traversiert wurde. Gegegebenenfalls werden weitere Durchläufe gestartet, falls es Teilgraphen gibt die vom designierten Startknoten nicht erreichbar sind. 
+Umfangreiche funktionale Tests einer komplexen Applikation, wie sie beispielsweise über Nacht gemacht werden, können mit Graphwalker unter anderem durch eine Zufallstraversierung mittels Angabe der gewünschten Pfadabdeckung realisiert werden. Falls eine einhundertprozentige Abdeckung eingestellt wird (wie im Codebeispiel \ref{lst:runFunctionalTest}), wird das Modell vom Startknoten (falls angegeben) aus traversiert bis jede begehbare Kante traversiert wurde. Gegegebenenfalls werden weitere Durchläufe gestartet, falls es Teilgraphen gibt die vom designierten Startknoten nicht erreichbar sind. 
 
-\begin{verbatim}
+\begin{lstlisting}[caption={Eine randomisierte aber vollständige Traversierung des Modells in Graphwalker.}, label=lst:runFunctionalTest]
 @Test
 public void runFunctionalTest() {
   new TestBuilder()
@@ -297,19 +297,22 @@ public void runFunctionalTest() {
     .execute();
     
 }
-\end{verbatim}
+\end{lstlisting}
+
 
 \subparagraph{Traversierung mit Zeitangabe - Last- und Performance Test}
-Mit einer Traversierung der Modelle mit Zeitangabe kann Graphwalker für Last- und Performance-Tests benutzt werden. Durch die Leichtgewichtigkeit von Graphwalker können Traversierungen auch parallel gestartet werden um damit nicht unerhebliche Last auf ein Software-System zu bringen. Um eine Traversierung mit Zeitangabe gestartet wird ein Traversierungsalgorithmus (zum Beispiel die Klasse RandomPath) und ein Zeitlimit angegeben.\\
+Mit einer Traversierung der Modelle mit Zeitangabe (im Codebeispiel \ref{lst:runFunctionalTestTime} sind es 30 Sekunden) kann Graphwalker für Last- und Performance-Tests benutzt werden. Durch die Leichtgewichtigkeit von Graphwalker können Traversierungen auch parallel gestartet werden um damit nicht unerhebliche Last auf ein Software-System zu bringen. Um eine Traversierung mit Zeitangabe gestartet wird ein Traversierungsalgorithmus (zum Beispiel die Klasse RandomPath) und ein Zeitlimit angegeben.\\
 Graphwalker bietet allerdings keine Möglichkeit Metriken während des Durchlaufs zu erfassen. Diese Funktionalität muss durch andere Bibliotheken realisiert werden, was aber sehr einfach möglich ist.
-\begin{verbatim}
+
+\begin{lstlisting}[caption={Ein Graphwalker Test wird angestoßen, der das Modell 30 Sekunden lang zufällig traversiert.}, label=lst:runFunctionalTestTime]
 @Test
 public void runFunctionalTest() {  
   new TestBuilder()
     .setPathGenerator(new RandomPath(new TimeDuration(30, TimeUnit.SECONDS)))
     .execute();
 }
-\end{verbatim}
+\end{lstlisting}
+
 
 \subsection{Einbindung von anderen Technologien in Graphwalker Tests}
 Graphwalker bietet mit dem Parsen des Modells, der Generierung der Java-Interfaces und der Traversierung nur das Grundgerüst um modellbasiertes Testen zu ermöglichen. Weil Graphwalkers volle Funktionalität in Java-Code gesteuert wird sind keine, von Herstellerseite wartungspflichtige, Schnittstellen zu anderen Systemen nötig. Das bedeutet, dass Werkzeuge zur Ansteuerung des SUT (Adapter-Code) problemlos verwendet werden können, insofern sie sich über reinen Java-Code ansteuern lassen. Dieser Umstand macht die Verwendung von Graphwalker extrem flexibel und gleichzeitig zukunftssicher, da auch ein Umstieg auf andere Technologien problemlos möglich ist.\\
