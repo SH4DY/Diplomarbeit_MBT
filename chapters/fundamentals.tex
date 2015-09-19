@@ -292,7 +292,7 @@ Die Autoren legen den Schwerpunkt auf die generativen Aspekte. Weniger Aufmerksa
 
 \begin{itemize}
 \item Die zu testende Software, ihre Umgebung oder der Test, wird über Modelle betrachtet.
-\item Diese Modelle konzentrieren sich in abstrahierter Form auf besondere Eigenschaften des SUT \todo{für Abkuürzungen bitte das Abkürungsverzeichnis wie in der Vorlage angegeben nutzen!! erspart viel Arbeit!} (meist auf dessen Verhalten).
+\item Diese Modelle konzentrieren sich in abstrahierter Form auf besondere Eigenschaften des \Gls{SUT} (meist auf dessen Verhalten).
 \item Diese Modelle können entweder eigenständig erstellt werden oder aus Entwicklungsmodellen abgeleitet werden.
 \item Mit Testdaten und technologischen Adaptern kombiniert, bilden diese Modelle die Basis generierter Testfälle.
 \end{itemize}
@@ -306,7 +306,7 @@ Modellbasiertes Testen umfasst mindestens einen der beiden folgenden Aspekte: Te
 \subsection{Vorteile des Modellbasierten Testings}
 
 \label{sec:mbt_vorteile}
-In diesem Abschnitt werden die Vorteile des MBT  \todo{abkürzung} gegenüber anderen Testmethoden, auch anhand von Publikationen und Fallstudien, erläutert werden.
+In diesem Abschnitt werden die Vorteile des \Gls{MBT} gegenüber anderen Testmethoden, auch anhand von Publikationen und Fallstudien, erläutert werden.
 
 
 \paragraph{Anzahl der gefundenen Fehler} Mehrere Fallstudien belegen die Konkurrenzfähigkeit von MBT. Repräsentativ für die Automobilindustrie hat BMW mehrere modellbasierte Testsuites im produktiven Einsatz verglichen\cite{pretschner_one_2005}. Das SUT war ein gängiger Netzwerk Controller. Ein Teil der Testsuiten wurde manuell aber auf Basis eines Modells des SUT entwickelt, während der andere Teil automatisch anhand von Modellen generiert wurde. Beide Arten von Testsuiten fanden mehr Spezifikationsfehler als die traditionelle Testsuiten (diese wurden direkt von der Spezifikation in Prosa abgeleitet). Bei der Anzahl der gefundenen Programmierfehler, schnitten die modellbasierten Tests nicht besser ab. Testfälle die von der Spezifikation abgeleitet wurden, manuell entwickelte modellbasierte Tests und automatisch generierte modellbasierte Tests lagen gleichauf. Diese Fallstudie ist weiters sehr interessant, weil nicht nur manuell entworfene Modelle als Basis der Testfallgenerierung eingesetzt wurden. Die Autoren ließen einen Teil der Modelle, durch Ableitung vom SUT und dem Einsatz von Regeln, automatisch generieren (noch weiter in diese Richtung gehen die Autoren der Fallstudie in Abschnitt \ref{sec:test_based_modelling} \nameref{sec:test_based_modelling}).\\
@@ -378,12 +378,20 @@ Im Bereich des modellbasierten Testens wird unterschieden zwischen Werkzeugen di
 
 \subsection{Vergleich mit klassischem skriptbasierten Tests}
 In vielen industriellen Softwareprojekten, die über Jahre hinweg wachsen, ist irgendwann der Punkt erreicht wo die Ressourcen für manuelles Regressionstesting ein akzeptables Maß überschreiten\cite{graham_experiences_2012}. Manuelles Regressionstesting ist nicht nur zeitintensiv sondern auch demotivierend und fehlerbehaftet. Es liegt nahe die manuellen Regressiontests zu automatisieren. Es scheint als ob der Aufwand für die Erstellung dieser `stupiden' Testabläufe überschaubar wäre. Massive Ressourceneinsparungen auf lange Sicht wären die Folge. Oft stellt sich heraus, dass es mit dem initialen Aufwand für die Erstellung dieser Skripts nicht getan ist. Vor allem bei kurzen Iterationen in der agilen Softwareentwicklung werden die Wartungsaufwände für solche skriptbasierte Tests gerne unterschätzt\cite{graham_experiences_2012}.\\
-Die Abbildung \ref{fig:script_vs_mbt} zeigt die Aktivitäten die während skriptbasiertem und modellbasiertem Testen anfallen. \todo{eventuell darauf eingehen wie diese Aktivitäten in den ISTQB Testprozess passen, der Zusammenhang liegt ja sehr nah} Größtenteils gibt es Überschneidungen aber viele Aktivitäten unterscheiden sich im Detail. Der größte Unterschied ist der Wegfall der Testfallerstellung und Testfallwartung. Anstelle dessen tritt die Modellierung des Systems und die Wartung des Modells. Ressourceneinsparungen mittels MBT gegenüber skriptbasiertem Testing, geschehen wenn folgende zwei Aspekte gut gelöst werden: Die Modellierung des Systems geschieht auf angemessen abstrahierter Ebene und die Berührungspunkte mit dem SUT \todo{Tag für SUt verwenden} sind stark modularisiert\cite{utting_practical_2007}.\\
+Die Abbildung \ref{fig:script_vs_mbt} zeigt die Aktivitäten die während skriptbasiertem und modellbasiertem Testen anfallen. \todo[color=yellow]{@Boris: NEU hinzugekommen}Die weithin anerkannte Zertifizierungsstelle für Softwaretester \Gls{ISTQB} definiert einen Testprozess\ref{spillner_basiswissen_2012} der aus fünf Aktivitäten besteht: 
+
+\begin{itemize}
+\item \textbf{Planung und Steuerung}: Die Teststrategie wird festgelegt. Das heißt Ressourcen wie benötigtes Personal, Werkzeuge und die Zeitplanung werden definiert. Über den gesamten Verlauf des Testprozesses wird, der Strategie folgend, steuernd eingegriffen.
+\item \textbf{Analyse und Design}: Das \Gls{SUT} wird im Detail untersucht. Dabei muss festgestellt werden wie es um die Testbarkeit des Systems steht. Anhand dieser Ergebnisse werden Testziele, geeignete Testumgebungen und Testschnittstellen definiert.
+\item \textbf{Realisierung und Durchführung:} Es werden konkrete Testfälle erzeugt und zusammengefasst um bestimmte Testziele beweisbar zu erfüllen. Die Tests werden ausgeführt.
+\item \textbf{Auswertung und Bericht:} Die Ergebnisse der Tests werden mit den Kriterien aus der Phase \textit{Analyse und Design} verglichen. Aus den Testergebnissen werden Berichte generiert die auch historisiert werden.
+\item \textbf{Abschluss}
+\end{itemize}
+\todo[color=yellow]{@Boris: Bis hierhin neu}
+
+Beide Testmethodiken lassen sich anhand diesem Schema vergleichen. Größtenteils gibt es Überschneidungen aber viele Aktivitäten unterscheiden sich im Detail. Der größte Unterschied ist der Wegfall der Testfallerstellung und Testfallwartung. Anstelle dessen tritt die Modellierung des Systems und die Wartung des Modells. Ressourceneinsparungen mittels MBT gegenüber skriptbasiertem Testing, geschehen wenn folgende zwei Aspekte gut gelöst werden: Die Modellierung des Systems geschieht auf angemessen abstrahierter Ebene und die Berührungspunkte mit dem SUT \todo{Tag für SUt verwenden} sind stark modularisiert\cite{utting_practical_2007}.\\
 Eine Aktivität die es im skriptbasierten Test nicht gibt ist die Wahl der Traversierungskriterien bzw. Abdeckungskriterien. Dadurch, dass es strikte Sequenzen gibt die das SUT durchlaufen, fällt dieser Punkt gänzlich weg. Beim modellbasierten Testen ist es nicht unüblich, dass jeder Durchlauf unterschiedlich abläuft, abhängig vom Traversierungsalgorithmus und den randomisierten Komponenten die dieser in sich trägt.\\
-Bei den Aktivitäten die sich gegenüber skriptbasiertem Testing geändert haben, ist vor allem die Modifikation der Teststrategie bzw. des Testplans im Detail hervorzuheben. Modellbasiertes Testen kann partiell im Projekt eingesetzt werden und ergänzt bestehende Tests. Welche Tests durch MBT\todo{Abkürzungstag verwenden} ersetzt werden und wie die Ergebnisse dieser verifiziert werden sollen, muss aber wohl überlegt sein. Eine Teststrategie die MBT mit anderen Testmethodiken kombiniert wird im Resultatskapitel \ref{sec:results} präsentiert.
-
-
-
+Bei den Aktivitäten die sich gegenüber skriptbasiertem Testing geändert haben, ist vor allem die Modifikation der Teststrategie bzw. des Testplans im Detail hervorzuheben. Modellbasiertes Testen kann partiell im Projekt eingesetzt werden und ergänzt bestehende Tests. Welche Tests durch \Gls{MBT} ersetzt werden und wie die Ergebnisse dieser verifiziert werden sollen, muss aber wohl überlegt sein. Eine Teststrategie die MBT mit anderen Testmethodiken kombiniert wird im Resultatskapitel \ref{sec:results} präsentiert.
 
 \begin{figure}[h] 
   \centering
@@ -410,10 +418,12 @@ Testauswahlkriterien lassen sich in die folgenden Familien einteilen:
 \item \textbf{Explizite Testfalldefinition} Manche MBT Werkzeuge bieten auch die Möglichkeit explizite Testfälle (also Pfade durch das Modell) zu erstellen.
 \end{itemize}
 
-\paragraph{Kontrollflussorientierte Abdeckung}\label{coverage_control} Die Kontrollflussorientierte Abdeckung gehört zur Familie der strukturellen Abdeckung und hat große Ähnlichkeiten zur Kontrollflussabdeckung im Sinne von Quellcode also White-Box Tests. In Modellnotationen wie OCL\cite{warmer_object_2004} oder B-Notation (siehe Abschnitt \ref{sec:bmethod}) lässt sich Kontrollflussorientierte Abdeckung nahezu gleich einsetzen. Der einzige Unterschied ist die Absenz von Schleifen in diesen Modellnotationen, was die Abdeckung weiter einschränkt. Gängige Abdeckungskriterien sind:\cite{rossner_basiswissen_2010}\\
-\textbf{Anweisungsüberdeckung} Jede erreichbare Anweisung soll mindestens einmal ausgeführt werden.\\
-\textbf{Zweigüberdeckung} Jedes Konditional im Modell soll von mindestens einem Test einmal positiv traversiert werden und von einem anderen Test mindestens einmal negativ. Zweigüberdeckung setzt Anweisungsüberdeckung voraus.\\
-\textbf{Pfadüberdeckung} Jeder begehbare Pfad durch das Modell muss begangen worden sein.\\
+\paragraph{Kontrollflussorientierte Abdeckung}\label{coverage_control} Die Kontrollflussorientierte Abdeckung gehört zur Familie der strukturellen Abdeckung und hat große Ähnlichkeiten zur Kontrollflussabdeckung im Sinne von Quellcode also White-Box Tests. In Modellnotationen wie OCL\cite{warmer_object_2004} oder B-Notation (siehe Abschnitt \ref{sec:bmethod}) lässt sich Kontrollflussorientierte Abdeckung nahezu gleich einsetzen. Der einzige Unterschied ist die Absenz von Schleifen in diesen Modellnotationen, was die Abdeckung weiter einschränkt. Gängige Abdeckungskriterien sind\cite{rossner_basiswissen_2010}:
+\begin{itemize}
+\item \textbf{Anweisungsüberdeckung} Jede erreichbare Anweisung soll mindestens einmal ausgeführt werden.
+\item \textbf{Zweigüberdeckung} Jedes Konditional im Modell soll von mindestens einem Test einmal positiv traversiert werden und von einem anderen Test mindestens einmal negativ. Zweigüberdeckung setzt Anweisungsüberdeckung voraus.
+\item \textbf{Pfadüberdeckung} Jeder begehbare Pfad durch das Modell muss begangen worden sein.
+\begin{itemize}
 
 Zwischen diesen Abdeckungskriterien bestehen Abhängigkeiten. Wenn alle Testsuiten die das Abdeckungskriterium $C_1$ erfüllen, auch das Abdeckungskriterium $C_2$ erfüllen, so ist $C_1$ ein stärkeres Kriterium ($C_1$ subsummiert $C_2$ oder auch $C_1 \longrightarrow C_2$). Allgemein gilt:\\
 $ PC \longrightarrow DC \longrightarrow SC $\\
@@ -426,9 +436,6 @@ Auch die übergangsorientierten Abdeckungskriterien gehören zur Familie der Kon
 \textbf{Zustandsabdeckung} ist gegeben wenn jeder Zustand des Modells mindestens einmal besucht wurde (jedes $e \in Q$ war mindestens einmal gegeben). Es muss nicht zwangsweise jeder Knoten besucht worden sein, da in parallelen Systemen mehrere aktive Zustände auf einem Knoten liegen können.
 \textbf{Übergangsabdeckung} ist gegeben wenn jede Zustandsänderung im Modell einmal gemacht wurde.
 \textbf{Pfadüberdeckung} Im Kontext der endlichen Automaten spricht man von Pfadabdeckung wenn jeder Pfad vom Startzustand $q_0$ zu einem definierten Endzustand $q_n$ traversiert wurde. Oft macht es aber Sinn nur zyklenfreie Pfade zu betrachten, da sonst unendlich viele Traversierungsarten entstehen. Es gibt weitere Abwandlungen dieses Kriteriums die für jeden Zyklus im Modell mindestens eine Traversierung vorschreiben.
-
-\todo[color=yellow]{@Boris bitte quellen mailen: loop coverage!, dazu gibts es Unterlagen}
-
 
 \subsection{Entscheidungshilfe für den Einsatz von MBT}
 \label{sec:entscheidungshilfe}
@@ -458,7 +465,7 @@ Abhängig davon wie die Rollen im Projektteam verteilt sind, muss festgestellt w
 \item \textbf{Kann das Test-Orakel automatisiert werden?}
 Da beim modellbasierten Testen, Testfälle in der Regel automatisch generiert werden, sollen auch die erwarteten Testergebnisse modelliert oder in Form von Testdaten hinterlegbar und automatisch prüfbar sein. Falls die erwarteten Systemeigenschaften nicht modellierbar sein können, muss jeder Testfall manuell geprüft werden. Dieser Umstand mindert die Nützlichkeit von modellbasiertem Testen.
 \item \textbf{Ist die Bereitschaft für den Kauf und Einführung eines MBT-Werkzeugs vorhanden?}
-Eine Einführung von MBT ist immer auch mit Anschaffungskosten verbunden. Auf dem Markt sind verschiedenste Werkzeuge erhältlich \todo{vielleicht noch Marktübersichts Section machen}. Weiters muss sich das gewählte Werkzeug aber auch in bestehende Umgebungen integrieren lassen (was oft mit weiteren Kosten verbunden ist).
+Eine Einführung von MBT ist immer auch mit Anschaffungskosten verbunden. Auf dem Markt sind verschiedenste Werkzeuge erhältlich. Weiters muss sich das gewählte Werkzeug aber auch in bestehende Umgebungen integrieren lassen (was oft mit weiteren Kosten verbunden ist).
 \end{itemize}
 
 \subsection{Modellbasiertes Testen in Industrie und Forschung - MBT Fallstudien}
