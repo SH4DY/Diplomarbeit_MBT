@@ -44,25 +44,29 @@ Der Umfang einer Diplomarbeit beträgt üblicherweise 90 bis ca. 120 Seiten und 
 %=======================================================================
 
 Steigende Komplexität in modernen technischen Disziplinen, darunter auch die Softwareentwicklung, erfordern Methoden zur Qualitätssicherung. Systematisches Prüfen ist ein zentrales Mittel, um Qualität von Software über einen längeren Zeitraum hinweg sicherzustellen\cite{spillner_software_2014}. Automatisierte Softwaretests auf Integrations- und Systemebene haben sich als effizienter Kontrollmechanismus etabliert\cite{dustin_software_2000}, sind aber herausfordernd in ihrer Umsetzung, vor allem in agilen Entwicklungsumgebungen. Kurze Iterationen, kombiniert mit einer hohen Frequenz von Änderungen in der Software erfordern spezialisierte Methoden\cite{linz_testing_2014}. Allein die Wahl des richtigen Werkzeugs für automatisiertes Testen garantiert noch keine erfolgreiche Teststrategie. Ungeachtet der gewählten Teststrategie, kann das Warten von Testfällen einen erheblichen Ressourcenaufwand verursachen der über Erfolg und Misserfolg eines Softwareprojekts entscheiden kann\cite{dustin_software_2000}. Vor allem agile Teams arbeiten auf multifunktionaler Basis. Deshalb darf sich auch die Generierung und Wartung von Testfällen nicht nur den technischen Rollen erschließen\cite{linz_testing_2014}. Bei mehreren weitverbreiteten Technologien ergibt sich aber genau diese Problematik.\\
-Ein vielversprechender Ansatz ist Testen auf Basis von Modellen, sogenannten modellbasiertes Testen. Beim modellbasierten Testen wird die zu testende Applikation als Modell in abstrahierter Form dargestellt. Daraus werden Testfälle automatisch generiert.
+%%%
+%%%Ein vielversprechender Ansatz ist Testen auf Basis von Modellen, sogenannten %%%modellbasiertes Testen. Beim modellbasierten Testen wird die zu testende Applikation als %%% Modell in abstrahierter Form dargestellt. Daraus werden Testfälle automatisch generiert.
+%%%%
 
 %=======================================================================
 \section{Motivation}
 %=======================================================================
-Große Softwareprojekte sind teuer in der Entwicklung und der Wartung. Sie müssen unter hohem Zeitdruck geplant, spezifiziert, implementiert und ausgeliefert werden. Außerdem sollen solche Systeme dann mehrere Jahre gewartet und in ihrer Funktionalität erweitert werden. Softwaresysteme die sensible Daten verarbeiten (Finanzwesen, Gesundheitswesen etc.) sind davon abhängig sehr exakte Ergebnisse zu liefern. Strenges Prüfen dieser ist unumgänglich. Gleichzeitig verknappen solche Tätigkeiten den engen zeitlichen Rahmen solcher Projekte. Deshalb wird, unabhängig von der Branche, das automatisierte regressive Testen von Software thematisiert.
+Große Softwareprojekte sind teuer in der Entwicklung und der Wartung. Sie müssen unter hohem Zeitdruck geplant, spezifiziert, implementiert und ausgeliefert werden. Außerdem sollen solche Systeme dann mehrere Jahre betreut und in ihrer Funktionalität erweitert werden. Softwaresysteme die sensible Daten verarbeiten (Finanzwesen, Gesundheitswesen etc.) sind davon abhängig sehr exakte Ergebnisse zu liefern. Strenges Prüfen dieser ist unumgänglich. Gleichzeitig verknappen solche Tätigkeiten den engen zeitlichen Rahmen solcher Projekte. Deshalb wird, unabhängig von der Branche, das automatisierte regressive Testen von Software thematisiert\cite{graham_experiences_2012}.\\
+Für jede gängige Programmiersprache und Plattform gibt es potente Test \Glspl{Framework}, die das Verhalten eines Benutzers automatisiert emulieren. In die Entwicklung von Testfällen mittels dieser \Glspl{Framework} fließt eine beträchtliche Anzahl an Ressourcen. Weiterhin ungelöst ist aber die Frage, wie es möglich ist diese Technologien intelligent, vielleicht sogar lernend (siehe Kapitel \ref{sec:test_based_modelling} \nameref{sec:test_based_modelling}), in die Entwicklung zu integrieren. Bis dahin scheint es aber noch ein langer Weg zu sein, wie es das \textit{LearnLib}-Projekt von \citeauthor{steffen_introduction_2011} zeigt\cite{steffen_introduction_2011}.\\
+In der Zwischenzeit sind Ansätze nötig, die die Erkenntnisse des automatisierten Softwaretests übernehmen und neuartige Methoden zur Qualitätserhöhung und Wartungsreduzierung einbringen. Einer dieser Ansätze ist das \Gls{MBT}. Das modellbasierte Testen zieht eine Schicht zwischen den logischen und technischen Teil eines Tests. Es findet also eine Abstrahierung auf Modelle des tatsächlichen Systems statt. Dies ermöglicht die wartungsintensiven Implementierungsdetails von den Abläufen des Tests zu entkoppeln, zu modularisieren und bestenfalls wieder zu gebrauchen.\\
+Ein großflächiger Einsatz automatisierter Testtechnologien über längere Zeiträume hätte massive Auswirkungen auf die Landschaft der Softwarequalitätssicherung und damit der Softwareentwicklung:
 
-In diesem Kapitel wird der Forschungsbedarf aufgezeigt. Nach dem Lesen dieses Kapitels sollten folgende Punkte klar dargestellt sein:
 \begin{itemize}
-	\item Aktueller Stand der Wissenschaft in Bezug auf die zuvor formulierte Problemstellung und klare Darstellung, was hier unzureichend/offen ist.
-	\item GGf. Darstellung des größeren Forschungsbereichs, in den die Diplomarbeit eingebettet ist.
-	\item Darlegung der Bedeutung des Themas für den Stand oder die Weiterentwicklung eines Bereichs der Informatik (z.B. Datenbanksysteme, Mobile Anwendungen, Java-Programmierung, Rechenzentrumsbetrieb, \dots) oder eines Fachbereichs (z.B. Bankwesen, Wertpapierhandel, Gesundheitswesen, Transportwesen, Flugsicherheit \dots). Erklärung, was durch die Lösung des Problems z.B. kostengünstiger/schneller/hochwertiger/sicherer/anwendbarer/\enquote{schöner} etc. wird.
+	\item QA mehr Zeit für kritische Regressionstest\todo{Hier weiter...}
+	\item Entwicklung verlass auf QA und Tests die bestehende Funk testen
+	\item Erhöhte Produktivität...
 \end{itemize}
 
 %=======================================================================
 \section{Zielsetzung}
 %=======================================================================
 
-Nachdem die Problemstellung und die Motivation zu deren Lösung formuliert wurden, wird in diesem Kapitel das zu erarbeitende Resultat beschrieben. \todo{Hier weiter...}
+Nachdem die Problemstellung und die Motivation zu deren Lösung formuliert wurden, wird in diesem Kapitel das zu erarbeitende Resultat beschrieben. 
 
 \makeatletter\ifthesis@masterthesis
 Nach dem Lesen dieses Kapitels sollten folgende Punkte klar dargestellt sein:
