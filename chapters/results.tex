@@ -15,12 +15,12 @@ Aufbauend auf den Erkenntnissen der Fallstudie (siehe Abschnitt \ref{sec:fallstu
 \item Erhöhung der Testabdeckung und damit Erhöhung der Qualität des Softwaresystems
 \end{enumerate}
 
-Im folgenden wird die genannte Teststrategie näher beschrieben. Abbildung \ref{fig:testarchitektur} stellt die Testarchitektur konzeptuell dar.
+Im folgenden wird die genannte Teststrategie näher beschrieben. Abbildung \ref{fig:testarchitektur} stellt die Testarchitektur konzeptuell dar. Am oberen Ende der Testarchitektur liegen die \glspl{COS}, die vom Kunden oder Fachbereich definiert werden. Sie dienen als Basis für die BDD-Tests. 
 
 \begin{figure}[h] 
   \centering
      \includegraphics[width=1.0\textwidth]{figures/Testarchitektur-MBT-BDD-COS.png}
-  \caption{Am oberen Ende der Testarchitektur liegen die \glspl{COS}, die vom Kunden oder Fachbereich definiert werden. Sie dienen als Basis für die BDD-Tests. Graphwalker operiert auf Modellen im graphml-Format. Dabei können beide Frameworks entweder auf die Testing API zugreifen oder direkt auf das SUT.}
+  \caption{Testarchitektur mit Behavior Driven Development und Model Based Testing Ansätzen}
   \label{fig:testarchitektur}
 \end{figure}
 
@@ -151,7 +151,7 @@ Aus Sicht der Wartungsfreundlichkeit kann keine generelle Aussage getroffen werd
 \begin{figure} 
   \centering
      \includegraphics[width=0.45\textwidth]{figures/modell_abstract.png}
-  \caption{Diese Version des Modells (Workflow-Modellierung) besteht aus wenigen Knoten und Kanten. Innerhalb dieser Elemente, also im Code, versteckt sich aber viel Komplexität.}
+  \caption{Abstrakte Version eines Modells der Fallstudie}
   \label{fig:modell_abstract}
 \end{figure}
 
@@ -161,18 +161,18 @@ Bei der Logik-Modellierung wird das System nicht mehr als reine Blackbox gesehen
 \begin{figure}[h] 
   \centering
      \includegraphics[width=1.5\textwidth, angle=90]{figures/modell_komplex.png}
-  \caption{Wenn die Logik des Programms kombinatorisch modelliert wird, ist die Gefahr der \textit{State Explosion} hoch. Schon dieser kurze Workflow ergibt 72 Knoten und 72 Kanten.}
+  \caption{Logisch modellierte Variante des Modells mit 72 Knoten und 72 Kanten.}
   \label{fig:modell_komplex}
 \end{figure}
 
-Es fällt schnell auf, dass das Hinzufügen von nur wenigen Mehroptionen im Prinzip das selbe, aus dem Model Checking bekannte, Problem der kombinatorischen Zustandsexplosion aufwirft \cite{clarke_model_2012}. Verglichen mit den Ansätzen aus diesem Feld (wie \textit{Counterexample-guided abstraction refinement} \cite{clarke_counterexample-guided_2000}), bei denen eine Abstraktion verfeinert wird, geht man hier aus der anderen Richtung vor. Man betrachtet die Programmlogik auf Code-Ebene genauer und versucht Abstraktionen des komplexen Modells zu generieren. Bei numerischen Werten können zum Beispiel weniger Werte modelliert werden (Konzentration auf Grenz- und Extremwerte). Beim Beispiel des Hypothekarrechners stellte sich heraus, dass die zugrundeliegende Programmlogik gar keine 36 Ergebniskategorien erzeugen kann. Die beiden letzten der vier Fragen generieren also keine eigene Ergebniskategorie sondern \textit{schieben} das Ergebnis in eine der anderen Kategorien. Gezeigt wird diese vereinfachte Version des Modells in Abbildung \ref{fig:modell_logisch}. Gut zu sehen sind die Überschneidungen auf zweitletzter Ebene die zu deutlich weniger Endzuständen und damit zu weniger Code führen.\\
+Es fällt schnell auf, dass das Hinzufügen von nur wenigen Mehroptionen im Prinzip das selbe, aus dem Model Checking bekannte, Problem der kombinatorischen Zustandsexplosion aufwirft \cite{clarke_model_2012}. Verglichen mit den Ansätzen aus diesem Feld (wie \textit{Counterexample-guided abstraction refinement} \cite{clarke_counterexample-guided_2000}), bei denen eine Abstraktion verfeinert wird, geht man hier aus der anderen Richtung vor. Man betrachtet die Programmlogik auf Code-Ebene genauer und versucht Abstraktionen des komplexen Modells zu generieren. Bei numerischen Werten können zum Beispiel weniger Werte modelliert werden (Konzentration auf Grenz- und Extremwerte). Beim Beispiel des Hypothekarrechners stellte sich heraus, dass die zugrundeliegende Programmlogik gar keine 36 Ergebniskategorien erzeugen kann. Die beiden letzten der vier Fragen generieren also keine eigene Ergebniskategorie sondern \textit{schieben} das Ergebnis in eine der anderen Kategorien. Tatsächlich ergeben sich viel weniger Pfade als im ursprünglichen Modell und es bleiben nur 51 Knoten sowie 66 Kanten. Gezeigt wird diese vereinfachte Version des Modells in Abbildung \ref{fig:modell_logisch}. Gut zu sehen sind die Überschneidungen auf zweitletzter Ebene die zu deutlich weniger Endzuständen und damit zu weniger Code führen.\\
 Durch eine verstärkte Whitebox-Ansicht muss der Modellierer also versuchen die  Zustände und Übergänge im Modell zu verringern.
 
 
 \begin{figure}[h] 
   \centering
      \includegraphics[width=1.5\textwidth, angle=90]{figures/modell_logisch.png}
-  \caption{Ausgehend von der Logik-Modellierung wurde hier die Logik im Quellcode betrachtet. Tatsächlich ergeben sich viel weniger Pfade als im ursprünglichen Modell und es bleiben nur 51 Knoten sowie 66 Kanten.}
+  \caption{Ausgehend von der Logik-Modellierung wurde hier die Logik im Quellcode betrachtet.}
   \label{fig:modell_logisch}
 \end{figure}
 

@@ -43,12 +43,12 @@ Nach Abschluss eines Sprints wird der Stand der Ebene \textit{Integrationstest} 
 
 \subsection{Qualitätssicherung im Projekt}
 In Entwicklung und Qualitätssicherung des Produkts sind diverse Parteien involviert. Anfänglich, also zum Zeitpunkt der Anforderungsanalyse und der Spezifikationsentwicklung, sind auch Teams involviert die während der Wartungsphase nicht mehr beteiligt sind. Dazu zählen auch externe Mitarbeiter.\\
-Während der Wartungsphase des Systems gibt es einen Test-Verantwortlichen. Diese Rolle befindet sich auf Seiten der nicht-technischen Produktmanager. Der Test-Verantwortliche delegiert und orchestriert die Erstellung und Durchführung von manuellen Testfällen. Alle Teams benutzen zum Requirements- und Testmanagement HP QualityCenter \footnote{HP QualityCenter Internetauftritt \url{http://www8.hp.com/us/en/software-solutions/quality-center-quality-management/}}. Dies hat den Vorteil, dass übergreifend alle Beteiligten über den Status des Produkts genau informiert sind. Manuelle Testfälle und Testfallsuiten sind meist textuell beschrieben und manchmal als \gls{COS} Tabellen definiert. Diese \gls{COS} Tabellen haben eine hohe Ähnlichkeit zu Skripts die beim Einsatz von automatisierten GUI-Tests zum Einsatz kommen (siehe Abbildung \ref{fig:cos_raiffeisen}).
+Während der Wartungsphase des Systems gibt es einen Test-Verantwortlichen. Diese Rolle befindet sich auf Seiten der nicht-technischen Produktmanager. Der Test-Verantwortliche delegiert und orchestriert die Erstellung und Durchführung von manuellen Testfällen. Alle Teams benutzen zum Requirements- und Testmanagement HP QualityCenter \footnote{HP QualityCenter Internetauftritt \url{http://www8.hp.com/us/en/software-solutions/quality-center-quality-management/}}. Dies hat den Vorteil, dass übergreifend alle Beteiligten über den Status des Produkts genau informiert sind. Manuelle Testfälle und Testfallsuiten sind meist textuell beschrieben und manchmal als \gls{COS} Tabellen definiert. Diese \gls{COS} Tabellen haben eine hohe Ähnlichkeit zu Skripts die beim Einsatz von automatisierten GUI-Tests zum Einsatz kommen (siehe Abbildung \ref{fig:cos_raiffeisen}). Angegeben werden Vorher und Nachher Zustände sowie die auszuführenden Aktionen. Der Detailgrad kann erheblich variieren.
 
 \begin{figure}[h] 
   \centering
      \includegraphics[width=0.9\textwidth]{figures/cos_raiffeisen.png}
-  \caption{Muster-COS Tabelle wie sie von den Testfalldesignern verwendet werden.  Angegeben werden Pre- sowie Postconditions und die auszuführenden Aktionen. Der Detailgrad kann erheblich variieren.}
+  \caption{Muster-COS Tabelle wie sie von den Testfalldesignern verwendet werden.}
   \label{fig:cos_raiffeisen}
 \end{figure}
 
@@ -257,13 +257,13 @@ Modelle in Graphwalker sind gerichtete Graphen. Knoten repräsentieren einen Zus
 \paragraph{Modularisierung der Modelle}
 \label{sec:graphwalker_modularisierung}
 Das \Gls{SUT} kann in Graphwalker mittels mehreren Modellen abgebildet werden. Dies hat mehrere Vorteile. Einerseits vereinfacht die Modularisierung eines großen Modells die Les- und Wartbarkeit. Andererseits wird dadurch die Wiederverwendbarkeit von Teilen der Funktionalität ermöglicht. Ein klassisches Beispiel ist ein Login-Workflow. Dieser kann oft zu mehreren Zeitpunkten bzw. an mehreren Stellen im \Gls{SUT} erfolgen. Statt das Modell aufzublähen oder mit zahlreichen Beziehungen schlechter lesbar zu machen, kann auf eine andere GraphML-Modelldatei verwiesen werden.\\
-Graphwalker ermöglicht dies mit Sprüngen in andere Modelle. Wenn es bei der Traversierung auf einen Knoten mit dem Schlüsselwort \textit{SHARED} und einem Bezeichner stößt, kann ein Sprung in ein anderes Modell erfolgen, das einen Knoten mit dem selben Bezeichner hat (siehe Abbildung \ref{fig:gw_multiple_models}). Wenn nun mehrere Kanten zur weiteren Traversierung in Fragen kommen, entscheidet der Zufall ob in das andere Modell gesprungen wird.\\
-Weiters ist zu erwähnen, dass die Modelle nicht einfach nur verflacht (\textit{flattening}) werden. Das bedeutet, dass die Modelle unabhängige Gültigkeitsbereiche haben. Die Traversierung erfolgt also in einem eigenen Kontext.
+Graphwalker ermöglicht dies mit Sprüngen in andere Modelle. Wenn es bei der Traversierung auf einen Knoten mit dem Schlüsselwort \textit{SHARED} und einem Bezeichner stößt, kann ein Sprung in ein anderes Modell erfolgen, das einen Knoten mit dem selben Bezeichner hat. Wenn nun mehrere Kanten zur weiteren Traversierung in Fragen kommen, entscheidet der Zufall ob in das andere Modell gesprungen wird. Abbildung \ref{fig:gw_multiple_models} zeigt vier solcher Modelle die durch \textit{SHARED} Knoten in einer Traversierung durch Graphwalker verknüpfbar sind.\\
+Weiters ist zu erwähnen, dass die Modelle nicht einfach nur verflacht (\textit{flattening}) werden. Das bedeutet, dass die Modelle unabhängige Gültigkeitsbereiche haben. Die Traversierung erfolgt also in einem eigenen Kontext. Die Variablen mit den selben Bezeichnern in den Modellen B und C befinden sich in unabhängigen Gültigkeitsbereichen \cite{_graphwalker_2015}.
 
 \begin{figure}[h] 
   \centering
      \includegraphics[width=0.9\textwidth]{figures/gw_multiple_models.png}
-  \caption{Vier einzelne Modelle die bei einer Traversierung (ausgehend vom Startknoten in Grün) erreicht werden können. Bei den Knoten die mit \textit{SHARED} gekennzeichnet sind kann ein Sprung (und auch ein Sprung zurück) erfolgen. Die Variablen mit den selben Bezeichnern in den Modellen B und C befinden sich in unabhängigen Gültigkeitsbereichen \cite{_graphwalker_2015}}.
+  \caption{Vier einzelne Modelle die in einer Traversierung erreicht werden können. Bei den Knoten die mit \textit{SHARED} gekennzeichnet sind kann ein Sprung (und auch ein Sprung zurück) erfolgen. }.
   \label{fig:gw_multiple_models}
 \end{figure}
 
