@@ -57,26 +57,30 @@ In der Zwischenzeit sind Ansätze nötig, die die Erkenntnisse des automatisiert
 Ein großflächiger Einsatz automatisierter Testtechnologien über längere Zeiträume hätte massive Auswirkungen auf die Landschaft der Softwarequalitätssicherung und damit der Softwareentwicklung:
 
 \begin{itemize}
-	\item QA mehr Zeit für kritische Regressionstest\todo{Hier weiter...}
-	\item Entwicklung verlass auf QA und Tests die bestehende Funk testen
-	\item Erhöhte Produktivität...
+	\item Qualitätssicherungsbeauftragte könnten viel mehr Zeit darauf verwenden neue Funktionalität und Details zu testen. Interviews der Fallstudie in Kapitel \ref{sec:fallstudie} zeigten, dass durch die Halbierung der manuellen Tests ein Viertel der Wochenarbeitszeit eingespart werden könnte. 
+	\item Moderne Softwareentwicklung verlässt sich auf Komponententests um Seiteneffekte frühzeitig zu erkennen. Mit automatisierten Tests auf höheren Ebenen werden Seiteneffekte noch viel weitflächiger erkannt.
+	\item Qualitätssicherung als auch Entwicklung würden erheblich entlastet. Damit würden Ressourcen verfügbar gemacht werden, die für neue oder verbesserte Funktionalitäten eingesetzt werden könnten.
 \end{itemize}
 
 %=======================================================================
 \section{Zielsetzung}
 %=======================================================================
 
-Nachdem die Problemstellung und die Motivation zu deren Lösung formuliert wurden, wird in diesem Kapitel das zu erarbeitende Resultat beschrieben. 
+\Gls{MBT} ist ein junges Themengebiet aber in den letzten 10 bis 15 Jahren hat sich gezeigt, dass durchaus gute und kostenwirksame Ergebnisse damit erzielt werden können \cite{utting_practical_2007}. Diese Arbeit soll den aktuellen Stand von \Gls{MBT} feststellen und konkret die folgenden Fragestellungen beantworten:
+
+\begin{itemize}
+	\item Wie kann \Gls{MBT} in der gegenwärtigen Softwareentwicklung eingesetzt werden und für welche Einsatzzwecke bestehen sinnvoll einsetzbare Technologien?
+	\item Kann ein Modellformat und eine passendes Werkzeug gefunden bzw. entwickelt werden, um Testfällle generieren generieren zu lassen, die denselben Nutzen wie manuelle Systemtests haben?
+	\item Wie zeit- und ressourcenintensiv ist die Erstellung und Wartung dieser Modelle?
+	\item Wie viel exaktes Know-How über die zu testende Applikation ist notwendig, um ein solches Modell zu erstellen? Welche Rollen im Software Team können die Erstellung und Wartung übernehmen?
+\end{itemize}
+
+Die methodische Vorgehensweise dieser Arbeit ist in einen Theorie- und einen Praxisteil gegliedert. Der theoretische Teil befasst sich mit dem aktuellen Stand von \Gls{MBT}. Vielversprechende und zeitgemäße Konzepte und Werkzeuge werden erklärt und auf ihre Eignung in großen agilen Softwareprojekte eingesetzt zu werden geprüft. Dabei werden Werkzeuge und Vorgehensweise für verschiedene Teststufen in Betracht gezogen.\\
+Der praktische Teil besteh darin, eine dieser Methoden in einer Fallstudie im industriellen Umfeld zu erproben. Die Technologie kann in einem lebendigen und komplexen Umfeld angewendet und dementsprechend angepasst werden. Dies garantiert Praxisnähe und erhöht die Qualität der Ergebnisse.
 
 \makeatletter\ifthesis@masterthesis
 Nach dem Lesen dieses Kapitels sollten folgende Punkte klar dargestellt sein:
-\begin{itemize}
-	\item Umfang, in dem die Problemstellung am Ende der Arbeit gelöst sein soll bzw. mit welchen Einschränkungen.
-	\item Methode zur Erarbeitung des Resultats.
-	\item Gibt es einen Theorie- und einen Praxisteil?
-	\item Schwerpunkte des Praxisteils (z.B. Durchführung einer Umfrage, Programmierung, Herstellung von Hardware, Erprobung einer Methode in einem konkreten Projekt)?
-	\item Art des Resultats (z.B. ein Programm, eine Formel, eine Methode, die Erweiterung einer existierenden Methode, ein Konzept, ein Framework, Hardware-Prototyp, eine bewiesene Erkenntnis)?
-\end{itemize}
+
 \fi\makeatother
 
 \makeatletter\ifthesis@masterthesis

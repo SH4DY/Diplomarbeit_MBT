@@ -64,9 +64,9 @@ Diese Nähe zur fachlichen Formulierung (im gleichen Vokabular) will man in der 
 \end{itemize}
 
 
-Als Proof of Concept wurde ein Behavior Driven Testing Framework namens \textit{FluentCoS} entwickelt, das diese Anforderungen erfüllt und gleichzeitig die oben erwähnten Prinzipien von \Gls{BDD} nicht verletzt. Dabei werden Tests in Java-Code verfasst der sich bewusst sehr verständlich liest. Technisch werden Annotationen verwendet und das Framework stößt JUnit-Tests an. Eine Test-Methode kann folgendermaßen ausschauen:
+Als Proof of Concept wurde ein Behavior Driven Testing Framework namens \textit{FluentCoS} entwickelt, das diese Anforderungen erfüllt und gleichzeitig die oben erwähnten Prinzipien von \Gls{BDD} nicht verletzt. Dabei werden Tests in Java-Code verfasst der sich bewusst sehr verständlich liest. Technisch werden Annotationen verwendet und das Framework stößt JUnit-Tests an. Beispiel \ref{lst:bddcode} zeigt wie ein \Gls{BDD} Test ausschauen kann. In den Kommentaren kann die CoS als Prosa-Text erklärt werden. Der Methodenname entspricht einer eindeutigen Identifizierung für die CoS. Zentral sind die klar verständlichen Aufrufe an \textit{given}, \textit{when} und \textit{then}. Jeweils das zweite Argument innerhalb dieser Aufrufe entspricht einer Methode der Testing API (siehe Abschnitt \ref{sec:testing_api})
 
-\begin{lstlisting}[caption={In den Kommentaren kann die CoS als Prosa-Text erklärt werden. Der Methodenname entspricht einer eindeutigen Identifizierung für die CoS. Zentral sind die klar verständlichen Aufrufe an \textit{given}, \textit{when} und \textit{then}. Jeweils das zweite Argument innerhalb dieser Aufrufe entspricht einer Methode der Testing API (siehe Abschnitt \ref{sec:testing_api})},label=lst:shortcode]
+\begin{lstlisting}[caption={Beispielhaftes Codestück eines \Gls{BDD} Tests},label=lst:bddcode]
 
 /**
  * Es muss fachlich sichergestellt sein, dass ...
