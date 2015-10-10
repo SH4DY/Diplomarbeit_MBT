@@ -241,6 +241,9 @@
 \RequirePackage{needspace}
 \RequirePackage{ifdraft}
 
+%Added by Ramon Lopez
+\RequirePackage{dpfloat}
+
 % test packages
 %\RequirePackage{morewrites}
 %\RequirePackage {splitidx}

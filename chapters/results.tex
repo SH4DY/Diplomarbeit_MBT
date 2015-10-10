@@ -171,41 +171,68 @@ Aus Sicht der Wartungsfreundlichkeit kann keine generelle Aussage getroffen werd
 \paragraph{Logik-Modellierung und Verfeinerung. Knoten: 72/51, Kanten: 72/66}
 Bei der Logik-Modellierung wird das System nicht mehr als reine Blackbox gesehen. Das Modell soll weiterhin eine Abstraktion des \Gls{SUT} sein aber der Detailgrad erhöht sich. Dies hat zur Folge, dass zwar mehr Knoten und Kanten erstellt werden müssen, die Komplexität im Code sich aber verringert. Erreicht wird dies durch die explizite Modellierung von Kanten und Knoten mit identischen Bezeichnern. In diesem Beispiel, wo nur der Endzustand \texttt{v\_finalProposal} einer detaillierten Prüfung unterzogen wird, erhalten nur die Knoten auf unterster Ebene eindeutige Bezeichner. Graphwalker generiert nun zwar 36 Methoden(entsprechend den 36 Knoten mit den Bezeichnern \texttt{v\_finalProposalXX}, die dem Knoten \texttt{v\_finalProposal} aus dem Workflow-Modell entsprechen, aber diese enthalten keinerlei Logik um den Pfad zu reproduzieren. In diesen Methoden befindet sich also nur ein Bruchteil der Logik die im letzten Knoten der Workflow-Modellierung zu finden ist. Durch die explizite Modellierung aller möglichen Pfad ist implizit gegeben wie das \Gls{SUT} traversiert wurde und welche Prüflogik angewandt werden muss. Die Abbildung \ref{fig:modell_komplex} zeigt die logisch modellierte Variante des Hypothekarrechners.
 
-\begin{figure}[h] 
-  \centering
-     \includegraphics[width=1.5\textwidth, angle=90]{figures/modell_komplex.png}
-  \caption{Logisch modellierte Variante des Modells mit 72 Knoten und 72 Kanten.}
-  \label{fig:modell_komplex}
-\end{figure}
+% \begin{figure}[h] 
+%   \centering
+%      \includegraphics[width=1.5\textwidth, angle=90]{figures/modell_komplex.png}
+%   \caption{Logisch modellierte Variante des Modells mit 72 Knoten und 72 Kanten.}
+%   \label{fig:modell_komplex}
+% \end{figure}
+
+\begin{figure}[p] \begin{leftfullpage}
+\hspace*{-2.5cm}
+\includegraphics[width=1.2\textwidth]{figures/modell_komplex_left.png}
+\caption{Logisch modellierte Variante des Modells mit 72 Knoten und 72 Kanten. Linke Seite.}
+\label{fig:modell_komplex}
+\end{leftfullpage} 
+\end{figure} 
+\begin{figure}[p] 
+\begin{fullpage} 
+\hspace*{-2.5cm}
+\includegraphics[width=1.2\textwidth]{figures/modell_komplex_right.png}
+\caption{Logisch modellierte Variante des Modells mit 72 Knoten und 72 Kanten. Rechte Seite.}
+\end{fullpage} \end{figure} 
 
 Es fällt schnell auf, dass das Hinzufügen von nur wenigen Mehroptionen im Prinzip das selbe, aus dem Model Checking bekannte, Problem der kombinatorischen Zustandsexplosion aufwirft \cite{clarke_model_2012}. Verglichen mit den Ansätzen aus diesem Feld (wie \textit{Counterexample-guided abstraction refinement} \cite{clarke_counterexample-guided_2000}), bei denen eine Abstraktion verfeinert wird, geht man hier aus der anderen Richtung vor. Man betrachtet die Programmlogik auf Code-Ebene genauer und versucht Abstraktionen des komplexen Modells zu generieren. Bei numerischen Werten können zum Beispiel weniger Werte modelliert werden (Konzentration auf Grenz- und Extremwerte). Beim Beispiel des Hypothekarrechners stellte sich heraus, dass die zugrundeliegende Programmlogik gar keine 36 Ergebniskategorien erzeugen kann. Die beiden letzten der vier Fragen generieren also keine eigene Ergebniskategorie sondern \textit{schieben} das Ergebnis in eine der anderen Kategorien. Tatsächlich ergeben sich viel weniger Pfade als im ursprünglichen Modell und es bleiben nur 51 Knoten sowie 66 Kanten. Gezeigt wird diese vereinfachte Version des Modells in Abbildung \ref{fig:modell_logisch}. Gut zu sehen sind die Überschneidungen auf zweitletzter Ebene die zu deutlich weniger Endzuständen und damit zu weniger Code führen.\\
 Durch eine verstärkte Whitebox-Ansicht muss der Modellierer also versuchen die  Zustände und Übergänge im Modell zu verringern.
 
 
-\begin{figure}[h] 
-  \centering
-     \includegraphics[width=1.5\textwidth, angle=90]{figures/modell_logisch.png}
-  \caption{Ausgehend von der Logik-Modellierung wurde hier die Logik im Quellcode betrachtet.}
-  \label{fig:modell_logisch}
-\end{figure}
+% \begin{figure}[h] 
+%   \centering
+%      \includegraphics[width=1.5\textwidth, angle=90]{figures/modell_logisch.png}
+%   \caption{Ausgehend von der Logik-Modellierung wurde hier die Logik im Quellcode betrachtet.}
+%   \label{fig:modell_logisch}
+% \end{figure}
+
+\begin{figure}[p] \begin{leftfullpage}
+\hspace*{-2.5cm}
+\includegraphics[width=1.3\textwidth]{figures/modell_logisch_left.png}
+\caption{Ausgehend von der Logik-Modellierung wurde hier die Logik im Quellcode betrachtet. Linke Seite.}
+\label{fig:modell_logisch}
+\end{leftfullpage} 
+\end{figure} 
+\begin{figure}[p] 
+\begin{fullpage}
+\hspace*{-2cm}
+\includegraphics[width=1.2\textwidth]{figures/modell_logisch_right.png}
+\caption{Ausgehend von der Logik-Modellierung wurde hier die Logik im Quellcode betrachtet. Rechte Seite.}
+\end{fullpage} \end{figure} 
 
 \subsubsection{Verbindung zwischen Modellen und \Gls{SUT}: Adapter-Code}
 Die Verbindung zwischen dem abstrakten Testmodell und dem eigentlichen Testsystem herzustellen ist eine heikle Aufgabe mit jeder Teststrategie. Graphwalker bietet bewusst keinerlei Funktionalität um die Zustände des Graphen auf das \Gls{SUT} abzubilden. Ein weiteres Werkzeug oder eine Bibliothek die solche Funktionalität anbietet muss verwendet werden. Wie einleitend erwähnt, eignet sich Graphwalker daher für das Testing auf beliebigen Ebenen, sofern die nötige Verbindung zur Steuerung des \Gls{SUT} hergestellt werden kann.\\
 Für Tests auf Ebene der Benutzeroberfläche kann beispielsweise Selenium gewählt werden. Das Einfügen von Selenium Code erfolgt an genau definierten Stellen. Dazu wird das Graphwalker Modell im GraphML Format eingelesen. Graphwalker erzeugt daraufhin Java Interfaces die der Testentwickler implementiert und an den annotierten Stellen mit Adapter-Code versieht.\\ Im Quellcodebeispiel \ref{lst:SeleniumImexPLZ} wird auf der Kante \texttt{e\_EnterPLZ}, welche darstellt, dass eine Maske mit der Aufforderung zur Eingabe der Postleitzahl angezeigt wird, eine Eingabe gemacht. Daraufhin wird das entsprechende Element angeklickt. Die Methode wurde vom Interface, welches Graphwalker automatisch anhand des Modells erzeugt hat, bereitgestellt. Der Testentwickler befüllt also alle Knoten und Kanten die nötig sind um den zu testenden Ablauf zu durchlaufen. 
 
-\begin{lstlisting}[caption={Auf einer Kante wird mittels Selenium eine Eingabe und ein Klick durchgeführt.}, label=lst:SeleniumImexPLZ]
+\begin{lstlisting}[caption={Auf einer Kante wird mittels Selenium eine Eingabe und ein Klick durchgeführt.}, label=lst:SeleniumImexPLZ, float]
 @Override
 public void e_EnterPLZ() {
     WebElement searchBox = driver.findElement(By.className("dropdown-toggle"));
     searchBox.sendKeys("6900");
-
     driver.findElement(By.partialLinkText("Lugano")).click();
 }
 \end{lstlisting}
 
 Typischerweise befindet sich Code der Aktionen wie Eingaben und Klicks ausführt in den Kanten. Knoten, vor allem zum Schluss eines Ablaufs, werden dazu genutzt Zustände zu überprüfen. Auch für solche Überprüfungen kann ein beliebiges Werkzeug verwendet werden. Selenium bietet Möglichkeiten festzustellen ob ein Element auf der aktuellen Eingabemaske sichtbar oder benutzbar ist. Quellcodebeispiel \ref{lst:SeleniumImexAssertion} zeigt wie im Knoten \texttt{e\_Proposal\_0} überprüft wird ob an einer bestimmten Stelle im HTML-Dokument der Text \texttt{Festhypothek} dargestellt wird. Um an diese Stelle im Dokument zu navigieren wird die \textit{XML Path Language}\footnote{Definition der XPath Version 1 des World Wide Web Consortium \url{http://www.w3.org/TR/xpath/}} verwendet.
 
-\begin{lstlisting}[caption={Auf einer Kante wird mittels Selenium eine Eingabe und ein Klick durchgeführt.}, label=lst:SeleniumImexAssertion]
+\begin{lstlisting}[caption={Eine Assertion in Selenium auf einem Graphwalker Knoten}, label=lst:SeleniumImexAssertion, float]
 @Override
 public void v_Proposal_0() {
    //Beispielsweise
