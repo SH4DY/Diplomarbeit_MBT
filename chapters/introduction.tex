@@ -52,14 +52,14 @@ Steigende Komplexität in modernen technischen Disziplinen, darunter auch die So
 \section{Motivation}
 %=======================================================================
 Große Softwareprojekte sind teuer in der Entwicklung und der Wartung. Sie müssen unter hohem Zeitdruck geplant, spezifiziert, implementiert und ausgeliefert werden. Außerdem sollen solche Systeme dann mehrere Jahre betreut und in ihrer Funktionalität erweitert werden. Softwaresysteme die sensible Daten verarbeiten (Finanzwesen, Gesundheitswesen etc.) sind davon abhängig sehr exakte Ergebnisse zu liefern. Strenges Prüfen dieser ist unumgänglich. Gleichzeitig verknappen solche Tätigkeiten den engen zeitlichen Rahmen solcher Projekte. Deshalb wird, unabhängig von der Branche, das automatisierte regressive Testen von Software thematisiert \cite{graham_experiences_2012}.\\
-Für jede gängige Programmiersprache und Plattform gibt es potente Test \Glspl{Framework}, die das Verhalten eines Benutzers automatisiert emulieren. In die Entwicklung von Testfällen mittels dieser \Glspl{Framework} fließt eine beträchtliche Anzahl an Ressourcen. Weiterhin ungelöst ist aber die Frage, wie es möglich ist diese Technologien intelligent, vielleicht sogar lernend (siehe Kapitel \ref{sec:test_based_modelling} \nameref{sec:test_based_modelling}), in die Entwicklung zu integrieren. Bis dahin scheint es aber noch ein langer Weg zu sein, wie es das \textit{LearnLib}-Projekt von \citeauthor{steffen_introduction_2011} zeigt \cite{steffen_introduction_2011}.\\
+Für jede gängige Programmiersprache und Plattform gibt es potente Test \Glspl{Framework}, die das Verhalten eines Benutzers automatisiert emulieren. In die Entwicklung von Testfällen mittels dieser \Glspl{Framework} fließt eine beträchtliche Anzahl an Ressourcen\todo{beträchtliche Anzahl an Ressourcen ist zu unpräzise}. Weiterhin ungelöst ist aber die Frage, wie es möglich ist diese Technologien intelligent, vielleicht sogar lernend (siehe Kapitel \ref{sec:test_based_modelling} \nameref{sec:test_based_modelling}), in die Entwicklung zu integrieren. Bis dahin scheint es aber noch ein langer Weg zu sein, wie es das \textit{LearnLib}-Projekt von \citeauthor{steffen_introduction_2011} zeigt \cite{steffen_introduction_2011}.\\
 In der Zwischenzeit sind Ansätze nötig, die die Erkenntnisse des automatisierten Softwaretests übernehmen und neuartige Methoden zur Qualitätserhöhung und Wartungsreduzierung einbringen. Einer dieser Ansätze ist das \Gls{MBT}. Das modellbasierte Testen zieht eine Schicht zwischen den logischen und technischen Teil eines Tests. Es findet also eine Abstrahierung auf Modelle des tatsächlichen Systems statt. Dies ermöglicht die wartungsintensiven Implementierungsdetails von den Abläufen des Tests zu entkoppeln, zu modularisieren und bestenfalls wieder zu gebrauchen.\\
 Ein großflächiger Einsatz automatisierter Testtechnologien über längere Zeiträume hätte massive Auswirkungen auf die Landschaft der Softwarequalitätssicherung und damit der Softwareentwicklung:
 
 \begin{itemize}
-	\item Qualitätssicherungsbeauftragte könnten viel mehr Zeit darauf verwenden neue Funktionalität und Details zu testen. Interviews der Fallstudie in Kapitel \ref{sec:fallstudie} zeigten, dass durch die Halbierung der manuellen Tests ein Viertel der Wochenarbeitszeit eingespart werden könnte. 
-	\item Moderne Softwareentwicklung verlässt sich auf Komponententests um Seiteneffekte frühzeitig zu erkennen. Mit automatisierten Tests auf höheren Ebenen werden Seiteneffekte noch viel weitflächiger erkannt.
-	\item Qualitätssicherung als auch Entwicklung würden erheblich entlastet. Damit würden Ressourcen verfügbar gemacht werden, die für neue oder verbesserte Funktionalitäten eingesetzt werden könnten.
+	\item Qualitätssicherungsbeauftragte könnten viel mehr Zeit darauf verwenden neue Funktionalität und Details zu testen. Interviews der Fallstudie in Kapitel \ref{sec:fallstudie} zeigten, dass durch die Halbierung der manuellen Tests\todo{sollte das nicht heißen, durch automation der Hälfte der Tests kann ein Viertel ....} ein Viertel der Wochenarbeitszeit eingespart werden könnte. 
+	\item Moderne Softwareentwicklung verlässt sich auf Komponententests um Seiteneffekte \todo[color=blue]{sideeffekts = Nebeneffekte bitte überall ausbessern} frühzeitig zu erkennen. Mit automatisierten Tests auf höheren Ebenen werden Seiteneffekte noch viel weitflächiger erkannt. \todo{Quelle?}
+	\item Sowohl Qualitätssicherung als auch Entwicklung würden erheblich entlastet. Damit würden Ressourcen verfügbar gemacht werden, die für neue oder verbesserte Funktionalitäten eingesetzt werden könnten.
 \end{itemize}
 
 %=======================================================================
@@ -69,8 +69,8 @@ Ein großflächiger Einsatz automatisierter Testtechnologien über längere Zeit
 \Gls{MBT} ist ein junges Themengebiet aber in den letzten 10 bis 15 Jahren hat sich gezeigt, dass durchaus gute und kostenwirksame Ergebnisse damit erzielt werden können \cite{utting_practical_2007}. Diese Arbeit soll den aktuellen Stand von \Gls{MBT} feststellen und konkret die folgenden Fragestellungen beantworten:
 
 \begin{itemize}
-	\item Wie kann \Gls{MBT} in der gegenwärtigen Softwareentwicklung eingesetzt werden und für welche Einsatzzwecke bestehen sinnvoll einsetzbare Technologien?
-	\item Kann ein Modellformat und eine passendes Werkzeug gefunden bzw. entwickelt werden, um Testfällle generieren generieren zu lassen, die denselben Nutzen wie manuelle Systemtests haben?
+	\item Wie kann \Gls{MBT} in der gegenwärtigen Softwareentwicklung eingesetzt werden und für welche Einsatzzwecke bestehen sinnvoll \todo{was bedeutet sinnvoll... } einsetzbare Technologien?
+	\item Kann ein Modellformat und eine passendes Werkzeug gefunden bzw. entwickelt werden, um Testfällle generieren zu lassen, die denselben Nutzen wie manuelle Systemtests haben?
 	\item Wie zeit- und ressourcenintensiv ist die Erstellung und Wartung dieser Modelle?
 	\item Wie viel exaktes Know-How über die zu testende Applikation ist notwendig, um ein solches Modell zu erstellen? Welche Rollen im Software Team können die Erstellung und Wartung übernehmen?
 \end{itemize}
@@ -80,7 +80,7 @@ Der praktische Teil besteh darin, eine dieser Methoden in einer Fallstudie im in
 
 \makeatletter\ifthesis@masterthesis
 Nach dem Lesen dieses Kapitels sollten folgende Punkte klar dargestellt sein:
-
+\todo{????}
 \fi\makeatother
 
 \makeatletter\ifthesis@masterthesis
