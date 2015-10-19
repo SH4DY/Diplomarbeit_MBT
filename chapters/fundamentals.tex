@@ -180,13 +180,15 @@ Das einzige was Systemtests vom realen Gebrauch der Software unterscheidet ist d
 Ziel des Systemtests ist es, festzustellen wie gut das fertige System die an das System gestellten Anforderungen erfüllt. Dabei müssen zwei Klassen von Anforderungen unterschieden werden \cite{spillner_basiswissen_2012}:
 
 \begin{itemize}
-\item \textbf{Funktionale Anforderungen} Beschreiben was das System leisten soll. Nach ISO 9126 (siehe Abschnitt \ref{sec:quality}) wird gefordert: Angemessenheit, Richtigkeit, Interoperabilität, Sicherheit und Ordnungsgemäßigkeit.
-\item \textbf{Nichtfunktionale Anforderungen} Beschreiben wie das System seine Leistungen erbringt, also die Eigenschaften der geforderten Funktionalität. Nichtfunktionale Anforderungen beeinflussen genau so stark wie Funktionale Anforderungen, wie gerne der Kunde mit dem System arbeitet. Nach ISO 9126 (siehe Abschnitt \ref{sec:quality}) wird gefordert: Zuverlässigkeit, Benutzbarkeit und Effizienz.
+\item \textbf{Funktionale Anforderungen} Beschreiben was das System leisten soll. Nach ISO 9126 (siehe Abschnitt \ref{sec:quality}) wird gefordert: Angemessenheit, Richtigkeit, Interoperabilität, Sicherheit und Ordnungsgemäßigkeit. \todo{bei beiden Punkten bitte so formulieren das sich ganze Sätze ergeben. Fette Wort und Beschreibung müssen eine Einheit ergeben!}
+\item \textbf{Nichtfunktionale Anforderungen} Beschreiben wie das System seine Leistungen erbringt, also die Eigenschaften der geforderten Funktionalität. Nichtfunktionale Anforderungen beeinflussen genau so stark wie funktionale Anforderungen, ob der Kunde gerne mit dem System arbeitet. Nach ISO 9126 (siehe Abschnitt \ref{sec:quality}) wird gefordert: Zuverlässigkeit, Benutzbarkeit und Effizienz.
 \end{itemize}
 
-Beim Design der Teststrategie für Systemtests hat es sich bewährt, sich an den Geschäftsprozessen zu orientieren. Testszenarien können dann typische Geschäftsvorfälle nachbilden. Außerdem kann die Priorität und  der Umfang der Testszenarien nach der Wichtigkeit der Geschäftsprozesse ausgerichtet werden.
+Beim Design der Teststrategie für Systemtests hat es sich bewährt, sich an den Geschäftsprozessen zu orientieren \todo{Quelle?}. Testszenarien können dann typische Geschäftsvorfälle nachbilden. Außerdem kann die Priorität und  der Umfang der Testszenarien nach der Wichtigkeit der Geschäftsprozesse ausgerichtet werden.
 
 \paragraph{Probleme in der Systemtestpraxis}
+
+\todo[inline]{Probleme in der Systempraxis als Überschrift, es folgen aber nur 5 Zeilen... und nur ein Problem... }
 
 \begin{quote}
 Wo keine Anforderungen existieren, ist zunächst jedes Systemverhalten zulässig bzw. nicht bewertbar \cite{spillner_basiswissen_2012}.
@@ -200,6 +202,8 @@ Die Abnahmetestauswahl kann nach den selben Kriterien erfolgen wie es auf System
 
 \subsection{Agiles Testen}
 \todo{RÜCKFRAGE, SO BESSER? Die Subsectiokn Agiles testen beginnt mit einer Erklärung und Aufzählung von nicht agilen Projektvorgehen. Vielleicht das ganze in einen Paragaph packen oder irgendwie kennzeichen.}
+
+\todo[inline]{Die Subsection muss komplett überarbeitet werden. Es fehlen zu viele Begriffserklärungen, zuviele Wissensannahmen. }
 Agiles Testen baut auf den, aus dem V-Modell bekannten, Testprinzipien auf. In Bezug auf die Verantwortlichkeiten innerhalb des Projektteams und der Struktur der einzelnen Phasen, unterscheidet sich agiles Testen von nicht-agilem Testen. 
 
 \subsubsection{Verantwortlichkeiten}
@@ -233,15 +237,15 @@ Deshalb schlagen \citeauthor{linz_testing_2014} in \cite{linz_testing_2014} eine
   \label{fig:mbt_unit}
 \end{figure}
 
-Das gewählte Modellformat ist im Grunde ein endlicher Automat (siehe Abschnitt \ref{sec:fsm}) das mindestens folgende Informationen enthält:
+Das gewählte Modellformat ist im Grunde ein endlicher Automat (siehe Abschnitt \ref{sec:fsm}) der mindestens folgende Informationen enthält:
 
 \begin{itemize}
 \item Ein Initialstatus
-\item Die Parameter-Werte um das Testobjekt in einen anderen Status zu bringen (auf den Kanten)
+\item Die Parameter-Werte um das Testobjekt in einen anderen Status zu bringen (auf den Kanten)\todo[color=blue]{Formulierung}
 \item Die auf Methodenaufrufe folgenden Zustände
 \end{itemize}
 
-Laut \citeauthor{vigenschow_objektorientiertes_2004} vereinfacht dieser Ansatz, dass jeder Zustand mindestens einmal positiv und einmal negativ getestet wird. Während positive Testfälle gewährleisten, dass die geforderte Funktionalität ordnungsgemäß funktioniert, erlauben negative Testfälle die Überprüfung der Robustheit der Komponente. Typischerweise aufgedeckte Defekte sind die folgenden:
+Laut \citeauthor{vigenschow_objektorientiertes_2004} \todo{Werkname der Quelle auch angeben} vereinfacht dieser Ansatz, dass jeder Zustand mindestens einmal positiv und einmal negativ getestet wird. Während positive Testfälle gewährleisten, dass die geforderte Funktionalität ordnungsgemäß funktioniert, erlauben negative Testfälle die Überprüfung der Robustheit der Komponente. Typischerweise aufgedeckte Defekte sind die folgenden:
 
 \begin{itemize}
 \item Ein zurückgewiesener Methodenaufruf entspricht einem fehlenden Zustandsübergang
@@ -257,15 +261,15 @@ Für die so erstellten Modelle gelten dieselben Überdeckungskriterien wie in Ab
 Der \textit{Test-First} Ansatz stammt aus dem Extreme Programming Umfeld \cite{beck_extreme_2000} und fand so seinen Weg in agile Softwareprojekte. Bei Test-Frist werden vor allem Unit-Tests, streng genommen aber auch Tests aus höheren Teststufen, vor der eigentlichen Implementierung geschrieben. Vor allem automatisierte Testfälle eignen sich gut für diesen Zweck, weil der Entwickler seinen Fortschritt damit kontinuierlich prüfen kann. Ein agiles Team, das strikt nach Test-First vorgeht, wird seine Effizienz aus folgenden Gründen dramatisch steigern \cite{linz_testing_2014}:
 
 \begin{itemize}
-\item \textbf{Manuelles Trial and Error wird überflüssig} Üblicherweise testet ein Entwickler seinen Code kontinuerlich durch manuelle Methodenaufrufe mit passenden Werten. Die Ausgabe wird mithilfe eines Debuggers oder zusätzlichen Print-Methoden vom Entwickler geprüft. Abhängig vom jeweiligen \textit{System Under Test} (das zu testende System, von hier an \gls{SUT}) kann dieser Workflow sehr ineffizient sein weil er in der Wartung nicht nachtvollziehbar ist und Code generiert der vor der Auslieferung wieder entfernt werden muss. Im Gegensatz dazu muss der Entwickler beim Test-First Ansatz vor der Programmierung bereits einige sinnvolle und (potenzielllauffähige Testfälle geschrieben haben. Dies hat folgende Vorteile: Erstens entfällt das mitunter mühselige und fehlerbehaftete manuelle Smoke-Testing und zweitens hat sich herausgestellt, dass Programmierer effizienter werden wenn sie angehalten sind sich sehr genaue Gedanken über Ein- und Ausgabewerte der zu entwickelnden Komponente zu machen \cite{erdogmus_effectiveness_2005}.
-\item \textbf{Fortschritt ist einfach messbar} Typische Programmieraktivitäten in einem Scrum-Projekt können zwischen wenigen Stunden bis zu mehreren Manntagen umfassen. Test-First Unit-Tests können als Indikator dienen wie die Programmieraktivität fortschreitet. Außerdem stellen sie eine Art roter Faden für den Programmierer dar.
+\item \textbf{Manuelles Trial and Error wird überflüssig} Üblicherweise testet ein Entwickler seinen Code kontinuerlich durch manuelle Methodenaufrufe mit passenden Werten. Die Ausgabe wird mithilfe eines Debuggers oder zusätzlichen Print-Methoden vom Entwickler geprüft. Abhängig vom jeweiligen \textit{System Under Test} (das zu testende System, von hier an \gls{SUT}) kann dieser Workflow sehr ineffizient sein weil er in der Wartung nicht nachtvollziehbar ist und Code generiert der vor der Auslieferung wieder entfernt werden muss. Im Gegensatz dazu muss der Entwickler beim Test-First Ansatz vor der Programmierung bereits einige sinnvolle und (potenzielllauffähige \todo{???} Testfälle geschrieben haben. Dies hat folgende Vorteile: Erstens entfällt das mitunter mühselige und fehlerbehaftete manuelle Smoke-Testing und zweitens hat sich herausgestellt, dass Programmierer effizienter \todo{effektivier oder?} werden wenn sie angehalten sind sich sehr genaue Gedanken über Ein- und Ausgabewerte der zu entwickelnden Komponente zu machen \cite{erdogmus_effectiveness_2005}.
+\item \textbf{Fortschritt ist einfach messbar} Typische Programmieraktivitäten in einem Scrum-Projekt können zwischen wenigen Stunden bis zu mehreren Manntagen \todo{besser Personentage} umfassen. Test-First Unit-Tests können als Indikator dienen wie die Programmieraktivität fortschreitet. Außerdem stellen sie eine Art roter Faden für den Programmierer dar.
 \item \textbf{Tests als Spezifikation} Unit-Tests geben sehr genau vor welche Ausgabewerte auf einen bestimmten Eingabewert erwartet werden. Das bedeutet, dass sie als Teil einer Spezifikation angesehen werden können. Tatsächlich lassen sich in der Praxis auch immer wieder solche Ansätze beobachten. Vor allem funktionale Programmiersprachen werden gerne als \textit{executable specification} verwendet \cite{klein_sel4:_2010}. Nachteilig bei dieser Vorgehensweise ist aber die Verständlichkeit solcher Spezifikationen. Unerfahrene Entwickler oder nicht-technische Teammitglieder können diese nur schwer nachvollziehen. Auch modellbasierte Tests können als Spezifikation dienen und durch ihre grafische Darstellung sind sie viel leichter verständlich (siehe Abschnitt \ref{sec:mbt} für allgemeine Informationen zu modellbasiertem Testen und Abschnitt \ref{sec:graphwalker} wo ein solcher Ansatz erprobt wird).
 \end{itemize}
 
 
 \subsection{Regressionstests und Testautomatisierung}
 \label{sec:regressionstests}
-Auf den niedrigen Teststufen ist es selbstverständlich, dass Testfälle automatisch ausgeführt werden. In agilen Projekten, wo Continuous Integration weit verbreitet ist, laufen diese Tests sehr regelmäßig vollautomatisiert ab. Dies ist auf der Ebene der Systemtests ebenso wünschenswert, vor allem in einem agilen Entwicklungsprozess \cite{linz_testing_2014}. Regressionstests sind Tests die über einen längeren Zeitraum hinweg durchgeführt werden um festzustellen, wie sich das Verhalten des \Gls{SUT} verändert. Es liegt nahe, dass gerade diese Tests automatisiert werden um wertvolle Personalkostne einzusparen und eintönige Arbeit dem Computer zu überlassen.
+Auf den niedrigen Teststufen ist es selbstverständlich, dass Testfälle automatisch ausgeführt werden. In agilen Projekten, wo Continuous Integration weit verbreitet ist, laufen diese Tests sehr regelmäßig vollautomatisiert ab. Dies ist auf der Ebene der Systemtests ebenso wünschenswert, vor allem in einem agilen Entwicklungsprozess \todo[color=blue]{Wiederholung agile Entwicklung bzw. agiler Entwicklungsprozess} \cite{linz_testing_2014}. Regressionstests sind Tests die über einen längeren Zeitraum hinweg durchgeführt werden um festzustellen, wie sich das Verhalten des \Gls{SUT} verändert. Es liegt nahe, dass gerade diese Tests automatisiert werden um wertvolle Personalkostne\todo{typo bitte Rechtsschreibung verwenden, ich überlese sicher viele Fehler} einzusparen und eintönige Arbeit dem Computer zu überlassen.
 
 
 
@@ -275,7 +279,7 @@ Auf den niedrigen Teststufen ist es selbstverständlich, dass Testfälle automat
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{sec:mbt}
 \subsection{Definition}
-Im allgemeinsten Sinn, werden im modellbasierten Testing Testfälle aus Modellen abgeleitet, die das Sollverhalten eines Software-Systems beschreiben.
+Im allgemeinsten Sinn werden im modellbasierten Testing Testfälle aus Modellen abgeleitet, die das Sollverhalten eines Software-Systems beschreiben.
 
 In \citetitle{utting_practical_2007} \cite{utting_practical_2007} werden vier verschiedene Herangehensweisen zusammenfassend als modellbasiertes Testen definiert:
 
@@ -286,7 +290,7 @@ In \citetitle{utting_practical_2007} \cite{utting_practical_2007} werden vier ve
 \item Generierung von Test-Skripts aus einem abstrakten Test
 \end{itemize}
 
-Die Autoren legen den Schwerpunkt auf die generativen Aspekte. Weniger Aufmerksamkeit wird dem vorausgehenden Schritt geschenkt: Die Modellierung der genannten Modelle. \citeauthor{rossner_basiswissen_2010} \cite{rossner_basiswissen_2010} nennen folgende zentralen Merkmale des modelbasierten Testings:
+Die Autoren legen den Schwerpunkt auf die generativen Aspekte. Weniger Aufmerksamkeit wird dem vorausgehenden Schritt geschenkt, der Modellierung der genannten Modelle. \citeauthor{rossner_basiswissen_2010} \cite{rossner_basiswissen_2010} nennen folgende zentralen Merkmale des modelbasierten Testings:
 
 \begin{itemize}
 \item Die zu testende Software, ihre Umgebung oder der Test, wird über Modelle betrachtet.
@@ -298,10 +302,12 @@ Die Autoren legen den Schwerpunkt auf die generativen Aspekte. Weniger Aufmerksa
 Dies führt zur pragmatischen Definition von modellbasiertem Testing:
 
 \begin{quote}
-Modellbasiertes Testen umfasst mindestens einen der beiden folgenden Aspekte: Tests modellieren oder Tests aus Modellen generieren.
+Modellbasiertes Testen umfasst mindestens einen der folgenden beiden Aspekte: Tests modellieren oder Tests aus Modellen generieren.
 \end{quote}
 
 \subsection{Vorteile des Modellbasierten Testings}
+
+\todo[inline]{Bite die gesamte Subsection überarbeiten, Formulierung Schreibstil entspricht nicht dem Rest der Arbeit}
 
 \label{sec:mbt_vorteile}
 In diesem Abschnitt werden die Vorteile des \Gls{MBT} gegenüber anderen Testmethoden, auch anhand von Publikationen und Fallstudien, erläutert werden.
@@ -344,15 +350,16 @@ Modelle die das \gls{SUT}, dem verwendeten Werkzeug entsprechend, repräsentiere
 \end{itemize}
 
 \subsection{Der \Gls{MBT} Prozess}
-Model-based Testing automatisiert, einer nachvollziehbaren Strategie folgend (siehe Testauswahlkriterien \ref{sec:coverage}), die Erstellung der detaillierten Testfälle (Testscripts).
-Im Detail erstellt der Test-Designer ein abstraktes Modell des SUT, welches gewisse Eigenschaften haben muss (siehe dazu Abschnitt \ref{sec:eigenschaften_modell} \nameref{sec:eigenschaften_modell}). Dieses abstrakte Testmodell wird einem Werkzeug übergeben welches die Testfälle generiert. Die Zeit einen Testfall zu designen wird durch den Einsatz von \Gls{MBT} reduziert. Außerdem befähigt die Erstellung eines einzelnen Modells, die automatische Generierung einer Vielzahl von Testfällen. Der Testfall-Designer muss dazu am Programm nur die Testauswahlkriterien verändern. \cite{utting_practical_2007} Der Prozess kann also in 5 Schritten dargestellt werden (siehe Abbildung \ref{fig:mbt_prozess}):
+Model-based Testing \todo{Einheitliche schreibweise für Mobdel based Testing festlegen und einheitlich verwenden!} automatisiert, einer nachvollziehbaren Strategie folgend (siehe Testauswahlkriterien \ref{sec:coverage}), die Erstellung der detaillierten Testfälle (Testscripts).
+Im Detail erstellt der Test-Designer ein abstraktes Modell des SUT\todo{kein Tag verwendet bitte Suchen ersetzten im ganzen Projekt!}, welches gewisse Eigenschaften haben muss (siehe dazu Abschnitt \ref{sec:eigenschaften_modell} \nameref{sec:eigenschaften_modell}). Dieses abstrakte Testmodell wird einem Werkzeug übergeben welches die Testfälle generiert. Die Zeit einen Testfall zu designen wird durch den Einsatz von \Gls{MBT} reduziert. Außerdem befähigt die Erstellung eines einzelnen Modells, die automatische Generierung einer Vielzahl von Testfällen. Der Testfall-Designer muss dazu am Programm nur die Testauswahlkriterien verändern. \cite{utting_practical_2007} \todo{Bitte im ganzen Projekt suchen nach ./cite bzw. . /cite und ändern dass Punkt immer danch ist!} Der Prozess kann also in 5 Schritten dargestellt werden (siehe Abbildung \ref{fig:mbt_prozess}):
 
 \begin{enumerate}
 \item Das \Gls{SUT} und/oder seine Umgebung modellieren.
 \item Abstrakte Tests vom Testmodell werden generiert.
-\item Die Abstrakten Testfälle werden konkretisiert, also ausführbar gemacht.
+\item Die abstrakten Testfälle werden konkretisiert, also ausführbar gemacht.
 \item Ausführen der Testfälle auf dem SUT.
 \item Analyse der Ergebnisse nachdem die Testfälle auf dem \Gls{SUT} durchgelaufen sind.
+\todo[inline]{Grafik und Aufzählung passen nicht zusammen}
 \end{enumerate}
 
 \begin{figure}[h] 
@@ -364,9 +371,9 @@ Im Detail erstellt der Test-Designer ein abstraktes Modell des SUT, welches gewi
 
 Die Schritte 4 und 5 sind Teil jeder Testmethode. Schritt 3 ist Teil einer jeden automatisierten Testmethode. Im Bereich des skriptbasierten Testens (siehe Abschnitt \ref{sec:regressionstests} \nameref{sec:regressionstests}) wird dieser Schritt von den eingesetzten Werkzeugen, so weit wie möglich in den Hintergrund gerückt. Oft gestaltet sich die Übersetzung von abstrakten zu ausführbaren Testfällen aber wesentlich aufwendiger als beworben \cite{graham_experiences_2012}.\\
 Die Schritte 1 und 2 unterscheiden \Gls{MBT} also von anderen Testmethoden. Das Modell aus Schritt 1 soll eine abstrakte Darstellung des \Gls{SUT} bzw. seiner Umgebung sein. Das bedeutet es werden nur die, für das Testing relevanten Teile modelliert. Dieses Modell muss demnach viel simpler und kleiner als das reale \Gls{SUT} ausfallen. Außerdem kann es nötig sein, das Modell zu annotieren um informelle Requirements abzubilden, die ansonsten mit der Abstraktion verloren gehen würden. Das Modell sollte nach Fertigstellung verfiziert werden, um formale Korrektheit zu gewährleisten. Dafür bieten viele Modellierungssprachen geeignete Werkzeuge \cite{kaneiwa_consistency_2006}. Außerdem gibt es interaktive Werkzeuge, die das Verhalten eines Modells grafisch darstellen und so das debuggen vereinfachen.\\
-Der zweite Schritt, die Generierung von Testfällen aus dem Modell, wird maßgeblich von den gewählten Testauswahlkritereien beeinflusst. Mittels verschiedensten Traversierungsstrategien können aus einem Modell grundsätzlich eine unendliche Menge von Testfällen erzeugt werden \cite{utting_practical_2007}. Die Testauswahlkriterien dienen daher der kontrollierten Einschränkung dieser Menge von Testfällen (siehe Abschnitt \ref{sec:coverage} \nameref{sec:coverage}). Das Ergebnis dieses Schritts ist also ein Set von abstrakten Testfällen, welche jeweils eine Menge von Operationen definieren die auf dem \Gls{SUT} ausgeführt werden sollen. Da das Modell aber eine vereinfachte Abstraktion des \Gls{SUT} ist, fehlen diesen Operationen die Implementierungsdetails. Diese abstrakten Testfälle sind daher noch nicht ausführbar.\\
+Der zweite Schritt, die Generierung von Testfällen aus dem Modell, wird maßgeblich von den gewählten Testauswahlkritereien beeinflusst. Mittels verschiedensten Traversierungsstrategien kann aus einem Modell grundsätzlich eine unendliche Menge von Testfällen erzeugt werden \cite{utting_practical_2007}. Die Testauswahlkriterien dienen daher der kontrollierten Einschränkung dieser Menge von Testfällen (siehe Abschnitt \ref{sec:coverage} \nameref{sec:coverage}). Das Ergebnis dieses Schritts ist also ein Set von abstrakten Testfällen, welche jeweils eine Menge von Operationen definieren die auf dem \Gls{SUT} ausgeführt werden sollen. Da das Modell aber eine vereinfachte Abstraktion des \Gls{SUT} ist, fehlen diesen Operationen die Implementierungsdetails. Diese abstrakten Testfälle sind daher noch nicht ausführbar.\\
 Im dritten Schritt werden die abstrakten Testfälle in ausführbare Testskripts transformiert. An dieser Stelle werden die verschiedensten Ansätze verfolgt. Manche Werkzeuge nehmen als erstes eine Transformation in eine anderen Datenstruktur vor. Das Open Source Werkzeug GraphWalker\footnote{Open Source \Gls{MBT} Tool GraphWalker http://graphwalker.org/} wandelt das Modell erst in einen gerichteten Graphen, bevor aus diesem ein Set von JUnit-Testfällen erzeugt wird. Andere Werkzeuge, wie beispielsweise die Implementierung von \citeauthor{pinheiro_model-based_2013} \cite{pinheiro_model-based_2013}, serialisieren die Modelle erst in ein allgemeineres Format (in diesem Fall XMI\footnote{XML Metadata Interchange Format http://www.omg.org/spec/XMI/}) bevor Testskripts für ein verbreitetes Werkzeug erzeugt werden. Ein Vorteil der sich aus diesem schichtartigen Vorgehen ergibt, ist die Unabhängigkeit von Testplattformen. Solange sich die Logik der Applikation zwischen verschiedenen Plattformen (oder Versionen in anderen Programmiersprachen) nicht unterscheidet, sind die abstrakten Modelle allgemein gültig. Testfälle können so sehr schnell für verschiedenste Plattformen portiert werden.\\
-Im vierten Schritt werden die erzeugten Testskripts ausgeführt. Dabei unterscheidet man zwischen Online und Offline Testgenerierung, wie in Abschnitt \ref{sec:online_offline} beschrieben.\\
+Im vierten Schritt werden die erzeugten Testskripts ausgeführt. Dabei unterscheidet man zwischen Online und Offline Testgenerierung, wie in Abschnitt \ref{sec:online_offline} \todo{im kompilierten Text wird hier auf den aktuelle Abschnitt verwiesen!} beschrieben.\\
 Im letzten Schritt werden die Ergebnisse der Testfälle analysiert. Auch diesen Schritt teilen sich grundsätzlich alle Testmethoden. Den Detailgrad der Analyse bestimmt größtenteils das Werkzeug, das zur Testausführung verwendet wurde. Dies reicht von einfachen Assertions, wie sie beispielsweise Selenium \footnote{Selenium Browser Automatisierungswerkzeug http://www.seleniumhq.org/} in seinem Grundumfang mitbringt, bis zu sehr detaillierten Berichten inklusive Zeitangaben, Screenshots und kontextuellen Informationen, wie beispielsweise das Automatisierungswerkzeug HP UFT \footnote{Testautomatisierungswerkzeug HP Unified Functional Tester http://www8.hp.com/ch/de/software-solutions/unified-functional-testing-automation/} es macht.
 
 \subsubsection{Online und Offline Testgenerierung}
@@ -375,20 +382,21 @@ Im Bereich des modellbasierten Testens wird unterschieden zwischen Werkzeugen di
 
 
 \subsection{Vergleich mit klassischem skriptbasierten Tests}
-In vielen industriellen Softwareprojekten, die über Jahre hinweg wachsen, ist irgendwann der Punkt erreicht wo die Ressourcen für manuelles Regressionstesting ein akzeptables Maß überschreiten \cite{graham_experiences_2012}. Manuelles Regressionstesting ist nicht nur zeitintensiv sondern auch demotivierend und fehlerbehaftet. Es liegt nahe die manuellen Regressiontests zu automatisieren. Es scheint als ob der Aufwand für die Erstellung dieser `stupiden' Testabläufe überschaubar wäre. Massive Ressourceneinsparungen auf lange Sicht wären die Folge. Oft stellt sich heraus, dass es mit dem initialen Aufwand für die Erstellung dieser Skripts nicht getan ist. Vor allem bei kurzen Iterationen in der agilen Softwareentwicklung werden die Wartungsaufwände für solche skriptbasierte Tests gerne unterschätzt \cite{graham_experiences_2012}.\\
-Die Abbildung \ref{fig:script_vs_mbt} zeigt die Aktivitäten die während skriptbasiertem und modellbasiertem Testen anfallen. \todo[color=yellow]{@Boris: NEU hinzugekommen}Die weithin anerkannte Zertifizierungsstelle für Softwaretester \Gls{ISTQB} definiert einen Testprozess\ref{spillner_basiswissen_2012} der aus fünf Aktivitäten besteht: 
+In vielen industriellen Softwareprojekten, die über Jahre hinweg wachsen, ist irgendwann der Punkt erreicht an dem Ressourcen für manuelles Regressionstesting ein akzeptables Maß überschreiten \cite{graham_experiences_2012}. Manuelles Regressionstesting ist nicht nur zeitintensiv sondern auch demotivierend \todo{warum demotivierend?} und fehlerbehaftet. Es liegt nahe die manuellen Regressiontests zu automatisieren. Es scheint als ob der Aufwand für die Erstellung dieser `stupiden' Testabläufe überschaubar wäre. Massive Ressourceneinsparungen auf lange Sicht wären die Folge. Oft stellt sich heraus, dass es mit dem initialen Aufwand für die Erstellung dieser Skripts nicht getan ist. Vor allem bei kurzen Iterationen in der agilen Softwareentwicklung werden die Wartungsaufwände für solche skriptbasierte Tests gerne unterschätzt \cite{graham_experiences_2012}.\\
+Die Abbildung \ref{fig:script_vs_mbt} \todo{Erklärung aus der Grafik gehört ausschließlich hier in den Text!, in der Grafik kann ich nicht ganz die Differenz erkennen, vielleicht mit Farben arbeiten!} zeigt die Aktivitäten die während skriptbasiertem und modellbasiertem Testen anfallen. Die weithin anerkannte Zertifizierungsstelle für Softwaretester \Gls{ISTQB} \todo{bitte nochmals prüfen Glossar und Abbreviation, es fehlt hier die Abkürzing ISTQB} definiert einen Testprozess\ref{spillner_basiswissen_2012} \todo{Fehlerhafter Verweis} der aus fünf Aktivitäten besteht: 
 
 \begin{itemize}
 \item \textbf{Planung und Steuerung}: Die Teststrategie wird festgelegt. Das heißt Ressourcen wie benötigtes Personal, Werkzeuge und die Zeitplanung werden definiert. Über den gesamten Verlauf des Testprozesses wird, der Strategie folgend, steuernd eingegriffen.
 \item \textbf{Analyse und Design}: Das \Gls{SUT} wird im Detail untersucht. Dabei muss festgestellt werden wie es um die Testbarkeit des Systems steht. Anhand dieser Ergebnisse werden Testziele, geeignete Testumgebungen und Testschnittstellen definiert.
 \item \textbf{Realisierung und Durchführung:} Es werden konkrete Testfälle erzeugt und zusammengefasst um bestimmte Testziele beweisbar zu erfüllen. Die Tests werden ausgeführt.
 \item \textbf{Auswertung und Bericht:} Die Ergebnisse der Tests werden mit den Kriterien aus der Phase \textit{Analyse und Design} verglichen. Aus den Testergebnissen werden Berichte generiert die auch historisiert werden.
-\item \textbf{Abschluss}
+\item \textbf{Abschluss} \todo{Vervollständigen!}
 \end{itemize}
 \todo[color=yellow]{@Boris: Bis hierhin neu}
 
-Beide Testmethodiken lassen sich anhand diesem Schema vergleichen. Größtenteils gibt es Überschneidungen aber viele Aktivitäten unterscheiden sich im Detail. Der größte Unterschied ist der Wegfall der Testfallerstellung und Testfallwartung. Anstelle dessen tritt die Modellierung des Systems und die Wartung des Modells. Ressourceneinsparungen mittels \Gls{MBT} gegenüber skriptbasiertem Testing, geschehen wenn folgende zwei Aspekte gut gelöst werden: Die Modellierung des Systems geschieht auf angemessen abstrahierter Ebene und die Berührungspunkte mit dem \Gls{SUT}sind stark modularisiert \cite{utting_practical_2007}.\\
-Eine Aktivität die es im skriptbasierten Test nicht gibt ist die Wahl der Traversierungskriterien bzw. Abdeckungskriterien. Dadurch, dass es strikte Sequenzen gibt die das \Gls{SUT} durchlaufen, fällt dieser Punkt gänzlich weg. Beim modellbasierten Testen ist es nicht unüblich, dass jeder Durchlauf unterschiedlich abläuft, abhängig vom Traversierungsalgorithmus und den randomisierten Komponenten die dieser in sich trägt.\\
+\todo[inline]{viele Fehler im folgenden Absatz bitte nochmals checken!}
+Beide Testmethodiken lassen sich anhand diesem \todo{Grammatik} Schema vergleichen. Größtenteils gibt es Überschneidungen aber viele Aktivitäten unterscheiden sich im Detail. Der größte Unterschied ist der Wegfall der Testfallerstellung und Testfallwartung. Anstelle dessen tritt die Modellierung des Systems und die Wartung des Modells. Ressourceneinsparungen mittels \Gls{MBT} gegenüber skriptbasiertem Testing, geschehen wenn folgende zwei Aspekte gut gelöst werden: Die Modellierung des Systems geschieht auf angemessen abstrahierter Ebene und die Berührungspunkte mit dem \Gls{SUT}sind stark modularisiert \cite{utting_practical_2007}.\\
+Eine Aktivität die es im skriptbasierten Test nicht gibt ist die Wahl der Traversierungskriterien bzw. Abdeckungskriterien. Dadurch, dass es strikte Sequenzen gibt die das \Gls{SUT} durchlauft, fällt dieser Punkt gänzlich weg. Beim modellbasierten Testen ist es nicht unüblich, dass jeder Durchlauf unterschiedlich abläuft, abhängig vom Traversierungsalgorithmus und den randomisierten Komponenten die dieser in sich trägt.\\
 Bei den Aktivitäten die sich gegenüber skriptbasiertem Testing geändert haben, ist vor allem die Modifikation der Teststrategie bzw. des Testplans im Detail hervorzuheben. Modellbasiertes Testen kann partiell im Projekt eingesetzt werden und ergänzt bestehende Tests. Welche Tests durch \Gls{MBT} ersetzt werden und wie die Ergebnisse dieser verifiziert werden sollen, muss aber wohl überlegt sein. Eine Teststrategie die \Gls{MBT} mit anderen Testmethodiken kombiniert wird im Resultatskapitel \ref{sec:results} präsentiert.
 
 \begin{figure}[h] 
@@ -401,7 +409,8 @@ Bei den Aktivitäten die sich gegenüber skriptbasiertem Testing geändert haben
 \subsection{Testauswahlkriterien \& Modellabdeckung}
 \label{sec:coverage}
 
-Genau wie auf der Ebene der Unit-Tests, spielt die gewählte Abdeckung eine entscheidende Rolle in modellbasiertem Testen. Verständnis der möglichen Abdeckung und exakte Kenntnisse über das \Gls{SUT} sind der Schlüssel zu einer hochqualitativen Testsuite.\\
+\todo{viele Typos, Großkleinschreibung im Absatz}
+Genau wie auf Ebene der Unit-Tests, spielt die gewählte Abdeckung eine entscheidende Rolle in modellbasiertem Testen. Verständnis der möglichen Abdeckung und exakte Kenntnisse über das \Gls{SUT} sind der Schlüssel zu einer hochqualitativen Testsuite.\\
 Modellabdeckung und Testauswahlkriterien hängen in der Praxis des modellbasierten Testens oft untrennbar zusammen. Wie ein Modell eines Systems vom Ausführenden Programm traversiert wird, entspricht einem genau definierten Testfall in skriptbasiertem Testing. Es hängt vom gewählten Testwerkzeug ab ob das Modell, entsprechend der gewählten Abdeckung, immer gleich traversiert wird (so wie das bei den meisten Traversierungsarten von ModelJUnit der Fall ist, siehe Abschnitt \ref{sec:modeljunit} \nameref{sec:modeljunit}) oder ob bewusst keine immer gleichen skript-artigen Testfälle generiert werden (dieses Konzept der Randomisierung verfolgt Graphwalker, siehe Abschnitt \ref{sec:graphwalker} \nameref{sec:graphwalker}).\\
 Wenn von Abdeckung im MBT-Umfeld gesprochen wird, beziehen sich diese Aussagen immer auf das Modell und damit nur indirekt auf den Quellcode des SUT. Diese Abstraktion ist essentiell, gerade um im agilen Umfeld zeitkritische Qualitätssicherung zu schaffen. \cite{utting_practical_2007} Gleichzeitig muss dieser Umstand Testern und Entwicklern stets bewusst sein. Viele der folgenden Konzepte sind aber abgeleitet von bekannten White-Box Code-Abdeckungskriterien.
 
@@ -410,12 +419,13 @@ In der Regel werden beim Umgang mit \Gls{MBT} Werkzeugen sogenannte Testauswahlk
 Testauswahlkriterien lassen sich in die folgenden Familien einteilen:
 
 \begin{itemize}
-\item \textbf{Strukturelle Abdeckung} sind angelehnt an die Kontrollflussabdeckung, wie sie aus White-Box Tests bekannt ist. Auch Modelle mit Pre- und Postcondition Notation (siehe B-Methode in Abschnitt \ref{sec:bmethod}) werden implizit durch strukturelle Modellabdeckung gesteuert. Auf diese Abdeckungsvarianten wird in den folgenden Abschnitten \ref{coverage_control} \nameref{coverage_control} und \ref{coverage_transition} \nameref{coverage_transition} genauer eingegangen.
+\item \textbf{Strukturelle Abdeckung} sind angelehnt an die Kontrollflussabdeckung, wie sie aus White-Box Tests bekannt ist. Auch Modelle mit Pre- und Postcondition Notation (siehe B-Methode in Abschnitt \ref{sec:bmethod}) werden implizit durch strukturelle Modellabdeckung gesteuert. Auf diese Abdeckungsvarianten wird in den folgenden Abschnitten \ref{coverage_control} \nameref{coverage_control} und \ref{coverage_transition} \nameref{coverage_transition} \todo{im kompilierten pdf sind beide Verweise auf das selbe Kapitel!} genauer eingegangen.
 \item \textbf{Testdatenabdeckung} beschreibt die Abdeckung anhand von Eingabedaten.
 \item \textbf{Requirement-basierte Abdeckung} Kritische Requirements werden vom Tester mit Teilen des Modells verbunden. Bei der Traversierung können nun Requirements vorrangig anvisiert werden.
 \item \textbf{Explizite Testfalldefinition} Manche \Gls{MBT} Werkzeuge bieten auch die Möglichkeit explizite Testfälle (also Pfade durch das Modell) zu erstellen.
 \end{itemize}
 
+\todo[inline]{sollte das nicht auch ein item sein ?}
 \paragraph{Kontrollflussorientierte Abdeckung}\label{coverage_control} Die Kontrollflussorientierte Abdeckung gehört zur Familie der strukturellen Abdeckung und hat große Ähnlichkeiten zur Kontrollflussabdeckung im Sinne von Quellcode also White-Box Tests. In Modellnotationen wie OCL \cite{warmer_object_2004} oder B-Notation (siehe Abschnitt \ref{sec:bmethod}) lässt sich Kontrollflussorientierte Abdeckung nahezu gleich einsetzen. Der einzige Unterschied ist die Absenz von Schleifen in diesen Modellnotationen, was die Abdeckung weiter einschränkt. Gängige Abdeckungskriterien sind \cite{rossner_basiswissen_2010}:
 \begin{itemize}
 \item \textbf{Anweisungsüberdeckung} Jede erreichbare Anweisung soll mindestens einmal ausgeführt werden.
@@ -439,7 +449,7 @@ Auch die übergangsorientierten Abdeckungskriterien gehören zur Familie der Kon
 \label{sec:entscheidungshilfe}
 In der Praxis stellt sich für jedes Software-Projektteam die Frage welche Teststrategie am effizientesten, in Bezug auf Qualität und Ressourcennutzung ist. Manuelles Testen gilt in der Industrie immer noch als das am häufigsten eingesetzte Verfahren \cite{guldali_starthilfe_2010}, aber deren Wirksamkeit mindert sich mit steigender Komplexität der zu testenden Software. Skriptbasierte Testautomatisierungswerkzeuge kommen seit Jahren zum Einsatz. Durch die automatisierte Testausführung, wird der Testprozess schnell und wiederholbar. Verglichen mit manuellen Tests sind skriptbasierte Tests zeitsparender und weniger fehleranfällig. Gleichzeitig müssen skriptbasierte Tests gewartet werden, was einen nicht unerheblichen Ressourcenaufwand bedeuten kann.\\
 Als Alternative dazu steht das modellbasierte Testen. Angelehnt an \citeauthor{guldali_starthilfe_2010} \cite{guldali_starthilfe_2010} folgen acht Fragestellungen die zu einer Entscheidung bezüglich der Sinnhaftigkeit des Einsatzes von \Gls{MBT} führen sollen (siehe Abbildung \ref{fig:entscheidungshilfe_mbt}):
-
+\todo{in grafik nur 7 fragen!, vielleicht kurze überleitung zur Grafik, Erklärung}
 \begin{figure}[h] 
   \centering
      \includegraphics[width=0.9\textwidth]{figures/entscheidungshilfe_mbt.png}
@@ -470,12 +480,12 @@ Eine Einführung von \Gls{MBT} ist immer auch mit Anschaffungskosten verbunden. 
 
 \subsection{Modellbasiertes Testen in Industrie und Forschung - \Gls{MBT} Fallstudien}
 
-Model-based Testing von Software wird seit mehr als 20 Jahren aktiv thematisiert \cite{utting_practical_2007}, sei es durch Forschung oder Industrie. Wie in den Leitlinien für den Einsatz von \Gls{MBT} in einem Projekt bereits erwähnt (siehe Abschnitt \ref{sec:entscheidungshilfe} \nameref{sec:entscheidungshilfe}), ist der Einsatz von \Gls{MBT} nicht immer sinnvoll. Diese Leitlinien haben sich unter anderem, durch eben die folgenden Publikation und Fallstudien ergeben, sind aber keineswegs unveränderlich. Durch neue Erkenntnisse im laufenden Einsatz von \Gls{MBT} in den verschiedensten Projekten und durch die stetige Weiterentwicklung der beteiligten Technologien, entwickeln sie sich weiter.\\
+Model-based Testing von Software wird seit mehr als 20 Jahren aktiv thematisiert \cite{utting_practical_2007}, sei es durch Forschung oder Industrie. Wie in den Leitlinien für den Einsatz von \Gls{MBT} in einem Projekt bereits erwähnt (siehe Abschnitt \ref{sec:entscheidungshilfe} \nameref{sec:entscheidungshilfe}), ist der Einsatz von \Gls{MBT} nicht immer sinnvoll. Diese \todo{den satz versteh ich nicht vielleicht vereinfachen} Leitlinien haben sich unter anderem, durch eben die folgenden Publikation und Fallstudien ergeben, sind aber keineswegs unveränderlich. Durch neue Erkenntnisse im laufenden Einsatz von \Gls{MBT} in den verschiedensten Projekten und durch die stetige Weiterentwicklung der beteiligten Technologien, entwickeln sie sich weiter.\\
 Die folgenden Fallstudien geben einen Überblick darüber, wie \Gls{MBT} Methoden in den letzten Jahren eingesetzt wurden.
 
-\paragraph{GUITAR: An innovative tool for automated testing of GUI-driven software \cite{nguyen_guitar:_2014}}Das von den Autoren entwickelte \textit{GUITAR} Framework wurde für modellbasiertes Oberflächentesting entwickelt. Das Werkzeug verhält sich dabei wie eine \textit{Learning Machine}. Soll heißen, es gibt eine endliche Anzahl von diskreten Parametern in das \Gls{SUT} (bedient das Programm) und beobachtet die Ergebnisse (wie sich das \Gls{SUT} verhält). Basierend auf diesen Ergebnisse generiert \textit{GUITAR} automatisch das Modell des SUT. Der Tester kann daraufhin Modifikationen am Modell vornehmen, bevor das eigentliche Testing beginnt.\\ 
+\paragraph{GUITAR: An innovative tool for automated testing of GUI-driven software \todo{vielleicht eindeutschen oder übersetzung suchen} \cite{nguyen_guitar:_2014}}Das von den Autoren entwickelte \textit{GUITAR} Framework wurde für modellbasiertes Oberflächentesting entwickelt. Das Werkzeug verhält sich dabei wie eine \textit{Learning Machine}. Soll heißen, es gibt eine endliche Anzahl von diskreten Parametern in das \Gls{SUT} (bedient das Programm) und beobachtet die Ergebnisse (wie sich das \Gls{SUT} verhält). Basierend auf diesen Ergebnisse generiert \textit{GUITAR} automatisch das Modell des SUT. Der Tester kann daraufhin Modifikationen am Modell vornehmen, bevor das eigentliche Testing beginnt.\\ 
 In mehreren Fallstudien konnte \textit{GUITAR} Use-Cases nachstellen, in denen die korrekte Bedienung zu unerwarteten Abstürzen des \Gls{SUT} führte. Bedingt durch die geringe Intervention durch den Testentwickler, brachten die Tests eine gewisse Qualitätssteigerung mit wenig Ressourcenaufwand. Diese Methodik kann also hauptsächlich Aussagen über die Stabilität des \Gls{SUT} treffen, lässt aber kaum Schlüsse auf die funktionale Korrektheit zu.\\
-Im Hinblick auf Applikationen mit vielen Datenfeldern, oder gar nicht standardisierten Eingabe- und Anzeigefeldern, ist diese Art des Testings nicht hinreichend, weil keinerlei Prüfung auf Korrektheit der angezeigten Daten stattfindet.
+Im Hinblick auf Applikationen mit vielen Datenfeldern oder nicht standardisierten Eingabe- und Anzeigefeldern, ist diese Art des Testings nicht hinreichend, weil keinerlei Prüfung auf Korrektheit der angezeigten Daten stattfindet.
 
 \paragraph{Industrial Application of Visual GUI Testing: Lessons learned \cite{alegroth_industrial_2014}}In dieser Publikation aus dem Jahr 2014, erproben Alégroth et al. in zwei groß angelegten Industriefallstudien ein \textit{Visual Testing} Werkzeug. Im Gegensatz zu weitverbreiteten Lösungen, greift ihr Werkzeug nicht auf Widget-Ebene auf das \Gls{SUT} zu. Bei ihrem Ansatz werden Bitmaps von Oberflächen gemacht (Soll-Zustand) und beim Testdurchlauf mit neuen Bitmaps verglichen (Ist-Zustand). Das Werkzeug lässt feingradige Einstellungen zu, bis zu welchem Grad sich die Bitmaps unterscheiden dürfen um noch als korrekt zu gelten.\\
 Die vorgestellte Technik soll manuelles Testen im späten Entwicklungszyklus (Akzeptanz- und Abnahmetests) ergänzen oder sogar ersetzen. Sie hat den Vorteil, dass kaum Aufwand bei der Wartung von Testfällen anfällt und fügt sich gut in eine Continuous Development Umgebung ein. Nachteilig ist aber die Tatsache, dass bei nicht optimaler Konfiguration viele Fehlerfälle (\textit{false negative's}) von Hand geprüft werden müssen.\\
@@ -489,13 +499,14 @@ Bei IBM wurden von Farchi et al. zwei Fallstudien im Bereich modellbasiertes Tes
 Die Ergebnisse beider Studien sprechen für modellbasiertes Testen. Die Autoren berichten von 17\% weniger Zeit die für \Gls{MBT} aufgewendet werden musste, verglichen mit herkömmlichen Testmethoden. Dabei inkludiert ist die Einarbeitungszeit in die neue Methodik und in die neuen Werkzeuge. Deshalb sind sich die Autoren sicher, dass der Ressourcenaufwand auf längere Sicht noch stärker fallen wird.
 
 \paragraph{Model-Based Testing and Some Steps towards Test-Based Modelling \cite{tretmans_model-based_2011}} \label{sec:test_based_modelling} Die Autoren nehmen sich dem Problem Testing aus einem erfahrungsgemäß praxisnahen Blickwinkel an: Die initiale Hürde der Erstellung von Testmodellen, insbesondere auf Basis von schlechter oder nicht existenter Dokumentation. Test-based modelling, also das Generieren von Modellen anhand von bestehenden Testfällen, wird definiert. Für diesen Ansatz setzen die Autoren \textit{Automata Learning} ein. Dabei handelt es sich um einen \textit{Machine Learning} Ansatz \cite{narendra_learning_1974}. Es wird aufgezeigt, dass Modelle, wie sie in \Gls{MBT} verwendet werden, eng mit \textit{Machine Learning} verwandt sind und, dass Lernkonzepte mittels Modellen ausgedrückt werden können.\\
-\citeauthor{tretmans_model-based_2011} können noch keinen praktischen Einsatz aufzeigen aber ihre Ergebnisse deuten in welche Richtung die Forschung um \Gls{MBT} gehen könnte.
+\citeauthor{tretmans_model-based_2011} können noch keinen praktischen Einsatz aufzeigen aber ihre Ergebnisse andeuten, in welche Richtung die Forschung um \Gls{MBT} gehen könnte.
 
 \subsection{Modellierungssprachen}
 \label{sec:notations}
 \subsubsection{Endliche Automaten (Finite-State-Machines)}
 \label{sec:fsm}
-Ein endlicher Automat (oder \textit{finite state machine}) ist eine Form der abstrakten Maschinen. Eine FSM erlaubt die Modellierung des Verhaltens einer Maschine, in diesem Fall eines Computer-Programms. \cite{wagner_modeling_2006}\\
+\todo[inline]{Schreibweise finite-state-maschines... mit oder ohne Bindestrich??? Einheitlich überschrift und fliesstext}
+Ein endlicher Automat (oder \textit{finite state machine}) ist eine Form der abstrakten Maschinen. Eine FSM\todo{??? tags verwenden } erlaubt die Modellierung des Verhaltens einer Maschine, in diesem Fall eines Computer-Programms. \cite{wagner_modeling_2006}\\
 Sie besitzt, wie der Name schon sagt, eine endliche Anzahl von Zuständen. Zu jedem Zeitpunkt lässt sich die Maschine genau einem Zustand zuordnen. Zustände enthalten üblicherweise Informationen über die Vergangenheit, also wie die Maschine in den aktuellen Zustand gekommen ist. Diese Informationen müssen aber keineswegs vollständig sein. Aus einem aktuellen Zustand lässt sich nicht notwendigerweise reproduzieren welche Zustände die Maschine zuvor angenommen hat.\\
 
 \paragraph{Aktionen}
@@ -534,7 +545,7 @@ B Notation für abstrakte Maschinen ist eine formale Modellierungssprache zur Be
 B Notation ähnelt den Sprachen die in der Welt der modellgetriebenen Entwicklung verwendet werden, allen voran der Object Constraint Language (OCL)\footnote{Spezifikation der Object Management Group (OMG) für die Object Constraint Language \cite{warmer_object_2004} OMG \url{http://www.omg.org/spec/OCL/}}.
 \paragraph{Die B Methode}
 \label{sec:bmethod}
-Bei Verwendung der B Methode wird die Korrektheit eines Software Systems, ausgehend von einem abstrakten Modell, bewiesen. Zugrunde liegt die, weiter oben erläuterte, B Notation.\\
+Bei Verwendung der B Methode wird die Korrektheit eines Software Systems, ausgehend von einem abstrakten Modell, bewiesen. Zugrunde liegt die, weiter oben erläuterte, B Notation.\todo{verweis besser gestalten} \\
 In der kompletten B Methode wird ein abstraktes Modell schrittweise verfeinert. Parallel verifizieren Programme automatisch ob tatsächlich eine korrekte und detailliertere Version des Modells erstellt wurde. Nach mehreren Iterationen generieren erhältliche Werkzeuge eine meist sehr große Anzahl an mathematischen Implikationen. Nach rigorosen Beweisen all dieser Implikationen kann das System, so wie es modelliert wurde, als korrekt angesehen werden.\\
 Im Gegensatz zur kompletten B Methode wird die B Notation oft viel leichtgewichtiger verwendet. Utting und Legeard \cite{utting_practical_2007} schlagen einen Ansatz vor, bei dem nur ein kleiner, für den Test relevanter, Teil des \Gls{SUT} modelliert wird. Außerdem werden nicht mehrere Iterationen zur Verfeinerung des Modells gemacht sondern nur eine. Aus diesem Modell werden automatisch Testfälle generiert, die die Unterschiede zwischen Modell und tatsächlicher Implementation offenbaren. Wie bei allen MBT-Methoden muss anschließend aber trotzdem vom Tester manuell festgestellt werden, ob es sich tatsächlich um ein Fehlverhalten handelt oder ob ein Fehler bei der Modellierung passiert ist.\\
 Dieser Ansatz garantiert keine Korrektheit des Systems, wie es die komplette B-Methode macht, ist aber viel praxistauglicher. Die B-Methode wird verwendet um sehr sicherheitskritische Systeme zu testen, die über einen langen Zeitraum keiner Weiterentwicklung ausgesetzt sind. Bei Systemen mit diesen Eigenschaften lassen sich die hohen Aufwände rechtfertigen und stellen einen klaren Mehrwert dar. Ein bekanntes Beispiel für die erfolgreiche Anwendung der B-Methode findet sich in Frankreich, wo Teile des Pariser U-Bahn Systems mit der B-Methode verifiziert wurden. \cite{lecomte_formal_2007}
@@ -600,7 +611,7 @@ Test2: init:
 Die beiden Testfälle gehen von einem Limit von 200 Einheiten aus. Solaneg die eingeworfene Menge plus der Saldo unter dem Limit bleiben, wird nichts ausgeworfen. Jeder Betrag darüber wird sofort retourniert (siehe letzte Zeile in Testfall 2). In Klammer stehen also die Eingabewerte (entsprechend \textit{in} im Modell) und die Werte rechts vom Gleichheitszeichen stellen die erwarteten Ausgabewerte dar (entsprechend \textit{out} im Modell).\\
 Die hier gezeigte Syntax entspricht der ASCII B Notation, welche auch von den meisten Werkzeugen verwendet wird\footnote{Das Tool ProB der Heinrich-Heine-Universität, welches auch zur grafischen Darstellung und Animation von Modellen verwendet werden kann, kann ebenfalls mit ASCII B benutzt werden. \url{http://stups.hhu.de/ProB/}}.\\
 
-Modelle in B Notation können folgende Dimensionen definieren (von denen einige bereits in \ref{lst:b-notation} zu sehen sind).
+Modelle in B Notation können folgende Dimensionen definieren (von denen einige bereits in\todo{Wort Listing fehlt, bei verweisen wird immer nur Nummer eingetragen, kontrollieren kommt öfter vor!} \ref{lst:b-notation} zu sehen sind).
 
 \begin{itemize}
 \item \textit{MACHINE} ist ein Bezeichner mit dem auf das Modell Bezug genommen werden kann.
@@ -621,15 +632,17 @@ Weiters gibt es Relationen die eine Beziehung zwischen den Elementen zweier Sets
 Der mächtigste Operator in B-Notation ist die Funktion. Funktionen sind spezielle Relationen, in denen Elemente einer Menge $A$ auf genau ein Element abgebildet wird. B-Notation unterscheidet zwischen mehreren Arten von Funktionen, wobei die gängisten die totale Funktion (\textbf{jedes} Element der Menge $A$ wird auf ein anderes Element abgebildet) und partielle Funktion ($0...n$ Elemente der Menge $A$ werden auf ein anderes Element abgebildet) ist. 
 
 \paragraph{Eignung der B-Notation}
-B-Notation ist sehr präzise und dementsprechend ressourcenintensiv um flächendeckend eingesetzt zu werden. Vorrangig eignet sie sich um die Ergebnisse eines Systems zu testen, das mittels einem oder mehreren Eingabewerten sofort einen oder mehrere komplexe Ausgabewerte liefert (Transaktionssystem). B-Notation eignet sich weniger um Systeme zu testen die 
+B-Notation ist sehr präzise und dementsprechend ressourcenintensiv um flächendeckend eingesetzt zu werden. Vorrangig eignet sie sich um die Ergebnisse eines Systems zu testen, das mittels einem oder mehreren Eingabewerten sofort einen oder mehrere komplexe Ausgabewerte liefert (Transaktionssystem). B-Notation eignet sich weniger um Systeme zu testen die \todo{??? Hier fehlt eindeutig was}
 
 \subsubsection{UML/ UML Testing Profile}
-\paragraph{Test-Driven Testing mit UTP}
+\paragraph{Test-Driven Testing mit UTP} \todo{UTP erstes Vorkommen? Langform?}
 Businessapplikationen (unter anderem in den Bereichen Finanz-, Versicherungs- und Gesundheitswesen) basieren auf großen Datenbeständen. Diese wurden oft über Jahre und Jahrzehnte gesammelt und gespeichert. Zwischen den Datensätzen bestehen Abhängigkeit, die das Verhalten der Applikation stark beeinflussen. Solche Systeme werden als \textit{datengetrieben (data-driven)} bezeichnet. Das Testing von solchen Systemen ist dementsprechend gekennzeichnet durch die Verwendung von vielen, oft relationalen, Datensätzen. Die Praxis zeigt, dass sich die Datenstrukturen innerhalb eines Systems ändern und von der ursprünglichen Spezifikation abdriften. Es ist also von höchster Wichtigkeit, das Testdatenmangement angemessen zu designen um hohe Wartungsaufwände zu minimieren. \cite{baker_model-driven_2005}\\
 Das UML Testing Profile bietet Unterstützung von datengetriebenen Tests in mehreren Formen.
 
 \subparagraph{Wildcards in Ausprägungsspezifikationen}
 UTP bietet vereinfachte Wildcards um zu spezifizieren, dass ein Attribut einen beliebigen Wert annehmen darf (annotiert mit \textit{?}) oder sogar keinen Wert haben darf (annotiert mit \textit{*}). Diese Wildcards können in sogenannten Ausprägungsspezifikationen (\textit{Instance Specifications} \footnote{Ausprägungsspezifikationen wurden im UML 2 Standard definiert \url{http://www.omg.org/spec/UML/2.4/} }) eingesetzt werden (siehe Abbildung \ref{fig:uml_instance}). Sowohl eine Instanz der Klasse als auch eine Relation kann als Ausprägung dargestellt werden. Mit diesen kann die Existenz einer Entität innerhalb des modellierten Systems beschrieben werden. Instanzspezifikationen müssen ausdrücklich nicht vollständig sein, was dem  Testfalldesigner zugute kommte, da oft nur wenige Attribute von Bedeutung sind. Solche Ausprägungsspezifikationen erlauben, die Definition von Testdaten ohne sie in Sequenzdiagramme `hart' zu codieren.
+
+\todo[inline]{Grafik ist unscharf!}
  
 \begin{figure}[h] 
   \centering
