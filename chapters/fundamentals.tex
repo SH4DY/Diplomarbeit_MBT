@@ -1,7 +1,12 @@
 \chapter{Grundlagen}
 \label{sec:fundamentals}
 
-\todo[color=blue!40,inline]{Formatierungen und Nummerierungen von Sections, Subsections, Subsubsections muss  noch überarbeitet werden. Vollständigkeit kann erst nach dem die weiteren Kapitel fertiggestellt wurden}\section{Software Qualitätssicherung}
+\todo[color=blue!40,inline]{Formatierungen und Nummerierungen von Sections, Subsections, Subsubsections muss  noch überarbeitet werden. Vollständigkeit kann erst nach dem die weiteren Kapitel fertiggestellt wurden}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Software Qualitätssicherung}
+\label{sec:software_quality}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Motivation und Relevanz}
 Der Funktionsumfang von Software stieg in den letzten fünzig Jahren enorm. Gleichzeitig bietet die Geschichte der Informatik viele Beispiele, die für die Notwendigkeit von Qualitätssicherung in der Softwareentwicklung sprechen. Ein sehr bildhaftes Beispiel der Folgen von fehlerhafter Software, ist die Selbstzerstörung der Ariane 5 Rakete im Jahr 1996 \cite{giese_warum_2002}. Das Trägheitsnavigationssystem wandelte eine 64-bit-Gleitkommazahl in eine Ganzzahl. Dieser Programmteil wurde schon in der Ariane 4 verwendet, nur war diese weitaus schubschwächer und der betroffene Sensor erzeugte viel kleinere Ergebnisse. Nur 36 Sekunden nach Start des Erstfluges, setzte also ein klassischer Überlauf ein und die Rakete aktivierte ihren Selbstzerstörungsmechanismus.
@@ -374,6 +379,8 @@ Modelle die das \gls{SUT}, dem verwendeten Werkzeug entsprechend, repräsentiere
 \end{itemize}
 
 \subsection{Der \Gls{MBT} Prozess}
+\label{sec:mbt_prozess}
+
 Modellbasiertes Testen automatisiert, einer nachvollziehbaren Strategie folgend (siehe Testauswahlkriterien \ref{sec:coverage}), die Erstellung der detaillierten Testfälle (Testscripts).
 Im Detail erstellt der Test-Designer ein abstraktes Modell des \Gls{SUT}, welches gewisse Eigenschaften haben muss (siehe dazu Abschnitt \ref{sec:eigenschaften_modell} \nameref{sec:eigenschaften_modell}). Dieses abstrakte Testmodell wird einem Werkzeug übergeben welches die Testfälle generiert. Die Zeit einen Testfall zu designen wird durch den Einsatz von \Gls{MBT} reduziert. Außerdem befähigt die Erstellung eines einzelnen Modells, die automatische Generierung einer Vielzahl von Testfällen. Der Testfall-Designer muss dazu am Programm nur die Testauswahlkriterien verändern \cite{utting_practical_2007}. Der Prozess kann also in 5 Schritten dargestellt werden (siehe Abbildung \ref{fig:mbt_prozess}):
 
