@@ -33,8 +33,7 @@ Das Umfeld der Applikaiton RESi wird in einem Auftragnehmer/Auftraggeber Szenari
 \item tägliche Scrum-Meetings
 \end{itemize} 
 
-Die Applikation RESi ist, bedingt durch ihre Reife, bereits sehr stabil \todo{vielleicht mit zahlen unterlegen, Jahre im Einsatz, keine Bugs in Produktio in den letzten XXX gefunden etc.}. Effektiv ist sie schon seit mehreren Jahren (in anderer Struktur und unter anderem Namen) im produktiven Einsatz. Der typische Entwicklungszyklus wird also vom Fachbereich angestoßen. Ein \gls{RFC} wird vom Fachbereich angenommen oder verfasst. Die zuständigen Produktmanager definieren genügend fachliche Details, bevor ein \gls{RFC} in eine \gls{Story} verwandelt wird. Diese \gls{Story} fließt nun typischerweise in den \gls{Backlog}. Wenn auf einer der Entwicklungsebenen Fehler mit hoher Priorität gefunden werden, wird eine Beschreibung des Fehlverhaltens verfasst, die direkt in den laufenden Entwicklungszyklus (Sprint) einfließt.\\
-\todo[inline]{die frage ist ob folgendes beschreiben musst da dies alles scrum entspricht, oder weicht davon was ab?}
+Die Applikation RESi ist, bedingt durch ihre Reife, bereits sehr stabil. Effektiv ist sie schon seit ungefähr 8 Jahren (in anderer Struktur und unter anderem Namen) im produktiven Einsatz. Der typische Entwicklungszyklus wird vom Fachbereich angestoßen. Ein \gls{RFC} wird vom Fachbereich angenommen oder verfasst. Die zuständigen Produktmanager definieren genügend fachliche Details, bevor ein \gls{RFC} in eine \gls{Story} verwandelt wird. Diese \gls{Story} fließt nun typischerweise in den \gls{Backlog}. Wenn auf einer der Entwicklungsebenen Fehler mit hoher Priorität gefunden werden, wird eine Beschreibung des Fehlverhaltens verfasst, die direkt in den laufenden Entwicklungszyklus (Sprint) einfließt.\\
 Auf Seiten der Entwickler finden kurze tägliche Meetings statt. Dauer und Struktur dieser täglichen Meetings entsprechen den klassischen Daily-Scrum Standups. Neben den Entwicklern ist der Scrum-Master und der Product Owner aus dem Fachbereich anwesend. Er steht für kurzfristig auftretende Fragen bereit. Weiters finden im Entwicklungsteam wöchentliche Research-Meetings statt. In diesen werden die neu eingetroffenen Stories analysiert und modularisiert. Ziel ist es, eine Story in Tasks herunterzubrechen, die in einem Arbeitstag schaffbar sind. Ein Task soll also von einem einzelnen Entwickler implementiert werden. Im selben Zug, wird werden die Aufwände der Story und damit der Tasks geschätzt. Im RESi Team kommen zwei verschiedene Methoden zur Aufwandsschätzung zum Einsatz. Einerseits wird eine Methode verwendet wo alle Stories offen und ungeordnet aufgelegt werden. Nun wird das Team der Reihe nach gebeten, eine Story einzuordnen. Damit werden weder Storypoints noch Stunden geschätzt. Stories werden anhand ihrer augenscheinlichen Aufwänden geordnet. Wenn kein Teammitglied mehr eine Änderung machen will, endet die Aufwandsschätzung. Der Scrum-Master legt schlussendlich, in Absprache mit dem Team, fest welcher Bereich von Stories einen zukünftigen Sprint fließen. Nimmt man Stories aus dem vorderen Bereich der Reihung, mindert dies den Gesamtaufwand viel höher als wenn Stories aus dem hinteren Teil zurück in den Backlog verschoben werden. 
 
 \subsection{Entwicklungsebenen}
@@ -58,13 +57,22 @@ Auf Seiten der Entwickler, also im Scrum-Team, gibt es keinen dedizierten Tester
 
 \subsubsection{Erkannte Schwachstellen in der Qualitätssicherung}
 \label{sec:schwachstellen_raiffeisen}
-Für diese Fallstudie wurden Interviews mit mehreren Entwicklern \todo{Fakten, Zahlen.... das ist unzulässig von mehreren Interviews zu sprechen}, Business-Analysten und Testverantwortlichen geführt. Die hier dargestellten Punkte stellen eine Zusammenfassung aller gesammelten Meinungen dar.\\
-\todo[inline]{bei den folgenden Aufzählungen vermischt Du Fakten und möglliche Verbesserungen, eventuell trennen}
+Für diese Fallstudie wurden Interviews mit dem leitenden Architekten der Applikation, einem Entwickler, einer Business-Analystin und einem Testverantwortlichen geführt. Die hier dargestellten Punkte stellen eine Zusammenfassung aller gesammelten Meinungen dar.\\
 \begin{itemize}
-\item An den Softwareprojekten sind verschiedenste Teams beteiligt. Dazu zählen die langzeitigen Projektmitglieder aus Entwicklungsteam, Business-Analysten und Fachbereich aber auch punktuell beteiligte Teams. Außerdem gibt es Teams die als Dienstleister am Projekt beteiligt sind und beispielsweise Lasttests durchführen. Zwischen den Teams gibt es definierte Kommunikationspunkte. Beispielsweise stellt das Team der Business-Analysten den Scrum Product Owner. Dieser fungiert also als Schnittstelle und synchronisiert Anliegen beider Parteien. Bei so vielen Beteiligten ist es schwer den Überblick über Zuständigkeitsbereiche und Tätigkeitsfelder zu behalten. Nicht alle Prozesse der miteinander arbeitenden Teams sind dem Gegenüber bekannt. Dies ist meist auch nicht nötig aber in manchen Fällen hilft es die eigenen Anstrengungen besser aufeinander abzustimmen. Während der Fallstudie wäre es beispielsweise von Vorteil gewesen, früher zu wissen, dass der Fachbereich zwingend CoS-Tabellen für ihre Abnahmetests vorschreibt. Es handelt sich hierbei also um Kommunikationshürden die die Gesamtheit des Projekts betreffen und durch optimierten Informationsfluss beseitigt werden müssen.
-\item Die vielen beteiligten Parteien haben allesamt einen Aufgabenbereich. Über die Länge des Projekts gesehen gibt es aber offene Punkte die nicht klar einem Zuständigkeitsbereich zugeordnet sind. Beim Thema Testing führen zum Beispiel Business Analysten manuelle Regressionstest aus und die Fachbereiche führen in niedrigerer Frequenz manuelle Abnahmetests durch. All diese Testing-Anstrengungen sind aber nicht koordiniert mit der Qualitätssicherung die von den Entwicklern vorgenommen wird. Hier bestünde großes Potenzial das Testing effizienter zu machen wenn das Team der Business-Analysten stärker in die Erstellung und Wartung automatisierter Regressionstest miteinbezogen werden könnten.
-\item Die Definition von User-Stories und den dazugehörigen CoS ist geschieht nach keinem durchgängigen Muster. Auch die Anzahl und das design der CoS selbst ist innerhalb des Projekts unterschiedlich. Das fachliche Testfalldesign ist also nicht transparent. Unsystematische Tests können zulassen, dass gravierende Fehler im \Gls{SUT} nicht aufgedeckt werden.
+\item \textbf{Zuständigkeitsbereiche sind nicht klar kommuniziert:} An den Softwareprojekten sind verschiedenste Teams beteiligt. Dazu zählen die langzeitigen Projektmitglieder aus Entwicklungsteam, Business-Analysten und Fachbereich aber auch punktuell beteiligte Teams. Außerdem gibt es Teams die als Dienstleister am Projekt beteiligt sind und beispielsweise Lasttests durchführen. Zwischen den Teams gibt es definierte Kommunikationspunkte. Beispielsweise stellt das Team der Business-Analysten den Scrum Product Owner. Dieser fungiert also als Schnittstelle und synchronisiert Anliegen beider Parteien. Bei so vielen Beteiligten ist es schwer den Überblick über Zuständigkeitsbereiche und Tätigkeitsfelder zu behalten. Nicht alle Prozesse der miteinander arbeitenden Teams sind dem Gegenüber bekannt. Dies ist meist auch nicht nötig aber in manchen Fällen hilft es die eigenen Anstrengungen besser aufeinander abzustimmen.
+\item \textbf{Unsaubere Trennung der Verantwortlichkeiten:} Die vielen beteiligten Parteien haben allesamt einen Aufgabenbereich. Über die Länge des Projekts gesehen gibt es aber offene Punkte die nicht klar einem Zuständigkeitsbereich zugeordnet sind. Beim Thema Testing führen zum Beispiel Business Analysten manuelle Regressionstest aus und die Fachbereiche führen in niedrigerer Frequenz manuelle Abnahmetests durch. All diese Testing-Anstrengungen sind aber nicht koordiniert mit der Qualitätssicherung die von den Entwicklern vorgenommen wird.
+\item \textbf{Spezifikationen haben keine einheitliche Form:} Die Definition von User-Stories und den dazugehörigen \Gls{CoS} geschieht nach keinem durchgängigen Muster. Auch die Anzahl und das Design der \Gls{CoS} selbst ist innerhalb des Projekts unterschiedlich. Das fachliche Testfalldesign ist also nicht transparent. Unsystematische Tests können zulassen, dass gravierende Fehler im \Gls{SUT} nicht aufgedeckt werden.
 \end{itemize}
+
+\subsubsection{Verbesserungspotenzial}
+Die oben erwähten Schwächen die Einfluss auf die Qualitätssicherung haben, könnten folgendermaßen verbessert werden:
+
+\begin{itemize}
+\item \textbf{Mehr Kommunikation über Teamgrenzen hinweg:} Während der Fallstudie wäre es von Vorteil gewesen, früher zu wissen, dass der Fachbereich zwingend CoS-Tabellen für ihre Abnahmetests vorschreibt. In welcher Form Abnahmetests im Detail gemacht werden ist auf Seiten der Entwickler nicht ganz klar. Es handelt sich hierbei also um Kommunikationshürden die die Gesamtheit des Projekts betreffen und durch optimierten Informationsfluss beseitigt werden müssen.
+\item \textbf{Einbeziehen des Fachbereichs:} Hier bestünde großes Potenzial das Testing effizienter zu machen wenn das Team der Business-Analysten stärker in die Erstellung und Wartung automatisierter Regressionstest miteinbezogen werden könnten.
+\item \textbf{Form der Spezifikationen klar definieren:} Unter Einbezug aller beteiligten Teams sollte klar gemacht werden wie aus Spezifikationen die dazugehörigen \Gls{CoS} definiert werden. Zuvor muss sich das spezifizierende Team auf eine einheitliche Form einigen.
+\end{itemize}
+
 
 \subsubsection{Versuch der Qualitätssicherung durch skriptgesteuerte GUI-Tests}
 \label{sec:versuch_script}
@@ -72,7 +80,7 @@ Vor wenigen Jahren wurde im Projektteam versucht die manuellen Aufwände für da
 Wartungsaufwände die beim skriptbasierten Testen anfielen, konnten ausschließlich von technischem Personal beseitigt werden. Eine sinnvolle Aufteilung der erhöhten Belastung durch das Testen war so nicht möglich.
 
 \subsubsection{Aufwendige Wartung von Testdaten}
-In der Domäne der Finanzapplikationen ist es üblich, dass eine Vielzahl von Datenfelder spezifiziert werden. Für die Branche üblich, handelt es sich dabei oft um numerische Werte. Um bei solchen Systemen eine zufriedenstellende Abdeckung zu erreichen, ist es nötig mit hoher Kombinatorik zu testen. Dies setzt den Einsatz von umfangreichen Testdatensätzen voraus. Auch das Tracing \todo[color=blue]{Wording} von Testdaten (welcher Bereich der Testdaten wird von einem bestimmten Testfall benutzt) und Testfällen ist ein Thema. Beim Design einer sinnvollen Teststrategie muss darauf geachtet werden, dass eine Entkopplung von Verhalten und Daten gemacht wird. Wenn Daten nämlich eng an das Verhalten im Testfall gebunden ist, führt dies zu stark erhöhtem Wartungsaufwand \cite{baker_model-driven_2005}. 
+In der Domäne der Finanzapplikationen ist es üblich, dass eine Vielzahl von Datenfelder spezifiziert werden. Für die Branche üblich, handelt es sich dabei oft um numerische Werte. Um bei solchen Systemen eine zufriedenstellende Abdeckung zu erreichen, ist es nötig mit hoher Kombinatorik zu testen. Dies setzt den Einsatz von umfangreichen Testdatensätzen voraus. Auch die Ablaufverfolgung von Testdaten (welcher Bereich der Testdaten wird von einem bestimmten Testfall benutzt) und Testfällen ist ein Thema. Beim Design einer sinnvollen Teststrategie muss darauf geachtet werden, dass eine Entkopplung von Verhalten und Daten gemacht wird. Wenn Daten nämlich eng an das Verhalten im Testfall gebunden ist, führt dies zu stark erhöhtem Wartungsaufwand \cite{baker_model-driven_2005}. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{MBT auf Komponententestebene}
@@ -130,8 +138,51 @@ Im Gegensatz zu sehr formalen Modellierungssprachen verbergen sich Guard- und Ü
 
 \subsection{Testing von Serviceorientierten Architekturen mittels UML Testing Profile}
 \label{sec:utp}
-\subsubsection{UML Testing Profile BASICS}
-\todo{UTP Basics erklären}
+
+\todo[color=yellow]{@Boris: NEU HINZUGEKOMMEN sind die folgenden beiden subsubsections:}
+
+\subsubsection{Das UML Testing Profile}
+Die \Gls{UML} wird in der Softwareentwicklung seit langer Zeit gelehrt und verwendet. Es hanelt sich dabei um eine grafische Modellierungssprache zur Spezifikation, Konstruktion und Dokumentation von Softwaresystemen. \Gls{UML} Profile können als Spezialisierung von \Gls{UML} gesehen werden \cite{_model-driven_2007}. Ein Profil kann die ursprüngliche Sprache an gewissen Stellen erweitern aber auch einschränken. Ein Beispiel ist das \Gls{UTP}. Dieses Profil führt Konzepte ein, die es ermöglichen Testspezifikationen und Testmodelle als bekannte \Gls{UML}-Modelle darzustellen. Die Autoren \cite{_model-driven_2007} haben versucht die Mehrheit der Konzepte und Visualisierungen für \Gls{UTP} an die Version 2 von \Gls{UML} anzulehnen. Benutzern denen die Grundsprache \Gls{UML} bekannt ist, sollte es damit nicht schwer fallen mit \gls{UTP} umzugehen.\\
+Im folgenden werden die von \Gls{UTP} neu eingeführten Begrifflichkeiten beschrieben. Nicht alle werden grafisch in einem Modell visualisiert:
+
+\begin{itemize}
+\item \textbf{Testarchitektur} Die Testarchitektur ist die Menge der Modelle und Komponenten um die strukturellen Aspekte einer Testsituation in ihrer Gesamtheit darzustellen. Dabei wird auf das Vokabular von \Gls{UML} 2.0 und \Gls{UTP} zurückgegriffen.
+\item \textbf{Testkontext} Der Testkontext ordnet und gruppiert die Menge der einzelnen Tests und lässt Schlüsse zu wie diese ausgeführt werden sollen.
+\item \textbf{Testkonfiguration} Die Testkonfiguration stellt dar wie Kommunikation zwischen den weiteren Testkomponenten und dem \Gls{SUT} verläuft. Das \Gls{SUT} kann aus einer oder mehrerer Komponenten bestehen. Abbildung \ref{fig:utp_config} zeigt eine Testkonfiguration die aus einem zweiteiligen \Gls{SUT} besteht, zwei Testkomponenten (\texttt{tb:TBorrower} und \texttt{tl:TLibrarian}) sowie einem \textit{Data Pool} (siehe Abschnitt \ref{sec:utp_datapools} für eine Beschreibung dieses wichtigen \Gls{UTP} Konzepts).
+\item \textbf{Testkomponenten} Die Testkomponenten sind beliebige Objekte innerhalb des Testsystems die mit anderen Komponenten oder dem \Gls{SUT} kommunizieren und eine gewisse Funktionalität mit sich bringen.
+\end{itemize}
+
+Die von \Gls{UTP} eingeführten Komponenten werden stets in Stereotyp-Notation im grafischen Modell gekennzeichnet (siehe Abbildung \ref{fig:utp_config} bei \texttt{<<TestComponent>>}).
+
+\begin{figure}[h] 
+  \centering
+     \includegraphics[width=0.9\textwidth]{figures/utp_config.png}
+  \caption{Eine beispielhafte UTP Testkonfiguration aus \citetitle{_model-driven_2007} \cite{_model-driven_2007}}
+  \label{fig:utp_config}
+\end{figure}
+
+Um Testfälle darzustellen wird auf bekannte \Gls{UML} Komponenten zurückgegriffen. Denkbar sind Zustandsdiagramme, Aktivitätsdiagramme oder, wie im Beispiel \ref{fig:utp_case}, Interaktionsdiagramme. In diesem Testfall werden die, aus der Testkonfiguration (Abbildung \ref{fig:utp_config}) bekannten, Akteure in einen Ablauf gebracht. Zu sehen sind die Testkomponenten \texttt{TBorrower} und \texttt{TLibrarian} die Aktionen auf dem \Gls{SUT} ausführen. Ein Konzept welches nicht innerhalb des \Gls{UML} 2.0 Standards definiert wird sind die Zeitmesser (\textit{Timer}). In diesem Fall sollen sie Zeitschranken darstellen zwischen der Anfrage der Testkomponente und Antwort des \Gls{SUT}.
+
+\begin{figure}[h] 
+  \centering
+     \includegraphics[width=0.9\textwidth]{figures/utp_case.png}
+  \caption{Ein UTP Testfalldiagramm aus \citetitle{_model-driven_2007} \cite{_model-driven_2007}}
+  \label{fig:utp_case}
+\end{figure}
+
+\subsubsection{Testdatenkonzept in UTP}
+\label{sec:utp_datapools}
+Das allgemeinste Konzept für den Umgang mit Daten in \Gls{UTP} sind Platzhalter (\textit{Wildcards}). Diese können überall dort eingesetzt werden wo unerwartete Werte vorkommen dürfen. Ein Platzhalter sagt aus, dass jeder beliebige Wert valide ist.\\
+Für Fälle in denen genaue Testdaten eingesetzt werden müssen bietet \Gls{UTP} \glspl{datapool} und, hierarchisch darunter, \glspl{datapartition}. Erstere stellen eine Entität innerhalb des \Gls{SUT} dar, die in gewisse Äquivalenzklassen, die \glspl{datapartition}, unterteilt werden. \glspl{datapool} werden stets in einer Testkonfiguration eingesetzt (zu sehen in Abbildung \ref{fig:utp_config}). Abbildung \ref{fig:utp_pool} veranschaulicht, weiterhin am Bibliotheksbeispiel, einen \Gls{datapool} der drei assoziierte \glspl{datapartition} besitzt.
+
+\begin{figure}[h] 
+  \centering
+     \includegraphics[width=0.9\textwidth]{figures/utp_pool.png}
+  \caption{Umgang mit Testdaten in UTP: Data Pools und Data Partitions. Beispiel aus \citetitle{_model-driven_2007} \cite{_model-driven_2007}}
+  \label{fig:utp_pool}
+\end{figure}
+
+\Gls{UTP} definiert noch weitere Konzepte und Komponenten. Diese sind für die Ergebnisse dieser Arbeit aber nicht relevant.
 
 \subsubsection{SOA und Web-Services}
 Von \glspl{SOA} verspricht man sich schnelle und einfache Integration innerhalb als auch über Unternehmensgrenzen hinweg. Die Möglichkeit eine Applikation mittels Komposition, maßgeschneidert zu den gegebenen Anforderungen, zusammenzustellen, ist traditionellen Softwareentwicklungsmethoden oft voraus. Gleichzeitig stellen verschachtelte und unabhängige Strukturen den Tester vor neue Herausforderungen. \\
@@ -141,7 +192,7 @@ SOA wird missbräuchlich oft mit Web-Services gleichgestellt. Tatsächlich sind 
 Am Beispiel eines Web-Services der per WSDL\footnote{WSDL Web-Service Spezifikationssprache 2.0 \url{http://www.w3.org/TR/wsdl20/}} definiert ist, soll gezeigt werden wie eine Modellierung von Web-Services mittels dem UML-Testing Profile umgesetzt werden kann\footnote{Sehr ähnlich würde eine Modellierung für RESTful Web-Services basierend auf WADL ausschauen. Hierbei stellt sich aber eine Grundsatzfrage: Eines der Prinzipien von REST ist die Fähigkeit, dass sich ein Web-Service selbst beschreiben kann. Inwiefern trotzdem WADL Dateien gebraucht werden, hängt von der jeweiligen Implementierung ab.}. \citeauthor{_model-driven_2007} schlagen folgende Vorgehensweise für das Mapping vor \cite{_model-driven_2007}:
 
 \begin{itemize}
-\item WSDL Port Types werden zu UML Stereotyp-Klassen gemappt.
+\item WSDL Port Types werden zu \Gls{UML} Stereotyp-Klassen gemappt.
 \item Die Operationen in dieser Klasse stellen die Operationen dar, die der jeweilige Port Type offenbart.
 \item Jede Operation hat eine übereinstimmende Request Message. Falls die Operation auch einen Rückgabewert definiert, wird auch dieser abgebildet.
 \item Komplexe Typen als auch Enumerationen werden zu stereotypisierten Klassen.
@@ -159,10 +210,10 @@ Im Gegensatz zu herkömmlichen Desktop-Applikationen aus einer Hand, können SOA
 Web-Services müssen \textit{mehrdimensional} getestet werden \cite{_model-driven_2007}. Das bedeutet, ein modellbasierter Testfall soll alle Port Types, die der Service zur Verfügung stellt, kombiniert mit allen Operationen die jeder Port Type anbietet, prüfen. Als Testdaten müssen die Äquivalenzklassen aller Datentypen die der Web-Service anbietet identifiziert werden.
 
 \subsubsection{Beispielhafte TestSuite eines SOA Web-Services}
-\todo{UML-Diagramme (und evt. WSDL)aus Buch einbinden} In diesem Beispiel wird ein Service einer Bücherei oder einer Buchhandlung herangezogen. Einfachheitshalber bietet dieser Service nur einen Port Type (LibraryService) an. Auf diesem werden drei Operationen angeboten (search, reserve, fetch). Ein Client kann ein Element aus dieser Bücherei also suchen und basierend auf seinem Status-Parameter handeln. Das Element kann sofort verfügbar, später verfügbar und nicht lokal verfügbar sein.\\
+In diesem Beispiel wird ein Service einer Bücherei oder einer Buchhandlung herangezogen. Einfachheitshalber bietet dieser Service nur einen Port Type (LibraryService) an. Auf diesem werden drei Operationen angeboten (search, reserve, fetch). Die Abbildungen \ref{fig:utp_config} und \ref{fig:utp_case} stellen das Testsystem dar. Ein Client kann ein Element aus dieser Bücherei also suchen und basierend auf seinem Status-Parameter handeln. Das Element kann sofort verfügbar, später verfügbar und nicht lokal verfügbar sein.\\
 
-Um die angesprochene mehrdimensionale Abdeckung zu gewährleisten bietet das UML Testing Profile das Konzept der Data Pools.\todo{Ref zu Kapitel UTP}. Der DataPool stellt das kartesische Produkt dar, dass aus Operationen und Datenelementen gebildet wird. Nun kann ein Testtreiber auf diesem DataPool operieren und auf Testfalldiagramme (UML-Sequenzdiagramme) referenzieren.\\
-Anhand von diesem einfachen Beispiel wird sichtbar, dass das UML Testing Profile sinnvolle Erweiterungen definiert, die die Modellierung von modernen SOA-Applikationen vereinfachen. Data Pools visualisieren die Abdeckung von Äquivalenzklassen und modularisierte Sequenzdiagramme erlauben die Modellierung von umfangreichen Testfällen. 
+Um die angesprochene mehrdimensionale Abdeckung zu gewährleisten bietet das \Gls{UML} Testing Profile das Konzept der Data Pools (siehe Abschnitt \ref{sec:utp_datapools}). Der DataPool stellt das kartesische Produkt dar, dass aus Operationen und Datenelementen gebildet wird. Nun kann ein Testtreiber auf diesem DataPool operieren und auf Testfalldiagramme (UML-Sequenzdiagramme) referenzieren.\\
+Anhand von diesem einfachen Beispiel wird sichtbar, dass das \Gls{UML} Testing Profile sinnvolle Erweiterungen definiert, die die Modellierung von modernen SOA-Applikationen vereinfachen. Data Pools visualisieren die Abdeckung von Äquivalenzklassen und modularisierte Sequenzdiagramme erlauben die Modellierung von umfangreichen Testfällen. 
 
 
 \subsubsection{Ausfühhrung von UTP Tests mittels JUnit}
@@ -201,14 +252,13 @@ Deployment       & JUnit fügt sich im Deployment Prozess sehr gut ein. \\ \hlin
 \label{table:utp_mapping}
 \end{table}
 
-\todo{UTP zu JUnit Code Beispiel einfügen eventuell}
-UTP wurde entwickelt um mit JUnit zusammenzuspielen \cite{_model-driven_2007}. Tatsächlich lassen sich viele Konzepte gut von UTP-Modellen nach JUnit übertragen. Gleichzeitig hat die Ausführung von UTP-Testfällen in JUnit gravierende Schwächen:
+\Gls{UTP} wurde entwickelt um mit JUnit zusammenzuspielen \cite{_model-driven_2007}. Tatsächlich lassen sich viele Konzepte gut von UTP-Modellen nach JUnit übertragen. Gleichzeitig hat die Ausführung von UTP-Testfällen in JUnit gravierende Schwächen:
 
-\paragraph{Manuelles Mapping} Es hat sich in den Jahren, seit das UML Test Profile veröffentlicht wurde, keine Community um die Nutzung und Entwicklung von Software gebildet, die UTP einschließt. Die Eigenentwicklung eines JUnit-Testfallgenerators kann im Umfeld von großen Softwareprojekten sinnvoll sein. Gleichzeitig bleibt der Aufwand um den sogenannten \textit{glue code} zu schreiben (also die Implementierungsdetails innerhalb der Testmethoden).\\
+\paragraph{Manuelles Mapping} Es hat sich in den Jahren, seit das \Gls{UML} Test Profile veröffentlicht wurde, keine Community um die Nutzung und Entwicklung von Software gebildet, die \Gls{UTP} einschließt. Die Eigenentwicklung eines JUnit-Testfallgenerators kann im Umfeld von großen Softwareprojekten sinnvoll sein. Gleichzeitig bleibt der Aufwand um den sogenannten \textit{glue code} zu schreiben (also die Implementierungsdetails innerhalb der Testmethoden).\\
 Jedenfalls können durch einen manuellen Eingriff neue Fehler entstehen. Ein Modell mittels Testfällen umzusetzen ist kein trivialer Vorgang und erfordert genaue Kenntnisse des Frameworks sowie des SUT. Ob sich die Modellierung und die Aufwände für die Umsetzung in JUnit-Testfällen lohnt, lässt sich schwer feststellen. Faktisch bietet die Modellierung als UTP-Diagramm zwar strukturierte Testfälle (verglichen mit der Ad-Hoc Entwicklung von JUnit-Testfällen) aber keine weiteren Qualitätsmetriken. Entwicklungsumgebungen und statische Code-Analyse Werkzeuge können die Abdeckung von JUnit-Testfällen eruieren, diese ist in agilen Softwareprojekten aber ohnehin schon sehr hoch. Ein modellbasierter Ansatz kann hier wenig belegbare Qualitätsvorteile schaffen.
 
 \paragraph{Keine Unterstützung der Testdatenmangementkonzepte}
-Vor allem das \textit{Data Pool} Konzept von UTP ist eine Notwendigkeit für datenintensive Applikationen. Datengetriebene Testfälle müssen durch ein flexibles und zuverlässiges Konzept gestützt werden. Auch hier müsste eine Eigenentwicklung gemacht werden. Diese ist aber nicht nur aufwendig sondern stellt sich auch die Frage der Zukunftssicherheit. Kann das Modul zum Testdatenmanagement mit anderen Technologien verwendet werden oder ist es zu stark auf UTP zugeschneidert?
+Vor allem das \textit{Data Pool} Konzept von \Gls{UTP} ist eine Notwendigkeit für datenintensive Applikationen. Datengetriebene Testfälle müssen durch ein flexibles und zuverlässiges Konzept gestützt werden. Auch hier müsste eine Eigenentwicklung gemacht werden. Diese ist aber nicht nur aufwendig sondern stellt sich auch die Frage der Zukunftssicherheit. Kann das Modul zum Testdatenmanagement mit anderen Technologien verwendet werden oder ist es zu stark auf \Gls{UTP} zugeschneidert?
 
 \subsection{Schnittstellentests mit Graphwalker}
 \label{sec:graphwalker}
@@ -236,7 +286,7 @@ Graphwalker bietet eine schlanke Grundlage für das modellbasierte Testen von So
 
 
 \subsubsection{Modellierungs-Syntax}
-Graphwalkers Modellierungssprache basiert nicht auf UML, weil die Autoren glauben, dass Tester den breiten Funktionsumfang von UML nicht brauchen und abgeschreckt werden \cite{_graphwalker_2015}. Stattdessen setzt Graphwalker auf GraphML. GraphML basiert nicht auf einer proprietären Syntax sondern basiert auf herkömmlichen XML-Dateien und wird unter der \textit{Creative Commons Attribution 3.0}-Lizenz\footnote{Die Creative Commons Attribution 3.0 ist eine gängige Lizenz im Bereich neue Medien und darunter auch Open-Source Software \url{Creative Commons Attribution 3.0}} entwickelt.\\
+Graphwalkers Modellierungssprache basiert nicht auf UML, weil die Autoren glauben, dass Tester den breiten Funktionsumfang von \Gls{UML} nicht brauchen und abgeschreckt werden \cite{_graphwalker_2015}. Stattdessen setzt Graphwalker auf GraphML. GraphML basiert nicht auf einer proprietären Syntax sondern basiert auf herkömmlichen XML-Dateien und wird unter der \textit{Creative Commons Attribution 3.0}-Lizenz\footnote{Die Creative Commons Attribution 3.0 ist eine gängige Lizenz im Bereich neue Medien und darunter auch Open-Source Software \url{Creative Commons Attribution 3.0}} entwickelt.\\
 Zur Erstellung von Modellen in GraphML, mit denen Graphwalker umgehen kann, eignet sich jeder Editor, der GraphML-Dateien exportieren kann. Das von den Entwicklern empfohlene Werkzeug ist \textit{yEd}\footnote{Website der Firma yWorks und des yEd Graph Editors \url{http://www.yworks.com/en/products/yfiles/yed/}}, welches völlig kostenlos verwendet werden kann. yEd bietet eine simple Benutzeroberfläche und für die Erstellung von Modellen für Graphwalker ist nahezu kein Einarbeitungsaufwand nötig.\\
 Modelle in Graphwalker sind gerichtete Graphen. Knoten repräsentieren einen Zustand in dem sich das \Gls{SUT} befindet. Kanten beschreiben die Aktion die zu einem bestimmten Zustand führen. Graphwalker ignoriert grafische Attribute der Modelle wie Farbe und Liniendicke der Elemente. Üblicherweise finden in den Knoten die Überprüfungen (\textit{Assertions}) und in den Kanten die Befehle (Klicks, Schnittstellenaufrufe...) statt. Kanten müssen in Graphwalker genau eine Richtung haben. Es folgt eine kurze Beschreibung der Möglichkeiten, die die Syntax von Graphwalker bietet um die Traversierung der Graphen, und damit der Testfälle, zu beinflussen.
 
@@ -348,11 +398,4 @@ An dieser Stelle kann also eine Vielzahl von Aufrufen passieren:
 \item \textbf{Testdatenmanagement:} Auch möglich und oftmalls sinnvoll, ist der Zugriff auf eine Komponente oder ein externes System welches für das Testdatemanagement zuständig ist. Das kann ein Datenbankzugriff sein oder auch eine Anfrage an ein über das Netzwerk oder Internet angeschlossene Testdaten Werkzeug.
 \end{itemize}
 
-
-
-\section{MBT auf Systemtestebene und Test non-stop}
-\todo[inline, color=yellow]{section ungeprüft da noch nicht geschrieben}
-\subsection{Manuelle Systemtests anhand von Modellen}
-\subsection{Automatisierte \Gls{MBT} GUI-Tests (GUITAR)}
-\subsection{Automatische Modellgenerierung auf Produktionsebene (LearnLib)}
 
