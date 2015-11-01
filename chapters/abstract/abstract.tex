@@ -9,35 +9,24 @@
 
 %%% Deutsche Kurzfassung %%%
 
-
+%Motivation Kontext 1 Absatz
+%Methode Verfahrensweise FAllbeispiel
+%
 
 \begin{otherlanguage}{ngerman}
 
-  \chapter*{Kurzfassung}
+\chapter*{Kurzfassung}
 
-	\emph{Über diese Vorlage:}
-	Dieses Template dient als Vorlage für die Erstellung einer wissenschaftlichen Arbeit am INSO. Individuelle Erweiterungen, Strukturanpassungen und Layout-Veränderungen können und sollen selbstverständlich nach persönlichem Ermessen und in Rücksprache mit Ihrem Betreuer vorgenommen werden.
+Automatisierte Softwaretests sind aus der heutigen Softwareentwicklung nicht mehr wegzudenken. Die steigenden Umfänge und Komplexitätsniveaus moderner Software verlangen nach immer effizienteren Mitteln um Qualität sicherzustellen. Schon lange streben Softwareprojekte nach der Automatisierung von regressiven Tests, die manuell ausgeführt hohe Zeitaufwandskosten verursachen. Gerade in agil geführten Softwareprojekten kann ein Testautomatisierungsvorhaben durch die schnellen Iterationen zunichte gemacht werden. Um mit automatisierten Tests auf lange Sicht erfolgreich zu sein, bedarf es einer systematischen Herangehensweise.\\
 
-	\makeatletter\ifthesis@masterthesis
-	Diplomarbeiten aus Informatik können in deutscher oder englischer Sprache verfasst werden, Arbeiten aus Business Informatics müssen auf Englisch geschrieben werden.
+Ein vielversprechender Ansatz ist das modellbasierte Testen (\textit{Model Based Testing} oder \textit{MBT}). Modellbasiertes Testen wird seit ungefähr 15 Jahren aktiv erforscht und betrieben \cite{utting_practical_2007}, fand aber nie breite Anwendung. Diese Arbeit wird in einem ersten Schritt mehrere Konzepte und Werkzeuge des modellbasierten Tests erforschen und vergleichen. Dann wird anhand eines realen industriellen Fallbeispiels im Bereich der Finanzsoftware das vielversprechendste Werkzeug erprobt. Zum Schluss wird eine neuartige Teststrategie präsentiert, die bestehende Qualitätssicherungsmaßnahmen in agilen Projekten ergänzt.\\
 
-	Die Kurzfassung ist der Teil der Arbeit, der wohl am häufigsten gelesen wird -- so wird sie beispielsweise im Epilog-Band der Fakultät publiziert und einem breiten Publikum verfügbar gemacht. Empfohlen wird, die Kurzfassung erst nach Finalisierung der gesamten Arbeit zu schreiben.
-	\fi\makeatother
+Es hat sich gezeigt, dass nur wenige Werkzeuge, ob kommerziell oder quelloffen, am Markt aktiv vertrieben werden. Das Open-Source Werkzeug \textit{Graphwalker} konnte durch seine geradlinige Philosophie und seinen klaren Einsatzzweck sehr gut im Fallbeispiel eingesetzt werden. Graphwalker ermöglicht den gezielten Einsatz als Schicht zwischen logischem und technischem Teil der Testfälle. Die Testabläufe können so von den zugrundeliegenden technischen Details entkoppelt werden. Damit mindern sich die Kosten für die üblicherweise teure Wartung automatisierter Tests. Das Resultatskapitel stellt einen Ansatz vor indem parallel Testfälle in Form von sogenannten Behavior Driven Tests zum Einsatz kommen. Diese Kombination ermöglicht eine optimale Abdeckung durch vollautomatische Traversierungen durch Graphwalker und manuell definierten Akzeptanztests. Es wird außerdem eine passende technische Architektur vorgeschlagen. Abschließend wird unter anderem argumentiert, dass das Fehlen einer standardisierten Modellierungsnotation das Feld des modellbasierten Testens daran hindert breitere Akzeptanz zu gewinnen.
 
-	\emph{Aufbau}:
-	In der Kurzfassung werden auf einer 3/4 bis maximal einer Seite die Kernaussagen der Diplomarbeit zusammengefasst. Dabei sollte zunächst die Motivation/der Kontext der vorliegenden Arbeit dargestellt werden, und dann kurz die Frage-/Problemstellung erläutert werden, max. 1 Absatz! Im nächsten Absatz auf die Methode/Verfahrensweise/das konkrete Fallbeispiel eingehen, mit deren Hilfe die Ergebnisse erzielt wurden. Im Zentrum der Kurzfassung stehen die zentralen eigenen Ergebnisse der Arbeit, die den Wert der vorliegenden wissenschaftlichen Arbeit ausmachen. Hier auch, wenn vorhanden, eigene Publikationen erwähnen.
+\bigskip
 
-	\emph{Wichtig: Verständlichkeit!}
-	Die Kurzfassung soll für Leser verständlich sein, denen das Gebiet der Arbeit fremd ist. Deshalb Abkürzungen immer zuerst ausschreiben, in Klammer dazu die Erklärung: z.B: \enquote{Im Rahmen der vorliegenden Arbeit werden Non Governmental-Organisationen (NGOs) behandelt, \ldots}. In \LaTeX wird diese bereits automatisch durch verwenden des Befehls \verb|\ac| erreicht. Für Details siehe Paket \texttt{glossaries}.
-
-	\makeatletter\ifthesis@masterthesis
-	Bei theoretischen Diplomarbeiten, z.B. Literaturüberblick und Grundlagen zu einem größeren Themenblock, sollte in der Kurzfassung deutlich der Bedarf an einer solchen Übersicht und der Nutzen für die akademische Gemeinschaft aufgezeigt werden.
-	\fi\makeatother
-
-  \bigskip
-
-  \section*{Schl\"usselw\"orter}
-  %Schl\"usselw\"orter, wichtig, ThemaMeinerArbeit, Arbeitsgebiet.
+  \section*{Schlüsselwörter}
+  Softwaretest, Modellbasiertes Testen, Automatisiertes Software Testing, Graphwalker, UTP
 
 \end{otherlanguage}
 
@@ -47,18 +36,37 @@
 
   \chapter*{Abstract}
 
-  \emph{About this template}:
-  This template helps writing a scientific document at INSO. Users of this template are welcome to make individual modifications, extensions, and changes to layout and typography in accordance with their advisor.
+  Automated testing is an essential part of todays engineering projects. Rising complexity and growing size ask for more efficient instruments to assure quality. Automation of regression tests is in high demand but cannot be taken lightly. Especially in fast-moving agile projects, one needs a well thought out systematic approach to be successful in the long run.\\
 
-  \emph{Writing an abstract}:
-  The abstract summarizes the most important information within less than one page. Within the first paragraph, present the motivation and context for your work, followed by the specific aims. In the next paragraph, describe your methodology / approach, and / or the specific case you are working on. The third paragraph describes the results and the contribution of your work.
+  One promising approach is model-based testing. Although it is being actively researched and used for about 15 years \cite{utting_practical_2007}, model-based testing never gained wide usage. This thesis will explore and compare multiple concepts and tools of model-based testing. The most promising will then be tested in an industrial case study in the area of financial software development. Finally a novel testing strategy, complementing existing quality assurance measures, will be proposed.\\
 
-  \emph{Comprehensibility}:
-  People with different backgrounds who are novel to your area of work should be able to understand the abstract. Therefore, acronyms should only be used after their full definition has given. E.g., ``This work relates to non-governmental organizations (NGOs), \ldots''.
+  Results have shown, that there are only a handful of tools on the market, which are actively developed and used. One of them is \textit{Graphwalker}, which is being developed as open source. Through its clear designated purpose and flexibility while using, it was a perfect fit for the case study project. The tool enables decoupling of logical and technical layers of the test cases, which promises substantial savings when it comes to maintenance. Furthermore a combination of model-based testing and behavior-driven testing is proposed. Used in the presented architecture, these two concepts ensure optimal coverage of branch logic and manually defined acceptance criteria.
 
   \bigskip
 
   \section*{Keywords}
-  %Keyword, important, SubjectOfMyPaper, FieldOfWork.
+  Software Testing, automated testing, model-based testing, MBT, Graphwalker, UTP
 
 \end{otherlanguage}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
