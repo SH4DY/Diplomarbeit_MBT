@@ -34,7 +34,7 @@ Im Sinne von Test-First und einer hohen Priorisierung von Unit-Tests soll der Fo
 \item Manuelle System- und Abnahmetests
 \end{itemize}
 
-In Anlehung an Linz \cite{linz_testing_2014} (und mit dem Verweis auf die Diskussion in Abschnitt\ref{sec:discussion_unit}) soll die Komponententestebene in Scrum-Projekten am breitesten sein (siehe Abbildung \ref{fig:pyramide}).
+In Anlehung an Linz \cite{linz_testing_2014} soll die Komponententestebene in Scrum-Projekten am breitesten sein (siehe Abbildung \ref{fig:pyramide}).
 
 \begin{figure}[h] 
   \centering
@@ -233,14 +233,57 @@ public void v_Proposal_0() {
 }
 \end{lstlisting}
 
-\subsubsection{Modellbasierte Tests auf niedrigeren Ebenen} Dieses Beispiel zeigte die Mächtigkeit von Graphwalker in Verbindung mit einem Framework für das GUI-Testing. Statt eines GUI-Testing-Frameworks können aber beliebige andere Frameworks für den Adapter-Code verwendet werden. Damit wird das Testing auch auf Schnittstellen- und Unit-Testebene möglich. In Verbindung mit einer sinnvollen Testing API zum SUT, können aber genauso Tests der Businesslogik modelliert werden. Also eine Art Unit-Test aus Sicht des Fachbereichs in Form eines Modells. Denkbar sind Abläufe wie das Laden eines Kunden, die Modifikation seiner Stammdaten und die abschließende Überprüfung ob diese Modifikationen fehlerfrei abgelegt wurden. Die Modelle lassen eine unbegrenzte Komplexität zu. Seltene, lange aber geschäftskritische Workflows lassen sich damit sehr gut darstellen.
+\subsubsection{Modellbasierte Tests auf niedrigeren Ebenen} Dieses Beispiel zeigte die Mächtigkeit von Graphwalker in Verbindung mit einem Framework für das GUI-Testing. Statt eines GUI-Testing-Frameworks können aber beliebige andere Frameworks für den Adapter-Code verwendet werden. Damit wird das Testing auch auf Schnittstellen- und sogar auf Unit-Testebene möglich. In Verbindung mit einer sinnvollen Testing API zum \Gls{SUT}, können aber genauso Tests der Businesslogik modelliert werden. Also eine Art Unit-Test aus Sicht des Fachbereichs in Form eines Modells. Denkbar sind Abläufe wie das Laden eines Kunden, die Modifikation seiner Stammdaten und die abschließende Überprüfung ob diese Modifikationen fehlerfrei abgelegt wurden. Die Modelle lassen eine unbegrenzte Komplexität zu. Seltene, lange aber geschäftskritische Workflows lassen sich damit sehr gut darstellen.
+
+\section{Ausführung von BDT Tests innerhalb von MBT Tests}
+\todo[inline,color=yellow]{@Boris NEU HINZUGEKOMMEN ganze section}
+
+Wie stark die Verwendung der drei Komponenten (FluentCoS, Testing API, MBT) dieses Konzepts ineinander verzahnt werden muss fallabhängig entschieden werden. Denkbar ist einerseits ein vollständig isolierter Entwurf und Einsatz von \Gls{BDT} und \Gls{MBT}. Beide Sorten von Tests können unabhängig voneinander betrieben und gewartet werden. Außerdem können \Gls{BDT} und \Gls{MBT} auf den reichen Katalog der Testing API zugreifen. Somit lässt sich viel Wartungsaufwand für die Anpassung von Adapter-Code an einer Stelle, in der Testing API, konzentrieren.\\
+Geht man einen Schritt weiter, kann es Sinn machen die strukturellen Ähnlichkeiten zwischen \Gls{BDT} und \Gls{MBT} Tests zu nutzen. Wie in Kapitel \ref{sec:bdd} erklärt, haben \Gls{BDT} Tests eine sehr einheitliche Form. Ausgehend von einem Startzustand, werden eine oder mehrere Aktionen durchgeführt, bis ein definierter Endzustand erreicht wird. Man stelle sich einen \Gls{BDT} Test als einfachen Pfad innerhalb eines Graphen vor.Tatsächlich könnte ein solcher Test in ein \Gls{MBT} Modell transformiert werden. Ein beträchtlicher Teil des Modells würde aber wahrscheinlich nur dazu dienen das \Gls{SUT} in den Startzustand zu führen. Im Gegensatz zum \Gls{BDT} Test, in dem dieser in der Regel sehr schnell aber dafür unpräziser definiert werden kann.
+
+%Grafik: MBT vs BDT, langer schwanz bis startzustand erreicht. Ein pfad
+\begin{figure} 
+  \centering
+     \includegraphics[width=1\textwidth]{figures/mbt_bdt_given.png}
+  \caption{Transformation des \textit{Given} Teils eines BDD Tests in ein Modell}
+  \label{fig:mbt_bdt_given}
+\end{figure}
+
+
+
+Nun würde die Aktion im \Gls{BDT} Test folgen. Diese wird, gerade in Cleartext \Gls{BDD} Spezifikation, oft nur kurz beschrieben (`Der Kunde macht eine Überweisung über 100 Euro an sein Sparkonto'). Dies hat zwei gravierende Nachteile: Einerseits ist abhängig vom Domänenwissen nicht klar was hier genau gemacht wird. Verschiedene Auffassungen können zu schwerwiegenden Fehlentscheidungen führen. Andererseits wird die Reproduktion durch die schwammige Definition unter Umständen sehr schwierig. Ganz anders im Falle eines \Gls{MBT} Modells. Pro Kante wird eine, aus der Sicht des Benutzers, atomare Aktion ausgeführt. Auch wenn es alternativen zur Ausführung einer Aktion gäbe, würde dies im Modell sofort ersichtlch.
+
+%Grafik, WHEN teil, mehrere Alternativen wie EINE aktion ausgeführt werden kann
+\begin{figure} 
+  \centering
+     \includegraphics[width=1\textwidth]{figures/mbt_bdt_when.png}
+  \caption{Ein Modell beschreibt Alternativen die im \textit{When} Teil des BDT Tests unerwähnt bleiben}
+  \label{fig:mbt_bdt_when}
+\end{figure}
+
+Das endgültige Akzeptanzkriterium (\textit{then}) ist in \Gls{MBT} in einem ausreichend detaillierten Modell (wie es das Modell \ref{fig:modell_logisch} ist) eine Überprüfung in Code. Aus dem Modell wird nicht klar welche Überprüfung in diesem Blattknoten stattfindet. Hier zeigt sich wieder das Problem, das sich Logik in der Implementierung des Modells versteckt. Im \Gls{BDT} Test kommen meist mehrere Kriterien zum Einsatz die gleichzeitig erfüllt sein müssen. Es macht auch Sinn Überprüfungen außerhalb des gerade getesteten Kontexts zu machen. Im \Gls{BDT} Beispieltestfall in Abschnitt \ref{sec:bdt_bsp} wird genau das gemacht, indem eine lokale Überprüfung stattfindet (`Die Karte sollte wieder ausgegeben werden' und `Eine erklärende Fehlermeldung soll angezeigt werden'). Außerdem wird eine Überprüfung des Zentralsystems gemacht (`Der Kontostand sollte unverändert bleiben). Am Beispiel Graphwalker würden solche Überprüfungen natürlich möglich sein. Es könnten dieselben Funktionen aus der Testing API verwendet werden, die auch im \Gls{BDT} Test vorkommen. Solche kontextübergreifenden Überprüfungen lassen sich in einem grafischen Modell aber nur schwer darstellen. Es wäre wiederum entscheidende Logik im Testcode verborgen.\\
+All diese Erkenntnisse zusammengefasst, erlauben eine Kombination von \Gls{BDT} und \Gls{MBT} die die Stärken beider Ansätze nutzt.
+
+%Grafik komplett und Beschreibung wie Szenarien mehrere Zweige sein können usw.
+\begin{figure} 
+  \centering
+     \includegraphics[width=1\textwidth]{figures/mbt_bdt_then.png}
+  \caption{Die Überprüfungen bleiben im Code des Modells versteckt}
+  \label{fig:mbt_bdt_then}
+\end{figure}
 
 \section{Zugewinne durch die Kombination von BDD und MBT}
 Gerade für die agile Entwicklung ist die Kombination von BDD und \Gls{MBT} wie maßgeschneidert. Agile Entwicklung bedeutet unter anderem viel Kontakt mit dem Kunden und damit auch die Notwendigkeit der Auseinandersetzung mit Spezifikationen und Feedback. CoS-artige Definitionen kommen in vielen Softwareprojekten bereits zum Einsatz und sind daher sowohl dem fachlichen als auch dem technischen Personal bekannt. Der Schritt von CoS-Tabellen zu BDD-Testfällen, egal welches Framework dazu benutzt wird, ist schmerzlos. Wenn der Einsatz von BDD-Tests sorgfältig und gut koordiniert umgesetzt wird, ist die damit einhergehende Versionierung der \Gls{COS} ein wertvoller Nebeneffekt der die Organisation des Softwareprojekts vereinfacht.\\
-Eine ähnliche Kombination von Methoden schlägt auch Binder vor \cite{binder_model-based_2014}. Er warnt aber davor, dass BDD nur einen kleinen Teil des \textit{happy-path} abdecken. Soll heißen, dass das System mittels \Gls{COS} nur auf sehr wenigen Pfaden getestet wird. Außerdem wächst die Anzahl der zu wartenden BDD-Spezifikationen mit der Größe der Code-Basis. Meist hat dies zur Folge, dass ältere Spezifikationen in Vergessenheit geraten und nicht mehr in das Regressionstesting miteinbezogen werden. Um zweiterem Nachteil entgegenzuwirken müssen BDD-Spezifikationen sehr sorgfältig und mit Hinblick auf die Programmlogik entworfen werden. Außerdem muss die Versionierung Team-übergreifend nahtlos funktionieren.\\
+Eine ähnliche Kombination von Methoden schlägt auch \citeauthor{binder_model-based_2014} vor \cite{binder_model-based_2014}. Er warnt aber davor, dass BDD nur einen kleinen Teil des \textit{happy-path} abdecken. Soll heißen, dass das System mittels \Gls{COS} nur auf sehr wenigen Pfaden getestet wird. Außerdem wächst die Anzahl der zu wartenden BDD-Spezifikationen mit der Größe der Code-Basis. Meist hat dies zur Folge, dass ältere Spezifikationen in Vergessenheit geraten und nicht mehr in das Regressionstesting miteinbezogen werden. Um zweiterem Nachteil entgegenzuwirken müssen BDD-Spezifikationen sehr sorgfältig und mit Hinblick auf die Programmlogik entworfen werden. Außerdem muss die Versionierung Team-übergreifend nahtlos funktionieren.\\
 Aus Kundensicht sind \Gls{COS} oft notwendig, da sie kurz und bündig vertraglich festgehalten werden können. Wenn der Kunde beim Abnahmetest auf \Gls{COS} Spezifikationen besteht, muss das System trotzdem durch breitere Maßnahmen regressiv getestet werden. Hier ergänzen modellbasierte Tests die Qualitätssicherungsmaßnahmen. Ein \Gls{COS} kann als einzelner Pfad in einem Modell gesehen werden. Der modellbasierte Test prüft dann, mit variablem Grad an Assertions, alle anderen Pfade. Diese Vorgehensweise schafft eine weitere Schicht an Sicherheit und lässt sich gut in bestehende Projekt- und Softwarestrukturen integrieren.
 
-
+\begin{figure}
+\hspace*{-2cm}
+  \centering
+     \includegraphics[width=1.25\textwidth]{figures/mbt_bdt_gesamt.png}
+  \caption{BDT Szenarien können im Modell explizit dargestellt werden}
+  \label{fig:mbt_bdt_gesamt}
+\end{figure}
 
 
 

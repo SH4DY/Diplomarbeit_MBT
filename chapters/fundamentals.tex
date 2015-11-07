@@ -733,6 +733,7 @@ Akzeptanzkriterien: (definiert ueber mehrere Szenarien)
 \end{lstlisting}
 
 \subsubsection{Beispielhafter BDT Test}
+\label{sec:bdt_bsp}
 Eine \Gls{BDD} Spezifikation sollte eine sehr beschränkte Größe haben. \citeauthor{north_whats_2007} empfiehlt, dass die Umsetzung in einer Entwicklungsiteration möglich sein sollte \cite{north_whats_2007}. Diese Daumenregel bewahrt vor ausschweifend großen \Gls{BDT} Tests.\\
 Basierend auf dem vorgeschlagenen Schema könnte ein beispielhafter \Gls{BDT} Test folgendermaßen aussehen:
 
@@ -772,6 +773,12 @@ In Realität würde dieser \Gls{BDT} Testfall wahrscheinlich sehr viele Szenarie
 Durch Spezifikationen die als \Gls{BDT} Tests umgesetzt werden, ist weniger Spielraum für die falsche Umsetzung von Anforderungen vorhanden. Dies ist dem Umstand zu verdanken, dass die Akzeptanzkriterien einerseits dem genauen wirtschaftlichen Nutzen entsprechen und andererseits ausführbar sind. Ein Automatisierungswerkzeug kann das \Gls{SUT} in den gegebenen Zustand bringen, die Aktionen ausführen und prüfen ob der gewünschte Endzustand erreicht wurde.\\
 Aus Sicht der Profitabilität ist frühzeitige Erkennung falsch umgesetzter Anforderungen von höchster Wichtigkeit. Abbildung \ref{fig:spec_cost} zeigt das Verhältnis, das \citeauthor{boehm_software_1981} als typisch für Softwareprojekte beschreibt. Die Kosten für die Behebung eines Fehlers steigen exponentiell an, wenn sich der Projektstatus der Inbetriebnahme nähert \cite{boehm_software_1981}. Obwohl agile Projekte eine gänzlich andere zeitliche Struktur aufweisen, leiden auch diese an diesem Phänomen. Die horizontale Achse kann als fortlaufende Zeit seit Projektstart gesehen werden. Umso länger sich Fehler im System befinden, umso teurer wird es sie zu beseitigen. Gleichzeitig kann man erkennen, dass Fehler die während der Spezifikationsphase aufgedeckt werden, sehr billig in der Beseitigung sind. Hier setzt \Gls{BDD} an um Softwareprojekte frühzeitig auf hochqualitativer Ebene zu halten.
 
+\begin{figure}[h] 
+  \centering
+     \includegraphics[width=0.7\textwidth]{figures/spec_cost.png}
+  \caption{Kosten zur Fehlerbehebung relativ zur Einführung nach \citeauthor{boehm_software_1981} \cite{boehm_software_1981}}
+  \label{fig:spec_cost}
+\end{figure}
 
 
 
