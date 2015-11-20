@@ -152,6 +152,7 @@ Außerdem erfordert das V-Modell auch verifizierende Prüfungen, die auf einzeln
 Die folgenden Teststufen sollen eine möglichst hohe Softwarequalität sicherstellen und nehmen oft Bezug auf die in Abschnitt \ref{sec:quality} genannten Qualitätsziele.
 
 \subsubsection{Komponententest}
+\label{sec:unit_test}
 In der ersten Teststufe des V-Modells werden die kleinsten Softwarebausteine einer systematischen Prüfung unterzogen. Abhängig von der verwendeten Programmiersprache sind diese kleinsten Bausteine Module oder Klassen. Oft spricht man auch von \Glspl{Unit-Test}.\\
 Komponententests zeichnen sich außerdem durch die zeitliche Nähe zur Programmierung aus. Sie werden üblicherweise direkt vor oder nach der Programmierung einer Komponente verfasst. Der Komponententest unterscheidet sich vom Integrationstest durch seine Isolation. Das bedeutet, die Funktionalität jeder Komponente wird ohne Ein- oder Zugriffe anderer Komponenten getestet. Dies hat den Zweck, dass ein Fehlverhalten auf die Komponente selbst zurückgeführt werden kann und fehlerhafte Einwirkung von außen ausgeschlossen werden kann.\\
 Der Komponententest gehört zur Kategorie der White-Box Tests (siehe Abschnitt \ref{sec:sicht} \nameref{sec:sicht}). Der Tester muss Zugriff auf den Quellcode des Programms haben, weil die kleinsten Softwarebausteine keine Schnittstelle nach außen haben. Deshalb liegt es nahe, dass Komponententests von den Entwicklern selbst geschrieben werden.
