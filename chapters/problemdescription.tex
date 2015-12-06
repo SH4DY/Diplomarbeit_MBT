@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{MBT in agilen Entwicklungsumgebungen}
+\chapter{Modellbasiertes Testen in agilen Entwicklungsumgebungen}
 \label{sec:problemdescription}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -26,8 +26,8 @@ Im Jahr 2014 wurde ein Großteil der Applikationslandschaft umstrukturiert. In e
 Das Umfeld der Applikaiton RESi wird in einem Auftragnehmer/Auftraggeber-Szenario entwickelt. Eine Fachabteilung stellt den Kunden dar. Sie definieren die Anforderungen an die Applikation. Demgegenüber steht das Entwicklungsteam, welches aus einem Applikationsmanager und 8-10 Entwicklern besteht. 
 
 \begin{itemize}
-\item 2 Major Release pro Jahr
-\item Mehrere Service-Release pro Jahr
+\item 2 Major Releases pro Jahr
+\item Mehrere Service-Releases pro Jahr
 \item Dreiwöchige Scrum-Sprints
 \item 4 Ebenen (Integrationstest, Systemtest, Akzeptanztest, Produktion)
 \item Scrum Master wechselt
@@ -44,7 +44,7 @@ Nach Abschluss eines Sprints wird der Stand der Ebene \textit{Integrationstest} 
 
 \subsection{Qualitätssicherung im Projekt}
 \label{sec:quality_project}
-In Entwicklung und Qualitätssicherung des Produkts sind diverse Parteien involviert.Anfänglich, also zum Zeitpunkt der Anforderungsanalyse und der Spezifikationsentwicklung, sind auch Teams involviert, die während der Entwicklung und Wartung nicht mehr beteiligt sind. Dazu zählen auch externe Mitarbeiter.\\
+In Entwicklung und Qualitätssicherung des Produkts sind diverse Parteien involviert. Anfänglich, also zum Zeitpunkt der Anforderungsanalyse und der Spezifikationsentwicklung, sind auch Teams involviert, die während der Entwicklung und Wartung nicht mehr beteiligt sind. Dazu zählen auch externe Mitarbeiter.\\
 Während der Wartungsphase des Systems gibt es einen Test-Verantwortlichen. Diese Rolle befindet sich auf Seiten der nicht-technischen Produktmanager. Der Test-Verantwortliche delegiert und orchestriert die Erstellung und Durchführung von manuellen Testfällen. Alle Teams benutzen zum Requirement- und Testmanagement HP QualityCenter \footnote{HP QualityCenter Internetauftritt \url{http://www8.hp.com/us/en/software-solutions/quality-center-quality-management/}}. Dies hat den Vorteil, dass übergreifend alle Beteiligten über den Status des Produkts genau informiert sind. Manuelle Testfälle und Testfallsuiten sind meist textuell beschrieben und manchmal als \gls{COS} Tabellen definiert. Diese \gls{COS} Tabellen haben eine hohe Ähnlichkeit zu Skripts, die beim Einsatz von automatisierten GUI-Tests zum Einsatz kommen (siehe Abbildung \ref{fig:cos_raiffeisen}). Angegeben werden ``Vorher'' und ``Nachher'' Zustände sowie die auszuführenden Aktionen. Der Detailgrad kann erheblich variieren.
 
 \begin{figure}[h] 
@@ -82,7 +82,7 @@ Vor wenigen Jahren wurde im Projektteam versucht die manuellen Aufwände für da
 Wartungsaufwände, die beim skriptbasierten Testen anfielen, konnten ausschließlich von technischem Personal durchgeführt werden. Eine sinnvolle Aufteilung der erhöhten Belastung durch das Testen war so nicht möglich.
 
 \subsubsection{Aufwendige Wartung von Testdaten}
-In der Domäne der Finanzapplikationen ist es üblich, dass eine Vielzahl von Datenfeldern spezifiziert werden. Wie für die Branche üblich, handelt es sich dabei oft um numerische Werte. Um bei solchen Systemen eine zufriedenstellende Abdeckung zu erreichen ist es nötig mit hoher Kombinatorik zu testen. Dies setzt den Einsatz von umfangreichen Testdatensätzen voraus. Auch die Ablaufverfolgung von Testdaten (welcher Bereich der Testdaten wird von einem bestimmten Testfall benutzt) und Testfällen ist ein Thema. Beim Design einer sinnvollen Teststrategie muss darauf geachtet werden, dass eine Entkopplung von Verhalten und Daten gemacht wird. Wenn Daten eng an das Verhalten im Testfall gebunden sind, führt dies zu stark erhöhtem Wartungsaufwand \cite{baker_model-driven_2005}. 
+In der Domäne der Finanzapplikationen ist es üblich, dass eine Vielzahl von Datenfeldern spezifiziert werden. Wie für die Branche üblich, handelt es sich dabei oft um numerische Werte. Um bei solchen Systemen eine zufriedenstellende Abdeckung zu erreichen ist es nötig mit hoher Kombinatorik zu testen. Dies setzt den Einsatz von umfangreichen Testdatensätzen voraus. Auch die Ablaufverfolgung von Testdaten (welcher Bereich der Testdaten wird von einem bestimmten Testfall benutzt) und Testfällen ist ein Thema. Beim Design einer sinnvollen Teststrategie muss darauf geachtet werden, dass eine Entkopplung von Verhalten und Daten gemacht wird. Wenn Daten eng an das Verhalten im Testfall gebunden sind, führt dies zu einem stark erhöhten Wartungsaufwand \cite{baker_model-driven_2005}. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{MBT auf Komponententestebene}
@@ -92,7 +92,7 @@ In der Domäne der Finanzapplikationen ist es üblich, dass eine Vielzahl von Da
 \subsection{ModelJUnit}
 \label{sec:modeljunit}
 ModelJUnit wird von Dr. Mark Utting et al. an der Universität Waikato in Neuseeland entwickelt. Es wird unter der Open Source GNU GPL Lizenz entwickelt und befindet sich zur Zeit in der Version 2.5 \footnote{Homepage des Tools ModelJUnit \url{http://www.cs.waikato.ac.nz/~marku/mbt/modeljunit/}}. Es erlaubt die Modellierung des \Gls{SUT} als endlichen Automaten (siehe Abschnitt \ref{sec:fsm} für eine Einführung in endliche Maschinen) in Java, Generierung von Testfällen laut spezifiziertem Traversierungsalgorithmus sowie Reporting. Seit Version 2.0 bietet das Werkzeug eine grafische Benutzeroberfläche, die die Traversierungskonfiguration ermöglicht und veranschaulicht.\\
-ModelJUnit hat Ähnlichkeiten zu Graphwalker (siehe Abschnitt \ref{sec:graphwalker}) indem es eine Schicht zur Modellierung anbietet und die Traversierung des \gls{SUT} übernimmt, aber keine Aussage darüber trifft wie das \gls{SUT} angesprochen werden soll. Der Adapter-Code wird also in annotierte Methoden eingefügt. ModelJUnit übernimmt die Traversierung. Das Modell, welches keine grafische Notation bietet, besteht aus Zuständen und Übergängen. Dies entspricht einem gerichteten Graphen. Die Zustände und Knoten haben Bezeichner. Außerdem können auf den Kanten sogenannte \textit{Guards} definiert werden. Dies sind WahrFalsch-Methoden, die bestimmen ob zu einem gegebenen Zeitpunkt diese Kante zur Traversierung verfügbar ist oder nicht. Der Testentwickler hat fast unbegrenzte Möglichkeiten Guard-Bedingungen zu überprüfen, da es sich um herkömmlichen Java-Code handelt.
+ModelJUnit hat Ähnlichkeiten zu Graphwalker (siehe Abschnitt \ref{sec:graphwalker}) indem es eine Schicht zur Modellierung anbietet und die Traversierung des \gls{SUT} übernimmt, aber keine Aussage darüber trifft wie das \gls{SUT} angesprochen werden soll. Der Adapter-Code wird also in annotierte Methoden eingefügt. ModelJUnit übernimmt die Traversierung. Das Modell, welches keine grafische Notation bietet, besteht aus Zuständen und Übergängen. Dies entspricht einem gerichteten Graphen. Die Zustände und Knoten haben Bezeichner. Außerdem können auf den Kanten sogenannte \textit{Guards} definiert werden. Dies sind WahrFalsch-Methoden, die bestimmen ob zu einem gegebenen Zeitpunkt diese Kante zur Traversierung verfügbar ist oder nicht. Der Testentwickler hat fast unbegrenzte Möglichkeiten Guard-Bedingungen zu überprüfen, da es sich um Java-Code handelt.
 
 \subsubsection{Modellierung der States}
 Jedes Modell wird als Java-Klasse definiert. Eine gültige ModelJUnit Modell-Klasse implementiert mindestens die folgenden vier Zustände. 
@@ -140,9 +140,8 @@ Im Gegensatz zu sehr formalen Modellierungssprachen verbergen sich Guard- und Ü
 
 \subsection{Testing von Serviceorientierten Architekturen mittels UML Testing Profile}
 \label{sec:utp}
-
-\todo[color=yellow]{@Boris: NEU HINZUGEKOMMEN sind die folgenden beiden subsubsections:}
-
+\todo[color=yellow]{@Boris: NEU HINZUGEKOMMEN sind die folgenden subsubsections:}
+Am Beispiel serviceorientierter Architekturen soll der folgende Abschnitt erläutern wie modellbasiertes Testen mittels dem UML Testing Profile für das Testen auf Integrationsebene eingesetzt werden kann. 
 \subsubsection{Das UML Testing Profile}
 Die \Gls{UML} wird in der Softwareentwicklung seit langer Zeit gelehrt und verwendet. Es hanelt sich dabei um eine grafische Modellierungssprache zur Spezifikation, Konstruktion und Dokumentation von Softwaresystemen. \Gls{UML} Profile können als Spezialisierung von \Gls{UML} gesehen werden \cite{_model-driven_2007}. Ein Profil kann die ursprüngliche Sprache an gewissen Stellen erweitern aber auch einschränken. Ein Beispiel ist das \Gls{UTP}. Dieses Profil führt Konzepte ein, die es ermöglichen Testspezifikationen und Testmodelle als bekannte \Gls{UML}-Modelle darzustellen. Die Autoren \cite{_model-driven_2007} haben versucht die Mehrheit der Konzepte und Visualisierungen für \Gls{UTP} an die Version 2 von \Gls{UML} anzulehnen. Benutzern denen die Grundsprache \Gls{UML} bekannt ist, sollte es nicht schwer fallen mit \gls{UTP} umzugehen.\\
 Im folgenden werden die von \Gls{UTP} neu eingeführten Begrifflichkeiten beschrieben. Nicht alle haben eine grafische Repräsentation:
@@ -209,7 +208,7 @@ Im Gegensatz zu herkömmlichen Desktop-Applikationen aus einer Hand können SOA 
 \item Web-Services sollen einzeln getestet werden können. Dies ermöglicht nicht nur eine gewisse Modularität, die zu einer hohen Testgeschwindigkeit beiträgt sondern erleichtert auch die Fehlersuche bei einem negativen Testdurchlauf.
 \end{itemize}
 
-Web-Services müssen \textit{mehrdimensional} getestet werden \cite{_model-driven_2007}. Das bedeutet ein modellbasierter Testfall soll alle Port Types, die der Service zur Verfügung stellt, kombiniert mit allen Operationen, die jeder Port Type anbietet, prüfen. Als Testdaten müssen die Äquivalenzklassen aller Datentypen die der Web-Service anbietet identifiziert werden.
+Web-Services müssen \textit{mehrdimensional} getestet werden \cite{_model-driven_2007}. Das bedeutet ein modellbasierter Testfall soll alle Port Types, die der Service zur Verfügung stellt, kombiniert mit allen Operationen, die jeder Port Type anbietet, prüfen. Als Testdaten müssen die Äquivalenzklassen aller Datentypen, die der Web-Service anbietet, identifiziert werden.
 
 \subsubsection{Beispielhafte Testsuite eines SOA Web-Services}
 In diesem Beispiel wird ein Service einer Bücherei oder einer Buchhandlung herangezogen. Einfachheitshalber bietet dieser Service nur einen Port Type (\texttt{LibraryService}) an. Auf diesem werden drei Operationen angeboten (\texttt{search, reserve, fetch}). Die Abbildungen \ref{fig:utp_config} und \ref{fig:utp_case} stellen das Testsystem dar. Ein Client kann ein Element aus dieser Bücherei also suchen und basierend auf seinem Status-Parameter handeln. Das Element kann sofort verfügbar, später verfügbar und nicht lokal verfügbar sein.\\
@@ -232,7 +231,7 @@ Zum Zeitpunkt dieser Arbeit gibt es kein Werkzeug welches die automatische Gener
 \textbf{UTP} & \textbf{JUnit} \\ \hline \Gls{SUT}                       & Kein direktes Mapping nötig. Jede Klasse im \textit{Classpath} kann angesprochen und getestet werden   \\ \hline
 Kontext                   & Kein direktes Mapping. JUnit kann auf den realen Kontext des \Gls{SUT} zugreifen. Aufwände außerhalb der JUnit-Programmierung sind nötig um alternative Konfigurationen zu testen \\ \hline
 Ablauf         			  & JUnit bietet die Klasse \textit{org.junit.runner.Runner} um feingradige Einstellungen am Testablauf zu machen. \\ \hline
-Sheduler                  & Alle vom Java-Umfeld bereitgestellten Möglichkeiten des Shedulings sind einsetzbar (auch \textit{org.junit.runner.Runner} bietet Sheduling-Optionen) \\ \hline
+Scheduler                  & Alle vom Java-Umfeld bereitgestellten Möglichkeiten des Shedulings sind einsetzbar (auch \textit{org.junit.runner.Runner} bietet Scheduling-Optionen) \\ \hline
 Test configuration        & Implizit gegeben in JUnit, durch die direkte Einbindung der Klassen die getestet werden. \\ \hline
 Test objective            & Dieses Konzept bietet JUnit nicht. Methoden können höchstens mit entsprechenden Kommentaren versehen werden.\\ \hline
 Test case                 & Eine Methode die mit der Annotation \textit{@Test} versehen ist. \\ \hline
@@ -319,7 +318,7 @@ Weiters ist zu erwähnen, dass die Modelle nicht einfach nur verflacht (\textit{
 \begin{figure}[h] 
   \centering
      \includegraphics[width=0.9\textwidth]{figures/gw_multiple_models.png}
-  \caption{Vier einzelne Modelle die in einer Traversierung durch \texttt{SHARED} Knoten erreicht werden können.
+  \caption{Vier einzelne Modelle die in einer Traversierung durch SHARED Knoten erreicht werden können.}
   \label{fig:gw_multiple_models}
 \end{figure}
 
@@ -394,7 +393,7 @@ An dieser Stelle kann also eine Vielzahl von Aufrufen passieren:
 \begin{itemize}
 \item \textbf{Adapter-Code:} Wie im Codebeispiel \ref{lst:graph_soap} kann ein fremdes Framework angesprochen werden, um auf das \Gls{SUT} zuzugreifen. In der Fallstudie (siehe Abschnitt \ref{sec:fallstudie}) wurde dabei hauptsächlich SoapUI und RESTassured\footnote{RESTassured Testing Library \url{https://github.com/jayway/rest-assured}} verwendet. Aber auch große kommerzielle Testwerkzeuge bieten Java-Schnittstellen an, die an diesen Stellen angesprochen werden können.
 \item \textbf{Reporting und Historisierung:} Genauso können an dieser Stelle Aufrufe zu externen Systemen erfolgen, die von den verschiedensten Parteien verwendet werden um den Qualitätsstatus des \Gls{SUT} zu verwalten (sogenannte \textit{Application Lifecycle} Tools). 
-\item \textbf{Testdatenmanagement:} Auch möglich und oftmals sinnvoll ist der Zugriff auf eine Komponente oder ein externes System welches für das Testdatemanagement zuständig ist. Das kann ein Datenbankzugriff sein oder auch eine Anfrage an ein über das Netzwerk oder Internet angeschlossene Testdatenwerkzeug.
+\item \textbf{Testdatenmanagement:} Auch möglich und oftmals sinnvoll ist der Zugriff auf eine Komponente oder ein externes System welches für das Testdatemanagement zuständig ist. Das kann ein Datenbankzugriff sein oder auch eine Anfrage an ein über das Netzwerk oder Internet angeschlossenes Testdatenwerkzeug.
 \end{itemize}
 
 
