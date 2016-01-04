@@ -67,7 +67,7 @@ Für diese Fallstudie wurden Interviews mit dem leitenden Architekten der Applik
 \end{itemize}
 
 \subsubsection{Verbesserungspotenzial}
-Die oben erwähten Schwächen, die Einfluss auf die Qualitätssicherung haben, könnten folgendermaßen verbessert \todo{Feedback einarbeiten, können auf Grund der Erfahrung des Autors, oder Vorschläge der interviewten Personen, ... oder nach Literatur ... }werden:
+Die oben erwähnten Schwächen könnten, auf Grund der gesammelten Erfahrung des Autors und der Vorschläge der interviewten Personen, folgendermaßen verbessert werden:
 
 \begin{itemize}
 \item \textbf{Mehr Kommunikation über Teamgrenzen hinweg:} Während der Fallstudie wäre es von Vorteil gewesen früher zu wissen, dass der Fachbereich zwingend \Gls{COS}-Tabellen für ihre Abnahmetests vorschreibt. In welcher Form Abnahmetests im Detail gemacht werden ist auf Seiten der Entwickler nicht ganz klar. Es handelt sich hierbei also um Kommunikationshürden die die Gesamtheit des Projekts betreffen und durch optimierten Informationsfluss beseitigt werden müssen.
@@ -91,7 +91,7 @@ In der Domäne der Finanzapplikationen ist es üblich, dass eine Vielzahl von Da
 
 \subsection{ModelJUnit}
 \label{sec:modeljunit}
-ModelJUnit wird von Dr. Mark Utting et al. an der Universität Waikato in Neuseeland entwickelt. Es wird unter der Open Source GNU GPL Lizenz entwickelt und befindet sich zur Zeit in der Version 2.5 \footnote{Homepage des Tools ModelJUnit \url{http://www.cs.waikato.ac.nz/~marku/mbt/modeljunit/}}. Es erlaubt die Modellierung des \Gls{SUT} als endlichen Automaten (siehe Abschnitt \ref{sec:fsm} für eine Einführung in endliche Maschinen) in Java, Generierung von Testfällen laut spezifiziertem Traversierungsalgorithmus sowie Reporting\todo{Auswertungen, Berichte}. Seit Version 2.0 bietet das Werkzeug eine grafische Benutzeroberfläche, die die Traversierungskonfiguration ermöglicht und veranschaulicht.\\
+ModelJUnit wird von Dr. Mark Utting et al. an der Universität Waikato in Neuseeland entwickelt. Es wird unter der Open Source GNU GPL Lizenz entwickelt und befindet sich zur Zeit in der Version 2.5 \footnote{Homepage des Tools ModelJUnit \url{http://www.cs.waikato.ac.nz/~marku/mbt/modeljunit/}}. Es erlaubt die Modellierung des \Gls{SUT} als endlichen Automaten (siehe Abschnitt \ref{sec:fsm} für eine Einführung in endliche Maschinen) in Java, Generierung von Testfällen laut spezifiziertem Traversierungsalgorithmus sowie das Erstellen von Auswertungen. Seit Version 2.0 bietet das Werkzeug eine grafische Benutzeroberfläche, die die Traversierungskonfiguration ermöglicht und veranschaulicht.\\
 ModelJUnit hat Ähnlichkeiten zu Graphwalker (siehe Abschnitt \ref{sec:graphwalker}) indem es eine Schicht zur Modellierung anbietet und die Traversierung des \gls{SUT} übernimmt, aber keine Aussage darüber trifft wie das \gls{SUT} angesprochen werden soll. Der Adapter-Code wird also in annotierte Methoden eingefügt. ModelJUnit übernimmt die Traversierung. Das Modell, welches keine grafische Notation bietet, besteht aus Zuständen und Übergängen, dies entspricht einem gerichteten Graphen. Die Zustände und Knoten haben Bezeichner, außerdem können auf den Kanten sogenannte \textit{Guards} definiert werden. Dies sind WahrFalsch-Methoden, die bestimmen ob zu einem gegebenen Zeitpunkt diese Kante zur Traversierung verfügbar ist oder nicht. Der Testentwickler hat fast unbegrenzte Möglichkeiten Guard-Bedingungen zu überprüfen, da es sich um Java-Code handelt.
 
 \subsubsection{Modellierung der States}
@@ -124,7 +124,7 @@ Das Modell wird zufällig traversiert bis ein Zielknoten erreicht wurde oder ein
 Die Greedy Walk Strategie ist eine Erweiterung des Random Walks. Sie bevorzugt Zustandsübergänge, die noch nicht traversiert wurden. Sobald alle Zustandsübergänge mindestens einmal traversiert wurden, verhält sich Greedy Walk wie Random Walk.
 
 \paragraph{Lookahead Walk}
-Der Lookahead Walk Algorithmus schaut vor jedem Schritt $n$ Ebenen voraus. Drei Kriterien werden dabei ausgewertet: \textit{NEWTRANS}, \textit{NEWACTION} und \textit{DEPTH}. Das Erreichen eines noch unbekannten Zustandes hat die höchste Priorität, wobei ein kurzer Pfad vorzuziehen ist. Außerdem verlieren öfter traversierte Pfade an Attraktivität\todo{Feedback einarbeiten, warum verlieren diese Pfade an Attaktivität}.
+Der Lookahead Walk Algorithmus schaut vor jedem Schritt $n$ Ebenen voraus. Drei Kriterien werden dabei ausgewertet: \textit{NEWTRANS}, \textit{NEWACTION} und \textit{DEPTH}. Das Erreichen eines noch unbekannten Zustandes hat die höchste Priorität, wobei ein kurzer Pfad vorzuziehen ist. Außerdem verlieren öfter traversierte Pfade an Attraktivität, um in möglichst kurzer Zeit jeden Pfad mindestens einmal traversiert zu haben.
 
 \paragraph{Quick Walk}
 Traversiert den Graphen ähnlich wie Random Walk, speichert aber in einem Cache die entdeckten aber noch nicht traversierten Pfade. Außerdem speichert der Algorithmus den exakten Pfad zu jedem nicht besuchten Knoten und dessen Pfade. Ein Cache-Limit muss angegeben werden um bei sehr großen Modellen vor Überlauf geschützt zu sein.
