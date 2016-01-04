@@ -70,8 +70,9 @@ Im Bereich der Echtzeitsysteme unterliegen alle Operationen Zeitanforderungen, d
 \paragraph{Übertragbarkeit (Portability)} Übertragbarkeit beschreibt, wie einfach bestehende Software auf andere Umgebungen oder Plattformen übertragen werden kann. Dabei ist Ausschlaggebend wieviel Aufwände in die Umstrukturierung und Umprogrammierung des Softwaresystems fließen müssen. Wie so oft müssen bei der Betrachtung von Übertragbarkeit zum Zeitpunkt des Entwurfs der Software Kompromisse eingegangen werden. Software wird vielfach nur für wenige geplante Zielplattformen entworfen und entwickelt, muss dann im weiteren Verlauf aber für andere Plattformen erweitert werden.
 
 \paragraph{Testbarkeit (Testability)} Die Testbarkeit beschreibt wie gut oder schlecht ein Software-System testbar ist. Fehler sollen zeitnah gefunden und behebbar sein (Wartbarkeit). Testbarkeit wird schon zum Entwurfszeitpunkt bestimmt (design for test). Es geht darum, ob ein Programm geeignete Schnittstellen für das Testen bietet (sozusagen Zugriff auf seine Interna zulässt). Gängige Beispiele sind Logging Funktionalitäten oder Schnittstellen die Benutzerinteraktionen simulieren.
-\\ \todo[inline]{Hier muss klar erkennbar sein das der paragraph aus ist und der Fließtext wieder beginnt. Mehr Abstand}
-Die Kriterien \textit{Funktionalität, Laufzeit, Zuverlässigkeit} und \textit{Benutzbarkeit} sind unmittelbar nach außen sichtbar und repräsentieren die Qualiätssicht des Benutzers. Folglich beeinflussen diese Kriterien die initiale Kaufentscheidung massiv. Die Kriterien \todo{zweimal mit Die Kriterien gestartet!} \textit{Transparenz, Übertragbarkeit, Wartbarkeit} und \textit{Testbarkeit} offenbaren sich dem Benutzer üblicherweise viel später. Sie entscheiden sowohl über den langfristigen Erfolg als auch wie sich ein Softwareprodukt am Markt hält.
+\\\\
+
+Die Kriterien \textit{Funktionalität, Laufzeit, Zuverlässigkeit} und \textit{Benutzbarkeit} sind unmittelbar nach außen sichtbar und repräsentieren die Qualiätssicht des Benutzers. Folglich beeinflussen diese Kriterien die initiale Kaufentscheidung massiv. \textit{Transparenz, Übertragbarkeit, Wartbarkeit} und \textit{Testbarkeit} offenbaren sich dem Benutzer üblicherweise viel später. Sie entscheiden sowohl über den langfristigen Erfolg als auch wie sich ein Softwareprodukt am Markt hält.
 
 \subsubsection{Zusammenhänge und Kompromisse} 
 Nach Evaluation all dieser Kriterien kann eine Aussage über die Qualität von Software getroffen werden. Diese Kriterien beeinflussen sich gegenseitig. Am Beispiel von \textit{Laufzeit} und \textit{Übertragbarkeit} lassen sich diese Zusammenhänge gut erkennen. Hochperfomante Softwaresysteme nutzen viele spezielle Eigenschaften der verwendeten Programmiersprache und der Plattform auf der sie betrieben werden. Wenn aus fundamentalen Bausteinen wie Architektur und Design keine weiteren Leistungssteigerungen gewonnen werden können, muss auf solche ``Adaptions-Tricks'' zurückgegriffen werden, um den entscheidenden Vorsprung gegenüber Konkurrenzprodukten zu gewinnen. Die Übertragbarkeit eines Systems definiert sich aber wesentlich durch die ausschließliche Verwendungen von Konstrukten, die in möglichst vielen Umgebungen verfügbar sind. Plattformabhängigkeiten müssten daher wieder generalisiert werden, was mit Aufwänden verbunden ist.\\
@@ -84,7 +85,7 @@ Deshalb ist es auch nicht möglich, ein Softwaresystem zu entwickeln, das alle g
   \label{fig:korrelationsmatrix}
 \end{figure}
 
-Aus dem Projektmanagement ist das magische Dreieck bekannt \todo{Quelle fehlt zu magisches Dreieck, umformulierung ... bekannt} (siehe Abbildung \ref{fig:magic_triangle}), das sich unmittelbar aus den eben genannten Korrelationen ableiten lässt. Die äußeren Eckpunkte des Dreiecks geben an, in welchem Maß die Parameter \textit{Zeit}, \textit{Kosten} und \textit{Qualität} erfüllt sind. Der Flächeninhalt des Dreiecks soll konstant sein, was veranschaulicht, dass jede Erhöhung eines Parameters die anderen beiden beeinflusst. Dieses Dreieck wird nicht nur durch die gewählten Entwicklungstechnologien und Requirements beeinflusst, sondern auch durch die Teststrategie. Welche Testmethoden und Werkzeuge gewählt werden, beeinflusst alle drei Parameter.
+Aus dem Projektmanagement ist das magische Dreieck \cite{sapper_kriterien_2007} bekannt (siehe Abbildung \ref{fig:magic_triangle}), das sich unmittelbar aus den eben genannten Korrelationen ableiten lässt. Die äußeren Eckpunkte des Dreiecks geben an, in welchem Maß die Parameter \textit{Zeit}, \textit{Kosten} und \textit{Qualität} erfüllt sind. Der Flächeninhalt des Dreiecks soll konstant sein, was veranschaulicht, dass jede Erhöhung eines Parameters die anderen beiden beeinflusst. Dieses Dreieck wird nicht nur durch die gewählten Entwicklungstechnologien und Requirements beeinflusst, sondern auch durch die Teststrategie. Welche Testmethoden und Werkzeuge gewählt werden, beeinflusst alle drei Parameter.
 
 \begin{figure}[h] 
   \centering
@@ -98,7 +99,7 @@ Aus dem Projektmanagement ist das magische Dreieck bekannt \todo{Quelle fehlt zu
 Mit der ständig wachsenden Wichtigkeit und Komplexität moderner Software ist es nötig, Testaktivitäten als eigenständigen und professionell geplanten Prozess zu sehen, der dem Entwicklungsprozess ebenbürtig ist \cite{grechenig_softwaretechnik:_2010}. \citeauthor{grechenig_softwaretechnik:_2010} beschreibt den Testprozess als zyklische Aneinanderreihung von bestimmten Aktivitäten, die bis zu 50\% der Entwicklungskosten ausmachen.
 
 \todo[inline]{Einleitung fehlt zum beispiel:}
-Nach ISTQB [Quelle auf sylabus] sind folgendende Phase im Test definiert:
+Nach ISTQB \cite{graham_foundations_2008} sind folgendende Phasen im Test definiert:
 
 \paragraph{Testziele} Definierte Zustände, die als Kriterien zur Bewertung von Gelingen und Misslingen eines Testdurchlaufs dienen. Dazu zählt auch eine genaue Beschreibung der Testobjekte (Systeme, Umsysteme, Klassen, Methoden, Schnittstellen etc.), welche am Test beteiligt sind. Außerdem gelten Testziele nur für eine genau definierte Testumgebung. In Abschnitt \ref{sec:teststufen} \nameref{sec:teststufen} sind die genannten Testumgebungen ebenfalls von Bedeutung.
 
@@ -124,7 +125,7 @@ Nach ISTQB [Quelle auf sylabus] sind folgendende Phase im Test definiert:
 
 \subsection{Sicht auf das Testsystem}
 \label{sec:sicht}
-Spricht man von dynamischen Testmethoden können diese grob in zwei Kategorien eingeteilt werden. Bei den sogenannten \textit{White-Box-Tests} werden Testfälle mit Kenntnis über die internen Vorgänge des zu testenden Systems entwickelt. Tests werden bewusst auf die Logik zugeschnitten. Üblicherweise ist der Testentwickler mit dem Quellcode des \gls{SUT} \todo{einmalig wäre eine deutsche Erlärung gut und dann SUT verwenden} vertraut oder hat ihn sogar selbst verfasst. White-Box-Tests eignen sich sehr gut um festgestelltes Fehlverhalten im Quellcode zu lokalisieren bzw. um Fehler sehr früh und nah an der Entwicklung zu finden, wie \citeauthor{spillner_basiswissen_2012} in \cite{spillner_basiswissen_2012} beschreiben.\\
+Spricht man von dynamischen Testmethoden können diese grob in zwei Kategorien eingeteilt werden. Bei den sogenannten \textit{White-Box-Tests} werden Testfälle mit Kenntnis über die internen Vorgänge des zu testenden Systems entwickelt. Tests werden bewusst auf die Logik zugeschnitten. Üblicherweise ist der Testentwickler mit dem Quellcode des zu testenden Systems, von hier an \gls{SUT}, vertraut oder hat ihn sogar selbst verfasst. White-Box-Tests eignen sich sehr gut um festgestelltes Fehlverhalten im Quellcode zu lokalisieren bzw. um Fehler sehr früh und nah an der Entwicklung zu finden, wie \citeauthor{spillner_basiswissen_2012} in \cite{spillner_basiswissen_2012} beschreiben.\\
 Der \textit{Black-Box-Test} verfolgt einen gänzlich anderen Ansatz. Das zu testende System wird als uneinsehbarer Monolith verstanden. Ein Test kann lediglich Eingaben machen und die Ausgaben lesen. Die Black-Box-Sicht ähnelt der Sicht des Benutzers, da dieser ebenfalls keine Kenntnisse darüber besitzt was im inneren des Programms vorgeht. Um Black-Box-Testen zu betreiben, muss der Tester nur mit der Spezifikation des Programms vertraut sein. Dies ermöglicht, dass Black-Box-Testen an Teams abgegeben werden können, die nicht an der ursprünglichen Implementation beteiligt waren. Black-Box-Tests sind deshalb dazu geeignet, Fehler in der Umsetzung der Spezifikation aufzudecken. Es ist kaum möglich im Detail festzustellen, welche Komponente für das Fehlverhalten verantwortlich ist. Diese Art des Testens soll außerdem verhindern, dass die Entwickler, die das \gls{SUT} programmiert haben, bewusste oder unbewusste Annahmen treffen und dadurch das Testergebnis verfälschen \cite{spillner_basiswissen_2012}.  
 
 \subsection{Teststufen}
@@ -156,7 +157,7 @@ Die folgenden Teststufen sollen eine möglichst hohe Softwarequalität sicherste
 
 \subsubsection{Komponententest}
 \label{sec:unit_test}
-In der ersten Teststufe des V-Modells werden die kleinsten Softwarebausteine einer systematischen Prüfung unterzogen. Abhängig von der verwendeten Programmiersprache sind diese kleinsten Bausteine Module oder Klassen. Oft spricht man auch von \Glspl{Unit-Test} \todo{formulierung} Vielleicht Anglizismus verwenden.\\
+In der ersten Teststufe des V-Modells werden die kleinsten Softwarebausteine einer systematischen Prüfung unterzogen. Abhängig von der verwendeten Programmiersprache sind diese kleinsten Bausteine Module oder Klassen. Oft spricht man auch von Unit-Tests.\\
 Komponententests zeichnen sich außerdem durch die zeitliche Nähe zur Programmierung aus. Sie werden üblicherweise direkt vor oder nach der Programmierung einer Komponente verfasst. Der Komponententest unterscheidet sich vom Integrationstest durch seine Isolation. Das bedeutet, die Funktionalität jeder Komponente wird ohne Ein- oder Zugriffe anderer Komponenten getestet. Dies hat den Zweck, dass ein Fehlverhalten auf die Komponente selbst zurückgeführt werden kann und fehlerhafte Einwirkung von außen ausgeschlossen werden kann.\\
 Der Komponententest gehört zur Kategorie der White-Box Tests (siehe Abschnitt \ref{sec:sicht} \nameref{sec:sicht}). Der Tester muss Zugriff auf den Quellcode des Programms haben, weil die kleinsten Softwarebausteine keine Schnittstelle nach außen haben. Deshalb liegt es nahe, dass Komponententests von den Entwicklern selbst geschrieben werden.
 
@@ -214,27 +215,25 @@ Scrum gibt drei Rollen innerhalb des Projektteams vor:
 
 \begin{itemize}
 \item \textbf{Product Owner} Der Product Owner ist für die fachlichen Eigenschaften des Produkts verantwortlich. Er definiert das Produkt um den wirtschaftlichen Erfolg der Organisation, die er vertritt, zu maximieren. Er definiert außerdem den Kostenrahmen und Auslieferungszeitpunkt.
-\item \textbf{Scrum Owner} Der Scrum Owner \todo{Woher kommt Scrum Owner? --> Scrum Master!!} gehört meist nicht direkt zum Entwicklungsteam, soll für das Entwicklungsteam aber eine Ansprechstelle bei jeglichen nicht-technischen Anliegen sein. Er soll auf die Beachtung der Scrum Prinzipien achten aber kein disziplinarisches Organ sein \cite{linz_testing_2014}. Er plant und moderiert Treffen. Seine Hauptaufgabe ist es den Überblick über das Projekt zu behalten und die Interessen aller Rollen zu wahren.
+\item \textbf{Scrum Master} Der Scrum Master muss nicht direkt zum Entwicklungsteam gehören, soll für das Entwicklungsteam aber eine Ansprechstelle bei jeglichen nicht-technischen Anliegen sein. Er soll auf die Beachtung der Scrum Prinzipien achten aber kein disziplinarisches Organ sein \cite{linz_testing_2014}. Er plant und moderiert Treffen. Seine Hauptaufgabe ist es den Überblick über das Projekt zu behalten und die Interessen aller Rollen zu wahren.
 \item \textbf{Entwicklungsteam} Das Entwicklungsteam setzt die Produktfunktionalitäten um, ist dabei aber selbstorganisiert. Es entscheidet selbst auf welche Art und Weise die geforderten Spezifikationen entwickelt werden, solange die vom Product Owner geforderte Reihenfolge eingehalten wird.
 \end{itemize}
 
-\todo[inline]{Formulierung schlecht... die beiden Sätze zu den Stakeholdern umformulieren, ließt sich nicht gut}
-Weiters gibt es die \textit{Stakeholder}. Sie sind Personen, die am Projekt interessiert sind, aber nicht an täglicher Arbeit beteiligt sind. Dazu zählen Kunden, Anwender und Auftraggeber.\\
+Weiters gibt es die \textit{Stakeholder}. Sie sind Personen, die verschiedenste Interessen am Projekt oder dessen Endprodukt haben. Dazu zählen unter anderem Kunden, Anwender und Auftraggeber.\\
 In Scrum wird die eigentliche Entwicklungsarbeit in zeitlich beschränkte Arbeitsabschnitte geteilt, sogenannte \textit{Sprints}. Sprints folgen unmittelbar aufeinander und dauern zwischen einer und fünf Wochen an \cite{linz_testing_2014}. Die am Anfang jedes Sprints definierten Sprintziele sollen während diesem Zeitraum nicht verändert werden.\\
-Außerdem gibt es in Scrum fünf Aktivitäten, die fixe Zeitrahmen haben sollen um ausufernde Diskussionen einzuschränken:
-\todo[inline]{Quelle für die Beschreibungen? der ganze Absatz ist in einem total anderen Schreibstil formuliert....}
+Außerdem beschreibt \citeauthor{linz_testing_2014} fünf Aktivitäten \cite{linz_testing_2014}, die fixe Zeitrahmen haben sollen, um ausufernde Diskussionen einzuschränken:
 \begin{itemize}
 \item \textbf{Sprint Planning} Im Sprint Planning wird festgelegt, welches Zwischenergebnis am Ende des Sprints auslieferbar sein soll und welche Einzelaufgaben nötig sind, um dieses Ziel zu erreichen. Das Sprint Planning steht naturgemäß immer zu Beginn eines Sprints.
-\item \textbf{Daily Scrum} Das Daily Scrum ist ein tägliches Treffen aller Scrum Beteiligten. Üblicherweise wird es auf 15 Minuten beschränkt. Es dient dazu sich auszutauschen und vor allem den Entwicklungsmitgliedern einen Überblick zu bieten, was am vorangegangenen Arbeitstag passiert ist und was sich die Einzelnen an diesem Arbeitstag vornehmen.
+\item \textbf{Daily Scrum} Das Daily Scrum ist ein tägliches Treffen aller Scrum Beteiligten. Üblicherweise wird es auf 15 Minuten beschränkt. Es dient dazu sich auszutauschen. Das Entwicklungsteam soll sich einen Überblick verschaffen können, was am vorangegangenen Arbeitstag passiert ist. Außerdem soll jedes Mitglied des Entwicklungsteams kurz umreißen welche seine nächsten Schritte sind.
 \item \textbf{Sprint Reviews} Die Sprint Reviews finden am Ende oder am ersten Tag des darauffolgenden Sprints statt. Das Entwicklungsteam präsentiert dem Product Owner das Zwischenergebnis. Auch Kunden und Anwender können am Sprint Review beteiligt sein. Ihre Reaktion auf das Inkrement ist wichtig und beeinflusst die weitere Planung.
-\item \textbf{Sprint Retrospektive} Auch die Sprint Retrospektive steht zum Schluss eines Sprints, es nehmen aber nur das Entwicklungsteam und der Scrum Master\todo{hier wieder Srum Master} teil. Es geht darum die Vorgehensweisen des vorangegangenen Sprints kritisch zu bewerten und wenn möglich in Zukunft zu optimieren. Die Verbesserungsmaßnahmen sollen festgehalten werden und in jeder Sprint Retrospektive wieder evaluiert werden.
+\item \textbf{Sprint Retrospektive} Auch die Sprint Retrospektive steht zum Schluss eines Sprints, es nehmen aber nur das Entwicklungsteam und der Scrum Master teil. Es geht darum die Vorgehensweisen des vorangegangenen Sprints kritisch zu bewerten und wenn möglich in Zukunft zu optimieren. Die Verbesserungsmaßnahmen sollen festgehalten werden und in jeder Sprint Retrospektive wieder evaluiert werden.
 \item \textbf{Product Backlog Refinement} Beim Product Backlog Refinement wird der Produkt Backlog, modifiziert. Vorhandene Einträge werden anhand ihrer Priorität geordnet, neue Einträge hinzugefügt und Schätzung für die Einträge werden abgegeben.
 \end{itemize}
 
 In Scrum Projekten bestehen zumindest folgende drei Artefakte:
 
 \begin{itemize}
-\item \textbf{Product Backlog} Im Product Backlog werden alle Spezifikationen an das Produkt festgehalten. Während den vielen Iterationen entwickelt sich auch das Product Backlog ständig weiter. Anforderungen werden hinzugefügt, gelöscht, priorisiert und nach Aufwand geschätzt. Jegliche Arbeit, die das Entwicklungsteam unternimmt, gründet auf einer Anforderung im Product Backlog. Oft werden im Product Backlog Anforderungen aus Sicht eines Benutzers oder Kunden formuliert. Diese werden als \textit{User Stories} \todo{User Stories musser erklärt werden! Einfacher: Verweis auf Erklärung (auch externe Quelle möglich) würde ich mit einer Fußnote lösen}bezeichnet.
+\item \textbf{Product Backlog} Im Product Backlog werden alle Spezifikationen an das Produkt festgehalten. Während den vielen Iterationen entwickelt sich auch das Product Backlog ständig weiter. Anforderungen werden hinzugefügt, gelöscht, priorisiert und nach Aufwand geschätzt. Jegliche Arbeit, die das Entwicklungsteam unternimmt, gründet auf einer Anforderung im Product Backlog. Oft werden im Product Backlog Anforderungen aus Sicht eines Benutzers oder Kunden formuliert. Diese werden als \textit{User Storys} \footnote{Eine User Story ist eine in Prosa und aus Sicht des Endbenutzers formulierte Software-Anforderung. Diese werden sehr kurz gehalten (ein bis zwei Sätze) \cite{cohn_user_2004}.} bezeichnet.
 \item \textbf{Sprint Backlog} Im Sprint Backlog werden die User Stories aus dem Product Backlog aufgelistet, die in der aktuellen Iteration bearbeitet werden. Um Arbeit zu parallelisieren werden User Stories oft in \textit{Tasks} aufgeteilt, die einzeln entwickelt und getestet werden können.
 \item \textbf{Product Increment} Im Product Increment wird festgehalten, wie weit die Entwicklung des Produkts über die Dauer des Projekts vorangeschritten ist. Alle Product Backlog Einträge, die in den vorangegangenen Sprints abgeschlossen wurden, sind hier aufgelistet.
 \end{itemize}
@@ -296,7 +295,7 @@ Der \textit{Test-First} Ansatz stammt aus dem Extreme Programming Umfeld \cite{b
 
 \begin{itemize}
 \item \textbf{Manuelles Trial and Error wird überflüssig} Üblicherweise testet ein Entwickler seinen Code kontinuerlich durch manuelle Methodenaufrufe mit passenden Werten. Die Ausgabe wird mithilfe eines Debuggers oder zusätzlichen Print-Methoden vom Entwickler geprüft. Abhängig vom jeweiligen \textit{System Under Test} (das zu testende System, von hier an \gls{SUT}) kann dieser Workflow sehr ineffizient sein, weil er in der Wartung nicht nachtvollziehbar ist und Code generiert, der vor der Auslieferung wieder entfernt werden muss. Im Gegensatz dazu muss der Entwickler beim Test-First Ansatz vor der Programmierung bereits einige sinnvolle und (potenziell lauffähige) Testfälle geschrieben haben. Dies hat folgende Vorteile: Erstens entfällt das mitunter mühselige und fehlerbehaftete manuelle \Gls{Smoke-Testing} und zweitens hat sich herausgestellt, dass Programmierer effizienter werden, wenn sie angehalten sind sich sehr genaue Gedanken über Ein- und Ausgabewerte der zu entwickelnden Komponente zu machen \cite{erdogmus_effectiveness_2005}.
-\item \textbf{Fortschritt ist einfach messbar} Typische Programmieraktivitäten in einem Scrum-Projekt können zwischen wenigen Stunden bis zu mehreren Personentage umfassen. Test-First Komponententests können als Indikator dienen wie die Programmieraktivität fortschreitet. Außerdem stellen sie eine Art roter Faden für den Programmierer dar.\todo{Quelle für die dieses Element fehlt}
+\item \textbf{Fortschritt ist einfach messbar} Typische Programmieraktivitäten in einem Scrum-Projekt können zwischen wenigen Stunden bis zu mehreren Personentage umfassen. Test-First Komponententests können als Indikator dienen wie die Programmieraktivität fortschreitet \cite{linz_testing_2014}. Außerdem stellen sie eine Art roter Faden für den Programmierer dar.
 \item \textbf{Tests als Spezifikation} Komponententests geben sehr genau vor welche Ausgabewerte auf einen bestimmten Eingabewert erwartet werden. Das bedeutet, dass sie als Teil einer Spezifikation angesehen werden können. Tatsächlich lassen sich in der Praxis auch immer wieder solche Ansätze beobachten. Vor allem funktionale Programmiersprachen werden gerne als \textit{executable specification} verwendet \cite{klein_sel4:_2010}. Nachteilig bei dieser Vorgehensweise ist aber die Verständlichkeit solcher Spezifikationen. Unerfahrene Entwickler oder nicht-technische Teammitglieder können diese nur schwer nachvollziehen. Auch modellbasierte Tests können als Spezifikation dienen und durch ihre grafische Darstellung sind sie viel leichter verständlich (siehe Abschnitt \ref{sec:mbt} für allgemeine Informationen zu modellbasiertem Testen und Abschnitt \ref{sec:graphwalker} indem ein solcher Ansatz erprobt wird).
 \end{itemize}
 
@@ -333,9 +332,9 @@ Die Autoren legen den Schwerpunkt auf die generativen Aspekte. Weniger Aufmerksa
 Dies führt zur pragmatischen Definition von modellbasiertem Testing:
 
 \begin{quote}
-Modellbasiertes Testen umfasst mindestens einen der folgenden beiden Aspekte: Tests modellieren oder Tests aus Modellen generieren.
+Modellbasiertes Testen umfasst mindestens einen der folgenden beiden Aspekte: Tests modellieren oder Tests aus Modellen generieren \cite{rossner_basiswissen_2010}.
 \end{quote}
-\todo[inline]{?? Hier wird ohne Quellenangabe zitiert? bzw. versteh ich die Aussage nicht}
+
 \subsection{Vorteile des Modellbasierten Testings}
 \label{sec:mbt_vorteile}
 In diesem Abschnitt werden die Vorteile des \Gls{MBT} gegenüber anderen Testmethoden, auch anhand von Publikationen und Fallstudien, erläutert werden.
@@ -380,8 +379,8 @@ Modelle die das \gls{SUT}, dem verwendeten Werkzeug entsprechend, repräsentiere
 \label{sec:mbt_prozess}
 
 Modellbasiertes Testen automatisiert, einer nachvollziehbaren Strategie folgend (siehe Testauswahlkriterien \ref{sec:coverage}), die Erstellung der detaillierten Testfälle (Testscripts).
-Im Detail erstellt der Test-Designer ein abstraktes Modell des \Gls{SUT}, welches gewisse Eigenschaften haben muss (siehe dazu Abschnitt \ref{sec:eigenschaften_modell} \nameref{sec:eigenschaften_modell}). Dieses abstrakte Testmodell wird einem Werkzeug übergeben, welches die Testfälle generiert. Die Zeit einen Testfall zu designen wird durch den Einsatz von \Gls{MBT} reduziert. Außerdem ermöglicht die Erstellung eines einzelnen Modells die automatische Generierung einer Vielzahl von Testfällen. Der Testfall-Designer muss dazu am Programm nur die Testauswahlkriterien verändern \cite{utting_practical_2007}. Der Prozess kann also in 5\todo{Zahlen bis elf immer ausschreiben!} Schritten dargestellt werden (siehe Abbildung \ref{fig:mbt_prozess}):
-\todo[inline]{Schritt 5 FEHLT!}
+Im Detail erstellt der Test-Designer ein abstraktes Modell des \Gls{SUT}, welches gewisse Eigenschaften haben muss (siehe dazu Abschnitt \ref{sec:eigenschaften_modell} \nameref{sec:eigenschaften_modell}). Dieses abstrakte Testmodell wird einem Werkzeug übergeben, welches die Testfälle generiert. Die Zeit einen Testfall zu designen wird durch den Einsatz von \Gls{MBT} reduziert. Außerdem ermöglicht die Erstellung eines einzelnen Modells die automatische Generierung einer Vielzahl von Testfällen. Der Testfall-Designer muss dazu am Programm nur die Testauswahlkriterien verändern \cite{utting_practical_2007}. Der Prozess kann also in vier Schritten dargestellt werden (siehe Abbildung \ref{fig:mbt_prozess}):
+
 \begin{enumerate}
 \item Das \Gls{SUT} und/oder seine Umgebung modellieren.
 \item Abstrakte Tests vom Testmodell werden generiert und konkretisiert, also ausführbar gemacht.
@@ -445,9 +444,9 @@ Wenn von Abdeckung im \Gls{MBT} Umfeld gesprochen wird, beziehen sich diese Auss
 In der Regel werden beim Umgang mit \Gls{MBT} Werkzeugen, sogenannte Testauswahlkriterien, im Vorfeld der Testgenerierung und Testausführung angegeben. Die Wahl der Testauswahlkriterien beeinflusst also den Algorithmus zur Traversierung des Modells und damit auch die Laufzeit eines Tests. Nach \citeauthor{utting_practical_2007} lassen sich Testauswahlkriterien in die folgenden Familien einteilen \cite{utting_practical_2007}:
 
 \begin{itemize}
-\item \textbf{Strukturelle Abdeckung} sind angelehnt an die Kontrollflussabdeckung, wie sie aus White-Box Tests bekannt ist. Auch Modelle mit Pre- und Postcondition Notation (siehe B-Methode in Abschnitt \ref{sec:bmethod}) werden implizit durch strukturelle Modellabdeckung gesteuert. Auf diese Abdeckungsvarianten wird in den folgenden Abschnitten \ref{coverage_control} und \ref{coverage_transition} genauer eingegangen. \todo{??? im compilierten Text steht zwei mal der gleiche Abschnitt. Schöner ist sowieso nur auf einen (übergeordneten zu verweisen)}
+\item \textbf{Strukturelle Abdeckung} sind angelehnt an die Kontrollflussabdeckung, wie sie aus White-Box Tests bekannt ist. Auch Modelle mit Pre- und Postcondition Notation (siehe B-Methode in Abschnitt \ref{sec:bmethod}) werden implizit durch strukturelle Modellabdeckung gesteuert.
 \item \textbf{Testdatenabdeckung} beschreibt die Abdeckung anhand von Eingabedaten.
-\item \textbf{Requirement-basierte Abdeckung} Kritische Requirements werden vom Tester mit Teilen des Modells verbunden. Bei der Traversierung können nun Requirements vorrangig anvisiert werden.
+\item \textbf{Requirement-basierte Abdeckung} Kritische Requirements (Anforderungen) werden vom Tester mit Teilen des Modells verbunden. Bei der Traversierung können nun Requirements vorrangig anvisiert werden.
 \item \textbf{Explizite Testfalldefinition} Manche \Gls{MBT} Werkzeuge bieten auch die Möglichkeit explizite Testfälle (also Pfade durch das Modell) zu erstellen.
 \end{itemize}
 
@@ -506,7 +505,7 @@ Eine Einführung von \Gls{MBT} ist immer auch mit Anschaffungskosten verbunden. 
 
 \subsection{Modellbasiertes Testen in Industrie und Forschung - \Gls{MBT} Fallstudien}
 
-Modellbasiertes Testen von Software wird seit mehr als 20 Jahren aktiv thematisiert \cite{utting_practical_2007}, sei es durch Forschung oder Industrie. Wie in den Leitlinien für den Einsatz von \Gls{MBT} in einem Projekt bereits erwähnt \todo{Verweise auf X.X.X.X die unmittelbar davor sind, sind nicht notwendig!} (siehe Abschnitt \ref{sec:entscheidungshilfe} \nameref{sec:entscheidungshilfe}), ist der Einsatz von \Gls{MBT} nicht immer sinnvoll. Diese Leitlinien haben sich unter anderem durch die Erkenntnisse der folgenden Publikation und Fallstudien ergeben. Sie sind aber nicht unveränderlich. Durch neue Erkenntnisse im laufenden Einsatz von \Gls{MBT} in den verschiedensten Projekten und die stetige Weiterentwicklung der beteiligten Technologien, entwickeln sie sich weiter.\\
+Modellbasiertes Testen von Software wird seit mehr als 20 Jahren aktiv thematisiert \cite{utting_practical_2007}, sei es durch Forschung oder Industrie. Wie im vorangegangenen Abschnitt bereits erwähnt, ist der Einsatz von \Gls{MBT} nicht immer sinnvoll. Diese Leitlinien haben sich unter anderem durch die Erkenntnisse der folgenden Publikation und Fallstudien ergeben. Sie sind aber nicht unveränderlich. Durch neue Erkenntnisse im laufenden Einsatz von \Gls{MBT} in den verschiedensten Projekten und die stetige Weiterentwicklung der beteiligten Technologien, entwickeln sie sich weiter.\\
 Die folgenden Fallstudien geben einen Überblick darüber, wie \Gls{MBT} Methoden in den letzten Jahren eingesetzt wurden.
 
 \paragraph{GUITAR: An innovative tool for automated testing of GUI-driven software  \cite{nguyen_guitar:_2014} (GUITAR: Ein innovatives Werkzeug für das automatisierte Testen von Benutzeroberflächen)} Das von den Autoren entwickelte \textit{GUITAR} Framework wurde für modellbasiertes Oberflächentesting entwickelt. Das Werkzeug verhält sich dabei wie eine \textit{Learning Machine}. Soll heißen, es gibt eine endliche Anzahl von diskreten Parametern in das \Gls{SUT} (bedient das Programm) und beobachtet die Ergebnisse (wie sich das \Gls{SUT} verhält). Basierend auf diesen Ergebnisse generiert \textit{GUITAR} automatisch das Modell des SUT. Der Tester kann daraufhin Modifikationen am Modell vornehmen, bevor das eigentliche Testing beginnt.\\ 
@@ -529,7 +528,9 @@ Die Ergebnisse beider Studien sprechen für modellbasiertes Testen. Die Autoren 
 
 \subsection{Modellierungssprachen}
 \label{sec:notations}
-\todo[inline]{Folgende .... werden vorgestellt, weil...}
+
+Modellbasiertes Testen stützt sich auf bekannte Modellierungssprachen, die teilweise in ihrer Mächtigkeit eingeschränkt oder weiterentwickelt wurden. In diesem Abschnitt werden drei verbreitete Modellierungssprachen vorgestellt. Sie gehören unterschiedlichen Notationstypen an. Endliche Automaten lassen sich rein grafisch darstellen, die \textit{B-Notation} ist textuell und das \textit{UML Testing Profile}, das ebenfalls grafisch ist, sich aber keiner der anderer Kategorie zuordnen lässt.
+
 \subsubsection{Endliche Automaten (Finite-State Machines)}
 \label{sec:fsm}
 Ein endlicher Automat (oder \Gls{FSM}) ist eine Form der abstrakten Maschinen. Eine \Gls{FSM} erlaubt die Modellierung des Verhaltens einer Maschine, in diesem Fall eines Computer-Programms. \cite{wagner_modeling_2006}\\
