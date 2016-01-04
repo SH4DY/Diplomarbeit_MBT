@@ -10,7 +10,7 @@ Dieses Kapitel enthält eine Beschreibung der im Zuge dieser Arbeit durchgeführ
 
 \label{sec:fallstudie}
 \subsection{Hintergrund zu den Applikation RETo und RESi}
-Die Applikation \textit{RESi}, in anderer Struktur und bis in das Jahr 2013 \textit{RETo} (Raiffeisen Expert Tool), ist ein \Gls{Back-End} Service der Dienste für die verschiedensten \Gls{Front-End} Applikationen des Unternehmens bereitstellt. Unter altem Namen bot die Applikation früher eine eigene Benutzeroberfläche und weniger, dafür spezifischere, Funktionalität. RETo war im Intranet der Fillialen im Einsatz und wurde ausschließlich für Kundenberatungen eingesetzt. Die Applikation hatte folgende Kernkompetenzen:
+Die Applikation \textit{RESi}, in anderer Struktur und bis in das Jahr 2013 \textit{RETo} (Raiffeisen Expert Tool), ist ein \Gls{Back-End} Service das Dienste für die verschiedensten \Gls{Front-End} Applikationen des Unternehmens bereitstellt. Unter altem Namen bot die Applikation früher eine eigene Benutzeroberfläche und weniger, dafür spezifischere, Funktionalität. RETo war im Intranet der Fillialen im Einsatz und wurde ausschließlich für Kundenberatungen eingesetzt. Die Applikation hatte folgende Kernkompetenzen:
 
 \begin{itemize}
 \item Ermittlung von Anlegerprofilen
@@ -55,19 +55,19 @@ Während der Wartungsphase des Systems gibt es einen Test-Verantwortlichen. Dies
 \end{figure}
 
 
-Auf Seiten der Entwickler, also im Scrum-Team, gibt es keinen dedizierten Tester. Im Entwicklungszyklus fixiert sind nur Unit-Tests. Außerdem werden vom Test-Verantwortlichen auch den Entwicklern manuelle Testfälle zugewiesen, die im Rahmen des Integrationstests durchgeführt werden.
+Auf Seiten der Entwickler, also im Scrum-Team, gibt es keinen dedizierten Tester. Im Entwicklungszyklus sind nur Unit-Tests fixiert. Außerdem werden vom Test-Verantwortlichen auch den Entwicklern manuelle Testfälle zugewiesen, die im Rahmen des Integrationstests durchgeführt werden.
 
 \subsubsection{Erkannte Schwachstellen in der Qualitätssicherung}
 \label{sec:schwachstellen_raiffeisen}
-Für diese Fallstudie wurden Interviews mit dem leitenden Architekten der Applikation, einem Entwickler, einer Business-Analystin und einem Testverantwortlichen geführt. Die hier dargestellten Punkte stellen eine Zusammenfassung aller gesammelten Meinungen dar.\\
+Für diese Fallstudie wurden Interviews mit dem leitenden Architekten der Applikation, einem Entwickler, einer Business-Analystin und einem Testverantwortlichen geführt.\todo{Müssen wir mit Mario abklären, kann sein das die Interviews in die Arbeit aufgenommen werden müssen, oder wir formulieren das um.} Die hier dargestellten Punkte stellen eine Zusammenfassung aller gesammelten Meinungen dar.\\
 \begin{itemize}
-\item \textbf{Zuständigkeitsbereiche sind nicht klar kommuniziert:} An den Softwareprojekten sind verschiedenste Teams beteiligt. Dazu zählen die langzeitigen Projektmitglieder aus dem Entwicklungsteam, Business-Analysten und Fachbereich aber auch punktuell beteiligte Teams. Außerdem gibt es Teams die als Dienstleister am Projekt beteiligt sind und beispielsweise Lasttests durchführen. Zwischen den Teams gibt es definierte Kommunikationspunkte. Beispielsweise stellt das Team der Business-Analysten den Scrum Product Owner. Dieser fungiert als Schnittstelle und synchronisiert Anliegen beider Parteien. Bei so vielen Beteiligten ist es schwer den Überblick über Zuständigkeitsbereiche und Tätigkeitsfelder zu behalten. Nicht alle Prozesse der miteinander arbeitenden Teams sind dem Gegenüber bekannt. Dies ist meist auch nicht nötig, aber in manchen Fällen hilft es, die eigenen Anstrengungen besser aufeinander abzustimmen.
-\item \textbf{Unsaubere Trennung der Verantwortlichkeiten:} Die vielen beteiligten Parteien haben allesamt einen Aufgabenbereich. Über die Länge des Projekts gesehen gibt es aber offene Punkte, die nicht klar einem Zuständigkeitsbereich zugeordnet sind. Beim Thema Testing führen zum Beispiel Business-Analysten manuelle Regressionstests aus und die Fachbereiche führen in niedrigerer Frequenz manuelle Abnahmetests durch. All diese Anstrengungen sind aber nicht koordiniert mit der Qualitätssicherung die von den Entwicklern vorgenommen wird.
+\item \textbf{Zuständigkeitsbereiche sind nicht klar kommuniziert:} An den Softwareprojekten sind verschiedenste Teams beteiligt. Dazu zählen die langzeitigen Projektmitglieder aus dem Entwicklungsteam, Business-Analysten und Fachbereich aber auch punktuell beteiligte Teams. Außerdem gibt es Teams die als Dienstleister am Projekt beteiligt sind und beispielsweise Lasttests durchführen. Zwischen den Teams gibt es definierte Kommunikationspunkte. Beispielsweise stellt das Team der Business-Analysten den Product Owner. Dieser fungiert als Schnittstelle und synchronisiert Anliegen beider Parteien. Bei so vielen Beteiligten ist es schwer den Überblick über Zuständigkeitsbereiche und Tätigkeitsfelder zu behalten. Nicht alle Prozesse der miteinander arbeitenden Teams sind dem Gegenüber bekannt. Dies ist meist auch nicht nötig, aber in manchen Fällen hilft es, die eigenen Anstrengungen besser aufeinander abzustimmen.
+\item \textbf{Unsaubere Trennung der Verantwortlichkeiten:} Die vielen beteiligten Parteien haben allesamt einen Aufgabenbereich. Über die Länge des Projekts gesehen gibt es aber offene Punkte, die nicht klar einem Zuständigkeitsbereich zugeordnet sind. Zum Beispiele werden von Business-Analysten manuelle Regeressionstest ausgeführt und die Fachbereichen führen in niedrigerer Frequenz manuelle Abnahmetests durch. All diese Anstrengungen sind aber nicht mit der Qualitätssicherung koordiniert, die von den Entwicklern vorgenommen wird.
 \item \textbf{Spezifikationen haben keine einheitliche Form:} Die Definition von User-Storys und den dazugehörigen \Gls{COS} geschieht nach keinem durchgängigen Muster. Auch die Anzahl und das Design der \Gls{COS} selbst ist innerhalb des Projekts unterschiedlich. Das fachliche Testfalldesign ist nicht transparent. Unsystematische Tests können zulassen, dass gravierende Fehler im \Gls{SUT} nicht aufgedeckt werden.
 \end{itemize}
 
 \subsubsection{Verbesserungspotenzial}
-Die oben erwähten Schwächen, die Einfluss auf die Qualitätssicherung haben, könnten folgendermaßen verbessert werden:
+Die oben erwähten Schwächen, die Einfluss auf die Qualitätssicherung haben, könnten folgendermaßen verbessert \todo{Feedback einarbeiten, können auf Grund der Erfahrung des Autors, oder Vorschläge der interviewten Personen, ... oder nach Literatur ... }werden:
 
 \begin{itemize}
 \item \textbf{Mehr Kommunikation über Teamgrenzen hinweg:} Während der Fallstudie wäre es von Vorteil gewesen früher zu wissen, dass der Fachbereich zwingend \Gls{COS}-Tabellen für ihre Abnahmetests vorschreibt. In welcher Form Abnahmetests im Detail gemacht werden ist auf Seiten der Entwickler nicht ganz klar. Es handelt sich hierbei also um Kommunikationshürden die die Gesamtheit des Projekts betreffen und durch optimierten Informationsfluss beseitigt werden müssen.
@@ -91,8 +91,8 @@ In der Domäne der Finanzapplikationen ist es üblich, dass eine Vielzahl von Da
 
 \subsection{ModelJUnit}
 \label{sec:modeljunit}
-ModelJUnit wird von Dr. Mark Utting et al. an der Universität Waikato in Neuseeland entwickelt. Es wird unter der Open Source GNU GPL Lizenz entwickelt und befindet sich zur Zeit in der Version 2.5 \footnote{Homepage des Tools ModelJUnit \url{http://www.cs.waikato.ac.nz/~marku/mbt/modeljunit/}}. Es erlaubt die Modellierung des \Gls{SUT} als endlichen Automaten (siehe Abschnitt \ref{sec:fsm} für eine Einführung in endliche Maschinen) in Java, Generierung von Testfällen laut spezifiziertem Traversierungsalgorithmus sowie Reporting. Seit Version 2.0 bietet das Werkzeug eine grafische Benutzeroberfläche, die die Traversierungskonfiguration ermöglicht und veranschaulicht.\\
-ModelJUnit hat Ähnlichkeiten zu Graphwalker (siehe Abschnitt \ref{sec:graphwalker}) indem es eine Schicht zur Modellierung anbietet und die Traversierung des \gls{SUT} übernimmt, aber keine Aussage darüber trifft wie das \gls{SUT} angesprochen werden soll. Der Adapter-Code wird also in annotierte Methoden eingefügt. ModelJUnit übernimmt die Traversierung. Das Modell, welches keine grafische Notation bietet, besteht aus Zuständen und Übergängen. Dies entspricht einem gerichteten Graphen. Die Zustände und Knoten haben Bezeichner. Außerdem können auf den Kanten sogenannte \textit{Guards} definiert werden. Dies sind WahrFalsch-Methoden, die bestimmen ob zu einem gegebenen Zeitpunkt diese Kante zur Traversierung verfügbar ist oder nicht. Der Testentwickler hat fast unbegrenzte Möglichkeiten Guard-Bedingungen zu überprüfen, da es sich um Java-Code handelt.
+ModelJUnit wird von Dr. Mark Utting et al. an der Universität Waikato in Neuseeland entwickelt. Es wird unter der Open Source GNU GPL Lizenz entwickelt und befindet sich zur Zeit in der Version 2.5 \footnote{Homepage des Tools ModelJUnit \url{http://www.cs.waikato.ac.nz/~marku/mbt/modeljunit/}}. Es erlaubt die Modellierung des \Gls{SUT} als endlichen Automaten (siehe Abschnitt \ref{sec:fsm} für eine Einführung in endliche Maschinen) in Java, Generierung von Testfällen laut spezifiziertem Traversierungsalgorithmus sowie Reporting\todo{Auswertungen, Berichte}. Seit Version 2.0 bietet das Werkzeug eine grafische Benutzeroberfläche, die die Traversierungskonfiguration ermöglicht und veranschaulicht.\\
+ModelJUnit hat Ähnlichkeiten zu Graphwalker (siehe Abschnitt \ref{sec:graphwalker}) indem es eine Schicht zur Modellierung anbietet und die Traversierung des \gls{SUT} übernimmt, aber keine Aussage darüber trifft wie das \gls{SUT} angesprochen werden soll. Der Adapter-Code wird also in annotierte Methoden eingefügt. ModelJUnit übernimmt die Traversierung. Das Modell, welches keine grafische Notation bietet, besteht aus Zuständen und Übergängen, dies entspricht einem gerichteten Graphen. Die Zustände und Knoten haben Bezeichner, außerdem können auf den Kanten sogenannte \textit{Guards} definiert werden. Dies sind WahrFalsch-Methoden, die bestimmen ob zu einem gegebenen Zeitpunkt diese Kante zur Traversierung verfügbar ist oder nicht. Der Testentwickler hat fast unbegrenzte Möglichkeiten Guard-Bedingungen zu überprüfen, da es sich um Java-Code handelt.
 
 \subsubsection{Modellierung der States}
 Jedes Modell wird als Java-Klasse definiert. Eine gültige ModelJUnit Modell-Klasse implementiert mindestens die folgenden vier Zustände. 
@@ -124,7 +124,7 @@ Das Modell wird zufällig traversiert bis ein Zielknoten erreicht wurde oder ein
 Die Greedy Walk Strategie ist eine Erweiterung des Random Walks. Sie bevorzugt Zustandsübergänge, die noch nicht traversiert wurden. Sobald alle Zustandsübergänge mindestens einmal traversiert wurden, verhält sich Greedy Walk wie Random Walk.
 
 \paragraph{Lookahead Walk}
-Der Lookahead Walk Algorithmus schaut vor jedem Schritt $n$ Ebenen voraus. Drei Kriterien werden dabei ausgewertet: \textit{NEWTRANS}, \textit{NEWACTION} und \textit{DEPTH}. Das Erreichen eines noch unbekannten Zustandes hat die höchste Priorität wobei ein kurzer Pfad vorzuziehen ist. Außerdem verlieren öfter traversierte Pfade an Attraktivität.
+Der Lookahead Walk Algorithmus schaut vor jedem Schritt $n$ Ebenen voraus. Drei Kriterien werden dabei ausgewertet: \textit{NEWTRANS}, \textit{NEWACTION} und \textit{DEPTH}. Das Erreichen eines noch unbekannten Zustandes hat die höchste Priorität, wobei ein kurzer Pfad vorzuziehen ist. Außerdem verlieren öfter traversierte Pfade an Attraktivität\todo{Feedback einarbeiten, warum verlieren diese Pfade an Attaktivität}.
 
 \paragraph{Quick Walk}
 Traversiert den Graphen ähnlich wie Random Walk, speichert aber in einem Cache die entdeckten aber noch nicht traversierten Pfade. Außerdem speichert der Algorithmus den exakten Pfad zu jedem nicht besuchten Knoten und dessen Pfade. Ein Cache-Limit muss angegeben werden um bei sehr großen Modellen vor Überlauf geschützt zu sein.
@@ -208,7 +208,8 @@ Im Gegensatz zu herkömmlichen Desktop-Applikationen aus einer Hand können SOA 
 \item Web-Services sollen einzeln getestet werden können. Dies ermöglicht nicht nur eine gewisse Modularität, die zu einer hohen Testgeschwindigkeit beiträgt sondern erleichtert auch die Fehlersuche bei einem negativen Testdurchlauf.
 \end{itemize}
 
-Web-Services müssen \textit{mehrdimensional} getestet werden \cite{_model-driven_2007}. Das bedeutet ein modellbasierter Testfall soll alle Port Types, die der Service zur Verfügung stellt, kombiniert mit allen Operationen, die jeder Port Type anbietet, prüfen. Als Testdaten müssen die Äquivalenzklassen aller Datentypen, die der Web-Service anbietet, identifiziert werden.
+Web-Services müssen \textit{mehrdimensional} getestet werden \cite{_model-driven_2007}. Das bedeutet ein modellbasierter Testfall soll alle Port Types, die der Service zur Verfügung stellt, kombiniert mit allen Operationen, die jeder Port Type anbietet, prüfen. Die Äquivalenzklasser aller Datentypen, die der Service bietet müssen als Testdaten identifiziert werden. 
+%Als Testdaten müssen die Äquivalenzklassen aller Datentypen, die der Web-Service anbietet, identifiziert werden.
 
 \subsubsection{Beispielhafte Testsuite eines SOA Web-Services}
 In diesem Beispiel wird ein Service einer Bücherei oder einer Buchhandlung herangezogen. Einfachheitshalber bietet dieser Service nur einen Port Type (\texttt{LibraryService}) an. Auf diesem werden drei Operationen angeboten (\texttt{search, reserve, fetch}). Die Abbildungen \ref{fig:utp_config} und \ref{fig:utp_case} stellen das Testsystem dar. Ein Client kann ein Element aus dieser Bücherei also suchen und basierend auf seinem Status-Parameter handeln. Das Element kann sofort verfügbar, später verfügbar und nicht lokal verfügbar sein.\\
@@ -228,10 +229,10 @@ Zum Zeitpunkt dieser Arbeit gibt es kein Werkzeug welches die automatische Gener
 \centering
 \begin{tabular}
 { | l |p{9cm}|} \hline
-\textbf{UTP} & \textbf{JUnit} \\ \hline \Gls{SUT}                       & Kein direktes Mapping nötig. Jede Klasse im \textit{Classpath} kann angesprochen und getestet werden   \\ \hline
+\textbf{UML Testing Profile} & \textbf{JUnit} \\ \hline \Gls{SUT}                       & Kein direktes Mapping nötig. Jede Klasse im \textit{Classpath} kann angesprochen und getestet werden   \\ \hline
 Kontext                   & Kein direktes Mapping. JUnit kann auf den realen Kontext des \Gls{SUT} zugreifen. Aufwände außerhalb der JUnit-Programmierung sind nötig um alternative Konfigurationen zu testen \\ \hline
 Ablauf         			  & JUnit bietet die Klasse \textit{org.junit.runner.Runner} um feingradige Einstellungen am Testablauf zu machen. \\ \hline
-Scheduler                  & Alle vom Java-Umfeld bereitgestellten Möglichkeiten des Shedulings sind einsetzbar (auch \textit{org.junit.runner.Runner} bietet Scheduling-Optionen) \\ \hline
+Zeitplanung (Scheduler)   & Alle vom Java-Umfeld bereitgestellten Möglichkeiten der Scheduler sind einsetzbar (auch \textit{org.junit.runner.Runner} bietet Scheduler-Optionen) \\ \hline
 Test configuration        & Implizit gegeben in JUnit, durch die direkte Einbindung der Klassen die getestet werden. \\ \hline
 Test objective            & Dieses Konzept bietet JUnit nicht. Methoden können höchstens mit entsprechenden Kommentaren versehen werden.\\ \hline
 Test case                 & Eine Methode die mit der Annotation \textit{@Test} versehen ist. \\ \hline
@@ -242,23 +243,23 @@ Defaults                  & JUnit bietet keinen vergleichbaren Mechanismus.  \\ 
 Validation action         & Validation Actions mappen auf die vielfältigen Methoden der Klasse \textit{org.junit.Assert} \\ \hline
 Stimulus and observation  & Keine entsprechende Funktionalität in JUnit. \\ \hline
 Logging concepts          & Im Java-Umfeld gibt es verschiedenste Logging-Frameworks die mit JUnit verwendet werden können. \\ \hline
-Testdatenmanagement: Data pools & \textbf{Es sind keine entsprechenden Konzepte in JUnit eingebaut.} \\ \hline
-Testdatenmanagement: Wildcards  & Es sind keine entsprechenden Konzepte in JUnit eingebaut.\\ \hline
-Timer                     & Es sind keine entsprechenden Konzepte in JUnit eingebaut. \\ \hline
-Timezone                  & Es sind keine entsprechenden Konzepte in JUnit eingebaut. \\ \hline
+Testdatenmanagement: Data pools & \textbf{Es sind keine entsprechenden Konzepte in JUnit vorhanden.} \\ \hline
+Testdatenmanagement: Wildcards  & Es sind keine entsprechenden Konzepte in JUnit vorhanden.\\ \hline
+Timer                     & Es sind keine entsprechenden Konzepte in JUnit vorhanden. \\ \hline
+Timezone                  & Es sind keine entsprechenden Konzepte in JUnit vorhanden. \\ \hline
 Deployment       & JUnit fügt sich im Deployment Prozess sehr gut ein. \\ \hline
 \end{tabular}
-\caption{Mapping von UTP zu JUnit}
+\caption{Mapping von UML Testing Profile zu JUnit}
 \label{table:utp_mapping}
 \end{table}
 
 \Gls{UTP} wurde entwickelt um mit JUnit zusammenzuspielen \cite{_model-driven_2007}. Tatsächlich lassen sich viele Konzepte gut von UTP-Modellen nach JUnit übertragen. Gleichzeitig hat die Ausführung von UTP-Testfällen in JUnit gravierende Schwächen:
 
 \paragraph{Manuelles Mapping} Es hat sich in den Jahren seit das \Gls{UML} Test Profile veröffentlicht wurde keine Community um die Nutzung und Entwicklung von Software gebildet, die \Gls{UTP} einschließt. Die Eigenentwicklung eines JUnit-Testfallgenerators kann im Umfeld von großen Softwareprojekten sinnvoll sein. Gleichzeitig bleibt der Aufwand um den sogenannten \textit{Adapter Code} zu schreiben (also die Implementierungsdetails innerhalb der Testmethoden).\\
-Jedenfalls können durch einen manuellen Eingriff neue Fehler entstehen. Ein Modell mittels Testfällen umzusetzen ist kein trivialer Vorgang und erfordert genaue Kenntnisse des Frameworks sowie des \Gls{SUT}. Ob sich die Modellierung und die Aufwände für die Umsetzung in JUnit-Testfällen lohnt, lässt sich schwer feststellen. Faktisch bietet die Modellierung als \Gls{UTP} Diagramm zwar strukturierte Testfälle (verglichen mit der Ad-Hoc Entwicklung von JUnit-Testfällen) aber keine weiteren Qualitätsmetriken. Entwicklungsumgebungen und statische Code-Analyse Werkzeuge können die Abdeckung von JUnit-Testfällen eruieren, diese sollte in agilen Softwareprojekten aber ohnehin schon sehr hoch sein. Ein modellbasierter Ansatz mit massiven manuellen Eingriffen kann hier wenig belegbare Qualitätsvorteile schaffen.
+Jedenfalls können durch einen manuellen Eingriff neue Fehler entstehen. Ein Modell mittels Testfällen umzusetzen ist kein trivialer Vorgang und erfordert genaue Kenntnisse des Frameworks sowie des \Gls{SUT}. Ob sich die Modellierung und die Aufwände für die Umsetzung in JUnit-Testfällen lohnt, lässt sich schwer feststellen\todo{Behauptung ohne Beweis, Du kannst auch schreiben im Rahmen der Arbeit hat sich herauskristallisiert .....}. Faktisch bietet die Modellierung als \Gls{UTP} Diagramm zwar strukturierte Testfälle (verglichen mit der Ad-Hoc Entwicklung von JUnit-Testfällen) aber keine weiteren Qualitätsmetriken. Entwicklungsumgebungen und statische Code-Analyse Werkzeuge können die Abdeckung von JUnit-Testfällen eruieren, diese sollte in agilen Softwareprojekten aber ohnehin schon sehr hoch sein. Ein modellbasierter Ansatz mit massiven manuellen Eingriffen kann hier wenig belegbare Qualitätsvorteile schaffen.
 
 \paragraph{Keine Unterstützung der Testdatenmangementkonzepte}
-Vor allem das \textit{Data Pool} Konzept von \Gls{UTP} ist eine Notwendigkeit für datenintensive Applikationen. Datengetriebene Testfälle müssen durch ein flexibles und zuverlässiges Konzept gestützt werden. Auch hier müsste eine Eigenentwicklung gemacht werden. Diese ist aber nicht nur aufwendig sondern es stellt sich auch die Frage der Zukunftssicherheit. Kann das Modul zum Testdatenmanagement mit anderen Technologien verwendet werden oder ist es zu stark auf \Gls{UTP} zugeschneidert?
+Vor allem das \textit{Data Pool} Konzept von \Gls{UTP} ist eine Notwendigkeit für datenintensive Applikationen. Datengetriebene Testfälle müssen durch ein flexibles und zuverlässiges Konzept gestützt werden. Auch hier müsste eine Eigenentwicklung gemacht werden. Diese ist aber nicht nur aufwendig sondern es stellt sich auch die Frage der Zukunftssicherheit. Kann das Modul zum Testdatenmanagement mit anderen Technologien verwendet werden oder ist es zu stark auf \Gls{UTP} zugeschnitten?
 
 \subsection{Schnittstellentests mit Graphwalker}
 \label{sec:graphwalker}
