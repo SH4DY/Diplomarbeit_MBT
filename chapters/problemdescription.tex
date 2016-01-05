@@ -221,7 +221,7 @@ Anhand von diesem einfachen Beispiel wird sichtbar, dass das \Gls{UML} Testing P
 \subsubsection{Ausführung von UTP Tests mittels JUnit}
 Agile Praktiken haben die Wahrnehmung der Wichtigkeit des Komponententest erhöht \cite{_model-driven_2007}. Ansätze wie \gls{Test-First} sind in diesem Umfeld besonders populär und der klassische Komponententest spielt dabei eine zentrale Rolle. Die Grundlagen des Komponententest werden im Abschnitt \ref{sec:unit_test} erläutert.\\
 
-Zum Zeitpunkt dieser Arbeit gibt es kein Werkzeug welches die automatische Generierung von JUnit-Testfällen aus UTP-Modellen erlaubt. Das bedeutet, um \Gls{MBT} basierend auf UTP-Modellen in einem realen Umfeld zu betreiben, muss das Mapping manuell gemacht werden. \citeauthor{_model-driven_2007} schlagen dabei, die in Tabelle \ref{table:utp_mapping} beschriebene Vorgehensweise vor \cite{_model-driven_2007}:
+Zum Zeitpunkt dieser Arbeit gibt es kein Werkzeug welches die automatische Generierung von JUnit-Testfällen aus \Gls{UTP}-Modellen erlaubt. Das bedeutet, um \Gls{MBT} basierend auf \Gls{UTP}-Modellen in einem realen Umfeld zu betreiben, muss das Mapping manuell gemacht werden. \citeauthor{_model-driven_2007} schlagen dabei, die in Tabelle \ref{table:utp_mapping} beschriebene Vorgehensweise vor \cite{_model-driven_2007}:
 
 \todo[inline]{
 	In der Tabelle mit den Begriffen aufpassen Englisch - Deutsch eventuell deutsche Begriffe verwenden und die englischen in Klammer dazu}
@@ -254,7 +254,7 @@ Deployment       & JUnit fügt sich im Deployment Prozess sehr gut ein. \\ \hlin
 \label{table:utp_mapping}
 \end{table}
 
-\Gls{UTP} wurde entwickelt um mit JUnit zusammenzuspielen \cite{_model-driven_2007}. Tatsächlich lassen sich viele Konzepte gut von UTP-Modellen nach JUnit übertragen. Gleichzeitig hat die Ausführung von UTP-Testfällen in JUnit gravierende Schwächen:
+\Gls{UTP} wurde entwickelt um mit JUnit zusammenzuspielen \cite{_model-driven_2007}. Tatsächlich lassen sich viele Konzepte gut von \Gls{UTP}-Modellen nach JUnit übertragen. Gleichzeitig hat die Ausführung von \Gls{UTP}-Testfällen in JUnit gravierende Schwächen:
 
 \paragraph{Manuelles Mapping} Es hat sich in den Jahren seit das \Gls{UML} Test Profile veröffentlicht wurde keine Community um die Nutzung und Entwicklung von Software gebildet, die \Gls{UTP} einschließt. Die Eigenentwicklung eines JUnit-Testfallgenerators kann im Umfeld von großen Softwareprojekten sinnvoll sein. Gleichzeitig bleibt der Aufwand um den sogenannten \textit{Adapter Code} zu schreiben (also die Implementierungsdetails innerhalb der Testmethoden).\\
 Jedenfalls können durch einen manuellen Eingriff neue Fehler entstehen. Ein Modell mittels Testfällen umzusetzen ist kein trivialer Vorgang und erfordert genaue Kenntnisse des Frameworks sowie des \Gls{SUT}. Ob sich die Modellierung und die Aufwände für die Umsetzung in JUnit-Testfällen lohnt, lässt sich schwer feststellen\todo{Behauptung ohne Beweis, Du kannst auch schreiben im Rahmen der Arbeit hat sich herauskristallisiert .....}. Faktisch bietet die Modellierung als \Gls{UTP} Diagramm zwar strukturierte Testfälle (verglichen mit der Ad-Hoc Entwicklung von JUnit-Testfällen) aber keine weiteren Qualitätsmetriken. Entwicklungsumgebungen und statische Code-Analyse Werkzeuge können die Abdeckung von JUnit-Testfällen eruieren, diese sollte in agilen Softwareprojekten aber ohnehin schon sehr hoch sein. Ein modellbasierter Ansatz mit massiven manuellen Eingriffen kann hier wenig belegbare Qualitätsvorteile schaffen.
