@@ -96,10 +96,7 @@ Aus dem Projektmanagement ist das magische Dreieck \cite{sapper_kriterien_2007} 
 
 
 \subsection{Testprozess}
-Mit der ständig wachsenden Wichtigkeit und Komplexität moderner Software ist es nötig, Testaktivitäten als eigenständigen und professionell geplanten Prozess zu sehen, der dem Entwicklungsprozess ebenbürtig ist \cite{grechenig_softwaretechnik:_2010}. \citeauthor{grechenig_softwaretechnik:_2010} beschreibt den Testprozess als zyklische Aneinanderreihung von bestimmten Aktivitäten, die bis zu 50\% der Entwicklungskosten ausmachen.
-
-\todo[inline]{Einleitung fehlt zum beispiel:}
-Nach ISTQB \cite{graham_foundations_2008} sind folgendende Phasen im Test definiert:
+Mit der ständig wachsenden Wichtigkeit und Komplexität moderner Software ist es nötig, Testaktivitäten als eigenständigen und professionell geplanten Prozess zu sehen, der dem Entwicklungsprozess ebenbürtig ist \cite{grechenig_softwaretechnik:_2010}. \citeauthor{grechenig_softwaretechnik:_2010} beschreibt den Testprozess als zyklische Aneinanderreihung von bestimmten Aktivitäten, die bis zu 50\% der Entwicklungskosten ausmachen:
 
 \paragraph{Testziele} Definierte Zustände, die als Kriterien zur Bewertung von Gelingen und Misslingen eines Testdurchlaufs dienen. Dazu zählt auch eine genaue Beschreibung der Testobjekte (Systeme, Umsysteme, Klassen, Methoden, Schnittstellen etc.), welche am Test beteiligt sind. Außerdem gelten Testziele nur für eine genau definierte Testumgebung. In Abschnitt \ref{sec:teststufen} \nameref{sec:teststufen} sind die genannten Testumgebungen ebenfalls von Bedeutung.
 
@@ -157,23 +154,26 @@ Die folgenden Teststufen sollen eine möglichst hohe Softwarequalität sicherste
 
 \subsubsection{Komponententest}
 \label{sec:unit_test}
-In der ersten Teststufe des V-Modells werden die kleinsten Softwarebausteine einer systematischen Prüfung unterzogen. Abhängig von der verwendeten Programmiersprache sind diese kleinsten Bausteine Module oder Klassen. Oft spricht man auch von Unit-Tests.\\
+In der ersten Teststufe des V-Modells werden die kleinsten Softwarebausteine einer systematischen Prüfung unterzogen. Abhängig von der verwendeten Programmiersprache sind diese kleinsten Bausteine Module oder Klassen \footnote{Auch in der deutschen Literatur wird immer öfter von \textit{Unit-Tests} gesprochen.}.\\
 Komponententests zeichnen sich außerdem durch die zeitliche Nähe zur Programmierung aus. Sie werden üblicherweise direkt vor oder nach der Programmierung einer Komponente verfasst. Der Komponententest unterscheidet sich vom Integrationstest durch seine Isolation. Das bedeutet, die Funktionalität jeder Komponente wird ohne Ein- oder Zugriffe anderer Komponenten getestet. Dies hat den Zweck, dass ein Fehlverhalten auf die Komponente selbst zurückgeführt werden kann und fehlerhafte Einwirkung von außen ausgeschlossen werden kann.\\
 Der Komponententest gehört zur Kategorie der White-Box Tests (siehe Abschnitt \ref{sec:sicht} \nameref{sec:sicht}). Der Tester muss Zugriff auf den Quellcode des Programms haben, weil die kleinsten Softwarebausteine keine Schnittstelle nach außen haben. Deshalb liegt es nahe, dass Komponententests von den Entwicklern selbst geschrieben werden.
 
 \paragraph{Testziele auf Komponententestebene}
-Oberstes Ziel der Komponententests ist die Sicherstellung, dass jede Komponente ihre spezifizierte Funktionalität fehlerfrei erfüllt. Funktionalität ist dabei gleichbedeutend mit dem Ein-/Ausgabe-Verhalten des Testobjekts \cite{spillner_basiswissen_2012}. Die Hauptziele für den Komponententest sind die folgenden drei:\\
+Oberstes Ziel der Komponententests ist die Sicherstellung, dass jede Komponente ihre spezifizierte Funktionalität fehlerfrei erfüllt. Funktionalität ist dabei gleichbedeutend mit dem Ein-/Ausgabe-Verhalten des Testobjekts. Die Hauptziele für den Komponententest sind, laut \citeauthor{spillner_basiswissen_2012}, die folgenden drei \cite{spillner_basiswissen_2012}:
 
-\subparagraph{Robustheit} Weil Komponenten in modernen Softwaresystemen mit einer Vielzahl von anderen Komponenten innerhalb des Systems und sogar außerhalb des Systems arbeiten müssen, muss sichergestellt werden, dass Fehlersituationen abgefangen und sinnvoll kommuniziert werden. Diese Eigenschaft wird Robustheit genannt. Um Robustheit bewerten zu können werden Eingabedaten gemacht, die bewusst zu einem Fehlverhalten führen (Negativtests). Die Ausgabewerte werden dann auf eine angemessene Ausnahmebehandlung geprüft (\textit{exception handling}). Erstens ist es wichtig, dass überhaupt Ausnahmen gemeldet werden und ein Fehlverhalten nicht stillschweigend weitergereicht wird. Dieser Umstand kann weitreichende Folgen haben und zu schwer nachvollziehbaren Fehlern führen. Zweitens wird die Qualität der Ausnahmebehandlung bewertet. Diese muss möglichst aussagekräftig und isolierend sein.
+\begin{itemize}
 
-\subparagraph{Effizienz} Die Effizienz gibt an, wie wirtschaftlich die Komponente mit den verfügbaren Rechnerressourcen umgeht \cite{spillner_basiswissen_2012}. Dazu zählen Metriken wie Laufzeiten, Speicherplatzverbrauch und Reaktionszeiten. Effizienz kann sehr genau gemessen werden, es ist aber nur in wenigen Fällen sinnvoll sich auf genaue Werte zu fixieren. Auf jeden Fall sollen aber Forderungen in den Spezifikationen gemessen und eingehalten werden.
+\item \textbf{Robustheit} Weil Komponenten in modernen Softwaresystemen mit einer Vielzahl von anderen Komponenten innerhalb des Systems und sogar außerhalb des Systems arbeiten müssen, muss sichergestellt werden, dass Fehlersituationen abgefangen und sinnvoll kommuniziert werden. Diese Eigenschaft wird Robustheit genannt. Um Robustheit bewerten zu können werden Eingabedaten gemacht, die bewusst zu einem Fehlverhalten führen (Negativtests). Die Ausgabewerte werden dann auf eine angemessene Ausnahmebehandlung geprüft (\textit{exception handling}). Erstens ist es wichtig, dass überhaupt Ausnahmen gemeldet werden und ein Fehlverhalten nicht stillschweigend weitergereicht wird. Dieser Umstand kann weitreichende Folgen haben und zu schwer nachvollziehbaren Fehlern führen. Zweitens wird die Qualität der Ausnahmebehandlung bewertet. Diese muss möglichst aussagekräftig und isolierend sein.
 
-\subparagraph{Wartbarkeit}
-Die Wartbarkeit eines Systems beschreibt dessen Fähigkeit verändert, oder weiterentwickelt zu werden. Bezogen auf Komponententests, soll Wartbarkeit nur getestet werden, wenn explizite Anforderungen in der Spezifikation des Systems gemacht wurden. Bei der Prüfung der Wartbarkeit auf Komponentenebene gilt es folgende Punkte zu evaluieren: Codestruktur, Modularität, Kommentierung des Codes sowie Lesbarkeit des Codes. Diese Aspekte lassen sich nur unzureichend durch automatische Methoden testen. Allen voran ist das manuelle Code-Review hier am wichtigsten \cite{spillner_basiswissen_2012}.
+\item \textbf{Effizienz} Die Effizienz gibt an, wie wirtschaftlich die Komponente mit den verfügbaren Rechnerressourcen umgeht. Dazu zählen Metriken wie Laufzeiten, Speicherplatzverbrauch und Reaktionszeiten. Effizienz kann sehr genau gemessen werden, es ist aber nur in wenigen Fällen sinnvoll sich auf genaue Werte zu fixieren. Auf jeden Fall sollen aber Forderungen in den Spezifikationen gemessen und eingehalten werden.
+
+\item \textbf{Wartbarkeit} Die Wartbarkeit eines Systems beschreibt dessen Fähigkeit verändert, oder weiterentwickelt zu werden. Bezogen auf Komponententests, soll Wartbarkeit nur getestet werden, wenn explizite Anforderungen in der Spezifikation des Systems gemacht wurden. Bei der Prüfung der Wartbarkeit auf Komponentenebene gilt es folgende Punkte zu evaluieren: Codestruktur, Modularität, Kommentierung des Codes sowie Lesbarkeit des Codes. Diese Aspekte lassen sich nur unzureichend durch automatische Methoden testen. Allen voran ist das manuelle Code-Review hier am wichtigsten.
+
+\end{itemize}
 
 \subsubsection{Integrationstest}
-Im V-Modell folgt der Integrationstest dem Komponententest. Es kann also davon ausgegangen werden, dass einzelne Komponenten bereits getestet wurden. Im Mittelpunkt des Integrationstests steht das korrekte Zusammenspiel zwischen mehreren Komponenten. Diese Integration von Komponenten erfolgt meist in mehreren Etappen bevor alle Komponenten im Gesamtsystem zusammenarbeiten sollen.\\
-Auch Schnittstellen zu Systemumgebungen sollen im Rahmen der Integrationstests gemacht werden. Werden Schnittstellen zu externen Softwaresystemen getestet, wird auch von einem Systemintegrationstest gesprochen \cite{spillner_basiswissen_2012}. Auch eingekaufte Komponenten, wie Datenbanksysteme, werden nicht als Teil von Komponententests überprüft, sehr wohl aber beim Integrationstesting.
+Im V-Modell folgt der Integrationstest dem Komponententest. Es kann also davon ausgegangen werden, dass einzelne Komponenten bereits getestet wurden. Im Mittelpunkt des Integrationstests steht das korrekte Zusammenspiel zwischen mehreren Komponenten. Das Zusammenfügen von Komponenten erfolgt meist in mehreren Etappen bevor alle Komponenten im Gesamtsystem zusammenarbeiten sollen.\\
+Auch Schnittstellen zu Systemumgebungen sollen im Rahmen der Integrationstests gemacht werden. Werden Schnittstellen zu externen Softwaresystemen getestet, wird auch von einem Systemintegrationstest gesprochen. Auch eingekaufte Komponenten, wie Datenbanksysteme, werden nicht als Teil von Komponententests überprüft, sehr wohl aber beim Integrationstesting.
 
 \paragraph{Testziele auf Integrationstestebene}
 Einfach aufzudeckende Fehler im Integrationstest sind inkompatible Schnittstellen zwischen zwei Komponenten. Entweder waren diese nicht richtig spezifiziert oder eine der Komponenten hat sie nicht spezifikationskonform implementiert.\\
@@ -230,6 +230,7 @@ Außerdem beschreibt \citeauthor{linz_testing_2014} fünf Aktivitäten \cite{lin
 \item \textbf{Product Backlog Refinement} Beim Product Backlog Refinement wird der Produkt Backlog, modifiziert. Vorhandene Einträge werden anhand ihrer Priorität geordnet, neue Einträge hinzugefügt und Schätzung für die Einträge werden abgegeben.
 \end{itemize}
 
+\todo[color=red]{Print: Kein Umbruch vor Seitenende}
 In Scrum Projekten bestehen zumindest folgende drei Artefakte:
 
 \begin{itemize}
@@ -266,7 +267,7 @@ Deshalb schlagen \citeauthor{linz_testing_2014} in \cite{linz_testing_2014} eine
 \begin{figure}[h] 
   \centering
      \includegraphics[width=0.6\textwidth]{figures/mbt_unit.png}
-  \caption{Eine von \citeauthor{linz_testing_2014} erdachte Modellierung eines Gerätes, um dieses mittels dem \textit{object-state} Ansatz zu testen. Das Gerät startet in einem unbekannten Zustand und die Methode \texttt{set\_status()} kann diesen Status als einzige beeinflussen.}
+  \caption{Modell um mittels \textit{object-state}-Methode zu testen.}
   \label{fig:mbt_unit}
 \end{figure}
 
@@ -409,9 +410,7 @@ Im Bereich des modellbasierten Testens wird unterschieden zwischen Werkzeugen, d
 
 \subsection{Vergleich mit klassischen skriptbasierten Tests}
 In vielen industriellen Softwareprojekten, die über Jahre hinweg wachsen, ist irgendwann der Punkt erreicht an dem Ressourcen für manuelles Regressionstesting ein akzeptables Maß überschreiten \cite{graham_experiences_2012}. Manuelles Regressionstesting ist zeitintensiv und fehlerbehaftet \cite{utting_practical_2007}. Es liegt nahe die manuellen Regressiontests zu automatisieren. Es scheint als ob der Aufwand für die Erstellung dieser `stupiden' Testabläufe überschaubar wäre. Massive Ressourceneinsparungen auf lange Sicht wären die Folge. Oft stellt sich heraus, dass es mit dem initialen Aufwand für die Erstellung dieser Skripts nicht getan ist. Vor allem bei kurzen Iterationen in der agilen Softwareentwicklung werden die Wartungsaufwände für solche skriptbasierte Tests gerne unterschätzt \cite{graham_experiences_2012}.\\
-Die Abbildung \ref{fig:script_vs_mbt} zeigt die Aktivitäten die während skriptbasiertem und modellbasiertem Testen anfallen. Die weithin anerkannte Zertifizierungsstelle für Softwaretester, \Gls{ISTQB}, definiert einen Testprozess \cite{spillner_basiswissen_2012} der aus fünf Aktivitäten besteht: 
-
-\todo[inline]{Im Peer Review stand als nummer aufgelistet. Ich würde mich freuen wenn DU noch die Grafik vom ISTQB Prozess einbindest,ich kann Dir eine Vorlage schicken}
+Die Abbildung \ref{fig:script_vs_mbt} zeigt die Aktivitäten die während skriptbasiertem und modellbasiertem Testen anfallen. Die weithin anerkannte Zertifizierungsstelle für Softwaretester, \Gls{ISTQB}, definiert einen Testprozess \cite{spillner_basiswissen_2012} der aus fünf Aktivitäten besteht:
 
 \begin{enumerate}
 \item \textbf{Planung und Steuerung}: Die Teststrategie wird festgelegt. Das heißt Ressourcen wie benötigtes Personal, Werkzeuge und die Zeitplanung werden definiert. Über den gesamten Verlauf des Testprozesses wird, der Strategie folgend, steuernd eingegriffen.
@@ -424,7 +423,7 @@ Die Abbildung \ref{fig:script_vs_mbt} zeigt die Aktivitäten die während skript
 
 Beide Testmethodiken lassen sich anhand dieses Schemas vergleichen. Größtenteils gibt es Überschneidungen aber viele Aktivitäten unterscheiden sich im Detail. Der größte Unterschied ist das Wegfallen der Testfallerstellung und Testfallwartung. Anstelle dessen tritt die Modellierung des Systems und die Wartung des Modells. Ressourceneinsparungen mittels \Gls{MBT} gegenüber skriptbasiertem Testing werden möglich, wenn folgende zwei Aspekte gut gelöst werden: Die Modellierung des Systems geschieht auf angemessen abstrahierter Ebene und die Berührungspunkte mit dem \Gls{SUT} sind stark modularisiert \cite{utting_practical_2007}.\\
 Eine Aktivität, die es im skriptbasierten Test nicht gibt, ist die Wahl der Traversierungskriterien bzw. Abdeckungskriterien. Dadurch, dass es strikte Sequenzen gibt die das \Gls{SUT} durchläuft, fällt dieser Punkt gänzlich weg. Beim modellbasierten Testen ist es nicht unüblich, dass jeder Durchlauf unterschiedlich abläuft, abhängig vom Traversierungsalgorithmus und den randomisierten Komponenten, die dieser in sich trägt.\\
-Bei den Aktivitäten die sich gegenüber skriptbasiertem Testing geändert haben, ist vor allem die Modifikation der Teststrategie bzw. des Testplans im Detail hervorzuheben. Modellbasiertes Testen kann partiell im Projekt eingesetzt werden und ergänzt bestehende Tests. Welche Tests durch \Gls{MBT} ersetzt werden und wie die Ergebnisse dieser verifiziert werden sollen, muss aber wohl überlegt sein. Eine Teststrategie die \Gls{MBT} mit anderen Testmethodiken kombiniert wird im Resultatskapitel \ref{sec:results} präsentiert.\todo{ich würde wie vorgeschlagen den satz ersatzlos streichen}
+Bei den Aktivitäten die sich gegenüber skriptbasiertem Testing geändert haben, ist vor allem die Modifikation der Teststrategie bzw. des Testplans im Detail hervorzuheben. Modellbasiertes Testen kann partiell im Projekt eingesetzt werden und ergänzt bestehende Tests. Welche Tests durch \Gls{MBT} ersetzt werden und wie die Ergebnisse dieser verifiziert werden sollen, muss aber wohl überlegt sein.
 
 \begin{figure}[h] 
   \centering
@@ -474,9 +473,7 @@ Auch die übergangsorientierten Abdeckungskriterien gehören zur Familie der kon
 In der Praxis stellt sich für jedes Software-Projektteam die Frage, welche Teststrategie am effizientesten, in Bezug auf Qualität und Ressourcennutzung, ist. Manuelles Testen gilt in der Industrie immer noch als das am häufigsten eingesetzte Verfahren \cite{guldali_starthilfe_2010}, aber deren Wirksamkeit mindert sich mit steigender Komplexität der zu testenden Software. Skriptbasierte Testautomatisierungswerkzeuge kommen seit Jahren zum Einsatz. Durch die automatisierte Testausführung wird der Testprozess schnell und wiederholbar. Verglichen mit manuellen Tests sind skriptbasierte Tests zeitsparender und weniger fehleranfällig. Gleichzeitig müssen skriptbasierte Tests gewartet werden, was einen nicht unerheblichen Ressourcenaufwand bedeuten kann.\\
 Als Alternative dazu steht das modellbasierte Testen. Angelehnt an \citeauthor{guldali_starthilfe_2010} \cite{guldali_starthilfe_2010} folgen sieben Fragestellungen, die zu einer Entscheidung bezüglich der Sinnhaftigkeit des Einsatzes von \Gls{MBT} führen sollen. Abbildung \ref{fig:entscheidungshilfe_mbt} bringt einige dieser Fragen in eine Reihenfolge die eine Hilfestellung zur Entscheidung geben soll. Zuallererst gilt aber, dass die Komplexität des zu testenden Systems ein entscheidender Faktor ist bei der Auswahl der passenden Teststrategie. Aus niedriger Komplexität, oder allgemein wenig Funktionalität resultieren wenige Testfälle, die mit manuellen Tests durchgeführt werden können. Diese erfordern wenig Planungsaufwand und können schnell ausgewertet werden. Bei steigendem Funktionsumfang kann eine skriptbasierte Ausführung der Testfälle sinnvoll sein. Außerdem kann modellbasiertes Testen die Generierung dieser Testfälle automatisieren. 
 
-\todo[inline]{Grafik müssen wir anders plazieren, es geht sonst der zusammenhang zu den sieben Fragenstellungen verloren + Einleitungssatz (habe ich mir erlaubt zu schreiben)}
-
-
+\todo[color=red]{Print: Grafik sollte nahe Erklärung sein}
 \begin{figure}[h] 
   \centering
      \includegraphics[width=0.9\textwidth]{figures/entscheidungshilfe_mbt.png}
@@ -493,7 +490,7 @@ Im Softwaretest wird oft anhand der prozentualen Abdeckung des Quellcodes auf di
 Unzufriedenheit mit skriptbasierten Tests entsteht oft aus teuren Wartungsarbeiten, die nötig werden sobald sich das zu testende System weiterentwickelt. Skriptbasierte Tests können nur zu einem gewissen Grad änderungsunabhängig entwickelt werden. Gerade wenn das Softwareprojekt aus kurzen Entwicklungszyklen besteht (so wie dies bei vielen modernen Projekten der Fall ist), die viel Änderungspotenzial mit sich bringen, sollte \Gls{MBT} in Betracht gezogen werden \cite{utting_practical_2007}.
 \item \textbf{Wie wichtig ist die Plattformunabhängigkeit der Testfälle?}
 Abhängig von der Testebene, wo automatisierte Tests auf das System zugreifen, können skriptbasierte Tests nutzlos werden, wenn beispielsweise der Austausch einer GUI-Bibliothek erfolgt. Da bei modellbasierten Tests eine strikte Trennung zwischen Testmodell und Adapter zum \Gls{SUT} gemacht wird, muss bei einem Plattformwechsel auch nur dieser Adapter angepasst werden. Auch bei industrieller Software die oft mittels dem Konzept der Software-Familien arbeitet, kann es von Vorteil sein, wenn die eigentlichen Testkomponenten unabhängig von der Adapter-Logik bestehen \cite{graham_experiences_2012}.
-	\item \textbf{Ist die Testbasis modellierbar?}
+\item \textbf{Ist die Testbasis modellierbar?}
 Für die Modellierung des \Gls{SUT} ist eine Vielzahl von Notationen verfügbar (siehe Kapitel \ref{sec:notations}). Zustandsbasierte und Ereignisbasierte Notationsarten ermöglich die Modellierung sehr vieler funktionaler Eigenschaften. Wenn sich die Funktionalität der Testbasis aber nur unzureichend modellieren lässt, macht modellbasiertes Testen schlicht keinen Sinn.
 \item \textbf{Hat das Testteam Erfahrung mit Software-Modellierung? / Sind Modellierungskenntnisse im Testteam verfügbar?}
 Abhängig davon wie die Rollen im Projektteam verteilt sind, muss festgestellt werden, ob Modellierungskenntnisse bei denjenigen vorhanden sind, die im weiteren Verlauf Testfälle erstellen und warten. Das Testteam muss deshalb möglicherweise geschult werden. Die Kosten dieser Schulungen, verglichen mit den Aufwänden für manuelles und skriptbasiertes Testen, können entscheidend für die Wahl von \Gls{MBT} sein.
@@ -665,10 +662,10 @@ B-Notation ist sehr präzise und dementsprechend ressourcenintensiv um flächend
 \subsubsection{UML/ UML Testing Profile}
 \paragraph{Datengetriebenes Testen mit UTP} 
 Businessapplikationen (unter anderem in den Bereichen Finanz-, Versicherungs- und Gesundheitswesen) basieren auf großen Datenbeständen. Diese wurden oft über Jahre und Jahrzehnte gesammelt und gespeichert. Zwischen den Datensätzen bestehen Abhängigkeiten, die das Verhalten der Applikation stark beeinflussen. Solche Systeme werden als \textit{datengetrieben (data-driven)} bezeichnet. Das Testing von solchen Systemen ist dementsprechend gekennzeichnet durch die Verwendung von vielen, oft relationalen, Datensätzen. Die Praxis zeigt, dass sich die Datenstrukturen innerhalb eines Systems ändern und von der ursprünglichen Spezifikation abdriften. Es ist also von höchster Wichtigkeit, das Testdatenmangement angemessen zu designen, um hohe Wartungsaufwände zu minimieren. \cite{baker_model-driven_2005}\\
-Das UML Testing Profile bietet Unterstützung von datengetriebenen Tests in mehreren Formen. In Abschnitt \ref{sec:utp} werden die grundlegenden Konzepte von UTP genauer beschrieben.
+Das UML Testing Profile bietet Unterstützung von datengetriebenen Tests in mehreren Formen. In Abschnitt \ref{sec:utp} werden die grundlegenden Konzepte von \Gls{UTP} genauer beschrieben.
 
 \subparagraph{Wildcards in Ausprägungsspezifikationen}
-UTP bietet vereinfachte Wildcards um zu spezifizieren, dass ein Attribut einen beliebigen Wert annehmen darf (annotiert mit \textit{?}) oder sogar keinen Wert haben darf (annotiert mit \textit{*}). Diese Wildcards können in sogenannten Ausprägungsspezifikationen (\textit{Instance Specifications} \footnote{Ausprägungsspezifikationen wurden im UML 2 Standard definiert \url{http://www.omg.org/spec/UML/2.4/} }) eingesetzt werden (siehe Abbildung \ref{fig:uml_instance}). Sowohl eine Instanz der Klasse, als auch eine Relation kann als Ausprägung dargestellt werden. Mit diesen kann die Existenz einer Entität innerhalb des modellierten Systems beschrieben werden. Instanzspezifikationen müssen ausdrücklich nicht vollständig sein, was dem  Testfalldesigner zugute kommt, da oft nur wenige Attribute von Bedeutung sind. Solche Ausprägungsspezifikationen erlauben, die Definition von Testdaten ohne sie in Sequenzdiagramme `hart' zu codieren.
+\Gls{UTP} bietet vereinfachte Wildcards um zu spezifizieren, dass ein Attribut einen beliebigen Wert annehmen darf (annotiert mit \textit{?}) oder sogar keinen Wert haben darf (annotiert mit \textit{*}). Diese Wildcards können in sogenannten Ausprägungsspezifikationen (\textit{Instance Specifications} \footnote{Ausprägungsspezifikationen wurden im UML 2 Standard definiert \url{http://www.omg.org/spec/UML/2.4/} }) eingesetzt werden (siehe Abbildung \ref{fig:uml_instance}). Sowohl eine Instanz der Klasse, als auch eine Relation kann als Ausprägung dargestellt werden. Mit diesen kann die Existenz einer Entität innerhalb des modellierten Systems beschrieben werden. Instanzspezifikationen müssen ausdrücklich nicht vollständig sein, was dem  Testfalldesigner zugute kommt, da oft nur wenige Attribute von Bedeutung sind. Solche Ausprägungsspezifikationen erlauben, die Definition von Testdaten ohne sie in Sequenzdiagramme `hart' zu codieren.
  
 \begin{figure}[h] 
   \centering
@@ -684,7 +681,7 @@ UTP bietet vereinfachte Wildcards um zu spezifizieren, dass ein Attribut einen b
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Der Fokus dieser Arbeit liegt auf dem modellbasierten Teil der Teststrategie, trotzdem soll erläutert werden welche Rolle \Gls{BDD} (verhaltensgetriebene Entwicklung) und \Gls{BDT} (verhaltensgetriebenes Testen) im Gesamtbild des im Resultatskapitel \ref{sec:results} vorgestellten Konzepts spielt.
-
+\todo[color=blue]{BDT einheitlich verwenden}
 \subsection{BDT Grundlagen}
 In der Softwareentwicklung,vor allem in \todo{Feedback einarbeiten. In Projekten mit mehr als XXXX Personentagen} großen Projekten, wird viel Aufwand \todo{Prozentangabe vom Gesamtaufwand} betrieben um Anforderungen von Domänenexperten möglichst nahtlos in die Implementation einfließen zu lassen. Abhängig vom Projekt liegen zwischen diesen Anforderungen und der endgültigen Realisierung mehrere Stufen und Parteien. Die Einführung von \Gls{BDT} zielt also vor allem auf die bereits erwähnte Minimierung der Spezifikations-/Implementationslücke. Auch \Gls{MBT} optimiert diesen Umstand (wie in Abschnitt \ref{sec:mbt_vorteile} beschrieben), aber es hat sich herausgestellt, dass es nicht zielführend ist für jede Anforderung den modellbasierten Ansatz anzuwenden.\\
 Behavior Driven Testing, im weiteren Sinne bekannt als Behavior Driven Development, wurde ursprünglich von \citeauthor{north_official_2015} beschrieben. Er publiziert und diskutiert über \gls{BDD} auf einer von ihm verwalteten Webseite \cite{north_official_2015}. \gls{BDD} basiert auf drei Grundprinzipien:
@@ -696,12 +693,12 @@ Behavior Driven Testing, im weiteren Sinne bekannt als Behavior Driven Developme
 \end{itemize}
 
 \subsection{Verhaltensgetriebene Spezifikationen}
-Aus Sicht des Domänenexperten wird eine Anforderung folgendermaßen spezifiziert: 
+Aus Sicht des Domänenexperten wird eine Anforderung folgendermaßen spezifiziert \cite{north_official_2015}: 
 
-\begin{quote}Als \textbf{ROLLE} fordere ich \textbf{ETWAS} und gewinne dadurch \textbf{NUTZEN} \cite{north_official_2015}\end{quote}
+\begin{quote}Als \textbf{ROLLE} fordere ich \textbf{ETWAS} und gewinne dadurch \textbf{NUTZEN}\end{quote}
 
 Diese Nähe zur fachlichen Formulierung (im gleichen Vokabular) will man in der Entwicklung nutzen um der Spezifikation so nah wie möglich zu kommen. \Gls{BDT} erzwingt sozusagen, dass Domänenexperten und Entwickler kollaborieren. Sehr im Sinne der agilen Entwicklung, werden solche Spezifikationen aus Sicht der Endbenutzer geschrieben.\\
-\Gls{BDT} Tests bestehen , unabhängig vom Format, aus den folgenden Teilen \cite{haring_bdd_2003}:
+\Gls{BDT} Tests bestehen, unabhängig vom Format, aus den folgenden Teilen \cite{haring_bdd_2003}:
 
 \begin{itemize}
 \item \textbf{Titel:} Der Titel eines \Gls{BDT} Tests muss mehrere Anforderungen erfüllen. Einerseits muss er klar und aussagekräftig sein. Der Umfang eines BDD Tests sollte sehr überschaubar gewählt sein. Durch das Lesen des Titels sollte bereits klar sein welche Anforderung getestet wird. Außerdem macht es Sinn im Titel einen eindeutigen Identifikator unterzubringen, der es zulässt den Testfall mit einer Anforderung aus dem Spezifikationskatalog in Verbindung zu bringen.
@@ -745,7 +742,7 @@ Akzeptanzkriterien: (definiert ueber mehrere Szenarien)
 	Szenario 2: ...
 \end{lstlisting}
 
-\subsubsection{Beispielhafter BDT Test}
+\subsubsection{Beispielhafter Behavior Driven Test}
 \label{sec:bdt_bsp}
 Eine \Gls{BDD} Spezifikation sollte eine sehr beschränkte Größe haben. \citeauthor{north_whats_2007} empfiehlt, dass die Umsetzung in einer Entwicklungsiteration möglich sein sollte \cite{north_whats_2007}. Diese Daumenregel bewahrt vor ausschweifend großen \Gls{BDT} Tests.\\
 Basierend auf dem vorgeschlagenen Schema könnte ein beispielhafter \Gls{BDT} Test folgendermaßen aussehen:
