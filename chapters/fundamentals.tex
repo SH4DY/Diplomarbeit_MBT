@@ -683,7 +683,7 @@ Das UML Testing Profile bietet Unterstützung von datengetriebenen Tests in mehr
 Der Fokus dieser Arbeit liegt auf dem modellbasierten Teil der Teststrategie, trotzdem soll erläutert werden welche Rolle \Gls{BDD} (verhaltensgetriebene Entwicklung) und \Gls{BDT} (verhaltensgetriebenes Testen) im Gesamtbild des im Resultatskapitel \ref{sec:results} vorgestellten Konzepts spielt.
 \todo[color=blue]{BDT einheitlich verwenden}
 \subsection{BDT Grundlagen}
-In der Softwareentwicklung,vor allem in \todo{Feedback einarbeiten. In Projekten mit mehr als XXXX Personentagen} großen Projekten, wird viel Aufwand \todo{Prozentangabe vom Gesamtaufwand} betrieben um Anforderungen von Domänenexperten möglichst nahtlos in die Implementation einfließen zu lassen. Abhängig vom Projekt liegen zwischen diesen Anforderungen und der endgültigen Realisierung mehrere Stufen und Parteien. Die Einführung von \Gls{BDT} zielt also vor allem auf die bereits erwähnte Minimierung der Spezifikations-/Implementationslücke. Auch \Gls{MBT} optimiert diesen Umstand (wie in Abschnitt \ref{sec:mbt_vorteile} beschrieben), aber es hat sich herausgestellt, dass es nicht zielführend ist für jede Anforderung den modellbasierten Ansatz anzuwenden.\\
+In der Softwareentwicklung,vor allem in großen Projekten, wird viel Aufwand \todo[color=blue]{konnte leider keine Quelle finden, eventuell noch "Das V-Modell 97" hab das Buch aber leider nicht parat. Entweder Umformulieren oder Quelle hinzufügen!} betrieben um Anforderungen von Domänenexperten möglichst nahtlos in die Implementation einfließen zu lassen. Abhängig vom Projekt liegen zwischen diesen Anforderungen und der endgültigen Realisierung mehrere Stufen und Parteien. Die Einführung von \Gls{BDT} zielt also vor allem auf die bereits erwähnte Minimierung der Spezifikations-/Implementationslücke. Auch \Gls{MBT} optimiert diesen Umstand (wie in Abschnitt \ref{sec:mbt_vorteile} beschrieben), aber es hat sich herausgestellt, dass es nicht zielführend ist für jede Anforderung den modellbasierten Ansatz anzuwenden.\\
 Behavior Driven Testing, im weiteren Sinne bekannt als Behavior Driven Development, wurde ursprünglich von \citeauthor{north_official_2015} beschrieben. Er publiziert und diskutiert über \gls{BDD} auf einer von ihm verwalteten Webseite \cite{north_official_2015}. \gls{BDD} basiert auf drei Grundprinzipien:
 
 \begin{itemize}
@@ -701,8 +701,8 @@ Diese Nähe zur fachlichen Formulierung (im gleichen Vokabular) will man in der 
 \Gls{BDT} Tests bestehen, unabhängig vom Format, aus den folgenden Teilen \cite{haring_bdd_2003}:
 
 \begin{itemize}
-\item \textbf{Titel:} Der Titel eines \Gls{BDT} Tests muss mehrere Anforderungen erfüllen. Einerseits muss er klar und aussagekräftig sein. Der Umfang eines BDD Tests sollte sehr überschaubar gewählt sein. Durch das Lesen des Titels sollte bereits klar sein welche Anforderung getestet wird. Außerdem macht es Sinn im Titel einen eindeutigen Identifikator unterzubringen, der es zulässt den Testfall mit einer Anforderung aus dem Spezifikationskatalog in Verbindung zu bringen.
-\item \textbf{Beschreibung:} Die Beschreibung eines \Gls{BDT} Tests rechtfertigt den wirtschaftlichen Nutzen der Anforderung. Sie besteht aus den oben genannten Komponenten:
+\item \textbf{Titel:} Der Titel eines \Gls{BDT} muss mehrere Anforderungen erfüllen. Einerseits muss er klar und aussagekräftig sein. Der Umfang eines \Gls{BDT} sollte sehr überschaubar gewählt sein. Durch das Lesen des Titels sollte bereits klar sein welche Anforderung getestet wird. Außerdem macht es Sinn im Titel einen eindeutigen Identifikator unterzubringen, der es zulässt den Testfall mit einer Anforderung aus dem Spezifikationskatalog in Verbindung zu bringen.
+\item \textbf{Beschreibung:} Die Beschreibung eines \Gls{BDT} rechtfertigt den wirtschaftlichen Nutzen der Anforderung. Sie besteht aus den oben genannten Komponenten:
 
 \begin{itemize}
 \item Die \textbf{Rolle} die etwas fordert. Meist ein primärer Interessensvertreter.
@@ -717,12 +717,12 @@ Diese Nähe zur fachlichen Formulierung (im gleichen Vokabular) will man in der 
 \item Ein Endergbnis folgt aus der Situation und dem Ereignis: \textbf{Dann (Then)}. Das \Gls{SUT} hat als Reaktion seinen Zustand wiederrum verändert. Das gewünscht Endergebnis ist für den Benutzer feststellbar.
 \end{itemize}
 
-\item \textbf{Szenarien:} Um mehrere Akzeptanzkriterien eines \Gls{BDT} Tests unterzuordnen, können Szenarien verwendet werden. Eine Unterscheidung in Szenarien macht Sinn falls die gegebene Situation innerhalb unterschiedlicher Umstände eingetreten sein kann.
+\item \textbf{Szenarien:} Um mehrere Akzeptanzkriterien eines \Gls{BDT} unterzuordnen, können Szenarien verwendet werden. Eine Unterscheidung in Szenarien macht Sinn falls die gegebene Situation innerhalb unterschiedlicher Umstände eingetreten sein kann.
 \end{itemize}
 
 Unabhängig des eingesetzten Werkzeugs, hat \citeauthor{north_whats_2007} eine folgende Vorlagen für einen \Gls{BDT} Test vorgeschlagen \cite{north_whats_2007}:
 
-\begin{lstlisting}[caption=Vorlage für BDT Tests in Prosatext, label=lst:bdt_template]
+\begin{lstlisting}[caption=Vorlage für Behaviour Driven Tests in Prosatext, label=lst:bdt_template]
 Titel (Beschreibung in einer Zeile)
  
 Erzaehlung:
@@ -747,7 +747,7 @@ Akzeptanzkriterien: (definiert ueber mehrere Szenarien)
 Eine \Gls{BDD} Spezifikation sollte eine sehr beschränkte Größe haben. \citeauthor{north_whats_2007} empfiehlt, dass die Umsetzung in einer Entwicklungsiteration möglich sein sollte \cite{north_whats_2007}. Diese Daumenregel bewahrt vor ausschweifend großen \Gls{BDT} Tests.\\
 Basierend auf dem vorgeschlagenen Schema könnte ein beispielhafter \Gls{BDT} Test folgendermaßen aussehen:
 
-\begin{lstlisting}[caption=Beispielhafter BDT Test, label=lst:bdt_test]
+\begin{lstlisting}[caption=Beispielhafter Behaviour Driven Test, label=lst:bdt_test]
 Titel: Kontoinhaber hebt Geld ab
  
 Erzaehlung:
@@ -780,7 +780,7 @@ Szenario 3: Der Bankomat verfuegt ueber zu wenig Bargeld
 In Realität würde dieser \Gls{BDT} Testfall wahrscheinlich sehr viele Szenarien benötigen um die Spezifikation befriedigend abzudecken. Dies ist ein eindeutiger Hinweis darauf, den Testfall aufzuteilen.
 
 \subsection{Frühe Erkennung falsch umgesetzer Anforderungen}
-Durch Spezifikationen die als \Gls{BDT} Tests umgesetzt werden, ist weniger Spielraum für die falsche Umsetzung von Anforderungen vorhanden. Dies ist dem Umstand zu verdanken, dass die Akzeptanzkriterien einerseits dem genauen wirtschaftlichen Nutzen entsprechen und andererseits ausführbar sind. Ein Automatisierungswerkzeug kann das \Gls{SUT} in den gegebenen Zustand bringen, die Aktionen ausführen und prüfen ob der gewünschte Endzustand erreicht wurde.\\
+Durch Spezifikationen die als \Gls{BDT} umgesetzt werden, ist weniger Spielraum für die falsche Umsetzung von Anforderungen vorhanden. Dies ist dem Umstand zu verdanken, dass die Akzeptanzkriterien einerseits dem genauen wirtschaftlichen Nutzen entsprechen und andererseits ausführbar sind. Ein Automatisierungswerkzeug kann das \Gls{SUT} in den gegebenen Zustand bringen, die Aktionen ausführen und prüfen ob der gewünschte Endzustand erreicht wurde.\\
 Aus Sicht der Profitabilität ist frühzeitige Erkennung falsch umgesetzter Anforderungen von höchster Wichtigkeit. Abbildung \ref{fig:spec_cost} zeigt das Verhältnis, das \citeauthor{boehm_software_1981} als typisch für Softwareprojekte beschreibt. Die Kosten für die Behebung eines Fehlers steigen exponentiell an, wenn sich der Projektstatus der Inbetriebnahme nähert \cite{boehm_software_1981}. Obwohl agile Projekte eine gänzlich andere zeitliche Struktur aufweisen, leiden auch diese an diesem Phänomen. Die horizontale Achse kann als fortlaufende Zeit seit Projektstart gesehen werden. Umso länger sich Fehler im System befinden, umso teurer wird es sie zu beseitigen. Gleichzeitig kann man erkennen, dass Fehler die während der Spezifikationsphase aufgedeckt werden, weniger kostenintensiv in der Beseitigung sind. Hier setzt \Gls{BDD} an um Softwareprojekte frühzeitig auf hochqualitativer Ebene zu halten.
 
 \begin{figure}[h] 
