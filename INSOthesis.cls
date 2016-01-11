@@ -708,7 +708,10 @@
 \graphicspath{{figures/titlepage/}{figures/}}
 %\geometry{a4paper, top=2.5cm, bottom=2.5cm}
 %\geometry{a4paper}
-\geometry{a4paper, bottom=2.5cm, top=3cm, left=3.5cm, right=2.5cm}
+\geometry{a4paper, bottom=3cm, top=3cm, left=3.5cm, right=2.5cm}
+
+%Diese Zeile wurde eingefügt um das Verschmelzen von Textarea und Fußzeile zu verhindern. Seitengröße bottom war auf 2.5cm eingestellt
+\setlength{\footskip}{1.5cm}
 
 % settings of hyperlinks
 \hypersetup{
@@ -738,6 +741,8 @@
   xleftmargin=16pt,
   fontadjust,
 }
+
+\newcommand{\Newnameref}[1]{\textit{\nameref{#1}}}
 
 % Verhinderung von "Schusterjungen"
 % einzelne Absatzzeilen auf der Seite unten

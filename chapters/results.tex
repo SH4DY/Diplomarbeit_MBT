@@ -75,7 +75,7 @@ Als \Gls{POC} wurde ein \Gls{BDT} Framework namens \textit{FluentCoS} entwickelt
  * Lorem Ipsum
  */
 @Test
-public final void cos_1_Hierarchische_Auflistung_und_Bezeichnung_des_Default_Teilvermoegens_Kontovermoegen() {
+public final void cos_1_Hierarch_Auflistung_des_Default_Teilvermoegens_Kontovermoegen() {
 		given("Kunde XY fuer Beratung ausgewaehlt", selectCustomer("Peter Mueller"))
 			.and("Kunde XY besitzt Produkte des TV's 'Kontovermoegen'", initCustomerAssets())
 		.when("Berater fuer Kunde XY den Menuepunkt 'Anlegen Finfox' anklickt", clickMenu())
@@ -158,7 +158,7 @@ Aus Sicht der Wartungsfreundlichkeit kann keine generelle Aussage getroffen werd
   \label{fig:modell_abstract}
 \end{figure}
 
-\paragraph{Logik-Modellierung und Verfeinerung. Knoten: 72/51, Kanten: 72/66} Bei der Logik-Modellierung wird das System nicht mehr als reine Blackbox gesehen. Das Modell soll weiterhin eine Abstraktion des \Gls{SUT} sein aber der Detailgrad erhöht sich. Dies hat zur Folge, dass zwar mehr Knoten und Kanten erstellt werden müssen, die Komplexität im Code sich aber verringert. Erreicht wird dies durch die explizite Modellierung von Kanten und Knoten mit \textbf{identischen} Bezeichnern. In diesem Beispiel, wo nur der Endzustand \texttt{v\_finalProposal} einer detaillierten Prüfung unterzogen wird, erhalten nur die Knoten auf unterster Ebene eindeutige Bezeichner. Graphwalker generiert nun zwar 36 Methoden(entsprechend den 36 Knoten mit den Bezeichnern \texttt{v\_finalProposalXX}, die dem Knoten \texttt{v\_finalProposal} aus dem Workflow-Modell entsprechen, aber diese enthalten keinerlei Logik um den Pfad zu reproduzieren. In diesen Methoden befindet sich also nur ein Bruchteil der Logik die im letzten Knoten der Workflow-Modellierung zu finden ist. Durch die explizite Modellierung aller möglichen Pfade ist implizit gegeben wie das \Gls{SUT} traversiert wurde und welche Prüflogik angewandt werden muss. Die Abbildung \ref{fig:modell_komplex} zeigt die logisch modellierte Variante des Hypothekarrechners.
+\paragraph{Logik-Modellierung und Verfeinerung. Knoten: 72/51, Kanten: 72/66} Bei der Logik"=Modellierung wird das System nicht mehr als reine Blackbox gesehen. Das Modell soll weiterhin eine Abstraktion des \Gls{SUT} sein aber der Detailgrad erhöht sich. Dies hat zur Folge, dass zwar mehr Knoten und Kanten erstellt werden müssen, die Komplexität im Code sich aber verringert. Erreicht wird dies durch die explizite Modellierung von Kanten und Knoten mit \textbf{identischen} Bezeichnern. In diesem Beispiel, wo nur der Endzustand \texttt{v\_finalProposal} einer detaillierten Prüfung unterzogen wird, erhalten nur die Knoten auf unterster Ebene eindeutige Bezeichner. Graphwalker generiert nun zwar 36 Methoden(entsprechend den 36 Knoten mit den Bezeichnern \texttt{v\_finalProposalXX}, die dem Knoten \texttt{v\_finalProposal} aus dem Workflow-Modell entsprechen, aber diese enthalten keinerlei Logik um den Pfad zu reproduzieren. In diesen Methoden befindet sich also nur ein Bruchteil der Logik die im letzten Knoten der Workflow-Modellierung zu finden ist. Durch die explizite Modellierung aller möglichen Pfade ist implizit gegeben wie das \Gls{SUT} traversiert wurde und welche Prüflogik angewandt werden muss. Die Abbildung \ref{fig:modell_komplex} zeigt die logisch modellierte Variante des Hypothekarrechners.
 
 % \begin{figure}[h] 
 %   \centering
