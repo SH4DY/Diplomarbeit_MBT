@@ -742,6 +742,7 @@
   fontadjust,
 }
 
+%Namerefs (Referenzierte Kapitelnamen) werden damit kursiv gedruckt
 \newcommand{\Newnameref}[1]{\textit{\nameref{#1}}}
 
 % Verhinderung von "Schusterjungen"
