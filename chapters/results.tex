@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Neuartige modellbasierte Teststrategie für agile Projekte}
-\chaptermark{Neuartige MBT Teststrategie}
+\chapter{Anforderungen und Architektur der modellbasierten Teststrategie}
+\chaptermark{Architektur der Teststrategie}
 \label{sec:results}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Anforderungen an die Teststrategie}
@@ -22,7 +22,7 @@ Im Folgenden wird die genannte Teststrategie näher beschrieben. Abbildung \ref{
 \begin{figure}[h] 
   \centering
      \includegraphics[width=1.0\textwidth]{figures/Testarchitektur-MBT-BDD-COS.png}
-  \caption{Testarchitektur mit Behavior Driven Development und Model Based Testing Ansätzen}
+  \caption{Testarchitektur mit Behavior Driven Development und Model-based Testing Ansätzen}
   \label{fig:testarchitektur}
 \end{figure}
 
@@ -39,7 +39,7 @@ In Anlehung an Linz \cite{linz_testing_2014} soll die Komponententestebene in Sc
 
 \begin{figure}[h] 
   \centering
-     \includegraphics[width=1.0\textwidth]{figures/pyramide_mbt_bdd.png}
+     \includegraphics[width=0.7\textwidth]{figures/pyramide_mbt_bdd.png}
   \caption{Softwaretestpyramide und Einordnung der Teststrategie}
   \label{fig:pyramide}
 \end{figure}
@@ -90,7 +90,7 @@ Bestehende Frameworks nutzen teilweise eine sogenannte \textit{Cleartext}-Syntax
 Wenn das nicht-technisches Personal weiterhin nicht eingebunden werden soll, und daher die \Gls{COS} in Prosatext vorliegen, hat sich in der Fallstudie gezeigt, dass Entwickler es bevorzugen eine Programmiersprache für \Gls{BDD} Tests einzusetzen. Java-Entwickler sind allenfalls mit JUnit vertraut. Dies macht eine Cleartext-Syntax ebenfalls unnötig und spricht für die direkte Verfassung der \Gls{BDD} Testfälle in Java Code.\\
 Denkbar wäre auch eine Teilung der Verfassung dieser \Gls{COS}. Da Fachbereiche und Entwickler gleichermaßen Zugriff auf die Versionsverwaltung haben, könnten die Fachbereiche die Klassen und Methoden anlegen. Die von ihnen identifizierten \Gls{COS} tragen sie ein. Das heißt sie erstellen eine Methode für jede \Gls{COS}. Sie verfassen jeweils das erste Argument der \textit{given} \textit{when} \textit{then} Aufrufe. Dabei handelt es sich tatsächlich um natürlichsprachliches Deutsch oder Englisch. Diese Dateien werden nun versioniert und den Entwicklern zugänglich gemacht. Die Entwickler, welche genaue Kenntnisse über die Testing API bzw. das \Gls{SUT} haben, tragen das zweite Argument ein. Meist ein Aufruf an die Testing API. Im weniger einfachen Fall muss ein \Gls{COS} umstrukturiert werden oder die Testing API muss erweitert werden.\\
 Bei der Einführung dieser Methode sollte in kurzer Zeit eine komplette Umstellung auf als \Gls{BDT} definierte \Gls{COS} erfolgen. Wenn Anforderungen in mehreren Formaten und an verschiedenen Stellen liegen führt dies zu Unklarheiten, Frustration (durch erhöhte Suchaufwände) und in weiterer Folge zu einem Abfall der Qualität. Dies hat sich in der Fallstudie gezeigt. Durch die starke Koppelung mit automatisierten Tests werden Anforderungen zwingendermaßen präziser. Damit wird auch Anforderung 1 (siehe Abschnitt \ref{sec:anforderungen_teststrategie}) erfüllt. Außerdem sind \Gls{COS} in Code-Form von Natur aus sehr kompakt. Für alle Beteiligten ist schneller greifbar welche \Gls{COS} bestehen.\\
-Gleichzeitig bleiben gewisse Probleme bestehen: Obwohl \Gls{COS} nun direkt an automatisierte Regressionstests gekoppelt sind ist nicht garantiert, dass bei der Neueinführung eines Features, welches eine \Gls{COS} betrifft, sofort Alarm geschlagen wird. Wünschenswerterweise schlägt der dazugehörige Testfall zwar fehl, aber trotz aller Genauigkeit prüfen \Gls{COS} nur wenige Konstellationen. Dieses Problem adressiert die kombinierte Nutzung von \Gls{BDT} und \Gls{MBT} (siehe Abschnitt \ref{sec:mbt_bdt}).
+Gleichzeitig bleiben gewisse Probleme bestehen: Obwohl \Gls{COS} nun direkt an automatisierte Regressionstests gekoppelt sind ist nicht garantiert, dass bei der Neueinführung eines Features, welches eine \Gls{COS} betrifft, sofort Alarm geschlagen wird. Wünschenswerterweise schlägt der dazugehörige Testfall zwar fehl, aber trotz aller Genauigkeit prüfen \Gls{COS} nur wenige Konstellationen. Dieses Problem adressiert die kombinierte Nutzung von \Gls{BDT} und \Gls{MBT} (siehe Abschnitt \ref{sec:mbt_bdt_parallelen}).
 
 \subsection{Testing API}
 \label{sec:testing_api}
@@ -236,12 +236,9 @@ public void v_Proposal_0() {
 
 \subsubsection{Modellbasierte Tests auf niedrigeren Ebenen} Das Anwendungsbeispiel aus Abschnitt \ref{sec:results_modellierung} zeigt die Mächtigkeit von Graphwalker in Verbindung mit einem Framework für das GUI-Testing. Statt eines GUI-Testing-Frameworks können aber beliebige andere Frameworks als Adapter-Code verwendet werden. Damit wird das Testen auch auf Schnittstellen- und sogar Komponententestebene möglich. In Verbindung mit einer, darauf ausgerichteten, Testing API zum \Gls{SUT}, können aber genauso Tests der Businesslogik modelliert werden. Also eine Art Komponententest aus Sicht des Fachbereichs in Form eines Modells. Denkbar sind Abläufe wie das Laden eines Kunden, die Modifikation dessen Stammdaten und die abschließende Überprüfung, ob diese Modifikationen fehlerfrei abgelegt wurden. Die Modelle lassen eine unbegrenzte Komplexität zu. Seltene, lange aber geschäftskritische Workflows, lassen sich damit sehr gut darstellen.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Stärken der Kombination von MBT und BDT}
-\label{sec:mbt_bdt}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Wie stark die Verwendung der drei Komponenten (FluentCoS, Testing API, MBT, siehe Abbildung \ref{fig:testarchitektur}) dieses Konzepts ineinander verzahnt werden muss fallabhängig entschieden werden. Denkbar ist einerseits ein vollständig isolierter Entwurf und Einsatz von \Gls{BDT} und \Gls{MBT}. Beide Sorten von Tests können unabhängig voneinander betrieben und gewartet werden. Außerdem können \Gls{BDT} und \Gls{MBT} auf den reichen Katalog der Testing API zugreifen. Somit lässt sich viel Wartungsaufwand für die Anpassung von Adapter-Code an einer Stelle, in der Testing API, konzentrieren.
+\todo[color=yellow]{@Boris: Neu}
+\subsection{Einsatz der Teststrategie}
+Wie stark die Verwendung der drei Komponenten (FluentCoS, Testing API, MBT, siehe Abbildung \ref{fig:testarchitektur}) dieses Konzepts ineinander verzahnt werden muss fallabhängig entschieden werden. Denkbar ist einerseits ein vollständig isolierter Entwurf und Einsatz von \Gls{BDT} und \Gls{MBT}. Beide Sorten von Tests können unabhängig voneinander betrieben und gewartet werden. Außerdem können \Gls{BDT} und \Gls{MBT} auf den reichen Katalog der Testing API zugreifen. Somit lässt sich viel Wartungsaufwand für die Anpassung von Adapter-Code an einer Stelle konzentrieren.
 
 \subsection{Parallelen zwischen MBT und BDT Testfällen}
 \label{sec:mbt_bdt_parallelen}
@@ -290,6 +287,7 @@ public void v_TransaktionErfolgreich(){
 \end{figure}
 
 \subsection{Konzept zur kombinierten Verwendung von BDT und MBT}
+\label{sec:mbt_bdt_concept}
 All die Erkenntnisse aus Abschnitt \ref{sec:mbt_bdt_parallelen} zusammengefasst, erlauben eine Kombination von \Gls{BDT} und \Gls{MBT}, die die Stärken beider Ansätze nutzt.\\
 Auf oberster Ebene kann ein \Gls{BDT}, der aus $n$ Szenarien besteht, in ein Modell mit $n$ Startknoten oder Startpfaden dargestellt werden. Der Testentwickler wählt ein angemessenes Abstraktionsniveau und kann so die \textit{Given} Teile der einzelnen Szenarien, inklusive dem Kontext aus der \Gls{BDT} Erzählung, modellieren. Zu sehen sind diese Parallelen in der Abbildung \ref{fig:mbt_bdt_gesamt}. In diesem Beispiel unterscheiden sich die Szenarien anhand der Art des Kunden der das \Gls{SUT} bedient. Dies kann als gegebene Konfiguration gesehen werden und somit als einzelner Knoten modelliert werden (so wie in der Abbildung \ref{fig:mbt_bdt_then}). Andererseits kann dieser Schritt auch ausmodelliert werden. Technisch ist diese Unterscheidung mit Graphwalker sehr elegant lösbar. Wie im Abschnitt \ref{sec:graphwalker_funktionsweise} \Newnameref{sec:graphwalker_funktionsweise} erklärt, werden hier \textit{Guards} genutz. Alle drei Szenarienknoten sind valide Einstiegspunkte für die Traversierung des Modells. Abhängig von welchem Knoten die Traversierung gestartet wird, wird eine Guard Variable auf wahr gesetzt. Beginnt Graphwalker die Traversierung über den Knoten \texttt{v\_PrivatkundeVermögend} so wird die Variable \texttt{pkv} auf \texttt{true} gesetzt. Diese kann als globale Variable gesehen werden, die zu einem späteren Zeitpunkt während der Traversierung abgefragt werden kann.\\
 Wenn sich die \textit{When} Schritte in den Szenarien unterscheiden, können diese vollständig dargestellt werden. Im Beispiel haben alle drei Szenarien diesen Teil gemeinsam und sind deshalb gleichfarbig. Im Hintergrund sind dies Codestücke die nicht mehrfach gewartet werden müssen. Auch wenn sich die Szenarien in diesem Teil unterscheiden kann hier die volle Stärke von \Gls{MBT} ausgenutzt werden und jeder Alternativpfad modelliert werden (so wie im vorangegangen Beispiel \ref{fig:mbt_bdt_when}).\\
@@ -303,14 +301,6 @@ Es ist empfehlenswert eine grafische oder dokumentarische Verbindung zwischen de
   \caption{BDT Szenarien können im Modell explizit dargestellt werden}
   \label{fig:mbt_bdt_gesamt}
 \end{figure}
-
-
-\section{Zugewinne durch die vorgestellte Teststrategie}
-Gerade für die agile Entwicklung ist die Kombination von BDD und \Gls{MBT} wie maßgeschneidert. Agile Entwicklung bedeutet unter anderem viel Kontakt mit dem Kunden und damit auch die Notwendigkeit der Auseinandersetzung mit Spezifikationsänderungen und Feedback. \Gls{COS}-artige Definitionen kommen in vielen Softwareprojekten bereits zum Einsatz und sind daher sowohl dem fachlichen als auch dem technischen Personal bekannt. Der Schritt von \Gls{COS}-Tabellen zu Behavior Driven Testfällen, egal welches Framework dazu benutzt wird, ist unkompliziert. Wenn der Einsatz von \Gls{BDT} sorgfältig und gut koordiniert umgesetzt wird, ist die damit einhergehende Versionierung der \Gls{COS} ein wertvoller Nebeneffekt, der die Organisation des Softwareprojekts vereinfacht.\\
-Eine ähnliche Kombination von Methoden schlägt auch \citeauthor{binder_model-based_2014} vor \cite{binder_model-based_2014}. Er warnt aber davor, dass \Gls{BDT} nur einen kleinen Teil des \textit{happy-path} abdecken. Soll heißen, dass das System mittels \Gls{COS} nur auf sehr wenigen Pfaden getestet wird. Außerdem wächst die Anzahl der zu wartenden \Gls{BDD}-Spezifikationen mit der Größe der Code-Basis. Meist hat dies zur Folge, dass ältere Spezifikationen in Vergessenheit geraten und nicht mehr in die Regressionstests miteinbezogen werden. Um zweiterem Nachteil entgegenzuwirken müssen \Gls{BDD}-Spezifikationen sehr sorgfältig und mit Hinblick auf die Programmlogik entworfen werden. Außerdem muss die Versionierung Teamübergreifend nahtlos funktionieren.\\
-Aus Kundensicht sind \Gls{COS} oft notwendig, da sie kurz und bündig vertragliche Abkommen darstellen können. Auch wenn der Kunde beim Abnahmetest auf \Gls{COS} Spezifikationen besteht, muss das System durch breitere Maßnahmen regressiv getestet werden. Hier ergänzen modellbasierte Tests die Qualitätssicherungsmaßnahmen. Ein \Gls{COS} kann als einzelner Pfad in einem Modell gesehen werden. Der modellbasierte Test prüft dann, mit variablem Grad an Prüflogik, alle anderen Pfade. Diese Vorgehensweise schafft eine weitere Schicht an Sicherheit und lässt sich gut in bestehende Projekt- und Softwarestrukturen integrieren. Durch die Nutzung einer durchdachten Testing API (wie in Abschnitt \ref{sec:testing_api} beschrieben) können Wartungsaufwände minimiert werden, indem nur eine Codebasis für Adapter-Code besteht. Die Testing API stellt außerdem eine zukunftssichere Barriere vor Änderungen auf Seiten des Testwerkzeuges dar. Dieses kann ausgetauscht werden ohne die Aufwände für die Anbindung des \Gls{SUT} zunichte zu machen.\\
-Die in Abschnitt \ref{sec:mbt_bdt} vorgeschlagene kombinierte Verwendung von \Gls{BDT} und \Gls{MBT} lässt das Projekt von den Stärken beider Ansätze profitieren. \Gls{BDT} und \Gls{MBT} lassen sich sehr flexibel miteinander verschmelzen und sowohl den technischen als auch den organisatorisch geschäftlichen Prozessen anpassen. Das \Gls{SUT} kann damit systematischer und flächendeckender getestet werden ohne signifankte Mehraufwände in Kauf nehmen zu müssen.
-
 
 
 

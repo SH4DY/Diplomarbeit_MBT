@@ -6,7 +6,7 @@
 
 Dieses Kapitel enthält eine Beschreibung der im Zuge dieser Arbeit durchgeführten Fallstudie beim Partnerunternehmen Raiffeisen Schweiz Genossenschaft. Die Struktur des Softwareprojekt, in dem der Autor die in Kapitel \ref{sec:results} \Newnameref{sec:results} vorgestellte modellbasierte Teststrategie erproben konnte, wird in Abschnitt \ref{sec:fallstudie} erklärt. In den darauffolgenden Abschnitten werden verschiedene Ansätze und Werkzeuge für modellbasiertes Testen auf mehreren Testebenen beschrieben und auf Eignung für den Einsatz in agilen Projekten bewertet.
 
-\section{Fallstudie: Kundenberaterapplikation bei Raiffeisen Schweiz Genossenschaft}
+\section{Fallstudie: Kundenberaterapplikation einer Schweizer Bank}
 \sectionmark{Fallstudie}
 \label{sec:fallstudie}
 \subsection{Hintergrund zu den Applikation RETo und RESi}
@@ -59,7 +59,7 @@ Auf Seiten der Entwickler, also im Scrum-Team, gibt es keinen dedizierten Tester
 
 \subsubsection{Erkannte Schwachstellen in der Qualitätssicherung}
 \label{sec:schwachstellen_raiffeisen}
-Für diese Fallstudie wurden Interviews mit dem leitenden Architekten der Applikation, einem Entwickler, einer Business-Analystin und einem Testverantwortlichen geführt.\todo{@Mario: Interviewfragebogen in die Arbeit mitaufnehmen?} Die hier dargestellten Punkte stellen eine Zusammenfassung aller gesammelten Meinungen dar.\\
+Für diese Fallstudie wurden Interviews mit dem leitenden Architekten der Applikation, einem Entwickler, einer Business-Analystin und einem Testverantwortlichen geführt. Der dabei verwendete Leitfaden findet sich im Anhangskapitel \ref{app:leitfaden}. Die hier dargestellten Punkte stellen eine Zusammenfassung aller gesammelten Meinungen dar.\\
 \begin{itemize}
 \item \textbf{Zuständigkeitsbereiche sind nicht klar kommuniziert:} An den Softwareprojekten sind verschiedenste Teams beteiligt. Dazu zählen die langzeitigen Projektmitglieder aus dem Entwicklungsteam, Business-Analysten und Fachbereich aber auch punktuell beteiligte Teams. Außerdem gibt es Teams die als Dienstleister am Projekt beteiligt sind und beispielsweise Lasttests durchführen. Zwischen den Teams gibt es definierte Kommunikationspunkte. Beispielsweise stellt das Team der Business-Analysten den Product Owner. Dieser fungiert als Schnittstelle und synchronisiert Anliegen beider Parteien. Bei so vielen Beteiligten ist es schwer den Überblick über Zuständigkeitsbereiche und Tätigkeitsfelder zu behalten. Nicht alle Prozesse der miteinander arbeitenden Teams sind dem Gegenüber bekannt. Dies ist meist auch nicht nötig, aber in manchen Fällen hilft es, die eigenen Anstrengungen besser aufeinander abzustimmen.
 \item \textbf{Unsaubere Trennung der Verantwortlichkeiten:} Die vielen beteiligten Parteien haben allesamt einen Aufgabenbereich. Über die Länge des Projekts gesehen gibt es aber offene Punkte, die nicht klar einem Zuständigkeitsbereich zugeordnet sind. Zum Beispiele werden von Business-Analysten manuelle Regeressionstest ausgeführt und die Fachbereichen führen in niedrigerer Frequenz manuelle Abnahmetests durch. All diese Anstrengungen sind aber nicht mit der Qualitätssicherung koordiniert, die von den Entwicklern vorgenommen wird.
@@ -67,18 +67,19 @@ Für diese Fallstudie wurden Interviews mit dem leitenden Architekten der Applik
 \end{itemize}
 
 \subsubsection{Verbesserungspotenzial}
+\label{sec:massnahmen}
 Die oben erwähnten Schwächen könnten, auf Grund der gesammelten Erfahrung des Autors und der Vorschläge der interviewten Personen, folgendermaßen verbessert werden:
 
 \begin{itemize}
 \item \textbf{Mehr Kommunikation über Teamgrenzen hinweg:} Während der Fallstudie wäre es von Vorteil gewesen früher zu wissen, dass der Fachbereich zwingend \Gls{COS}-Tabellen für ihre Abnahmetests vorschreibt. In welcher Form Abnahmetests im Detail gemacht werden ist auf Seiten der Entwickler nicht ganz klar. Es handelt sich hierbei also um Kommunikationshürden die die Gesamtheit des Projekts betreffen und durch optimierten Informationsfluss beseitigt werden müssen.
-\item \textbf{Einbeziehen des Fachbereichs:} Hier bestünde großes Potenzial das Testing effizienter zu machen wenn das Team der Business-Analysten stärker in die Erstellung und Wartung automatisierter Regressionstest miteinbezogen werden könnten.
+\item \textbf{Einbeziehen des Fachbereichs:} Hier bestünde großes Potenzial das Testen effizienter zu machen wenn das Team der Business-Analysten stärker in die Erstellung und Wartung automatisierter Regressionstest miteinbezogen werden könnten.
 \item \textbf{Form der Spezifikationen klar definieren:} Unter Einbezug aller beteiligten Teams sollte klar gemacht werden, wie aus Spezifikationen die dazugehörigen \Gls{COS} definiert werden. Zuvor muss sich das spezifizierende Team auf eine einheitliche Form einigen.
 \end{itemize}
 
 
 \subsubsection{Versuch der Qualitätssicherung durch skriptgesteuerte GUI-Tests}
 \label{sec:versuch_script}
-Vor wenigen Jahren wurde im Projektteam versucht die manuellen Aufwände für das Regressionstesting auf GUI-Ebene zu minimieren. Nach sorgfältiger Evaluation der sich auf dem Markt befindlichen Werkzeuge wurden skriptgesteuerte Tests eingesetzt, die einen Benutzer simulieren. Auf diesem Weg erhoffte man sich manuelle \Gls{COS}-Tests teilweise zu ersetzen. Nach wenigen Monaten stellte sich aber heraus, dass der Wartungsaufwand für die sich schnell entwickelnden Systeme schlichtweg zu hoch war. Außerdem war der Qualitätsgewinn durch die nächtlich laufenden Testfälle gering weil sich das Werkzeug nur unzureichend in den Entwicklungsprozess integrieren ließ und die Rate der falschen Positivfälle sehr hoch war.\\
+Vor wenigen Jahren wurde im Projektteam versucht die manuellen Aufwände für das Regressionstesten auf GUI-Ebene zu minimieren. Nach sorgfältiger Evaluation der sich auf dem Markt befindlichen Werkzeuge wurden skriptgesteuerte Tests eingesetzt, die einen Benutzer simulieren. Auf diesem Weg erhoffte man sich manuelle \Gls{COS}-Tests teilweise zu ersetzen. Nach wenigen Monaten stellte sich aber heraus, dass der Wartungsaufwand für die sich schnell entwickelnden Systeme schlichtweg zu hoch war. Außerdem war der Qualitätsgewinn durch die nächtlich laufenden Testfälle gering weil sich das Werkzeug nur unzureichend in den Entwicklungsprozess integrieren ließ und die Rate der falschen Positivfälle sehr hoch war.\\
 Wartungsaufwände, die beim skriptbasierten Testen anfielen, konnten ausschließlich von technischem Personal durchgeführt werden. Eine sinnvolle Aufteilung der erhöhten Belastung durch das Testen war so nicht möglich.
 
 \subsubsection{Aufwendige Wartung von Testdaten}
@@ -136,7 +137,7 @@ Im Gegensatz zu sehr formalen Modellierungssprachen verbergen sich Guard- und Ü
 \label{sec:mbt_integration}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Testing von Serviceorientierten Architekturen mittels UML Testing Profile}
+\subsection{Testen von Serviceorientierten Architekturen mittels UML Testing Profile}
 \label{sec:utp}
 Am Beispiel serviceorientierter Architekturen soll der folgende Abschnitt erläutern wie modellbasiertes Testen mittels dem UML Testing Profile für das Testen auf Integrationsebene eingesetzt werden kann. 
 \subsubsection{Das UML Testing Profile}
