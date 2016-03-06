@@ -299,7 +299,7 @@ Graphwalker bietet eine schlanke Grundlage für das modellbasierte Testen von So
 
 
 \subsubsection{Modellierungs-Syntax}
-Graphwalkers Modellierungssprache basiert nicht auf UML, weil die Autoren die Meinung vertreten, dass Tester den breiten Funktionsumfang von \Gls{UML} nicht brauchen und abgeschreckt werden \cite{_graphwalker_2015}. Stattdessen setzt Graphwalker auf GraphML. GraphML basiert nicht auf einer proprietären Syntax, sondern auf herkömmlichen XML-Dateien und wird unter der \textit{Creative Commons Attribution 3.0}-Lizenz\footnote{Die Creative Commons Attribution 3.0 ist eine gängige Lizenz im Bereich der neuen Medien und darunter auch Open-Source Software \url{Creative Commons Attribution 3.0}} entwickelt.\\
+Graphwalkers Modellierungssprache basiert nicht auf UML, weil die Autoren die Meinung vertreten, dass Tester den breiten Funktionsumfang von \Gls{UML} nicht brauchen und abgeschreckt werden \cite{_graphwalker_2015}. Stattdessen setzt Graphwalker auf GraphML. GraphML basiert nicht auf einer proprietären Syntax, sondern auf herkömmlichen XML-Dateien und wird unter der \textit{Creative Commons Attribution 3.0}-Lizenz\footnote{Die Creative Commons Attribution 3.0 ist eine gängige Lizenz im Bereich der neuen Medien und der Open-Source Software.} entwickelt.\\
 Zur Erstellung von Modellen in GraphML, mit denen Graphwalker umgehen kann, eignet sich jeder Editor, der GraphML-Dateien exportieren kann. Das von den Entwicklern empfohlene Werkzeug ist \textit{yEd}\footnote{Website der Firma yWorks und des yEd Graph Editors \url{http://www.yworks.com/en/products/yfiles/yed/}}, welches völlig kostenlos verwendet werden kann. yEd bietet eine simple Benutzer\-ober\-fläche und für die Erstellung von Modellen für Graphwalker ist nahezu kein Einarbeitungsaufwand nötig.\\
 Modelle in Graphwalker sind gerichtete Graphen. Knoten repräsentieren einen Zustand, in dem sich das \Gls{SUT} befindet. Kanten beschreiben die Aktion, die zu einem bestimmten Zustand führen. Graphwalker ignoriert grafische Attribute der Modelle, wie Farbe und Liniendicke der Elemente. Üblicherweise finden in den Knoten die Überprüfungen (\textit{Assertions}) und in den Kanten die Befehle (Klicks, Schnittstellenaufrufe...) statt. Kanten müssen in Graphwalker genau eine Richtung haben. Es folgt eine kurze Beschreibung der Möglichkeiten, die die Syntax von Graphwalker bietet, um die Traversierung der Graphen, und damit der Testfälle, zu beeinflussen.
 
@@ -339,8 +339,6 @@ Weiters ist zu erwähnen, dass die Modelle nicht einfach nur verflacht (\textit{
   \label{fig:gw_multiple_models}
 \end{figure}
 
-\todo[inline]{Formatierung paragraph - subparagraph}
-
 \paragraph{Traversierung der Modelle} 
 \label{sec:graphwalker_traversierung} 
 Wie im ursprünglichsten Sinn des modellbasierten Tests gibt es in Graphwalker das Konzept der Testfälle nicht. Das \Gls{SUT} wird als gesamtes oder nur zu Teilen modelliert und das Testing wird durch die Auswahl eines Traversierungsalgorithmus angestoßen. Da die meisten Traversierungsalgorithmen von einer randomisierten Variante abhängen, wird das \Gls{SUT} bei jedem Testdurchlauf leicht unterschiedlich traversiert und damit getestet.\\
@@ -349,7 +347,7 @@ Durch die Modellierung des Modells, der Auswahl, sowie Einstellung eines Travers
 \subparagraph{Schnelle Traversierung - Smoke Tests}
 Vor allem während der Testfallentwicklung und um kurze Testläufe zu realisieren eignet sich der A*-Algorithmus von Graphwalker. Er basiert auf dem bekannten A*-Suchalgorithmus von \citeauthor{hart_formal_1968} \cite{hart_formal_1968}. Dabei wird ein zu findender Knoten angegeben. Meist ist dies ein Knoten, der das Ende eines Workflows darstellt (im Quellcodebeispiel \ref{lst:runSmokeTest} ist dies der Knoten \texttt{v\_Browse}). Graphwalker durchschreitet das Testsystem in einem möglichst kurzen Pfad, wobei die zugrundeliegende Suchheuristik bei jedem Schritt angepasst wird.
 
-\begin{lstlisting}[caption={Initialisierung eines Graphwalker Tests basierend auf dem A*-Suchalgorithmus.}, label=lst:runSmokeTest]
+\begin{lstlisting}[language=Java,caption={Initialisierung eines Graphwalker Tests basierend auf dem A*-Suchalgorithmus.}, label=lst:runSmokeTest]
 @Test
 public void runSmokeTest() {
   new TestBuilder()
@@ -361,7 +359,7 @@ public void runSmokeTest() {
 \subparagraph{Traversierung basierend auf Pfadabdeckung - Funktionaler Test}
 Umfangreiche funktionale Tests einer komplexen Applikation, wie sie beispielsweise über Nacht gemacht werden, können mit Graphwalker unter anderem durch eine Zufallstraversierung mittels Angabe der gewünschten Pfadabdeckung realisiert werden. Falls eine einhundertprozentige Abdeckung eingestellt wird (wie im Codebeispiel \ref{lst:runFunctionalTest}), wird das Modell vom Startknoten (falls angegeben) aus traversiert, bis jede begehbare Kante traversiert wurde. Gegegebenenfalls werden weitere Durchläufe gestartet, falls es Teilgraphen gibt, die vom designierten Startknoten nicht erreichbar sind. 
 
-\begin{lstlisting}[caption={Eine randomisierte aber vollständige Traversierung des Modells in Graphwalker.}, label=lst:runFunctionalTest]
+\begin{lstlisting}[language=Java,caption={Eine randomisierte aber vollständige Traversierung des Modells in Graphwalker.}, label=lst:runFunctionalTest]
 @Test
 public void runFunctionalTest() {
   new TestBuilder()
@@ -376,7 +374,7 @@ public void runFunctionalTest() {
 Mit einer Traversierung der Modelle mit Zeitangabe (im Codebeispiel \ref{lst:runFunctionalTestTime} sind es 30 Sekunden) kann Graphwalker für Last- und Performance-Tests benutzt werden. Durch die Leichtgewichtigkeit von Graphwalker können Traversierungen auch parallel gestartet werden, um damit nicht unerhebliche Last auf ein Softwaresystem zu bringen. Um eine Traversierung mit Zeitangabe zu starten, wird ein Traversierungsalgorithmus (zum Beispiel mittels der Klasse \texttt{RandomPath}) und ein Zeitlimit angegeben.\\
 Graphwalker bietet allerdings keine Möglichkeit, Metriken während des Durchlaufs zu erfassen. Diese Funktionalität muss durch andere Bibliotheken realisiert werden, was aber sehr einfach möglich ist.
 
-\begin{lstlisting}[caption={Ein Graphwalker-Test wird angestoßen, der das Modell 30 Sekunden lang zufällig traversiert.}, label=lst:runFunctionalTestTime]
+\begin{lstlisting}[language=Java,caption={Ein Graphwalker-Test, der das Modell 30 Sekunden lang zufällig traversiert, wird angestoßen.}, label=lst:runFunctionalTestTime]
 @Test
 public void runFunctionalTest() {  
   new TestBuilder()
@@ -391,7 +389,7 @@ Graphwalker bietet mit dem Parsen des Modells, der Generierung der Java-Interfac
 Üblicherweise befindet sich in den Knoten (diese stellen einen Zustand dar) Code, der auf das \Gls{SUT} überprüfend zugreift (\textit{Assertions}). In den Kanten (stellen eine Aktion dar) befindet sich Code, der eine Eingabe am \Gls{SUT} macht.\\
 Auf Schnittstellenebene kann beispielsweise SoapUI als Verbindungsstück zum \Gls{SUT} gewählt werden. Die Methode im Beispiel \ref{lst:graph_soap} implementiert das von Graphwalker aus dem Modell erzeugte Interface \texttt{e\_InvalidCredentials}. Die Methode repräsentiert eine Kante (erkennbar am Präfix \texttt{e}), die Login-Eingaben macht, die vom \Gls{SUT} als ungültig erkannt werden sollten. In der Methode wird eine Referenz zur SoapUI-Schnittstelle hergestellt. Das dazugehörige SoapUI-Projekt liegt vorbereitet an einem definierten Pfad. Im Code wird außerdem der auszuführende Testfall definiert (hier \texttt{ValidLogin}). Zuletzt wird der SoapUI-Testfall angestoßen und der Fehlerbericht gegebenenfalls abgefangen.
 
-\begin{lstlisting}[caption={Eine Methode, die ein von Graphwalker erzeugtes Interface implementiert und einen SoapUI-Testfall anstößt.}, label=lst:graph_soap]
+\begin{lstlisting}[language=Java,caption={Eine Methode, die ein von Graphwalker erzeugtes Interface implementiert und einen SoapUI-Testfall anstößt.}, label=lst:graph_soap]
 @Override
 public void e_ValidCredentials() {
 

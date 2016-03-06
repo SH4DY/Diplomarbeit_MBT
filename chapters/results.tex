@@ -21,7 +21,7 @@ Im Folgenden wird die genannte Teststrategie näher beschrieben. Abbildung \ref{
 
 \begin{figure}[h] 
   \centering
-     \includegraphics[width=1.0\textwidth]{figures/Testarchitektur-MBT-BDD-COS.png}
+     \includegraphics[width=0.6\textwidth]{figures/Testarchitektur-MBT-BDD-COS.png}
   \caption{Testarchitektur mit Behavior Driven Development und Model-based Testing Ansätzen}
   \label{fig:testarchitektur}
 \end{figure}
@@ -68,7 +68,7 @@ In der Fallstudie hat sich gezeigt, dass die erwähnten \Gls{COS}-Tabellen (sieh
 
 Als \Gls{POC} wurde ein \Gls{BDT} Framework namens \textit{FluentCoS} entwickelt, das den Prinzipien von \Gls{BDD} treu ist. Dabei werden Tests in Java-Code verfasst, der sich sehr verständlich liest. Technisch werden Annotationen verwendet und das Framework stößt JUnit-Tests an. Implementierungsdetails finden sich im Anhangskapitel \ref{app:fluent}. Beispiel \ref{lst:bddcode} zeigt einen \Gls{BDD} Test. In den Kommentaren kann die \Gls{COS} als Prosa-Text erklärt werden. Dies entspricht der Anwendung in der \Gls{BDT} Vorlage aus Abschnitt \ref{sec:bdd}. Der Methodenname entspricht einer eindeutigen Identifizierung für die \Gls{COS}. Zentral sind die klar verständlichen Aufrufe an \textit{given}, \textit{when} und \textit{then}. Hier wird die Parallele zum fachlichen Anforderungsformat `Als Rolle fordere ich etwas und gewinne dadurch Nutzen' gezogen. Jeweils das zweite Argument innerhalb dieser Aufrufe entspricht einer Methode der Testing API (siehe Abschnitt \ref{sec:testing_api})
 
-\begin{lstlisting}[caption={Beispielhaftes Codestück eines \Gls{BDD} Tests},label=lst:bddcode]
+\begin{lstlisting}[language=Java, caption={Beispielhaftes Codestück eines \Gls{BDD} Tests},label=lst:bddcode]
 
 /**
  * Es muss fachlich sichergestellt sein, dass ...
@@ -167,7 +167,8 @@ Aus Sicht der Wartungsfreundlichkeit kann keine generelle Aussage getroffen werd
 %   \label{fig:modell_komplex}
 % \end{figure}
 
-\begin{figure}[p] \begin{leftfullpage}
+\begin{figure}[p] 
+\begin{leftfullpage}
 \hspace*{-2.5cm}
 \includegraphics[width=1.2\textwidth]{figures/modell_komplex_left.png}
 \caption{Logisch modellierte Variante des Modells mit 72 Knoten und 72 Kanten. Linke Seite.}
@@ -179,7 +180,8 @@ Aus Sicht der Wartungsfreundlichkeit kann keine generelle Aussage getroffen werd
 \hspace*{-2.5cm}
 \includegraphics[width=1.2\textwidth]{figures/modell_komplex_right.png}
 \caption{Logisch modellierte Variante des Modells mit 72 Knoten und 72 Kanten. Rechte Seite.}
-\end{fullpage} \end{figure} 
+\end{fullpage}
+\end{figure} 
 
 Es fällt schnell auf, dass das Hinzufügen von nur wenigen Auswahlmöglichkeiten im Prinzip dasselbe aus dem \textit{Model Checking} bekannte Problem der kombinatorischen Zustandsexplosion aufwirft \cite{clarke_model_2012}. Verglichen mit den Ansätzen aus diesem Feld (wie \textit{Counterexample-guided abstraction refinement} \cite{clarke_counterexample-guided_2000}), bei denen eine Abstraktion verfeinert wird, geht man hier aus der anderen Richtung vor. Man betrachtet die Programmlogik auf Code-Ebene genauer und versucht Abstraktionen des komplexen Modells zu generieren. Bei numerischen Werten können zum Beispiel weniger Werte modelliert werden (Konzentration auf Grenz- und Extremwerte). Beim Beispiel des Hypothekarrechners stellte sich heraus, dass die zugrundeliegende Programmlogik gar keine 36 Ergebniskategorien erzeugen kann. Die beiden letzten der vier Fragen generieren also keine eigene Ergebniskategorie sondern \textit{schieben} das Ergebnis in eine der anderen Kategorien. Tatsächlich ergeben sich viel weniger Pfade als im ursprünglichen Modell und es bleiben nur 51 Knoten sowie 66 Kanten. Gezeigt wird diese vereinfachte Version des Modells in Abbildung \ref{fig:modell_logisch}. Gut zu sehen sind die Überschneidungen auf zweitletzter Ebene, die zu deutlich weniger Endzuständen und damit zu weniger Code führen.\\
 Durch eine verstärkte Whitebox-Ansicht muss der Modellierer also versuchen die Zustände und Übergänge im Modell zu verringern.
@@ -201,7 +203,7 @@ Durch eine verstärkte Whitebox-Ansicht muss der Modellierer also versuchen die 
 \begin{figure}[p] 
 \begin{fullpage}
 \hspace*{-2cm}
-\includegraphics[width=1.2\textwidth]{figures/modell_logisch_right.png}
+\includegraphics[width=1.0\textwidth]{figures/modell_logisch_right.png}
 \caption{Ausgehend von der Logik-Modellierung wurde hier die Logik im Quellcode betrachtet. Rechte Seite.}
 \end{fullpage} \end{figure} 
 
@@ -210,7 +212,7 @@ Die Verbindung zwischen dem abstrakten Testmodell und dem eigentlichen Testsyste
 Für Tests auf Ebene der Benutzeroberfläche kann beispielsweise Selenium gewählt werden. Das Einfügen von Selenium Code erfolgt an genau definierten Stellen. Dazu wird das Graphwalker Modell im GraphML Format eingelesen. Graphwalker erzeugt daraufhin Java Interfaces, die der Testentwickler implementiert und an den annotierten Stellen mit Adapter-Code versieht.\\
 Im Quellcodebeispiel \ref{lst:SeleniumImexPLZ} wird auf der Kante \texttt{e\_EnterPLZ}, welche darstellt, dass eine Maske mit der Aufforderung zur Eingabe der Postleitzahl angezeigt wird, eine Eingabe gemacht. Daraufhin wird das entsprechende Element angeklickt. Die Methode wurde vom Interface, welches Graphwalker automatisch anhand des Modells erzeugt hat, bereitgestellt. Der Testentwickler befüllt alle Knoten und Kanten, die nötig sind, um den zu testenden Ablauf zu durchlaufen. 
 
-\begin{lstlisting}[caption={Auf einer Kante wird mittels Selenium eine Eingabe und ein Klick durchgeführt.}, label=lst:SeleniumImexPLZ, float]
+\begin{lstlisting}[language=Java,caption={Auf einer Kante wird mittels Selenium eine Eingabe und ein Klick durchgeführt.}, label=lst:SeleniumImexPLZ, float]
 @Override
 public void e_EnterPLZ() {
     WebElement searchBox = driver.findElement(By.className("dropdown-toggle"));
@@ -223,7 +225,7 @@ Aktionen wie Eingaben und Klicks werden typischerweise in den Kanten gespeichert
 %Typischerweise befindet sich Code, der Aktionen wie Eingaben und Klicks ausführt, in den Kanten. Knoten, vor allem zum Schluss eines Ablaufs, werden dazu genutzt Zustände zu überprüfen. Auch für solche Überprüfungen kann ein beliebiges Werkzeug verwendet werden. 
 Selenium bietet Möglichkeiten zur Feststellung, ob ein Element auf der aktuellen Eingabemaske sichtbar oder benutzbar ist. Das Quellcodebeispiel \ref{lst:SeleniumImexAssertion} zeigt, wie im Knoten \texttt{e\_Proposal\_0} geprüft wird, ob an einer bestimmten Stelle im HTML-Dokument der Text \texttt{Festhypothek} dargestellt wird. Um an diese Stelle im Dokument zu navigieren wird die \textit{XML Path Language}\footnote{Definition der XPath Version 1 des World Wide Web Consortium \url{http://www.w3.org/TR/xpath/}} verwendet.
 
-\begin{lstlisting}[caption={Eine Assertion in Selenium auf einem Graphwalker Knoten}, label=lst:SeleniumImexAssertion, float]
+\begin{lstlisting}[language=Java,caption={Eine Assertion in Selenium auf einem Graphwalker Knoten}, label=lst:SeleniumImexAssertion, float]
 @Override
 public void v_Proposal_0() {
    //Beispielsweise
@@ -247,7 +249,7 @@ Geht man einen Schritt weiter, kann es sinnvoll sein, die strukturellen Ähnlich
 %Grafik: MBT vs BDT, langer schwanz bis startzustand erreicht. Ein pfad
 \begin{figure} 
   \centering
-     \includegraphics[width=0.8\textwidth]{figures/mbt_bdt_given.png}
+     \includegraphics[width=1\textwidth]{figures/mbt_bdt_given.png}
   \caption{Transformation des \textit{Given}-Teils eines BDD Tests in ein Modell}
   \label{fig:mbt_bdt_given}
 \end{figure}
@@ -265,7 +267,7 @@ In \Gls{BDT} folgt nun die Aktion (\textit{When}). Diese wird, gerade in Clearte
 Das endgültige Akzeptanzkriterium (\textit{then}) ist in \Gls{MBT} in einem ausreichend detaillierten Modell eine Überprüfung im Code. Auch im Beispiel \ref{fig:modell_logisch} aus Abschnitt \ref{sec:results_modellierung} ist im Modell nicht ersichtlich, welche Überprüfungen in den Blattknoten genau gemacht werden. Hier zeigt sich wieder das Problem, dass sich Logik in der Implementierung des Modells versteckt. Abbildung \ref{fig:mbt_bdt_then} zeigt diesen Umstand grafisch. Im \Gls{BDT} kommen meist mehrere Kriterien zum Einsatz, die gleichzeitig erfüllt sein müssen. Da der BD-Test sehr resultatsorientiert dargestellt und formuliert wird, ist sofort klar, welche Eigenschaften des Systems im Endzustand geprüft werden. Im Behavior Driven Beispieltestfall in Abschnitt \ref{sec:bdt_bsp} werden außerdem Überprüfungen außerhalb des gerade getesteten Kontexts gemacht. Es findet eine lokale Überprüfung (`Die Karte sollte wieder ausgegeben werden' und `Eine erklärende Fehlermeldung soll angezeigt werden') und eine Überprüfung des Zentralsystems statt (`Der Kontostand sollte unverändert bleiben'). In Graphwalker würden solche Überprüfungen natürlich möglich sein. Es könnten dieselben Funktionen aus der Testing API verwendet werden, die auch im \Gls{BDT} vorkommen. Solche kontextübergreifenden Überprüfungen lassen sich in einem grafischen Modell aber nur schwer darstellen. Es wäre wiederum entscheidende Logik im Testcode verborgen. Codebeispiel \ref{lst:mbt_bdt_assertion} zeigt eine solche Einbettung von Überprüfungen in den Blattknoten aus Modell \ref{fig:mbt_bdt_then}.
 
 
-\begin{lstlisting}[caption=Überprüfungen mittels Testing API in Blattknoten, label=lst:mbt_bdt_assertion]
+\begin{lstlisting}[language=Java,caption=Überprüfungen mittels Testing API in Blattknoten, label=lst:mbt_bdt_assertion]
 /** Hier ist der THEN Teil des Behavior Driven Tests eingebettet */
 @Override
 public void v_TransaktionErfolgreich(){
