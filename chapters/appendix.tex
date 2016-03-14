@@ -1,14 +1,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{\appendixlabel}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Interview Leitfaden}
+\section{Interviewleitfaden}
 \label{app:leitfaden}
 Als Grundlage zur Konzeption der in Kapitel \ref{sec:results} beschriebenen Teststrategie wurden Interviews mit dem leitenden Architekten der Applikation, einem Entwickler, einer Business-Analystin und einem Testverantwortlichen geführt. Das Dokument in Abbildung \ref{fig:leitfaden} diente dabei als Leitfaden.
 
 \begin{figure}[h] 
   \centering
      \includegraphics[width=1.0\textwidth]{figures/leitfaden.png}
-  \caption{Interview Leitfadendokument}
+  \caption{Interviewleitfadendokument}
   \label{fig:leitfaden}
 \end{figure}
 
@@ -119,13 +119,13 @@ public class SimpleTest extends ExecutionContext implements Login {
 
 
 \section{Graphwalker Testsuite am Beispiel Hypothekarrechner mit Selenium}
-Es folgt der Code zum Beispiel aus Kapitel \ref{sec:results} - \Newnameref{sec:results}. Hier wird das \Gls{SUT} im GraphML Format dargestellt. Graphwalker erzeugt ein Java Interface, welches der Testentwickler mit Adapter-Code befüllt. In diesem Beispiel wurde Selenium verwendet um die Applikation anzusteuern.\\
+Es folgt der Code zum Beispiel aus Kapitel \ref{sec:results} - \Newnameref{sec:results}. Hier wird das \Gls{SUT} im GraphML-Format dargestellt. Graphwalker erzeugt ein Java Interface, welches der Testentwickler mit Adapter-Code befüllt. In diesem Beispiel wurde Selenium verwendet um die Applikation anzusteuern.\\
 
 Das Codebeispiel \ref{code:gw_generated} zeigt das von Graphwalker generierte Java Interface. Wie das zugrundeliegende Modell \ref{fig:modell_logisch} erstellt wurde, wird im Abschnitt \ref{sec:results_modellierung} beschrieben.\\
 
 Im Listing \ref{code:gw_selenium} wird das generierte Interface implementiert. Nicht alle Knoten und Kanten müssen Adapter-Code enthalten.\\
 
-Das vollständige Beispiel, inklusive der generierten GraphML Dateien, ist zu finden unter: \url{https://github.com/SH4DY/ImexTest/}
+Das vollständige Beispiel, inklusive der generierten GraphML-Dateien, ist zu finden unter: \url{https://github.com/SH4DY/ImexTest/}
 
 \begin{lstlisting}[language=Java,caption=ImexTest.java, label=code:gw_selenium]
 package com.shady.imextest.modelimplementations;

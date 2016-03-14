@@ -9,21 +9,17 @@
 
 %%% Deutsche Kurzfassung %%%
 
-%Motivation Kontext 1 Absatz
-%Methode Verfahrensweise FAllbeispiel
-%
-
 \begin{otherlanguage}{ngerman}
 
 \chapter*{Kurzfassung}
 
 Automatisierte Softwaretests sind aus der heutigen Softwareentwicklung nicht mehr wegzudenken. Die steigenden Umfänge und Komplexitätsniveaus moderner Software verlangen nach immer effizienteren Mitteln, um Qualität sicherzustellen. Schon lange streben Softwareprojekte nach der Automatisierung von regressiven Tests, die manuell ausgeführt hohe Zeitaufwandskosten verursachen. Gerade in agil geführten Softwareprojekten kann ein Testautomatisierungsvorhaben durch die schnellen Iterationen zunichte gemacht werden. Um mit automatisierten Tests auf lange Sicht erfolgreich zu sein, bedarf es einer systematischen Herangehensweise.\\
 
-Ein vielversprechender Ansatz ist das modellbasierte Testen (\textit{Model Based Testing}). \Gls{MBT} wird seit mehr als 15 Jahren aktiv erforscht und betrieben \cite{utting_practical_2007}. Außer in wenigen Branchen, wie der Automobil- und Robotikindustrie, fand \Gls{MBT} nie breite Anwendung. Ganz im Gegensatz dazu ist das \Gls{BDD} ein sehr junger Ansatz, der durch seine wertgewinnende Orientierung vor allem in der Applikationsprogrammierung zum Einsatz kommt.\\
+Ein vielversprechender Ansatz ist das modellbasierte Testen (\textit{Model Based Testing}). \Gls{MBT} wird seit mehr als 15 Jahren aktiv erforscht und betrieben. Außer in wenigen Branchen, wie der Automobil- und Robotikindustrie, fand \Gls{MBT} nie breite Anwendung. Ganz im Gegensatz dazu ist das \Gls{BDD} ein sehr junger Ansatz, der durch seine wertgewinnende Orientierung vor allem in der Applikationsprogrammierung zum Einsatz kommt.\\
 
-Diese Arbeit erforscht und vergleicht in einem ersten Schritt mehrere Konzepte und Werkzeuge des modellbasierten Tests. Dann wird, im Hinblick auf Verbesserungspotenzial in der Qualitätssicherung, ein industrielles Fallbeispiel im Bereich der Finanzsoftware analysiert. Schlussendlich wird eine neuartige Teststrategie anhand dieses Fallbeispiels präsentiert, welche die Stärken von \Gls{MBT} und \Gls{BDT} vereint. \\
+Diese Arbeit erforscht und vergleicht in einem ersten Schritt mehrere Konzepte und Werkzeuge des modellbasierten Tests. Dann wird, im Hinblick auf Verbesserungspotenzial in der Qualitätssicherung, ein ausgewähltes Fallbeispiel im Bereich der Finanzsoftware analysiert. Schlussendlich wird eine neuartige Teststrategie anhand dieses Fallbeispiels präsentiert, welche die Stärken von \Gls{MBT} und \Gls{BDT} vereint. \\
 
-Das Open-Source Werkzeug \textit{Graphwalker} kann durch seine geradlinige Philosophie und seinen klaren Einsatzzweck sehr gut im Fallbeispiel eingesetzt werden. Graphwalker ermöglicht den gezielten Einsatz als Schicht zwischen logischem und technischem Teil der Testfälle. Die Testabläufe können so von den zugrundeliegenden technischen Details entkoppelt werden. Damit kann eine der Hauptanforderungen realisiert werden: Die Minderung der Kosten für die üblicherweise teure Wartung automatisierter Tests. Das Resultatskapitel stellt einen Ansatz vor, bei dem parallel \Gls{BDT} Testfälle eingesetzt werden. Diese Kombination ermöglicht eine optimale Abdeckung mit vollautomatischen Traversierungen durch Graphwalker und manuell definierten Akzeptanztests. Überdies wird, ausgehend von den strukturellen Ähnlichkeiten beider Ansätze, eine Vorgehensweise präsentiert mit der sich \Gls{BDT} Tests mit \Gls{MBT} Tests verschmelzen lassen, um die Vorteile beider nutzen zu können.
+Das Open-Source Werkzeug \textit{Graphwalker} kann aufgrund seiner hohen Flexibilität sehr gut im Fallbeispiel eingesetzt werden. Graphwalker ermöglicht den gezielten Einsatz als Schicht zwischen logischem und technischem Teil der Testfälle. Die Testabläufe können so von den zugrundeliegenden technischen Details entkoppelt werden. Damit kann eine der Hauptanforderungen realisiert werden: Die Minderung der Kosten für die üblicherweise teure Wartung automatisierter Tests. Das Resultatskapitel stellt einen Ansatz vor, bei dem parallel \Gls{BDT} eingesetzt wird. Diese Kombination ermöglicht eine optimale Abdeckung mit vollautomatischen Traversierungen durch Graphwalker und manuell definierten Akzeptanztests. Überdies wird, ausgehend von den strukturellen Ähnlichkeiten beider Ansätze, eine allgemeine Vorgehensweise für den kombinierten Einsatz von \Gls{MBT} und \Gls{BDT} präsentiert, sodass Synergien optimal genützt werden können.
 
 \bigskip
 
@@ -40,11 +36,11 @@ Das Open-Source Werkzeug \textit{Graphwalker} kann durch seine geradlinige Philo
 
   Automated testing is an essential part of todays engineering projects. Rising complexity and growing size ask for more efficient instruments to assure quality. The automation of regression tests is in high demand but cannot be taken lightly. Especially in fast-moving agile projects, one needs a systematic approach to be successful in the long run.\\
 
-  One promising approach is \Gls{MBT}. Although it is being actively researched and used for about 15 years \cite{utting_practical_2007}, \Gls{MBT} gained adoption in only a few sectors, like automotive engineering and robotics. In contrast to this, the notion of \Gls{BDD} is rather young. In part because of its business-oriented principles it is widely used in enterprise application development.\\
+  One promising approach is \Gls{MBT}. Although it is being actively researched and used for about 15 years, \Gls{MBT} gained adoption in only a few sectors, like automotive engineering and robotics. In contrast to this, the notion of \Gls{BDD} is rather young. In part because of its business-oriented principles it is widely used in enterprise application development.\\
 
-  This thesis will explore and compare multiple concepts and tools of model-based testing. The most promising will then be tested in an industrial case study in the area of financial software development. Finally a novel testing strategy, complementing existing quality assurance measures and combining the strengts of \Gls{MBT} and \Gls{BDT}, will be proposed.\\
+  This thesis explores and compares multiple concepts and tools of model-based testing. The most promising ones were tested in an industrial case study in the area of financial software development. Finally a novel testing strategy, complementing existing quality assurance measures and combining the strengts of \Gls{MBT} and \Gls{BDT}, is proposed.\\
 
-  Results have shown, that there are only a handful of \Gls{MBT} tools on the market, which are actively developed and used. One of them is \textit{Graphwalker}, which is being developed as an open source project. Through its clear designated purpose and flexibility while using, it was a perfect fit for the case study project. The tool enables decoupling of logical and technical layers of the test cases, which promises substantial savings when it comes to maintenance. Furthermore a combination of model-based testing and behavior-driven testing is proposed. Used in the presented architecture, this hybrid approach ensures optimal coverage of branch logic and manually defined acceptance criteria.
+  Results have shown that there are only a handful of \Gls{MBT} tools on the market, which are actively developed and used. One of them is \textit{Graphwalker}, which is being developed as an open source project. Through its clear designated purpose and flexibility while using, it was a perfect fit for the case study project. The tool enables decoupling of logical and technical layers of the test cases, which promises substantial savings when it comes to maintenance. Furthermore a combination of model-based testing and behavior-driven testing is proposed. Used in the presented architecture, this hybrid approach ensures optimal coverage of branch logic and manually defined acceptance criteria.
 
   \bigskip
 

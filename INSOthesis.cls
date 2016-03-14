@@ -172,7 +172,7 @@
 % important packages
 \RequirePackage{styles/INSO}
 \RequirePackage{styles/TUINFDA}
-\RequirePackage[backend=bibtex,style=numeric-comp]{biblatex}
+\RequirePackage[backend=bibtex,style=numeric-comp, maxcitenames=1, maxbibnames=99, url=false, doi=false, isbn=false]{biblatex}
 \RequirePackage[lined,linesnumbered,algochapter]{algorithm2e} % Algorithm-Environment
 \RequirePackage{listings}
 \RequirePackage[hang,bottom,norule]{footmisc}
@@ -293,7 +293,7 @@
   \gdef\@thesistypeen   {BACHELOR THESIS}
 \fi
 \ifthesis@masterthesis
-  \gdef\@thesisdegree   {Diplom-Ingenieur/in}
+  \gdef\@thesisdegree   {Diplom-Ingenieur}
   \gdef\@thesisdegreeen   {Master of Science}
 \else
   \gdef\@thesisdegree   {Bachelor of Science}
@@ -307,8 +307,8 @@
 \gdef\@thesisadvisor@one  {Thomas Grechenig}
 \gdef\@thesisadvisor@two  {}
 \gdef\@thesisadvisor@three  {}
-\gdef\@thesisauthorpreamble {Verfasser/In}
-\gdef\@thesisadvisorpreamble  {Betreuung}
+\gdef\@thesisauthorpreamble {Verfasser}
+\gdef\@thesisadvisorpreamble  {Betreuer}
 
 \gdef\thesistitle#1   {\title       {#1}}
 \gdef\thesisshorttitle#1  {\gdef\@shorttitle    {#1}}
@@ -764,8 +764,8 @@
 % \setlength  \headsep{2cm}   % header skip
 \fancyhead [L]  {\nouppercase{\leftmark}}
 \fancyhead [R]  {\nouppercase{\rightmark}}
-\fancyfoot [L]  {\parbox[b]{0.7\linewidth}{\@shorttitle}}
-\fancyfoot [R]  {\pagelabel}
+%\fancyfoot [L]  {\parbox[b]{0.7\linewidth}{\@shorttitle}} % Diese Zeile wieder einfügen um Kurztitel in Fußzeile zu reaktivieren
+\fancyfoot [C]  {\pagelabel}
 
 \makepagestyle{insochapter}
 \makeevenhead{insochapter}{}{}{}
@@ -798,7 +798,7 @@
 \renewcommand{\listalgorithmcfname}{\algorithmslabel}
 \renewcommand{\algorithmcfname}{\algorithmcaptionlabel}
 
-\def\bibliographylabel{\whichlanguage{References}{Wissenschaftliche Literatur}}
+\def\bibliographylabel{\whichlanguage{References}{Referenzen}}
 \def\onlinebibliographylabel{\whichlanguage{Online References}{Online Referenzen}}
 \def\declarationlabel{\whichlanguage{Statement by Author}{Eidesstattliche Erkl\"arung}}
 \def\acknowledgementslabel{\whichlanguage{Acknowledgements}{Danksagung}}
@@ -825,6 +825,10 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%Diesen override entfernen damit wieder "u.a." statt "et al" verwendet wird.
+\DefineBibliographyStrings{ngerman}{ 
+   andothers = {{et\,al\adddot}},             
+} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % EOF
